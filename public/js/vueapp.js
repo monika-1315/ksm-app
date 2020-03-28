@@ -293,7 +293,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#app {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  align-content:center;\r\n  color: #2c3e50;\r\n  padding-left: 5%;\r\n  padding-right: 5%;\n}\n.labels{\r\n  text-align:left;\r\n  width: auto;\r\n  display:inline-block;\n}\r\n", ""]);
+exports.push([module.i, "\n#app {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  align-content:center;\r\n  color: #2c3e50;\r\n  margin-top: 20px;\r\n  padding-left: 5%;\r\n  padding-right: 5%;\n}\n.labels{\r\n  text-align:left;\r\n  width: auto;\r\n  display:inline-block;\n}\r\n", ""]);
 
 // exports
 
@@ -17175,6 +17175,17 @@ module.exports = "/images/logo.png?9a5e800bbc300cb2cb86ef1a5b0af43d";
 
 /***/ }),
 
+/***/ "./resources/js/store/index.js":
+/*!*************************************!*\
+  !*** ./resources/js/store/index.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\moniu\\Documents\\PWr\\semestr6\\Zaawansowane Technologie Webowe\\ksm_app\\resources\\js\\store\\index.js'");
+
+/***/ }),
+
 /***/ "./resources/js/vueapp.js":
 /*!********************************!*\
   !*** ./resources/js/vueapp.js ***!
@@ -17193,6 +17204,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Welcome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Welcome */ "./resources/js/components/Welcome.vue");
 /* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Page */ "./resources/js/components/Page.vue");
 /* harmony import */ var _components_KSMApp__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/KSMApp */ "./resources/js/components/KSMApp.vue");
+/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
 
 
 
@@ -17200,6 +17212,17 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 
 
+
+
+
+function guard(to, from, next) {
+  if (!_store_index__WEBPACK_IMPORTED_MODULE_7__["default"].state.login.isLoggedIn === true) {
+    // or however you store your logged in state
+    next(); // allow to enter route
+  } else {
+    next('/login'); // go to '/login';
+  }
+}
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
@@ -17221,10 +17244,15 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         role: "Software Engineer",
         code: "Always keep it clean"
       }
-    }
+    },
+    beforeEnter: guard
   }, {
     path: '/ksm',
     name: 'KSM',
+    component: _components_KSMApp__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/login',
+    name: 'Login',
     component: _components_KSMApp__WEBPACK_IMPORTED_MODULE_6__["default"]
   }]
 });

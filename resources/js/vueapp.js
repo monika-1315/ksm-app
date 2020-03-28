@@ -9,6 +9,16 @@ import Welcome from './components/Welcome'
 import Page from './components/Page'
 import KSMApp from './components/KSMApp'
 
+import store from './store/index';
+
+function guard(to, from, next){
+    if(!store.state.login.isLoggedIn === true) {
+        // or however you store your logged in state
+        next(); // allow to enter route
+    } else{
+        next('/login'); // go to '/login';
+    }
+}
 const router = new VueRouter({
     mode: 'history',
     routes: [
@@ -29,13 +39,19 @@ const router = new VueRouter({
                     role : "Software Engineer",
                     code : "Always keep it clean"
                 }
-            }
+            },
+            beforeEnter: guard
         },  
         {
             path: '/ksm',
             name: 'KSM',
             component: KSMApp
-        }  
+        }  ,
+        {
+            path: '/login',
+            name: 'Login',
+            component: KSMApp
+        }
     ],
 })
 const app = new Vue({
@@ -43,3 +59,4 @@ const app = new Vue({
     components: { App },
     router,
 });
+
