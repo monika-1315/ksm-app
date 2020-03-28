@@ -55,6 +55,7 @@ methods: {
   text-align: center;
   align-content:center;
   color: #2c3e50;
+  margin-top: 20px;
   padding-left: 5%;
   padding-right: 5%;
 }

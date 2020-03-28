@@ -293,7 +293,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#app {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  align-content:center;\r\n  color: #2c3e50;\r\n  padding-left: 5%;\r\n  padding-right: 5%;\n}\n.labels{\r\n  text-align:left;\r\n  width: auto;\r\n  display:inline-block;\n}\r\n", ""]);
+exports.push([module.i, "\n#app {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  align-content:center;\r\n  color: #2c3e50;\r\n  margin-top: 20px;\r\n  padding-left: 5%;\r\n  padding-right: 5%;\n}\n.labels{\r\n  text-align:left;\r\n  width: auto;\r\n  display:inline-block;\n}\r\n", ""]);
 
 // exports
 
