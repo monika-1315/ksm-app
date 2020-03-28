@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>KSM DL</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -66,10 +66,9 @@
     </head>
     <body>
         <div id="app">
-                <welcome :title-"This cool app"></welcome>
+                <welcome></welcome>
         </div>
-        <script type="text/javascript" src="js/app2.js"></script>
-            
+        <script type="text/javascript" src="js/app.js"></script>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -87,7 +86,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    HelloWorld
+                    Laravel
                 </div>
 
                 <div class="links">
