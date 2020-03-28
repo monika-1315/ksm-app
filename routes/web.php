@@ -20,7 +20,7 @@ Route::get('/', function () {
             ]
         );
     });
-    Route::get('/page', function () {
+Route::get('/page', function () {
         return view('page',
             [
                 'title' => "Page 2 - A little about the Author",
@@ -31,4 +31,8 @@ Route::get('/', function () {
                 ])
             ]
         );
-    });
+});
+
+Route::get('/{any}', function(){
+    return view('vueapp');
+})->where('any', '.*');
