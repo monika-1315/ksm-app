@@ -14,5 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('welcome',
+            [
+                'title' => "An even cooler way to do the title"
+            ]
+        );
+    });
+    Route::get('/page', function () {
+        return view('page',
+            [
+                'title' => "Page 2 - A little about the Author",
+                'author' => json_encode([
+                        "name" => "Fisayo Afolayan",
+                        "role" => "Software Enginner",
+                        "code" => "Always keeping it clean"
+                ])
+            ]
+        );
+    });

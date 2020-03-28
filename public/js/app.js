@@ -1922,7 +1922,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['title', 'author']
+});
 
 /***/ }),
 
@@ -2016,7 +2020,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nhtml[data-v-524c0c0c], body[data-v-524c0c0c] {\n    background-color: #fff;\n    color: #636b6f;\n    font-family: 'Raleway', sans-serif;\n    font-weight: 100;\n    height: 100vh;\n    margin: 0;\n}\n.full-height[data-v-524c0c0c] {\n    height: 100vh;\n}\n.flex-center[data-v-524c0c0c] {\n    align-items: center;\n    display: flex;\n    justify-content: center;\n}\n.position-ref[data-v-524c0c0c] {\n    position: relative;\n}\n.top-right[data-v-524c0c0c] {\n    position: absolute;\n    right: 10px;\n    top: 18px;\n}\n.content[data-v-524c0c0c] {\n    text-align: center;\n}\n.title[data-v-524c0c0c] {\n    font-size: 84px;\n}\n.links > a[data-v-524c0c0c] {\n    color: #636b6f;\n    padding: 0 25px;\n    font-size: 12px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.m-b-md[data-v-524c0c0c] {\n    margin-bottom: 30px;\n}\n", ""]);
+exports.push([module.i, "\nhtml[data-v-524c0c0c], body[data-v-524c0c0c] {\n    background-color: #fff;\n    color: #939b9f;\n    font-family: 'Raleway', sans-serif;\n    font-weight: 100;\n    height: 100vh;\n    margin: 0;\n}\n.title[data-v-524c0c0c] {\n    font-size: 60px;\n}\n.subtitle[data-v-524c0c0c] {\n    font-size: 20px;\n}\n.full-height[data-v-524c0c0c] {\n    height: 100vh;\n}\n.flex-center[data-v-524c0c0c] {\n    align-items: center;\n    display: flex;\n    justify-content: center;\n}\n.position-ref[data-v-524c0c0c] {\n    position: relative;\n}\n.top-right[data-v-524c0c0c] {\n    position: absolute;\n    right: 10px;\n    top: 18px;\n}\n.content[data-v-524c0c0c] {\n    text-align: center;\n}\n.m-b-md[data-v-524c0c0c] {\n    margin-bottom: 30px;\n}\n", ""]);
 
 // exports
 
@@ -20297,36 +20301,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex-center position-ref full-height" }, [
-      _c("div", { staticClass: "content" }, [
-        _c("div", { staticClass: "title m-b-md" }, [
-          _vm._v("\n            Welcome to Vue.js on Laravel\n        ")
+  return _c("div", { staticClass: "flex-center position-ref full-height" }, [
+    _c("div", { staticClass: "content" }, [
+      _c("div", { staticClass: "title m-b-md" }, [
+        _vm._v("\n            " + _vm._s(_vm.title) + "\n        ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "links" }, [
+        _c("span", { staticClass: "subtitle" }, [
+          _vm._v("Name : " + _vm._s(_vm.author.name))
         ]),
+        _c("br"),
         _vm._v(" "),
-        _c("div", { staticClass: "links" }, [
-          _c("a", { attrs: { href: "https://laravel.com/docs" } }, [
-            _vm._v("View Laravel Docs")
-          ]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "https://vuejs.org/v2/guide/" } }, [
-            _vm._v("View Vue Docs")
-          ]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "https://laracasts.com" } }, [
-            _vm._v("Watch Videos")
-          ])
-        ])
+        _c("span", { staticClass: "subtitle" }, [
+          _vm._v("Role : " + _vm._s(_vm.author.role))
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", { staticClass: "subtitle" }, [
+          _vm._v("Code : " + _vm._s(_vm.author.code))
+        ]),
+        _c("br")
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

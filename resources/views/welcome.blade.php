@@ -66,7 +66,7 @@
     </head>
     <body>
         <div id="app">
-        <welcome :title="'This cool app'"></welcome>
+        <welcome :title="'{{$title}}'"></welcome>
               
         </div>
         <script type="text/javascript" src="js/app.js"></script>
