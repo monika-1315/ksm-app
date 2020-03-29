@@ -2,38 +2,92 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Http\Request;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+/**
+ * @property integer $Id
+ * @property string $Email
+ * @property string $Haslo
+ * @property string $Imie
+ * @property string $Nazwisko
+ * @property date $DataUr
+ * @property integer $OddzialId
+ * @property boolean $CzyZautoryzowane
+ * @property boolean $CzyKierownictwo
+ * @property boolean $CzyZarzad
+ */
+
+class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    /**
+     * The "type" of the auto-incrementing ID.
+     * 
+     * @var string
+     */
+    protected $keyType = 'integer';
 
     /**
-     * The attributes that are mass assignable.
-     *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $fillable = ['Email', 'Haslo', 'Imie', 'Nazwisko', 'DataUr', 'OddzialId', 'CzyZautoryzowane', 'CzyKierownictwo', 'CzyZarzad'];
+
+
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    //  */
+    // public function contacts()
+    // {
+    //     return $this->hasMany('App\Contact');
+    // }
+
+
+    public static function create(Request $request)
+    {
+        $user = new User();
+
+        if (!empty($request->get('Email'))) {
+            $user->Email = $request->get('Email');
+        }
+        if (!empty($request->get('Haslo'))) {
+            $user->Haslo = bcrypt($request->get('Haslo'));
+        }
+
+        $user->save();
+
+        return $user;
+    }
+
+
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Get the identifier that will be stored in the subject claim of the JWT.
      *
-     * @var array
+     * @return mixed
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
 
     /**
-     * The attributes that should be cast to native types.
+     * Return a key value array, containing any custom claims to be added to the JWT.
      *
-     * @var array
+     * @return array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->Haslo;
+    }
 }
