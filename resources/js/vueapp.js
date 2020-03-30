@@ -18,8 +18,8 @@ import Dashboard from './pages/Dashboard'
 import Index from './Index.vue';
 
 import 'es6-promise/auto'
-//import axios from 'axios'
-import axios from './axios'
+import axios from 'axios'
+
 import VueAuth from '@websanova/vue-auth'
 import VueAxios from 'vue-axios'
 import auth from './auth'
@@ -103,21 +103,16 @@ Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 Vue.axios.defaults.baseURL = 'http://localhost:8000/api/v1'
 
-Vue.use(VueAuth, {
-  auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
-  http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
-  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
-  rolesVar: 'role'
-});
 Vue.use(VueAuth, auth)
+Vue.component('index', Index)
 const app = new Vue({
     el: '#app',
-    components: { App,
-   
-    ksmapp: KSMApp,
-    Welcome,
-    Page,
-    index:Index
+    components: { 
+      App,
+      ksmapp: KSMApp,
+      Welcome,
+      Page,
+      index:Index
     },
     router,
     axios

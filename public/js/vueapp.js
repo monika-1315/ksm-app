@@ -3146,6 +3146,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Menu_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Menu.vue */ "./resources/js/components/Menu.vue");
 //
 //
 //
@@ -3155,16 +3156,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {//
+    };
+  },
+  components: {
+    Menu: _Menu_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
 
 /***/ }),
 
@@ -3234,6 +3235,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6158,21 +6172,21 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "main" } }, [
-    _vm._m(0),
+    _c(
+      "header",
+      { attrs: { id: "header" } },
+      [
+        _c("Menu"),
+        _vm._v(" "),
+        _c("h1", [_vm._v("Katolickie Stowarzyszenie Młodzieży ")])
+      ],
+      1
+    ),
     _vm._v(" "),
-    _c("div", { attrs: { id: "content" } }, [_c("Menu")], 1)
+    _c("div", { attrs: { id: "content" } })
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { attrs: { id: "header" } }, [
-      _c("h1", [_vm._v("Katolickie Stowarzyszenie Młodzieży ")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -6194,65 +6208,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "nav",
-      { staticClass: "navbar navbar-expand-md navbar-light navbar-laravel" },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "ul",
-            { staticClass: "navbar-nav" },
-            [
-              _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: { name: "KSM" } } },
-                [
-                  _c("img", {
-                    attrs: {
-                      alt: "KSM logo",
-                      src: __webpack_require__(/*! ./assets/logo.png */ "./resources/js/components/assets/logo.png"),
-                      width: "40"
-                    }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: { name: "welcome" } } },
-                [_vm._v("Home")]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: { name: "page" } } },
-                [_vm._v("Spa-Page")]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: { name: "KSM" } } },
-                [_vm._v("KSM")]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-link",
-                  attrs: { to: { name: "register" } }
-                },
-                [_vm._v("Zarejestruj się")]
-              )
-            ],
-            1
-          )
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("main", [_c("router-view")], 1)
-  ])
+  return _c(
+    "div",
+    [_c("Menu"), _vm._v(" "), _c("main", [_c("router-view")], 1)],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -6426,14 +6386,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "nav",
-    { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark" },
+    { staticClass: "navbar navbar-expand-lg  navbar-light bg-light" },
     [
-      _c(
-        "router-link",
-        { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
-        [_vm._v("Laravel + JWT + Vue JS")]
-      ),
-      _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
       _c(
@@ -6443,6 +6397,54 @@ var render = function() {
           attrs: { id: "navbarSupportedContent" }
         },
         [
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: { name: "KSM" } } },
+            [
+              _c("img", {
+                attrs: {
+                  alt: "KSM logo",
+                  src: __webpack_require__(/*! ./assets/logo.png */ "./resources/js/components/assets/logo.png"),
+                  width: "40"
+                }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "navbar-nav mr-auto" },
+            [
+              _c(
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: { name: "welcome" } } },
+                [_vm._v("Home")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: { name: "page" } } },
+                [_vm._v("Spa-Page")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: { name: "KSM" } } },
+                [_vm._v("KSM")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  attrs: { to: { name: "register" } }
+                },
+                [_vm._v("Zarejestruj się")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _vm.$auth.check(1)
             ? _c(
                 "ul",
@@ -6541,10 +6543,10 @@ var render = function() {
                 ])
               ])
             : _vm._e()
-        ]
+        ],
+        1
       )
-    ],
-    1
+    ]
   )
 }
 var staticRenderFns = [
@@ -22391,30 +22393,6 @@ var config = {
 
 /***/ }),
 
-/***/ "./resources/js/axios.js":
-/*!*******************************!*\
-  !*** ./resources/js/axios.js ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-var API_URL = process.env.API_URL || 'http://localhost:3000/api/v1';
-/* harmony default export */ __webpack_exports__["default"] = (axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
-  baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + localStorage.token
-  }
-}));
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
-
-/***/ }),
-
 /***/ "./resources/js/components/App.vue":
 /*!*****************************************!*\
   !*** ./resources/js/components/App.vue ***!
@@ -23146,7 +23124,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Index_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Index.vue */ "./resources/js/Index.vue");
 /* harmony import */ var es6_promise_auto__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! es6-promise/auto */ "./node_modules/es6-promise/auto.js");
 /* harmony import */ var es6_promise_auto__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(es6_promise_auto__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./axios */ "./resources/js/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _websanova_vue_auth__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @websanova/vue-auth */ "./node_modules/@websanova/vue-auth/src/index.js");
 /* harmony import */ var _websanova_vue_auth__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_websanova_vue_auth__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.min.js");
@@ -23168,7 +23147,6 @@ __webpack_require__.r(__webpack_exports__);
 // import AdminDashboard from './pages/admin/Dashboard'
 
 
- //import axios from 'axios'
 
 
 
@@ -23238,15 +23216,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.router = router;
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]); // Set Vue authentication
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_15___default.a, _axios__WEBPACK_IMPORTED_MODULE_13__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_15___default.a, axios__WEBPACK_IMPORTED_MODULE_13___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.axios.defaults.baseURL = 'http://localhost:8000/api/v1';
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_websanova_vue_auth__WEBPACK_IMPORTED_MODULE_14___default.a, {
-  auth: __webpack_require__(/*! @websanova/vue-auth/drivers/auth/bearer.js */ "./node_modules/@websanova/vue-auth/drivers/auth/bearer.js"),
-  http: __webpack_require__(/*! @websanova/vue-auth/drivers/http/axios.1.x.js */ "./node_modules/@websanova/vue-auth/drivers/http/axios.1.x.js"),
-  router: __webpack_require__(/*! @websanova/vue-auth/drivers/router/vue-router.2.x.js */ "./node_modules/@websanova/vue-auth/drivers/router/vue-router.2.x.js"),
-  rolesVar: 'role'
-});
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_websanova_vue_auth__WEBPACK_IMPORTED_MODULE_14___default.a, _auth__WEBPACK_IMPORTED_MODULE_16__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('index', _Index_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   components: {
@@ -23257,7 +23230,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     index: _Index_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
   router: router,
-  axios: _axios__WEBPACK_IMPORTED_MODULE_13__["default"]
+  axios: axios__WEBPACK_IMPORTED_MODULE_13___default.a
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
