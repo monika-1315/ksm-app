@@ -90,13 +90,13 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     components: { App,
-    router,
+   
     ksmapp: KSMApp,
     Welcome,
     Page,
-    index:Index,
-    render: h => h(Index)
-    }
+    index:Index
+    },
+    router,
 });
 
 export default router

@@ -145,6 +145,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -456,6 +458,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1864,19 +1871,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { attrs: { id: "main" } }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "content" } }, [_c("Menu")], 1)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "main" } }, [
-      _c("header", { attrs: { id: "header" } }, [
-        _c("h1", [_vm._v("Katolickie ")])
-      ]),
-      _vm._v(" "),
-      _c("div", { attrs: { id: "content" } })
+    return _c("header", { attrs: { id: "header" } }, [
+      _c("h1", [_vm._v("Katolickie Stowarzyszenie Młodzieży ")])
     ])
   }
 ]
@@ -1913,6 +1920,20 @@ var render = function() {
             [
               _c(
                 "router-link",
+                { staticClass: "nav-link", attrs: { to: { name: "KSM" } } },
+                [
+                  _c("img", {
+                    attrs: {
+                      alt: "KSM logo",
+                      src: __webpack_require__(/*! ./assets/logo.png */ "./resources/js/components/assets/logo.png"),
+                      width: "40"
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
                 { staticClass: "nav-link", attrs: { to: { name: "welcome" } } },
                 [_vm._v("Home")]
               ),
@@ -1927,6 +1948,15 @@ var render = function() {
                 "router-link",
                 { staticClass: "nav-link", attrs: { to: { name: "KSM" } } },
                 [_vm._v("KSM")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  attrs: { to: { name: "register" } }
+                },
+                [_vm._v("Zarejestruj się")]
               )
             ],
             1
@@ -2038,13 +2068,21 @@ var render = function() {
     _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
-    _c("div", [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", on: { click: _vm.logIn } },
-        [_vm._v("Zarejestruj się")]
-      )
-    ]),
+    _c(
+      "div",
+      [
+        _c(
+          "router-link",
+          { staticClass: "nav-link", attrs: { to: { name: "register" } } },
+          [
+            _c("button", { staticClass: "btn btn-primary" }, [
+              _vm._v("Zarejestruj się")
+            ])
+          ]
+        )
+      ],
+      1
+    ),
     _vm._v(" "),
     _vm._m(1)
   ])
@@ -2571,7 +2609,9 @@ var render = function() {
     _c("div", { staticClass: "row justify-content-md-center" }, [
       _c("div", { staticClass: "col-6" }, [
         _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Register")]),
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("Zarejestruj się")
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _vm.has_error && !_vm.success
@@ -2607,7 +2647,7 @@ var render = function() {
                       },
                       [
                         _c("label", { attrs: { for: "name" } }, [
-                          _vm._v("Name")
+                          _vm._v("Imię")
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -2623,7 +2663,52 @@ var render = function() {
                           attrs: {
                             type: "text",
                             id: "name",
-                            placeholder: "Full Name"
+                            placeholder: "Imię"
+                          },
+                          domProps: { value: _vm.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.name = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.has_error && _vm.errors.name
+                          ? _c("span", { staticClass: "help-block" }, [
+                              _vm._v(_vm._s(_vm.errors.name))
+                            ])
+                          : _vm._e()
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "form-group",
+                        class: { "has-error": _vm.has_error && _vm.errors.name }
+                      },
+                      [
+                        _c("label", { attrs: { for: "surname" } }, [
+                          _vm._v("Nazwisko")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.name,
+                              expression: "name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: "surname",
+                            placeholder: "Nazwisko"
                           },
                           domProps: { value: _vm.name },
                           on: {
@@ -2701,7 +2786,7 @@ var render = function() {
                       },
                       [
                         _c("label", { attrs: { for: "password" } }, [
-                          _vm._v("Password")
+                          _vm._v("Hasło")
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -2746,7 +2831,7 @@ var render = function() {
                         _c(
                           "label",
                           { attrs: { for: "password_confirmation" } },
-                          [_vm._v("Password confirmation")]
+                          [_vm._v("Powtórz hasło")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -2782,7 +2867,7 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { type: "submit" }
                       },
-                      [_vm._v("Submit")]
+                      [_vm._v("Zarejestruj się")]
                     )
                   ]
                 )
@@ -18716,15 +18801,12 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   components: {
     App: _components_App__WEBPACK_IMPORTED_MODULE_3__["default"],
-    router: router,
     ksmapp: _components_KSMApp__WEBPACK_IMPORTED_MODULE_6__["default"],
     Welcome: _components_Welcome__WEBPACK_IMPORTED_MODULE_4__["default"],
     Page: _components_Page__WEBPACK_IMPORTED_MODULE_5__["default"],
-    index: _Index_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
-    render: function render(h) {
-      return h(_Index_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
-    }
-  }
+    index: _Index_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+  },
+  router: router
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
@@ -18737,7 +18819,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\ksm_app\resources\js\vueapp.js */"./resources/js/vueapp.js");
+module.exports = __webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\Webówka\ksm_app\resources\js\vueapp.js */"./resources/js/vueapp.js");
 
 
 /***/ })
