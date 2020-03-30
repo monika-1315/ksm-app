@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-Vue.use(VueRouter)
+// Vue.use(VueRouter)
 
 import App from './components/App'
 import Welcome from './components/Welcome'
@@ -17,6 +17,12 @@ import Dashboard from './pages/Dashboard'
 // import AdminDashboard from './pages/admin/Dashboard'
 import Index from './Index.vue';
 
+import 'es6-promise/auto'
+//import axios from 'axios'
+import axios from './axios'
+import VueAuth from '@websanova/vue-auth'
+import VueAxios from 'vue-axios'
+import auth from './auth'
 
 const router = new VueRouter({
     mode: 'history',
@@ -87,6 +93,23 @@ const router = new VueRouter({
           },
     ],
 })
+
+
+Vue.router = router
+Vue.use(VueRouter)
+
+
+// Set Vue authentication
+Vue.use(VueAxios, axios)
+Vue.axios.defaults.baseURL = 'http://localhost:8000/api/v1'
+
+Vue.use(VueAuth, {
+  auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
+  http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
+  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
+  rolesVar: 'role'
+});
+Vue.use(VueAuth, auth)
 const app = new Vue({
     el: '#app',
     components: { App,
@@ -97,6 +120,7 @@ const app = new Vue({
     index:Index
     },
     router,
+    axios
 });
 
 export default router
