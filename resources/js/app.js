@@ -14,7 +14,6 @@ import router from './vueapp'
 import Welcome from './components/Welcome.vue';
 import Page from './components/Page.vue';
 import KSMApp from './components/KSMApp.vue';
-import Index from './Index.vue';
 
 
 // const app = new Vue({
@@ -40,12 +39,10 @@ Vue.use(VueRouter)
 // Vue.use(VueAuth, auth)
 
 // Load Index
-Vue.component('index', Index)
 const app = new Vue({
   el: '#app',
   components :{
   Welcome,
-  index: Index
   },
   router,
 });

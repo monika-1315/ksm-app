@@ -12,7 +12,7 @@
         </head>
         <body>
             <div id="app">
-               <index></index>
+               <page></page>
             </div>
             <script type="text/javascript" src="js/app.js"></script>
         </body>
