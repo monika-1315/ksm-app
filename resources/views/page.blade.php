@@ -12,7 +12,7 @@
         </head>
         <body>
             <div id="app">
-                <KSMApp></KSMApp>
+               <index></index>
             </div>
             <script type="text/javascript" src="js/app.js"></script>
         </body>
