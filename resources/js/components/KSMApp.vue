@@ -16,7 +16,7 @@
     </div>
         <br><br>
     <div >
-          <button class="btn btn-primary" v-on:click="logIn">Zaloguj się</button>
+          <router-link :to="{ name: 'dashboard' }" class="nav-link" ><button class="btn btn-primary" v-on:click="logIn">Zaloguj się</button></router-link>
     </div>
       <br>
       <h6>Nie masz konta?<br></h6>
