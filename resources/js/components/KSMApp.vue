@@ -6,18 +6,23 @@
       {{welcome}}
     </h4>
     <br>
+    <form autocomplete="off" @submit.prevent="logIn" method="post">
+            
     <div class="labels">
       Email:
-          <input v-model="email" class="form-control" />
+          <input type="email" id="email" class="form-control" placeholder="user@example.com" v-model="email" required/>
     </div><br><br>
     <div class="labels">
      Hasło:
-          <input v-model="haslo" class="form-control" />
+          <input type="password" id="password" class="form-control" v-model="password" required/>
     </div>
         <br><br>
     <div >
-          <router-link :to="{ name: 'dashboard' }" class="nav-link" ><button class="btn btn-primary" v-on:click="logIn">Zaloguj się</button></router-link>
+          <!-- <router-link :to="{ name: 'dashboard' }" class="nav-link" > -->
+            <button class="btn btn-primary" v-on:click="logIn" type="submit">Zaloguj się</button>
+            <!-- </router-link> -->
     </div>
+    </form>
       <br>
       <h6>Nie masz konta?<br></h6>
     <div >
@@ -34,14 +39,15 @@
 				return {
           welcome: "Witamy w aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej",
           email: "",
-          haslo:"",
+          password:"",
           
 				}
 			},
 methods: {
 	logIn() {
-    this.email="";
-    this.haslo="";
+    // this.email="";
+    // this.password="";
+    
 	}
 }
 	}

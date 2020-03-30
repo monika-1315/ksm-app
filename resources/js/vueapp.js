@@ -24,7 +24,8 @@ Vue.use(VueRouter)
 
 // Set Vue authentication
 Vue.use(VueAxios, axios)
-Vue.axios.defaults.baseURL = 'http://localhost:8000/api/v1'
+// Vue.axios.defaults.baseURL = 'http://localhost:8000/api/v1'
+Vue.axios.defaults.baseURL = '${process.env.MIX_APP_URL}/api/v1'
 
 Vue.use(VueAuth, auth)
 const app = new Vue({
@@ -39,5 +40,5 @@ const app = new Vue({
     axios
 });
 
-export default router
+
 

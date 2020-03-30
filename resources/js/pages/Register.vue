@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.name }">
                     <label for="surname">Nazwisko</label>
-                    <input type="text" id="surname" class="form-control" placeholder="Nazwisko" v-model="name">
+                    <input type="text" id="surname" class="form-control" placeholder="Nazwisko" v-model="surname">
                     <span class="help-block" v-if="has_error && errors.name">{{ errors.name }}</span>
                 </div>
                 <div class="form-group" v-bind:class="{ 'has-error': has_error && errors.email }">
@@ -34,6 +34,18 @@
                     <label for="password_confirmation">Powtórz hasło</label>
                     <input type="password" id="password_confirmation" class="form-control" v-model="password_confirmation">
                 </div>
+                <div class="form-group" v-bind:class="{ 'has-error': has_error }">
+                    <label for="birthdate">Data urodzenia</label>
+                    <input type="date" id="birthdate" class="form-control" v-model="birthdate">
+                </div>
+                <div class="form-group" v-bind:class="{ 'has-error': has_error }">
+                    <label for="division">Oddział</label><br>
+                    <input type="radio" name="div" value="0" checked> Bolesławiec<br>
+                    <input type="radio" name="div" value="1" > Lubin<br>
+                    <input type="radio" name="div" value="2" > Legnica<br>
+                    <input type="radio" name="div" value="3" > Gościszów<br>
+                    
+                </div>
                 <button type="submit" class="btn btn-primary">Zarejestruj się</button>
             </form>
           </div>
@@ -47,9 +59,12 @@
     data() {
       return {
         name: '',
+        surname: '',
         email: '',
         password: '',
         password_confirmation: '',
+        birthdate: '',
+        // division: '',
         has_error: false,
         error: '',
         errors: {},
