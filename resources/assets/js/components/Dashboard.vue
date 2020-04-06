@@ -2,7 +2,6 @@
 
     
     <div class="container">
-      <router-link :to="{ name: 'KSM' }" class="nav-link" id='log-out' ><button class="btn btn-primary">Wyloguj się</button></router-link>
       <h1>Witaj!</h1>
       <h3>Najnowsze wiadomości:</h3>
       <br>

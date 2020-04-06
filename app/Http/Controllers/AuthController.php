@@ -2,94 +2,111 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\User;
 use Illuminate\Http\Request;
-use Auth;
-use Validator;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * Register a new user
-     */
-    public function register(Request $request)
+    public function postRegister(RegisterRequest $request)
     {
-        $v = Validator::make($request->all(), [
-            'Imie' => 'required|min:3',
-            'Nazwisko' => 'required|min:3',
-            'Email' => 'required|email|unique:users',
-            'Haslo'  => 'required|min:3|confirmed',
-        ]);
-        if ($v->fails())
-        {
-            return response()->json([
-                'status' => 'error',
-                'errors' => $v->errors()
-            ], 422);
-        }
         $user = new User();
-        $user->Imie = $request->Imie;
-        $user->Nazwisko = $request->Nazwisko;
-        $user->Email = $request->Email;
-        $user->Password = bcrypt($request->Password);
+
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = bcrypt($request->get('password'));
         $user->save();
-        return response()->json(['status' => 'success'], 200);
+
+        return response()->json([
+
+            'success' => true
+        ]);
     }
 
-    /**
-     * Login user and return a token
-     */
-    public function login(Request $request)
+    public function postLogin(LoginRequest $request)
     {
-        $credentials = $request->only('Email', 'Haslo');
-        if ($token = $this->guard()->attempt($credentials)) {
-            return response()->json(['status' => 'success'], 200)->header('Authorization', $token);
+        $credentials = $request->only('email', 'password');
+        $token = null;
+
+        try {
+            if (!$token = \JWTAuth::attempt($credentials)) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => [
+                        'message' => [
+                            'Either Email or Password Invalid'
+                        ]
+                    ],
+                ]);
+            }
+        } catch (\JWTAuthException $e) {
+            return response()->json([
+                'success' => false,
+                'errors' => [
+                    'message' => [
+                        'Either Email or Password Invalid'
+                    ]
+                ],
+            ]);
         }
-        return response()->json(['error' => 'login_error'], 401);
+
+        return $this->respondWithToken($token);
     }
 
-    /**
-     * Logout User
-     */
+    protected function respondWithToken($token)
+    {
+        $user = Auth::user();
+
+        return response()->json([
+            'success' => true,
+            'access_token' => $token,
+            'user' => $user,
+            'token_type' => 'bearer',
+        ]);
+    }
+
     public function logout()
     {
-        $this->guard()->logout();
+        \JWTAuth::invalidate(\JWTAuth::getToken());
         return response()->json([
-            'status' => 'success',
-            'msg' => 'Logged out Successfully.'
-        ], 200);
-    }
-
-    /**
-     * Get authenticated user
-     */
-    public function user(Request $request)
-    {
-        $user = User::find(Auth::user()->Id);
-        return response()->json([
-            'status' => 'success',
-            'data' => $user
+            'success' => true
         ]);
     }
 
-    /**
-     * Refresh JWT token
-     */
-    public function refresh()
+    public function postSocialLogin(Request $request)
     {
-        if ($token = $this->guard()->refresh()) {
-            return response()
-                ->json(['status' => 'successs'], 200)
-                ->header('Authorization', $token);
-        }
-        return response()->json(['error' => 'refresh_token_error'], 401);
-    }
+        $existingUser = User::where('email', $request->only('email'))->first();
+        $token = null;
 
-    /**
-     * Return auth guard
-     */
-    private function guard()
-    {
-        return Auth::guard();
+        if($existingUser) {
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'token' => \JWTAuth::fromUser($existingUser),
+                    'user' => $existingUser,
+                    'login' => true,
+                ]
+            ]);
+        }else{
+
+            $user = new User();
+            $user->name = $request->get('name');
+            $user->email = $request->get('email');
+            $user->password = '';
+            $user->save();
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'token' => \JWTAuth::fromUser($user),
+                    'user' => $user,
+                    'login' => true,
+                ]
+            ]);
+
+        }
     }
 }

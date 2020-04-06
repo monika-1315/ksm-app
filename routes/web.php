@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,17 +11,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome',
-            [
-                'title' => "An even cooler way to do the title"
-            ]
-        );
-    });
-Route::get('/page', function () {
-        return view('page');
+Route::get('/', function () {
+    return view('welcome');
 });
-
-Route::get('/{any}', function(){
-    return view('vueapp');
-})->where('any', '.*');
+Route::get('/{id}', function () {
+    return view('welcome');
+});
