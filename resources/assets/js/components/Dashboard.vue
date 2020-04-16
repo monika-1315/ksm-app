@@ -15,9 +15,14 @@
 </template>
 <script>
   export default {
+  //    computed: {
+  //   currentUser() {
+  //     return this.$store.state.auth.user;
+  //   }
+  // },
     data() {
       return {
-        //
+        currentUser: this.$store.state
       }
     },
     components: {

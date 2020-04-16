@@ -61,7 +61,6 @@
 </template>
 
 <script>
-import axios from 'axios';
     export default {
         data(){
             return {
@@ -106,7 +105,7 @@ import axios from 'axios';
                 });
             },
             getDivisions: function(){
-              axios.get('/api/getDivisions')
+              this.axios.get('/api/getDivisions')
               .then(function (response) {
                  this.divisions = response.data;
               }.bind(this));

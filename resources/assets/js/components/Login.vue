@@ -60,6 +60,7 @@
         methods: {
             login() {
                 this.loginError = false;
+                
                 this.axios.post('api/auth/login', {
                     email: this.email,
                     password: this.password
@@ -70,6 +71,7 @@
                         setTimeout(() => {
                             this.isProgress = false;
                             store.commit('LoginUser', response.data);
+                            store.commit('LoginEmail', this.email)
                             this.$router.push({name: 'dashboard'})
                         },2000);
                     }

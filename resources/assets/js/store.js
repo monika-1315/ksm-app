@@ -5,10 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
+        email: null,
         isLoggedIn: !!localStorage.getItem('token'),
-        token: localStorage.getItem('token')
+        token: localStorage.getItem('token'),
+        
     },
     mutations: {
+        LoginEmail (state, email) {
+            state.email=email
+        },
         LoginUser (state, data) {
             state.isLoggedIn = true;
             let token = data.access_token;
@@ -17,6 +22,7 @@ export default new Vuex.Store({
         },
         LogoutUser (state) {
             state.isLoggedIn = false;
+            state.data = '';
             state.token = localStorage.removeItem('token')
         },
         tokenStored (state) {

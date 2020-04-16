@@ -1988,8 +1988,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  //    computed: {
+  //   currentUser() {
+  //     return this.$store.state.auth.user;
+  //   }
+  // },
   data: function data() {
-    return {//
+    return {
+      currentUser: this.$store.state
     };
   },
   components: {//
@@ -2171,6 +2177,7 @@ __webpack_require__.r(__webpack_exports__);
           setTimeout(function () {
             _this.isProgress = false;
             _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit('LoginUser', response.data);
+            _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit('LoginEmail', _this.email);
 
             _this.$router.push({
               name: 'dashboard'
@@ -2204,8 +2211,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2268,7 +2273,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2319,7 +2323,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getDivisions: function getDivisions() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/getDivisions').then(function (response) {
+      this.axios.get('/api/getDivisions').then(function (response) {
         this.divisions = response.data;
       }.bind(this));
     }
@@ -27876,10 +27880,14 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
+    email: null,
     isLoggedIn: !!localStorage.getItem('token'),
     token: localStorage.getItem('token')
   },
   mutations: {
+    LoginEmail: function LoginEmail(state, email) {
+      state.email = email;
+    },
     LoginUser: function LoginUser(state, data) {
       state.isLoggedIn = true;
       var token = data.access_token;
@@ -27888,6 +27896,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     LogoutUser: function LogoutUser(state) {
       state.isLoggedIn = false;
+      state.data = '';
       state.token = localStorage.removeItem('token');
     },
     tokenStored: function tokenStored(state) {
