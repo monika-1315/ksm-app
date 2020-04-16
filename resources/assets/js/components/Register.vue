@@ -39,7 +39,11 @@
                 </div>
                 <div class="form-group" >
                     <label for="division">Oddział</label><br>
-                    <input  value="Bolesławiec" v-model="division"/>
+                    <p v-for='division in divisions' :value='division.id' :key='division.id'>{{division.id+' '+ division.town+' '+division.parish }}</p>
+                    <input type="number" v-model='division'>
+                   <select v-model='division'>
+                              <option v-for='division in divisions' :value='division.id' :key='division.id'>{{ division.town+' '+division.parish }}</option>
+                            </select>
                      <span class="text text-danger" v-if="error && errors.division">{{ errors.division[0] }}</span>
                 </div>
                 <div style="text-align:center">
@@ -57,6 +61,7 @@
 </template>
 
 <script>
+import axios from 'axios';
     export default {
         data(){
             return {
@@ -71,7 +76,7 @@
                 success: false,
                 isProgress: false,
                 division: '',
-                
+                divisions: []
             };
         },
         methods: {
@@ -99,7 +104,17 @@
                     this.error = true;
                     this.errors = error.response.data.errors
                 });
-            }
+            },
+            getDivisions: function(){
+              axios.get('/api/getDivisions')
+              .then(function (response) {
+                 this.divisions = response.data;
+              }.bind(this));
+         
+            },
+        },
+        created: function(){
+            this.getDivisions()
         }
     }
 </script>

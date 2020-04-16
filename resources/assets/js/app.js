@@ -42,6 +42,8 @@ App.router = Vue.router
 // new Vue(App).$mount('#app');
 new Vue({
     store,
+    
     el: '#app',
+    axios,
     render: h => h(App)
 });

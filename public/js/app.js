@@ -2204,6 +2204,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2262,6 +2264,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2275,7 +2282,8 @@ __webpack_require__.r(__webpack_exports__);
       errors: {},
       success: false,
       isProgress: false,
-      division: ''
+      division: '',
+      divisions: []
     };
   },
   methods: {
@@ -2309,7 +2317,15 @@ __webpack_require__.r(__webpack_exports__);
         _this.error = true;
         _this.errors = error.response.data.errors;
       });
+    },
+    getDivisions: function getDivisions() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/getDivisions').then(function (response) {
+        this.divisions = response.data;
+      }.bind(this));
     }
+  },
+  created: function created() {
+    this.getDivisions();
   }
 });
 
@@ -10864,39 +10880,106 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "division" } }, [
-                        _vm._v("Oddział")
-                      ]),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.division,
-                            expression: "division"
-                          }
-                        ],
-                        attrs: { value: "Bolesławiec" },
-                        domProps: { value: _vm.division },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("label", { attrs: { for: "division" } }, [
+                          _vm._v("Oddział")
+                        ]),
+                        _c("br"),
+                        _vm._v(" "),
+                        _vm._l(_vm.divisions, function(division) {
+                          return _c(
+                            "p",
+                            { key: division.id, attrs: { value: division.id } },
+                            [
+                              _vm._v(
+                                _vm._s(
+                                  division.id +
+                                    " " +
+                                    division.town +
+                                    " " +
+                                    division.parish
+                                )
+                              )
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.division,
+                              expression: "division"
                             }
-                            _vm.division = $event.target.value
+                          ],
+                          attrs: { type: "number" },
+                          domProps: { value: _vm.division },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.division = $event.target.value
+                            }
                           }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.error && _vm.errors.division
-                        ? _c("span", { staticClass: "text text-danger" }, [
-                            _vm._v(_vm._s(_vm.errors.division[0]))
-                          ])
-                        : _vm._e()
-                    ]),
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.division,
+                                expression: "division"
+                              }
+                            ],
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.division = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          _vm._l(_vm.divisions, function(division) {
+                            return _c(
+                              "option",
+                              {
+                                key: division.id,
+                                domProps: { value: division.id }
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(division.town + " " + division.parish)
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                        _vm._v(" "),
+                        _vm.error && _vm.errors.division
+                          ? _c("span", { staticClass: "text text-danger" }, [
+                              _vm._v(_vm._s(_vm.errors.division[0]))
+                            ])
+                          : _vm._e()
+                      ],
+                      2
+                    ),
                     _vm._v(" "),
                     _c("div", { staticStyle: { "text-align": "center" } }, [
                       _c(
@@ -27295,6 +27378,7 @@ _App_vue__WEBPACK_IMPORTED_MODULE_4__["default"].router = vue__WEBPACK_IMPORTED_
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   store: _store__WEBPACK_IMPORTED_MODULE_5__["default"],
   el: '#app',
+  axios: axios__WEBPACK_IMPORTED_MODULE_2___default.a,
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
   }
