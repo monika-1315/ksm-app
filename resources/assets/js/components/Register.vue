@@ -13,8 +13,8 @@
                         <span class="text text-danger" v-if="error && errors.name">{{ errors.name[0] }}</span>
                 </div>
                 <div class="form-group" >
-                        <label for="name">Nazwisko</label>
-                   <input id="surname" type="text" class="validate">
+                        <label for="surname">Nazwisko</label>
+                   <input id="surname" type="text" class="validate" v-model="surname">
                         <span class="text text-danger" v-if="error && errors.name">{{ errors.name[0] }}</span>
                 </div>
                 <div class="form-group" >
@@ -34,12 +34,12 @@
                 </div>
                 <div class="form-group" >
                     <label for="birthdate">Data urodzenia</label>
-                    <input type="date" id="birthdate" class="form-control" >
+                    <input type="date" id="birthdate" v-model="birthdate" >
                 </div>
                 <div class="form-group" >
                    
                     <label for="division">Oddział</label><br>
-                    <input  value="Bolesławiec"/>
+                    <input  value="Bolesławiec" v-model="division"/>
                 </div>
                 <div style="text-align:center">
                 <button class="btn btn-primary" type="button" name="action" @click.prevent="register()">Zarejestruj się</button>
@@ -60,9 +60,11 @@
         data(){
             return {
                 name: '',
+                surname: '',
                 email: '',
                 password: '',
                 confirmPassword:'',
+                birthdate:'',
                 error: false,
                 errors: {},
                 success: false,
@@ -75,9 +77,12 @@
             register(){
                 this.axios.post('api/auth/register', {
                     name: this.name,
+                    surname: this.surname,
                     email: this.email,
                     password: this.password,
-                    confirmPassword: this.confirmPassword
+                    confirmPassword: this.confirmPassword,
+                    birthdate: this.birthdate,
+                    division: this.division
                 }).then(response => {
                     this.isProgress = true;
                     if(response.data.success == true)

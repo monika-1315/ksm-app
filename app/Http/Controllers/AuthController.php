@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\User;
+use App\Uzytkownik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     public function postRegister(RegisterRequest $request)
     {
-        $user = new User();
+        $user = new Uzytkownik();
 
         $user->name = $request->get('name');
         $user->email = $request->get('email');
@@ -77,7 +77,7 @@ class AuthController extends Controller
 
     public function postSocialLogin(Request $request)
     {
-        $existingUser = User::where('email', $request->only('email'))->first();
+        $existingUser = Uzytkownik::where('email', $request->only('email'))->first();
         $token = null;
 
         if($existingUser) {
@@ -92,7 +92,7 @@ class AuthController extends Controller
             ]);
         }else{
 
-            $user = new User();
+            $user = new Uzytkownik();
             $user->name = $request->get('name');
             $user->email = $request->get('email');
             $user->password = '';

@@ -2265,9 +2265,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       name: '',
+      surname: '',
       email: '',
       password: '',
       confirmPassword: '',
+      birthdate: '',
       error: false,
       errors: {},
       success: false,
@@ -2281,9 +2283,12 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.post('api/auth/register', {
         name: this.name,
+        surname: this.surname,
         email: this.email,
         password: this.password,
-        confirmPassword: this.confirmPassword
+        confirmPassword: this.confirmPassword,
+        birthdate: this.birthdate,
+        division: this.division
       }).then(function (response) {
         _this.isProgress = true;
 
@@ -10690,13 +10695,30 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "name" } }, [
+                      _c("label", { attrs: { for: "surname" } }, [
                         _vm._v("Nazwisko")
                       ]),
                       _vm._v(" "),
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.surname,
+                            expression: "surname"
+                          }
+                        ],
                         staticClass: "validate",
-                        attrs: { id: "surname", type: "text" }
+                        attrs: { id: "surname", type: "text" },
+                        domProps: { value: _vm.surname },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.surname = $event.target.value
+                          }
+                        }
                       }),
                       _vm._v(" "),
                       _vm.error && _vm.errors.name
@@ -10808,9 +10830,60 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _vm._m(0),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "birthdate" } }, [
+                        _vm._v("Data urodzenia")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.birthdate,
+                            expression: "birthdate"
+                          }
+                        ],
+                        attrs: { type: "date", id: "birthdate" },
+                        domProps: { value: _vm.birthdate },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.birthdate = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
                     _vm._v(" "),
-                    _vm._m(1),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "division" } }, [
+                        _vm._v("Oddział")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.division,
+                            expression: "division"
+                          }
+                        ],
+                        attrs: { value: "Bolesławiec" },
+                        domProps: { value: _vm.division },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.division = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticStyle: { "text-align": "center" } }, [
                       _c(
@@ -10837,32 +10910,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "birthdate" } }, [_vm._v("Data urodzenia")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "date", id: "birthdate" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "division" } }, [_vm._v("Oddział")]),
-      _c("br"),
-      _vm._v(" "),
-      _c("input", { attrs: { value: "Bolesławiec" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -27815,8 +27863,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\login\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\login\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\ksm_app\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\ksm_app\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ })
