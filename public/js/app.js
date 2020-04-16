@@ -2309,7 +2309,7 @@ __webpack_require__.r(__webpack_exports__);
               name: 'login'
             });
 
-            _this.$toaster.success('Sign up successfully...');
+            _this.$toaster.success('Rejestracja powiodła się!');
           }, 2000);
         }
       })["catch"](function (error) {
@@ -6818,7 +6818,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#app[data-v-3e2ac97c] {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  align-content:center;\r\n  color: #2c3e50;\r\n  margin-top: 20px;\r\n  padding-left: 5%;\r\n  padding-right: 5%;\n}\n.labels[data-v-3e2ac97c]{\r\n  text-align:left;\r\n  width: auto;\r\n  display:inline-block;\n}\n.btn[data-v-3e2ac97c]{\r\n    background-color: #007bff;\n}\n.form-wrapper[data-v-3e2ac97c] {\r\n        min-height: 100%;\r\n        min-height: 100vh;\r\n        display: flex;\r\n        align-items: center;\n}\n.form-signin[data-v-3e2ac97c] {\r\n        width: 100%;\r\n        max-width: 330px;\r\n        padding: 15px;\r\n        margin: 0 auto;\n}\n.form-signin .form-control[data-v-3e2ac97c] {\r\n        position: relative;\r\n        box-sizing: border-box;\r\n        height: auto;\r\n        padding: 10px;\r\n        font-size: 16px;\n}\n.form-signin .form-control[data-v-3e2ac97c]:focus {\r\n        z-index: 2;\n}\n.form-signin input[type=\"email\"][data-v-3e2ac97c] {\r\n        margin-bottom: -1px;\r\n        border-bottom-right-radius: 0;\r\n        border-bottom-left-radius: 0;\n}\n.form-signin input[type=\"password\"][data-v-3e2ac97c] {\r\n        margin-bottom: 10px;\r\n        border-top-left-radius: 0;\r\n        border-top-right-radius: 0;\n}\n.login-form[data-v-3e2ac97c]{\r\n        display:inline-block;\r\n        background: white;\r\n        padding: 30px;\r\n        width: 30em;\n}\n.submit[data-v-3e2ac97c]:hover{\r\n        color:white;\n}\n.btn[data-v-3e2ac97c]:focus{\r\n        color:white;\n}\n.progress[data-v-3e2ac97c]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\n.alert[data-v-3e2ac97c]{\r\n        margin-bottom:0px;\n}\n.g-signin-btn[data-v-3e2ac97c]{\r\n        display: inline-block;\r\n        padding: 4px 8px;\r\n        border-radius: 3px;\r\n        background-color: #3c82f7;\r\n        color: #fff;\r\n        box-shadow: 0 3px 0 #0f69ff;\n}\r\n", ""]);
+exports.push([module.i, "\n#app[data-v-3e2ac97c] {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  align-content:center;\r\n  color: #2c3e50;\r\n  margin-top: 20px;\r\n  padding-left: 5%;\r\n  padding-right: 5%;\n}\ninput[data-v-3e2ac97c]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-3e2ac97c] {\r\n  color: royalblue !important;\n}\n.labels[data-v-3e2ac97c]{\r\n  text-align:left;\r\n  width: auto;\r\n  display:inline-block;\n}\n.btn[data-v-3e2ac97c]{\r\n    background-color: #007bff;\n}\n.form-wrapper[data-v-3e2ac97c] {\r\n        min-height: 100%;\r\n        min-height: 100vh;\r\n        display: flex;\r\n        align-items: center;\n}\n.form-signin[data-v-3e2ac97c] {\r\n        width: 100%;\r\n        max-width: 330px;\r\n        padding: 15px;\r\n        margin: 0 auto;\n}\n.form-signin .form-control[data-v-3e2ac97c] {\r\n        position: relative;\r\n        box-sizing: border-box;\r\n        height: auto;\r\n        padding: 10px;\r\n        font-size: 16px;\n}\n.form-signin .form-control[data-v-3e2ac97c]:focus {\r\n        z-index: 2;\n}\n.form-signin input[type=\"email\"][data-v-3e2ac97c] {\r\n        margin-bottom: -1px;\r\n        border-bottom-right-radius: 0;\r\n        border-bottom-left-radius: 0;\n}\n.form-signin input[type=\"password\"][data-v-3e2ac97c] {\r\n        margin-bottom: 10px;\r\n        border-top-left-radius: 0;\r\n        border-top-right-radius: 0;\n}\n.login-form[data-v-3e2ac97c]{\r\n        display:inline-block;\r\n        background: white;\r\n        padding: 30px;\r\n        width: 30em;\n}\n.submit[data-v-3e2ac97c]:hover{\r\n        color:white;\n}\n.btn[data-v-3e2ac97c]:focus{\r\n        color:white;\n}\n.progress[data-v-3e2ac97c]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\n.alert[data-v-3e2ac97c]{\r\n        margin-bottom:0px;\n}\n.g-signin-btn[data-v-3e2ac97c]{\r\n        display: inline-block;\r\n        padding: 4px 8px;\r\n        border-radius: 3px;\r\n        background-color: #3c82f7;\r\n        color: #fff;\r\n        box-shadow: 0 3px 0 #0f69ff;\n}\r\n", ""]);
 
 // exports
 
@@ -6837,7 +6837,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-group[data-v-f88ac34c]{\r\n    align-content: left;\n}\n.submit[data-v-f88ac34c]:hover{\r\n        color:white;\n}\n.btn[data-v-f88ac34c]{\r\n        display: inline-flex;\n}\n.btn[data-v-f88ac34c]:focus{\r\n        color:white;\n}\n.heading[data-v-f88ac34c]{\r\n        padding: 30px;\r\n        border: none;\n}\n.login-form[data-v-f88ac34c]{\r\n        background: white;\r\n        padding: 30px;\n}\n.progress[data-v-f88ac34c]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\r\n", ""]);
+exports.push([module.i, "\n.form-group[data-v-f88ac34c]{\r\n    align-content: left;\n}\n.submit[data-v-f88ac34c]:hover{\r\n        color:white;\n}\n.btn[data-v-f88ac34c]{\r\n        display: inline-flex;\n}\n.btn[data-v-f88ac34c]:focus{\r\n        color:white;\n}\n.heading[data-v-f88ac34c]{\r\n        padding: 30px;\r\n        border: none;\n}\n.login-form[data-v-f88ac34c]{\r\n        background: white;\r\n        padding: 30px;\n}\n.progress[data-v-f88ac34c]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\ninput[data-v-f88ac34c]:focus{\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-f88ac34c] {\r\n  color: royalblue !important;\n}\r\n", ""]);
 
 // exports
 
@@ -10692,7 +10692,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "validate",
-                        attrs: { id: "name", type: "text" },
+                        attrs: { id: "name", type: "text", required: "" },
                         domProps: { value: _vm.name },
                         on: {
                           input: function($event) {
@@ -10880,34 +10880,15 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("label", { attrs: { for: "division" } }, [
-                          _vm._v("Oddział")
-                        ]),
-                        _c("br"),
-                        _vm._v(" "),
-                        _vm._l(_vm.divisions, function(division) {
-                          return _c(
-                            "p",
-                            { key: division.id, attrs: { value: division.id } },
-                            [
-                              _vm._v(
-                                _vm._s(
-                                  division.id +
-                                    " " +
-                                    division.town +
-                                    " " +
-                                    division.parish
-                                )
-                              )
-                            ]
-                          )
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "division" } }, [
+                        _vm._v("Oddział")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
                           directives: [
                             {
                               name: "model",
@@ -10916,70 +10897,45 @@ var render = function() {
                               expression: "division"
                             }
                           ],
-                          attrs: { type: "number" },
-                          domProps: { value: _vm.division },
+                          staticClass: "browser-default",
                           on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.division = $event.target.value
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.division = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
                             }
                           }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.division,
-                                expression: "division"
-                              }
-                            ],
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.division = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              }
-                            }
-                          },
-                          _vm._l(_vm.divisions, function(division) {
-                            return _c(
-                              "option",
-                              {
-                                key: division.id,
-                                domProps: { value: division.id }
-                              },
-                              [
+                        },
+                        _vm._l(_vm.divisions, function(divi) {
+                          return _c(
+                            "option",
+                            { key: divi.id, domProps: { value: divi.id } },
+                            [
+                              _c("span", [
                                 _vm._v(
-                                  _vm._s(division.town + " " + division.parish)
+                                  _vm._s("   " + divi.town + " " + divi.parish)
                                 )
-                              ]
-                            )
-                          }),
-                          0
-                        ),
-                        _vm._v(" "),
-                        _vm.error && _vm.errors.division
-                          ? _c("span", { staticClass: "text text-danger" }, [
-                              _vm._v(_vm._s(_vm.errors.division[0]))
-                            ])
-                          : _vm._e()
-                      ],
-                      2
-                    ),
+                              ])
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm.error && _vm.errors.division
+                      ? _c("span", { staticClass: "text text-danger" }, [
+                          _vm._v(_vm._s(_vm.errors.division[0]))
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("div", { staticStyle: { "text-align": "center" } }, [
                       _c(

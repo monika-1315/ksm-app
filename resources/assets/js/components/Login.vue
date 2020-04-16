@@ -105,6 +105,13 @@
   padding-left: 5%;
   padding-right: 5%;
 }
+ input:focus {
+  border-bottom: 1px solid royalblue !important;
+  box-shadow: 0 1px 0 0 royalblue !important;
+}
+label.active {
+  color: royalblue !important;
+}
 .labels{
   text-align:left;
   width: auto;

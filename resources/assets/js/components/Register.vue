@@ -9,7 +9,7 @@
             <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
                 <div class="form-group">
                         <label for="name">Imię</label>
-                    <input id="name" type="text" class="validate" v-model="name">
+                    <input id="name" type="text" class="validate" v-model="name" required>
                         <span class="text text-danger" v-if="error && errors.name">{{ errors.name[0] }}</span>
                 </div>
                 <div class="form-group" >
@@ -39,13 +39,13 @@
                 </div>
                 <div class="form-group" >
                     <label for="division">Oddział</label><br>
-                    <p v-for='division in divisions' :value='division.id' :key='division.id'>{{division.id+' '+ division.town+' '+division.parish }}</p>
-                    <input type="number" v-model='division'>
-                   <select v-model='division'>
-                              <option v-for='division in divisions' :value='division.id' :key='division.id'>{{ division.town+' '+division.parish }}</option>
-                            </select>
-                     <span class="text text-danger" v-if="error && errors.division">{{ errors.division[0] }}</span>
+                      <select class="browser-default" v-model="division">
+                        <option v-for='divi in divisions' :value='divi.id' :key='divi.id'> 
+                        <span>{{ '   '+divi.town+' '+divi.parish }}</span></option>
+                    </select>
                 </div>
+                    <span class="text text-danger" v-if="error && errors.division">{{ errors.division[0] }}</span>
+                
                 <div style="text-align:center">
                 <button class="btn btn-primary" type="button" name="action" @click.prevent="register()">Zarejestruj się</button>
                 </div>
@@ -96,7 +96,7 @@ import axios from 'axios';
                         setTimeout(() => {
                             this.isProgress = false;
                             this.$router.push({ name: 'login'})
-                            this.$toaster.success('Sign up successfully...')
+                            this.$toaster.success('Rejestracja powiodła się!')
                         }, 2000)
                     }
                 }).catch(error => {
@@ -145,4 +145,11 @@ import axios from 'axios';
         margin:0px;
         background-color: transparent;
     }
+ input:focus{
+  border-bottom: 1px solid royalblue !important;
+  box-shadow: 0 1px 0 0 royalblue !important;
+}
+label.active {
+  color: royalblue !important;
+}
 </style>
