@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Uzytkownik;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,11 +12,14 @@ class AuthController extends Controller
 {
     public function postRegister(RegisterRequest $request)
     {
-        $user = new Uzytkownik();
+        $user = new User();
 
         $user->name = $request->get('name');
+        $user->surname = $request->get('surname');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
+        $user->birthdate = $request->get('birthdate');
+        $user->division = $request->get('division');
         $user->save();
 
         return response()->json([
@@ -36,7 +39,7 @@ class AuthController extends Controller
                     'success' => false,
                     'errors' => [
                         'message' => [
-                            'Either Email or Password Invalid'
+                            'Błędny email lub hasło'
                         ]
                     ],
                 ]);
@@ -77,7 +80,7 @@ class AuthController extends Controller
 
     public function postSocialLogin(Request $request)
     {
-        $existingUser = Uzytkownik::where('email', $request->only('email'))->first();
+        $existingUser = User::where('email', $request->only('email'))->first();
         $token = null;
 
         if($existingUser) {
@@ -92,7 +95,7 @@ class AuthController extends Controller
             ]);
         }else{
 
-            $user = new Uzytkownik();
+            $user = new User();
             $user->name = $request->get('name');
             $user->email = $request->get('email');
             $user->password = '';

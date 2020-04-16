@@ -27863,8 +27863,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\ksm_app\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\ksm_app\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\ksm_app_ang\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\ksm_app_ang\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ })
