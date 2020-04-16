@@ -15,7 +15,7 @@
                 <div class="form-group" >
                         <label for="surname">Nazwisko</label>
                    <input id="surname" type="text" class="validate" v-model="surname">
-                        <span class="text text-danger" v-if="error && errors.name">{{ errors.name[0] }}</span>
+                        <span class="text text-danger" v-if="error && errors.surname">{{ errors.name[0] }}</span>
                 </div>
                 <div class="form-group" >
                      <label for="email">Email</label>
@@ -35,11 +35,12 @@
                 <div class="form-group" >
                     <label for="birthdate">Data urodzenia</label>
                     <input type="date" id="birthdate" v-model="birthdate" >
+                     <span class="text text-danger" v-if="error && errors.birthdate">{{ errors.birthdate[0] }}</span>
                 </div>
                 <div class="form-group" >
-                   
                     <label for="division">Oddział</label><br>
                     <input  value="Bolesławiec" v-model="division"/>
+                     <span class="text text-danger" v-if="error && errors.division">{{ errors.division[0] }}</span>
                 </div>
                 <div style="text-align:center">
                 <button class="btn btn-primary" type="button" name="action" @click.prevent="register()">Zarejestruj się</button>

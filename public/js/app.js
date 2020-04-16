@@ -2261,6 +2261,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -10721,7 +10722,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm.error && _vm.errors.name
+                      _vm.error && _vm.errors.surname
                         ? _c("span", { staticClass: "text text-danger" }, [
                             _vm._v(_vm._s(_vm.errors.name[0]))
                           ])
@@ -10854,7 +10855,13 @@ var render = function() {
                             _vm.birthdate = $event.target.value
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.error && _vm.errors.birthdate
+                        ? _c("span", { staticClass: "text text-danger" }, [
+                            _vm._v(_vm._s(_vm.errors.birthdate[0]))
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
@@ -10882,7 +10889,13 @@ var render = function() {
                             _vm.division = $event.target.value
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.error && _vm.errors.division
+                        ? _c("span", { staticClass: "text text-danger" }, [
+                            _vm._v(_vm._s(_vm.errors.division[0]))
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticStyle: { "text-align": "center" } }, [
