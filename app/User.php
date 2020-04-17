@@ -29,6 +29,13 @@ class User extends Authenticatable implements JWTSubject
         'password',
     ];
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+    
      /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

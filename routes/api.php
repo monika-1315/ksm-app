@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 Route::get('/api/getDivisions', 'APIController@getDivisions');
+Route::middleware('auth:api')->post('/getUser', 'APIController@getUser');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -24,4 +25,5 @@ Route::post('/auth/social', 'AuthController@postSocialLogin');
 Route::group(['middleware' => ['jwt.auth']], function () {
 
     Route::get('/auth/logout', 'AuthController@logout');
+    Route::get('/auth/getUser', 'APIController@getUser');
 });

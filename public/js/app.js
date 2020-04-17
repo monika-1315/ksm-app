@@ -1995,10 +1995,20 @@ __webpack_require__.r(__webpack_exports__);
   // },
   data: function data() {
     return {
-      currentUser: this.$store.state
+      currentUser: null
     };
   },
   components: {//
+  },
+  methods: {
+    getUser: function getUser() {
+      this.axios.get('/api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email).then(function (response) {
+        this.currentUser = response.data;
+      }.bind(this));
+    }
+  },
+  created: function created() {
+    this.getUser();
   }
 });
 
