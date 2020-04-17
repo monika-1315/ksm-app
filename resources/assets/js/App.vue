@@ -4,8 +4,11 @@
             <div class="navbar navbar-expand-lg  navbar-light bg-light">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="left hide-on-med-and-down">
-                        <li>
+                        <li v-if="!this.$store.state.isLoggedIn">
                             <router-link :to="{ name: 'home' }" class="nav-link" ><img alt="KSM logo" src="./components/assets/logo.png" width="40"></router-link>
+                        </li>
+                        <li v-if="this.$store.state.isLoggedIn">
+                            <router-link :to="{ name: 'dashboard' }" class="nav-link" ><img alt="KSM logo" src="./components/assets/logo.png" width="40"></router-link>
                         </li>
                     </ul>
                     <ul class="navbar-nav mr-auto">
@@ -50,9 +53,25 @@
                         this.$router.push({name: 'login'})
                     }
                 }).catch(error => {
-                    //
+                    this.$store.commit('LogoutUser')
+                    this.$router.push({name: 'login'})
                 });
+            },
+            checkToken(){
+                if (this.$store.state.isLoggedIn){
+                    var myThis=this;
+                    this.axios.get('api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
+                        .catch(function(error) {
+                            if (error.response && error.response.status === 401) {
+                                myThis.$store.commit('LogoutUser');
+                                myThis.$router.push({name: 'login'})
+                            }
+                        })
+                }
             }
+        },
+        created: function(){
+            this.checkToken();
         }
     }
 

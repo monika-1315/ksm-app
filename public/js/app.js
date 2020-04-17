@@ -1944,6 +1944,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
@@ -1958,9 +1961,30 @@ __webpack_require__.r(__webpack_exports__);
             name: 'login'
           });
         }
-      })["catch"](function (error) {//
+      })["catch"](function (error) {
+        _this.$store.commit('LogoutUser');
+
+        _this.$router.push({
+          name: 'login'
+        });
       });
+    },
+    checkToken: function checkToken() {
+      if (this.$store.state.isLoggedIn) {
+        var myThis = this;
+        this.axios.get('api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email)["catch"](function (error) {
+          if (error.response && error.response.status === 401) {
+            myThis.$store.commit('LogoutUser');
+            myThis.$router.push({
+              name: 'login'
+            });
+          }
+        });
+      }
     }
+  },
+  created: function created() {
+    this.checkToken();
   }
 });
 
@@ -10410,28 +10434,55 @@ var render = function() {
               },
               [
                 _c("ul", { staticClass: "left hide-on-med-and-down" }, [
-                  _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "home" } }
-                        },
+                  !this.$store.state.isLoggedIn
+                    ? _c(
+                        "li",
                         [
-                          _c("img", {
-                            attrs: {
-                              alt: "KSM logo",
-                              src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
-                              width: "40"
-                            }
-                          })
-                        ]
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: { name: "home" } }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  alt: "KSM logo",
+                                  src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
+                                  width: "40"
+                                }
+                              })
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  this.$store.state.isLoggedIn
+                    ? _c(
+                        "li",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: { name: "dashboard" } }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  alt: "KSM logo",
+                                  src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
+                                  width: "40"
+                                }
+                              })
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("ul", { staticClass: "navbar-nav mr-auto" }, [
@@ -28565,6 +28616,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       state.isLoggedIn = false;
       state.data = '';
       state.token = localStorage.removeItem('token');
+      state.email = localStorage.removeItem('email');
     },
     tokenStored: function tokenStored(state) {
       state.token = localStorage.getItem('token');
