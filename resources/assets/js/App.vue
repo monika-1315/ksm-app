@@ -23,6 +23,9 @@
                             <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
                         </li>
                         <li v-if="this.$store.state.isLoggedIn" class="right">
+                            <router-link :to="{ name: 'adduser' }" class="nav-link">Dodaj członka</router-link>
+                        </li>
+                        <li id="log-out" v-if="this.$store.state.isLoggedIn" class="right">
                             <a href="#"  @click="logout()" class="nav-link">Wyloguj się</a>
                         </li>
                         
@@ -40,7 +43,6 @@
 <script> 
 
     export default {
-
         methods: {
 
             logout() {
@@ -113,6 +115,7 @@
         color:white;
         background-color:rgba(0,0,0,0.1);
     }
-
-
+#log-out{
+  float: right;
+}
 </style>

@@ -46,7 +46,5 @@
 .card-body{
   text-align: left;
 }
-#log-out{
-  float: right;
-}
+
 </style>
