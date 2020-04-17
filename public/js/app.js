@@ -1988,11 +1988,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  //    computed: {
-  //   currentUser() {
-  //     return this.$store.state.auth.user;
-  //   }
-  // },
   data: function data() {
     return {
       currentUser: null
@@ -10332,26 +10327,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "h1",
+      [
+        _vm._v("Witaj "),
+        _vm._l(_vm.currentUser, function(user) {
+          return _c("span", { key: user.id }, [_vm._v(_vm._s(user.name))])
+        }),
+        _vm._v("!")
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c("h3", [_vm._v("Najnowsze wiadomości:")]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v("Witaj!")]),
+    return _c("div", { staticClass: "card card-default" }, [
+      _c("div", { staticClass: "card-header" }, [_vm._v("Tytuł wiadomości")]),
       _vm._v(" "),
-      _c("h3", [_vm._v("Najnowsze wiadomości:")]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "card card-default" }, [
-        _c("div", { staticClass: "card-header" }, [_vm._v("Tytuł wiadomości")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _vm._v("\n            Treść wiadomości\n        ")
-        ])
+      _c("div", { staticClass: "card-body" }, [
+        _vm._v("\n            Treść wiadomości\n        ")
       ])
     ])
   }
@@ -27890,12 +27895,13 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    email: null,
+    email: localStorage.getItem('email'),
     isLoggedIn: !!localStorage.getItem('token'),
     token: localStorage.getItem('token')
   },
   mutations: {
     LoginEmail: function LoginEmail(state, email) {
+      localStorage.setItem('email', email);
       state.email = email;
     },
     LoginUser: function LoginUser(state, data) {

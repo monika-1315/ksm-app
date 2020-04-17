@@ -5,13 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        email: null,
+        email: localStorage.getItem('email'),
         isLoggedIn: !!localStorage.getItem('token'),
         token: localStorage.getItem('token'),
         
     },
     mutations: {
         LoginEmail (state, email) {
+            localStorage.setItem('email', email);
             state.email=email
         },
         LoginUser (state, data) {

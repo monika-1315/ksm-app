@@ -2,7 +2,7 @@
 
     
     <div class="container">
-      <h1>Witaj!</h1>
+      <h1>Witaj <span v-for="user in currentUser" :key="user.id">{{ user.name}}</span>!</h1>
       <h3>Najnowsze wiadomości:</h3>
       <br>
         <div class="card card-default">
@@ -15,14 +15,10 @@
 </template>
 <script>
   export default {
-  //    computed: {
-  //   currentUser() {
-  //     return this.$store.state.auth.user;
-  //   }
-  // },
+     
     data() {
       return {
-        currentUser: null
+        currentUser: null,
       }
     },
     components: {
@@ -34,12 +30,12 @@
               .then(function (response) {
                  this.currentUser = response.data;
               }.bind(this));
-         
+             
             },
         },
-        created: function(){
-            this.getUser()
-        }
+    created: function(){
+          this.getUser()
+    }
   }
 </script>
 
