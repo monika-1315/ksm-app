@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group" >
                     <label for="division">Oddział</label><br>
-                      <select class="browser-default" v-model="division" required>
+                      <select class="browser-default" v-model="division" :disabled="currentUser.is_authorized" required>
                         <option v-for='divi in divisions' :value='divi.id' :key='divi.id'> 
                         <span>{{ '   '+divi.town+' '+divi.parish }}</span></option>
                     </select>
@@ -83,7 +83,7 @@
             update(){
                 if(this.password===this.confirmPassword){
                 this.axios.post('api/auth/updateUser?token=' + this.$store.state.token, {
-                    id: this.currentUser[0].id,
+                    id: this.currentUser.id,
                     name: this.name,
                     surname: this.surname,
                     email: this.email,
@@ -121,14 +121,14 @@
             },
             getUser: function(){
                 var myThis=this;
-              this.axios.get('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
+              this.axios.post('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
               .then(function (response) {
-                 this.currentUser = response.data;
-                 this.name = myThis.currentUser[0].name;                 
-                 this.surname = myThis.currentUser[0].surname;
-                 this.email = myThis.currentUser[0].email;
-                 this.birthdate = myThis.currentUser[0].birthdate;
-                 this.division = myThis.currentUser[0].division;
+                 this.currentUser = response.data[0];
+                 this.name = myThis.currentUser.name;                 
+                 this.surname = myThis.currentUser.surname;
+                 this.email = myThis.currentUser.email;
+                 this.birthdate = myThis.currentUser.birthdate;
+                 this.division = myThis.currentUser.division;
               }.bind(this)); 
               
             },

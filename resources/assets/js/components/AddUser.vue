@@ -74,7 +74,7 @@
                 errors: {},
                 success: false,
                 isProgress: false,
-                division: '',
+                division: -1,
                 divisions: []
             };
         },
@@ -94,8 +94,8 @@
                     {
                         setTimeout(() => {
                             this.isProgress = false;
-                            this.$router.push({ name: 'login'})
-                            this.$toaster.success('Rejestracja powiodła się!')
+                            this.$router.push({ name: 'dashboard'})
+                            this.$toaster.success('Rejestracja użytkownika powiodła się!')
                         }, 2000)
                     }
                 }).catch(error => {
@@ -112,17 +112,22 @@
          
             },
             getUser: function(){
-                var myThis=this;
-              this.axios.get('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
+              this.axios.post('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
               .then(function (response) {
-                 myThis.division = response.data[0].division;
+                 this.division = response.data[0].division;
+                 this.$store.commit('refreshUser', response.data[0])
               }.bind(this)); 
               
             },
         },
         created: function(){
             this.getDivisions();
-            this.getUser();
+            if (this.$store.state.division != 0){
+                this.division=this.$store.state.division;
+            }
+            else{
+                this.getUser();
+            }
         }
     }
 </script>

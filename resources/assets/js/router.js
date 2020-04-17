@@ -4,7 +4,7 @@ import Home from './components/Home.vue';
 import Register from './components/Register.vue';
 import Login from './components/Login.vue';
 import EditData from './components/EditData.vue';
-import Dropzone from './components/Dropzone.vue';
+import AuthorizeUsr from './components/AuthorizeUsr.vue';
 import AddUser from './components/AddUser.vue'
 import VueRouter from 'vue-router';
 import store from './store';
@@ -37,9 +37,9 @@ const router = new VueRouter({
     },
 
     {
-        path: '/dropzone',
-        name: 'dropzone',
-        component: Dropzone,
+        path: '/authorize',
+        name: 'authorize',
+        component: AuthorizeUsr,
         meta: {
             requiresAuth: true
         }

@@ -20,7 +20,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="password" type="password" class="validate" v-model="password">
+                        <input id="password" type="password" class="validate" v-model="password" v-on:keyup.enter="login">
                         <label for="password">Hasło</label>
                         <span class="text text-danger" v-if="loginError && errors.password">{{ errors.password[0] }}</span>
                     </div>

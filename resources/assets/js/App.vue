@@ -62,12 +62,13 @@
             checkToken(){
                 if (this.$store.state.isLoggedIn){
                     var myThis=this;
-                    this.axios.get('api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
-                        .catch(function(error) {
+                    this.axios.post('api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
+                        .catch(error=> {
                             if (error.response && error.response.status === 401) {
                                 myThis.$store.commit('LogoutUser');
                                 myThis.$router.push({name: 'login'})
                             }
+                            return Promise.reject(error.response);
                         })
                 }
             }
