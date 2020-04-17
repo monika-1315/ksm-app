@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group" >
                     <label for="division">Oddział</label><br>
-                      <select class="browser-default" v-model="division" disabled>
+                      <select class="browser-default" v-model="division" :disabled="!this.$store.state.is_management">
                         <option v-for='divi in divisions' :value='divi.id' :key='divi.id'> 
                         <span>{{ '   '+divi.town+' '+divi.parish }}</span></option>
                     </select>

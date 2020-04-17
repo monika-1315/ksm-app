@@ -3,6 +3,7 @@
     
     <div class="container">
       <h1>Witaj {{ name}}!</h1>
+      <p v-if="!this.$store.state.is_authorized">Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału</p>
       <h3>Najnowsze wiadomości:</h3>
       <br>
         <div class="card card-default">

@@ -13,7 +13,7 @@ export default new Vuex.Store({
         division: 0,
         is_leadership: false,
         is_management: false,
-        is_authorized: false
+        is_authorized: true
         
     },
     mutations: {
@@ -43,7 +43,7 @@ export default new Vuex.Store({
             state.division=0;
             state.is_leadership = false
             state.is_management = false
-            state.is_authorized = false
+            state.is_authorized = true
             state.name = '';
         },
         tokenStored (state) {

@@ -22,8 +22,11 @@
                         <li v-if="this.$store.state.isLoggedIn" class="right">
                             <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
                         </li>
-                        <li v-if="this.$store.state.isLoggedIn" class="right">
+                        <li v-if="this.$store.state.isLoggedIn && (this.$store.state.is_leadership || this.$store.state.is_management)" class="right">
                             <router-link :to="{ name: 'adduser' }" class="nav-link">Dodaj członka</router-link>
+                        </li>
+                         <li v-if="this.$store.state.isLoggedIn && this.$store.state.is_leadership" class="right">
+                            <router-link :to="{ name: 'authorize' }" class="nav-link">Zatwierdzaj</router-link>
                         </li>
                         <li id="log-out" v-if="this.$store.state.isLoggedIn" class="right">
                             <a href="#"  @click="logout()" class="nav-link">Wyloguj się</a>

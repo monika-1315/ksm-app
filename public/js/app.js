@@ -1950,6 +1950,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
@@ -2149,6 +2152,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -7913,7 +7917,9 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  this.$store.state.isLoggedIn
+                  this.$store.state.isLoggedIn &&
+                  (this.$store.state.is_leadership ||
+                    this.$store.state.is_management)
                     ? _c(
                         "li",
                         { staticClass: "right" },
@@ -7925,6 +7931,25 @@ var render = function() {
                               attrs: { to: { name: "adduser" } }
                             },
                             [_vm._v("Dodaj członka")]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  this.$store.state.isLoggedIn &&
+                  this.$store.state.is_leadership
+                    ? _c(
+                        "li",
+                        { staticClass: "right" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: { name: "authorize" } }
+                            },
+                            [_vm._v("Zatwierdzaj")]
                           )
                         ],
                         1
@@ -8236,7 +8261,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "browser-default",
-                          attrs: { disabled: "" },
+                          attrs: { disabled: !this.$store.state.is_management },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -8353,6 +8378,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("h1", [_vm._v("Witaj " + _vm._s(_vm.name) + "!")]),
+    _vm._v(" "),
+    !this.$store.state.is_authorized
+      ? _c("p", [
+          _vm._v(
+            "Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału"
+          )
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("h3", [_vm._v("Najnowsze wiadomości:")]),
     _vm._v(" "),
@@ -26314,7 +26347,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     division: 0,
     is_leadership: false,
     is_management: false,
-    is_authorized: false
+    is_authorized: true
   },
   mutations: {
     LoginEmail: function LoginEmail(state, email) {
@@ -26342,7 +26375,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       state.division = 0;
       state.is_leadership = false;
       state.is_management = false;
-      state.is_authorized = false;
+      state.is_authorized = true;
       state.name = '';
     },
     tokenStored: function tokenStored(state) {
