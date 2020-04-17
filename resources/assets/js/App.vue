@@ -9,7 +9,7 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav mr-auto">
-                        <li class="right" v-if="!this.$store.state.isLoggedIn">
+                        <li v-if="!this.$store.state.isLoggedIn" class="right">
                             <router-link :to="{ name: 'login' }" class="nav-link">Zaloguj się</router-link>
                         </li>
 
@@ -17,7 +17,10 @@
                             <router-link :to="{ name: 'register' }" class="nav-link">Zarejestruj się</router-link>
                         </li>
                         <li v-if="this.$store.state.isLoggedIn" class="right">
-                            <a href="#"  @click="logout()" class="nav-link">Logout</a>
+                            <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
+                        </li>
+                        <li v-if="this.$store.state.isLoggedIn" class="right">
+                            <a href="#"  @click="logout()" class="nav-link">Wyloguj się</a>
                         </li>
                         
                     </ul>

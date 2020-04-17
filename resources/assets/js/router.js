@@ -3,6 +3,7 @@ import Dashboard from './components/Dashboard.vue';
 import Home from './components/Home.vue';
 import Register from './components/Register.vue';
 import Login from './components/Login.vue';
+import EditData from './components/EditData.vue';
 import Dropzone from './components/Dropzone.vue'
 import VueRouter from 'vue-router';
 import store from './store';
@@ -20,7 +21,7 @@ const router = new VueRouter({
         path: '/register',
         name: 'register',
         component: Register,
-        meta: {
+        meta: { 
             auth: false
         }
     },
@@ -48,7 +49,15 @@ const router = new VueRouter({
         name: 'dashboard',
         component: Dashboard,
         meta: { requiresAuth: true }
-    }]
+    },
+    {
+        path: '/editdata',
+        name: 'edit',
+        component: EditData,
+        meta: { 
+            auth: true
+        }
+    },]
 });
 
 router.beforeEach((to, from, next) => {

@@ -29,4 +29,30 @@ class APIController extends Controller
         return response()->json($data);
     }
 
+    public function updateUser(Request $request){
+
+        try{
+        $user= User::find($request->get('id'));
+        $user->name=$request->get('name');
+        $user->surname=$request->get('surname');
+        $user->email=$request->get('email');
+        $user->password=bcrypt($request->get('password'));
+        $user-> birthdate=$request->get('birthdate');
+        $user->division=$request->get('division');
+        $user->save();
+        return response()->json([
+            'success' => true
+        ]);
+        }
+        catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'errors' => [
+                    'message' => [
+                        'Either Email or Password Invalid'
+                    ]
+                ],
+            ]);
+        }
+    }
 }
