@@ -14,17 +14,17 @@
                 </div>
                 <div class="form-group" >
                         <label for="surname">Nazwisko</label>
-                   <input id="surname" type="text" class="validate" v-model="surname">
+                   <input id="surname" type="text" class="validate" v-model="surname" required>
                         <span class="text text-danger" v-if="error && errors.surname">{{ errors.name[0] }}</span>
                 </div>
                 <div class="form-group" >
                      <label for="email">Email</label>
-                   <input id="email" type="text" class="validate" v-model="email">
+                   <input id="email" type="text" class="validate" v-model="email" required>
                         <span class="text text-danger" v-if="error && errors.email">{{ errors.email[0] }}</span>
                 </div>
                 <div class="form-group">
                     <label for="password">Hasło</label>
-                    <input id="password" type="password" class="validate" v-model="password">
+                    <input id="password" type="password" class="validate" v-model="password" placeholder="Wpisz i potwierdź hasło, jeżeli chcesz je zmienić">
                     <span class="text text-danger" v-if="error && errors.password">{{ errors.password[0] }}</span>
                 </div>
                 <div class="form-group" >
@@ -34,12 +34,12 @@
                 </div>
                 <div class="form-group" >
                     <label for="birthdate">Data urodzenia</label>
-                    <input type="date" id="birthdate" v-model="birthdate" >
+                    <input type="date" id="birthdate" v-model="birthdate" required>
                      <span class="text text-danger" v-if="error && errors.birthdate">{{ errors.birthdate[0] }}</span>
                 </div>
                 <div class="form-group" >
                     <label for="division">Oddział</label><br>
-                      <select class="browser-default" v-model="division">
+                      <select class="browser-default" v-model="division" required>
                         <option v-for='divi in divisions' :value='divi.id' :key='divi.id'> 
                         <span>{{ '   '+divi.town+' '+divi.parish }}</span></option>
                     </select>
@@ -81,6 +81,7 @@
         },
         methods: {
             update(){
+                if(this.password===this.confirmPassword){
                 this.axios.post('api/auth/updateUser?token=' + this.$store.state.token, {
                     id: this.currentUser[0].id,
                     name: this.name,
@@ -105,6 +106,11 @@
                     this.error = true;
                     this.errors = error.response.data.errors
                 });
+                }
+                else{
+                    this.error=true;
+                    this.errors.confirmPassword=['Wpisz 2 razy to samo hasło'];
+                }
             },
             getDivisions: function(){
               this.axios.get('/api/getDivisions')

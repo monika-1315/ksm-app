@@ -2195,34 +2195,39 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this = this;
 
-      this.axios.post('api/auth/updateUser?token=' + this.$store.state.token, {
-        id: this.currentUser[0].id,
-        name: this.name,
-        surname: this.surname,
-        email: this.email,
-        password: this.password,
-        confirmPassword: this.confirmPassword,
-        birthdate: this.birthdate,
-        division: this.division
-      }).then(function (response) {
-        _this.isProgress = true;
+      if (this.password === this.confirmPassword) {
+        this.axios.post('api/auth/updateUser?token=' + this.$store.state.token, {
+          id: this.currentUser[0].id,
+          name: this.name,
+          surname: this.surname,
+          email: this.email,
+          password: this.password,
+          confirmPassword: this.confirmPassword,
+          birthdate: this.birthdate,
+          division: this.division
+        }).then(function (response) {
+          _this.isProgress = true;
 
-        if (response.data.success == true) {
-          setTimeout(function () {
-            _this.isProgress = false;
+          if (response.data.success == true) {
+            setTimeout(function () {
+              _this.isProgress = false;
 
-            _this.$router.push({
-              name: 'dashboard'
-            });
+              _this.$router.push({
+                name: 'dashboard'
+              });
 
-            _this.$toaster.success('Dane pomyślnie zapisane');
-          }, 2000);
-        }
-      })["catch"](function (error) {
-        _this.isProgress = false;
-        _this.error = true;
-        _this.errors = error.response.data.errors;
-      });
+              _this.$toaster.success('Dane pomyślnie zapisane');
+            }, 2000);
+          }
+        })["catch"](function (error) {
+          _this.isProgress = false;
+          _this.error = true;
+          _this.errors = error.response.data.errors;
+        });
+      } else {
+        this.error = true;
+        this.errors.confirmPassword = ['Wpisz 2 razy to samo hasło'];
+      }
     },
     getDivisions: function getDivisions() {
       this.axios.get('/api/getDivisions').then(function (response) {
@@ -10733,7 +10738,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "validate",
-                        attrs: { id: "surname", type: "text" },
+                        attrs: { id: "surname", type: "text", required: "" },
                         domProps: { value: _vm.surname },
                         on: {
                           input: function($event) {
@@ -10767,7 +10772,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "validate",
-                        attrs: { id: "email", type: "text" },
+                        attrs: { id: "email", type: "text", required: "" },
                         domProps: { value: _vm.email },
                         on: {
                           input: function($event) {
@@ -10801,7 +10806,12 @@ var render = function() {
                           }
                         ],
                         staticClass: "validate",
-                        attrs: { id: "password", type: "password" },
+                        attrs: {
+                          id: "password",
+                          type: "password",
+                          placeholder:
+                            "Wpisz i potwierdź hasło, jeżeli chcesz je zmienić"
+                        },
                         domProps: { value: _vm.password },
                         on: {
                           input: function($event) {
@@ -10868,7 +10878,7 @@ var render = function() {
                             expression: "birthdate"
                           }
                         ],
-                        attrs: { type: "date", id: "birthdate" },
+                        attrs: { type: "date", id: "birthdate", required: "" },
                         domProps: { value: _vm.birthdate },
                         on: {
                           input: function($event) {
@@ -10905,6 +10915,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "browser-default",
+                          attrs: { required: "" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter

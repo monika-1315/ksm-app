@@ -36,7 +36,8 @@ class APIController extends Controller
         $user->name=$request->get('name');
         $user->surname=$request->get('surname');
         $user->email=$request->get('email');
-        $user->password=bcrypt($request->get('password'));
+        if($request->get('password')===$request->get('confirmPassword') && $request->get('password')!== '')
+            $user->password=bcrypt($request->get('password'));
         $user-> birthdate=$request->get('birthdate');
         $user->division=$request->get('division');
         $user->save();
