@@ -59,6 +59,8 @@ class APIController extends Controller
             $user->password=bcrypt($request->get('password'));
         $user-> birthdate=$request->get('birthdate');
         $user->division=$request->get('division');
+        $user->is_leadership=$request->get('is_leadership');
+        $user->is_management=$request->get('is_management');
         $user->save();
         return response()->json([
             'success' => true

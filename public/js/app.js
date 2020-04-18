@@ -2350,6 +2350,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2365,7 +2378,9 @@ __webpack_require__.r(__webpack_exports__);
       isProgress: false,
       division: '',
       divisions: [],
-      currentUser: null
+      currentUser: null,
+      is_leadership: this.$store.state.is_leadership,
+      is_management: this.$store.state.is_management
     };
   },
   methods: {
@@ -2381,13 +2396,17 @@ __webpack_require__.r(__webpack_exports__);
           password: this.password,
           confirmPassword: this.confirmPassword,
           birthdate: this.birthdate,
-          division: this.division
+          division: this.division,
+          is_leadership: this.is_leadership,
+          is_management: this.is_management
         }).then(function (response) {
           _this.isProgress = true;
 
           if (response.data.success == true) {
             setTimeout(function () {
               _this.isProgress = false;
+              _this.$store.state.is_leadership = _this.is_leadership;
+              _this.$store.state.is_management = _this.is_management;
 
               _this.$router.push({
                 name: 'dashboard'
@@ -2420,6 +2439,8 @@ __webpack_require__.r(__webpack_exports__);
         this.email = myThis.currentUser.email;
         this.birthdate = myThis.currentUser.birthdate;
         this.division = myThis.currentUser.division;
+        this.is_leadership = myThis.currentUser.is_leadership;
+        this.is_management = myThis.currentUser.is_management;
       }.bind(this));
     }
   },
@@ -8929,12 +8950,136 @@ var render = function() {
                           )
                         }),
                         0
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.error && _vm.errors.division
+                        ? _c("span", { staticClass: "text text-danger" }, [
+                            _vm._v(_vm._s(_vm.errors.division[0]))
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _vm.error && _vm.errors.division
-                      ? _c("span", { staticClass: "text text-danger" }, [
-                          _vm._v(_vm._s(_vm.errors.division[0]))
+                    this.$store.state.is_leadership ||
+                    this.$store.state.is_management
+                      ? _c("div", { staticClass: "form-group" }, [
+                          _c("label", [_vm._v("Uprawnienia")]),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            { staticStyle: { color: "rgb(211, 7, 41)" } },
+                            [
+                              _vm._v(
+                                " Uwaga! Jeżeli zrezygnujesz z nadanych uprawnień, otrzymasz je dopiero, jeżeli inny uprawiony Ci je nada "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          this.$store.state.is_leadership
+                            ? _c("label", [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.is_leadership,
+                                      expression: "is_leadership"
+                                    }
+                                  ],
+                                  staticClass: "filled-in",
+                                  attrs: { type: "checkbox", id: "leader" },
+                                  domProps: {
+                                    checked: Array.isArray(_vm.is_leadership)
+                                      ? _vm._i(_vm.is_leadership, null) > -1
+                                      : _vm.is_leadership
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.is_leadership,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.is_leadership = $$a.concat([
+                                              $$v
+                                            ]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.is_leadership = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.is_leadership = $$c
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticStyle: { color: "black" } },
+                                  [_vm._v(" Członek Kierownictwa ")]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          this.$store.state.is_management
+                            ? _c("label", [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.is_management,
+                                      expression: "is_management"
+                                    }
+                                  ],
+                                  staticClass: "filled-in",
+                                  attrs: { type: "checkbox", id: "management" },
+                                  domProps: {
+                                    checked: Array.isArray(_vm.is_management)
+                                      ? _vm._i(_vm.is_management, null) > -1
+                                      : _vm.is_management
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.is_management,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.is_management = $$a.concat([
+                                              $$v
+                                            ]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.is_management = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.is_management = $$c
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticStyle: { color: "black" } },
+                                  [_vm._v(" Członek Zarządu ")]
+                                )
+                              ])
+                            : _vm._e()
                         ])
                       : _vm._e(),
                     _vm._v(" "),

@@ -43,8 +43,21 @@
                         <option v-for='divi in divisions' :value='divi.id' :key='divi.id'> 
                         <span>{{ '   '+divi.town+' '+divi.parish }}</span></option>
                     </select>
-                </div>
                     <span class="text text-danger" v-if="error && errors.division">{{ errors.division[0] }}</span>
+                </div>
+                 <div class="form-group" v-if="this.$store.state.is_leadership || this.$store.state.is_management">
+                    <label>Uprawnienia</label><br>
+                    <label style="color: rgb(211, 7, 41)"> Uwaga! Jeżeli zrezygnujesz z nadanych uprawnień, otrzymasz je dopiero, jeżeli inny uprawiony Ci je nada </label>
+                    <label v-if="this.$store.state.is_leadership">
+                        <input type="checkbox" class="filled-in" id="leader" v-model="is_leadership" >
+                        <span style="color: black"> Członek Kierownictwa </span>
+                    </label>
+                    <br>
+                    <label v-if="this.$store.state.is_management">
+                        <input type="checkbox" class="filled-in" id="management" v-model="is_management" >
+                        <span style="color: black"> Członek Zarządu </span>
+                    </label>
+                </div>   
                 
                 <div style="text-align:center">
                 <button class="btn btn-primary" type="button" name="action" @click.prevent="update()">Zapisz</button>
@@ -76,7 +89,9 @@
                 isProgress: false,
                 division: '',
                 divisions: [],
-                currentUser: null
+                currentUser: null,
+                is_leadership: this.$store.state.is_leadership,
+                is_management: this.$store.state.is_management,
             };
         },
         methods: {
@@ -90,13 +105,18 @@
                     password: this.password,
                     confirmPassword: this.confirmPassword,
                     birthdate: this.birthdate,
-                    division: this.division
+                    division: this.division,
+                    is_leadership: this.is_leadership,
+                    is_management: this.is_management
                 }).then(response => {
                     this.isProgress = true;
                     if(response.data.success == true)
                     {
+                        
                         setTimeout(() => {
                             this.isProgress = false;
+                            this.$store.state.is_leadership=this.is_leadership;
+                            this.$store.state.is_management=this.is_management;
                             this.$router.push({ name: 'dashboard'})
                             this.$toaster.success('Dane pomyślnie zapisane')
                         }, 2000)
@@ -129,6 +149,8 @@
                  this.email = myThis.currentUser.email;
                  this.birthdate = myThis.currentUser.birthdate;
                  this.division = myThis.currentUser.division;
+                 this.is_leadership = myThis.currentUser.is_leadership
+                 this.is_management = myThis.currentUser.is_management
               }.bind(this)); 
               
             },
