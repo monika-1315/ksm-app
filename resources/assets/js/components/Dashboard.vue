@@ -6,6 +6,9 @@
       <p v-if="!this.$store.state.is_authorized">Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału</p>
       <h3>Najnowsze wiadomości:</h3>
       <br>
+      <ul class="tabs">
+        <button class="tab btn btn-light" @click="selectedTab=tab" v-for="(tab, index) in tabs" :key="index" ><a :class="{activeTab: selectedTab===tab}">{{ tab }}</a></button>
+      </ul>
         <div id=messages v-for="message in messages" :key="message.id">
           <div class="card card-default">
             <div class="card-header"><h5>{{message.title}}</h5></div>
@@ -22,7 +25,9 @@
      
     data() {
       return {
-        messages: []
+        messages: [],
+        tabs: ['Wszystkie', 'Oddział', 'Od Zarządu'],
+        selectedTab: 'Wszystkie'
       }
     },
     components: {
@@ -43,7 +48,7 @@
             },
         },
     created: function(){
-      this.getMessages();
+      // this.getMessages();
     }
   }
 </script>
@@ -60,4 +65,7 @@
   font-style: italic;
 }
 
+.activeTab{
+  font-weight: bold;
+}
 </style>

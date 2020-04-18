@@ -18,7 +18,7 @@ class CreateMessagesTable extends Migration
             $table->int('receiver_group');
             $table->int('division')->nullable();
             $table->string('title',50);
-            $table->string('body',255);
+            $table->string('body',1000);
             $table->datetime('published_at');
             $table->int('author')->nullable();
         });
