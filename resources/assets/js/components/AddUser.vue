@@ -43,8 +43,14 @@
                         <option v-for='divi in divisions' :value='divi.id' :key='divi.id'> 
                         <span>{{ '   '+divi.town+' '+divi.parish }}</span></option>
                     </select>
+                      <span class="text text-danger" v-if="error && errors.division">{{ errors.division[0] }}</span>
                 </div>
-                    <span class="text text-danger" v-if="error && errors.division">{{ errors.division[0] }}</span>
+                <div class="form-group" >
+                    <label>
+                    <input type="checkbox" class="filled-in" id="leader" v-model="is_leadership" >
+                    <span style="color: black"> Członek Kierownictwa </span>
+                    </label>
+                </div>
                 
                 <div style="text-align:center">
                 <button class="btn btn-primary" type="button" name="action" @click.prevent="register()">Zarejestruj członka</button>
@@ -70,6 +76,7 @@
                 password: '',
                 confirmPassword:'',
                 birthdate:'',
+                is_leadership: 0,
                 error: false,
                 errors: {},
                 success: false,
@@ -87,7 +94,8 @@
                     password: this.password,
                     confirmPassword: this.confirmPassword,
                     birthdate: this.birthdate,
-                    division: this.division
+                    division: this.division,
+                    is_leadership: this.is_leadership
                 }).then(response => {
                     this.isProgress = true;
                     if(response.data.success == true)

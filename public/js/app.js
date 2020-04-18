@@ -2078,6 +2078,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2087,6 +2093,7 @@ __webpack_require__.r(__webpack_exports__);
       password: '',
       confirmPassword: '',
       birthdate: '',
+      is_leadership: 0,
       error: false,
       errors: {},
       success: false,
@@ -2106,7 +2113,8 @@ __webpack_require__.r(__webpack_exports__);
         password: this.password,
         confirmPassword: this.confirmPassword,
         birthdate: this.birthdate,
-        division: this.division
+        division: this.division,
+        is_leadership: this.is_leadership
       }).then(function (response) {
         _this.isProgress = true;
 
@@ -8418,14 +8426,62 @@ var render = function() {
                           )
                         }),
                         0
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm.error && _vm.errors.division
+                        ? _c("span", { staticClass: "text text-danger" }, [
+                            _vm._v(_vm._s(_vm.errors.division[0]))
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _vm.error && _vm.errors.division
-                      ? _c("span", { staticClass: "text text-danger" }, [
-                          _vm._v(_vm._s(_vm.errors.division[0]))
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.is_leadership,
+                              expression: "is_leadership"
+                            }
+                          ],
+                          staticClass: "filled-in",
+                          attrs: { type: "checkbox", id: "leader" },
+                          domProps: {
+                            checked: Array.isArray(_vm.is_leadership)
+                              ? _vm._i(_vm.is_leadership, null) > -1
+                              : _vm.is_leadership
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.is_leadership,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.is_leadership = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.is_leadership = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.is_leadership = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticStyle: { color: "black" } }, [
+                          _vm._v(" Członek Kierownictwa ")
                         ])
-                      : _vm._e(),
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticStyle: { "text-align": "center" } }, [
                       _c(
