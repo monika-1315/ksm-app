@@ -15,8 +15,8 @@ class CreateDivisionsTable extends Migration
     {
         Schema::create('divisions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Email',30);
-            $table->string('Haslo',255);
+            $table->string('town',30);
+            $table->string('parish',255);
         });
     }
 

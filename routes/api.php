@@ -25,8 +25,8 @@ Route::post('/auth/social', 'AuthController@postSocialLogin');
 Route::group(['middleware' => ['jwt.auth']], function () {
 
     Route::get('/auth/logout', 'AuthController@logout');
-    Route::post('/auth/getUser', 'APIController@getUser');
-    Route::post('/auth/updateUser', 'APIController@updateUser');
-    Route::post('/auth/getUnauthorizedUsers', 'APIController@getUnauthorizedUsers');
-    Route::post('/auth/authorizeUser', 'APIController@authorizeUser');
+    Route::post('/auth/getUser', 'UsersController@getUser');
+    Route::post('/auth/updateUser', 'UsersController@updateUser');
+    Route::post('/auth/getUnauthorizedUsers', 'UsersController@getUnauthorizedUsers');
+    Route::post('/auth/authorizeUser', 'UsersController@authorizeUser');
 });
