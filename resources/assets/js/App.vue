@@ -1,23 +1,13 @@
 <template>
     <div>
-        <nav>
-            <div class="navbar navbar-expand-lg  navbar-light bg-light">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="left hide-on-med-and-down">
+        <nav class="navbar navbar-expand-lg  navbar-light bg-light">
+            <div id="nav">
+                    <ul class="left navbar-nav hide-on-med-and-down">
                         <li v-if="!this.$store.state.isLoggedIn">
                             <router-link :to="{ name: 'home' }" class="nav-link" ><img alt="KSM logo" src="./components/assets/logo.png" width="40"></router-link>
                         </li>
                         <li v-if="this.$store.state.isLoggedIn">
                             <router-link :to="{ name: 'dashboard' }" class="nav-link" ><img alt="KSM logo" src="./components/assets/logo.png" width="40"></router-link>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav mr-auto">
-                        <li v-if="!this.$store.state.isLoggedIn" class="right">
-                            <router-link :to="{ name: 'login' }" class="nav-link">Zaloguj się</router-link>
-                        </li>
-
-                        <li v-if="!this.$store.state.isLoggedIn" class="right">
-                            <router-link :to="{ name: 'register' }" class="nav-link">Zarejestruj się</router-link>
                         </li>
                         <li v-if="this.$store.state.isLoggedIn" class="right">
                             <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
@@ -28,12 +18,21 @@
                          <li v-if="this.$store.state.isLoggedIn && this.$store.state.is_leadership" class="right">
                             <router-link :to="{ name: 'authorize' }" class="nav-link">Zatwierdzaj</router-link>
                         </li>
+                    </ul>
+                    <ul class="right navbar-nav hide-on-med-and-down">
+                        <li v-if="!this.$store.state.isLoggedIn" class="right">
+                            <router-link :to="{ name: 'login' }" class="nav-link">Zaloguj się</router-link>
+                        </li>
+
+                        <li v-if="!this.$store.state.isLoggedIn" class="right">
+                            <router-link :to="{ name: 'register' }" class="nav-link">Zarejestruj się</router-link>
+                        </li>
+                        
                         <li id="log-out" v-if="this.$store.state.isLoggedIn" class="right">
                             <a href="#"  @click="logout()" class="nav-link">Wyloguj się</a>
                         </li>
                         
                     </ul>
-                </div>
             </div>
         </nav>  <br><br><br>
         <transition name="fade" mode="out-in">
@@ -106,9 +105,17 @@
         opacity: 0
     }
 
+    #nav{
+        width: 95%;
+    }
     .container{
         padding:10px;
         width:80%;
+    }
+    .navbar{
+        text-align: center;
+        padding-left: 10%;
+        padding-right: 10%;
     }
     #nav-mobile a:hover{
         text-decoration: none !important;
