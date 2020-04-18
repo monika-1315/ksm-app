@@ -34,7 +34,7 @@
                         
                     </ul>
             </div>
-        </nav>  <br><br><br>
+        </nav>  <br>
         <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>

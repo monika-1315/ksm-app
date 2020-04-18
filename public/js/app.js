@@ -1952,7 +1952,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
@@ -2255,10 +2254,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      messages: []
+      messages: [],
+      tabs: [{
+        id: 'A',
+        text: 'Wszystkie'
+      }, {
+        id: 'B',
+        text: 'Oddział'
+      }, {
+        id: 'C',
+        text: 'Od Zarządu'
+      }],
+      selectedTab: 'A'
     };
   },
   components: {//
@@ -4762,7 +4774,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        transition-duration: 0.2s;\n        transition-property: opacity;\n        transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        opacity: 0\n}\n.container[data-v-66ab2f82]{\n        padding:10px;\n        width:80%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#log-out[data-v-66ab2f82]{\n  float: right;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        transition-duration: 0.2s;\n        transition-property: opacity;\n        transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        opacity: 0\n}\n#nav[data-v-66ab2f82]{\n        width: 95%;\n}\n.container[data-v-66ab2f82]{\n        padding:10px;\n        width:80%;\n}\n.navbar[data-v-66ab2f82]{\n        text-align: center;\n        padding-left: 10%;\n        padding-right: 10%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#log-out[data-v-66ab2f82]{\n  float: right;\n}\n", ""]);
 
 // exports
 
@@ -4819,7 +4831,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container{\r\n  text-align: left;\n}\n.card-body{\r\n  text-align: left;\n}\n.stamp{\r\n  text-align: right;\r\n  font-style: italic;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.container{\r\n  text-align: left;\n}\n.card-body{\r\n  text-align: left;\n}\n.stamp{\r\n  text-align: right;\r\n  font-style: italic;\n}\n.activeTab{\r\n  font-weight: bold;\n}\r\n", ""]);
 
 // exports
 
@@ -7956,194 +7968,178 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("nav", [
-        _c(
-          "div",
-          { staticClass: "navbar navbar-expand-lg  navbar-light bg-light" },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "collapse navbar-collapse",
-                attrs: { id: "navbarSupportedContent" }
-              },
-              [
-                _c("ul", { staticClass: "left hide-on-med-and-down" }, [
-                  !this.$store.state.isLoggedIn
-                    ? _c(
-                        "li",
+      _c(
+        "nav",
+        { staticClass: "navbar navbar-expand-lg  navbar-light bg-light" },
+        [
+          _c("div", { attrs: { id: "nav" } }, [
+            _c("ul", { staticClass: "left navbar-nav hide-on-med-and-down" }, [
+              !this.$store.state.isLoggedIn
+                ? _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "home" } }
+                        },
                         [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: { name: "home" } }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  alt: "KSM logo",
-                                  src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
-                                  width: "40"
-                                }
-                              })
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  this.$store.state.isLoggedIn
-                    ? _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: { name: "dashboard" } }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  alt: "KSM logo",
-                                  src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
-                                  width: "40"
-                                }
-                              })
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e()
-                ]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "navbar-nav mr-auto" }, [
-                  !this.$store.state.isLoggedIn
-                    ? _c(
-                        "li",
-                        { staticClass: "right" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: { name: "login" } }
-                            },
-                            [_vm._v("Zaloguj się")]
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !this.$store.state.isLoggedIn
-                    ? _c(
-                        "li",
-                        { staticClass: "right" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: { name: "register" } }
-                            },
-                            [_vm._v("Zarejestruj się")]
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  this.$store.state.isLoggedIn
-                    ? _c(
-                        "li",
-                        { staticClass: "right" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: { name: "edit" } }
-                            },
-                            [_vm._v("Edytuj swoje dane")]
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  this.$store.state.isLoggedIn &&
-                  (this.$store.state.is_leadership ||
-                    this.$store.state.is_management)
-                    ? _c(
-                        "li",
-                        { staticClass: "right" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: { name: "adduser" } }
-                            },
-                            [_vm._v("Dodaj członka")]
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  this.$store.state.isLoggedIn &&
-                  this.$store.state.is_leadership
-                    ? _c(
-                        "li",
-                        { staticClass: "right" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { to: { name: "authorize" } }
-                            },
-                            [_vm._v("Zatwierdzaj")]
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  this.$store.state.isLoggedIn
-                    ? _c(
-                        "li",
-                        { staticClass: "right", attrs: { id: "log-out" } },
-                        [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { href: "#" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.logout()
-                                }
-                              }
-                            },
-                            [_vm._v("Wyloguj się")]
-                          )
+                          _c("img", {
+                            attrs: {
+                              alt: "KSM logo",
+                              src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
+                              width: "40"
+                            }
+                          })
                         ]
                       )
-                    : _vm._e()
-                ])
-              ]
-            )
-          ]
-        )
-      ]),
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              this.$store.state.isLoggedIn
+                ? _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "dashboard" } }
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              alt: "KSM logo",
+                              src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
+                              width: "40"
+                            }
+                          })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              this.$store.state.isLoggedIn
+                ? _c(
+                    "li",
+                    { staticClass: "right" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "edit" } }
+                        },
+                        [_vm._v("Edytuj swoje dane")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              this.$store.state.isLoggedIn &&
+              (this.$store.state.is_leadership ||
+                this.$store.state.is_management)
+                ? _c(
+                    "li",
+                    { staticClass: "right" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "adduser" } }
+                        },
+                        [_vm._v("Dodaj członka")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              this.$store.state.isLoggedIn && this.$store.state.is_leadership
+                ? _c(
+                    "li",
+                    { staticClass: "right" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "authorize" } }
+                        },
+                        [_vm._v("Zatwierdzaj")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "right navbar-nav hide-on-med-and-down" }, [
+              !this.$store.state.isLoggedIn
+                ? _c(
+                    "li",
+                    { staticClass: "right" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "login" } }
+                        },
+                        [_vm._v("Zaloguj się")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              !this.$store.state.isLoggedIn
+                ? _c(
+                    "li",
+                    { staticClass: "right" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "register" } }
+                        },
+                        [_vm._v("Zarejestruj się")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              this.$store.state.isLoggedIn
+                ? _c("li", { staticClass: "right", attrs: { id: "log-out" } }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            return _vm.logout()
+                          }
+                        }
+                      },
+                      [_vm._v("Wyloguj się")]
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ]
+      ),
       _vm._v(" "),
-      _c("br"),
-      _c("br"),
       _c("br"),
       _vm._v(" "),
       _c(
@@ -8638,9 +8634,31 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
+      _vm._l(_vm.tabs, function(tab) {
+        return _c(
+          "button",
+          {
+            key: tab.id,
+            staticClass: "tab btn btn-light",
+            on: {
+              click: function($event) {
+                _vm.selectedTab = tab.id
+              }
+            }
+          },
+          [
+            _c("a", { class: { activeTab: _vm.selectedTab === tab.id } }, [
+              _vm._v(_vm._s(tab.text))
+            ])
+          ]
+        )
+      }),
+      _vm._v(" "),
       _vm._l(_vm.messages, function(message) {
-        return _c("div", { key: message.id, attrs: { id: "messages" } }, [
-          _c("div", { staticClass: "card card-default" }, [
+        return _c(
+          "div",
+          { key: message.id, staticClass: "card card-default" },
+          [
             _c("div", { staticClass: "card-header" }, [
               _c("h5", [_vm._v(_vm._s(message.title))])
             ]),
@@ -8654,8 +8672,8 @@ var render = function() {
                 )
               ])
             ])
-          ])
-        ])
+          ]
+        )
       })
     ],
     2

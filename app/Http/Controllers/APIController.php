@@ -23,7 +23,8 @@ class APIController extends Controller
 
     public function getMessages()
     {
-        $data = Message::get();
+        $data = Message::orderby('published_at', 'desc')
+            ->get();
    
         return response()->json($data);
     }
