@@ -26447,14 +26447,14 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]({
     name: 'register',
     component: _components_Register_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     meta: {
-      auth: false
+      requiresAuth: false
     }
   }, {
     path: '/login',
     name: 'login',
     component: _components_Login_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     meta: {
-      auth: false
+      requiresAuth: false
     }
   }, {
     path: '/authorize',
@@ -26475,14 +26475,14 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]({
     name: 'adduser',
     component: _components_AddUser_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     meta: {
-      auth: true
+      requiresAuth: true
     }
   }, {
     path: '/editdata',
     name: 'edit',
     component: _components_EditData_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     meta: {
-      auth: true
+      requiresAuth: true
     }
   }]
 });

@@ -23,7 +23,7 @@ const router = new VueRouter({
         name: 'register',
         component: Register,
         meta: { 
-            auth: false
+            requiresAuth: false
         }
     },
 
@@ -32,7 +32,7 @@ const router = new VueRouter({
         name: 'login',
         component: Login,
         meta: {
-            auth: false
+            requiresAuth: false
         }
     },
 
@@ -56,7 +56,7 @@ const router = new VueRouter({
         name: 'adduser',
         component: AddUser,
         meta: { 
-            auth: true
+            requiresAuth: true
         }
     },
     {
@@ -64,7 +64,7 @@ const router = new VueRouter({
         name: 'edit',
         component: EditData,
         meta: { 
-            auth: true
+            requiresAuth: true
         }
     },]
 });
