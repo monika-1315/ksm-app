@@ -9,7 +9,7 @@
                         <li v-if="this.$store.state.isLoggedIn">
                             <router-link :to="{ name: 'dashboard' }" class="nav-link" ><img alt="KSM logo" src="./components/assets/logo.png" width="40"></router-link>
                         </li>
-                        <li v-if="this.$store.state.isLoggedIn" class="right">
+                        <li v-if="this.$store.state.isLoggedIn" >
                             <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
                         </li>
                         <li v-if="this.$store.state.isLoggedIn && (this.$store.state.is_leadership || this.$store.state.is_management)" class="right">
@@ -20,15 +20,15 @@
                         </li>
                     </ul>
                     <ul class="right navbar-nav hide-on-med-and-down">
-                        <li v-if="!this.$store.state.isLoggedIn" class="right">
+                        <li v-if="!this.$store.state.isLoggedIn">
                             <router-link :to="{ name: 'login' }" class="nav-link">Zaloguj się</router-link>
                         </li>
 
-                        <li v-if="!this.$store.state.isLoggedIn" class="right">
+                        <li v-if="!this.$store.state.isLoggedIn" >
                             <router-link :to="{ name: 'register' }" class="nav-link">Zarejestruj się</router-link>
                         </li>
                         
-                        <li id="log-out" v-if="this.$store.state.isLoggedIn" class="right">
+                        <li id="log-out" v-if="this.$store.state.isLoggedIn" >
                             <a href="#"  @click="logout()" class="nav-link">Wyloguj się</a>
                         </li>
                         
@@ -106,7 +106,7 @@
     }
 
     #nav{
-        width: 95%;
+        width: 100%;
     }
     .container{
         padding:10px;

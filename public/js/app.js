@@ -2256,6 +2256,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2278,6 +2281,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     name: function name() {
       return this.$store.state.name;
+    },
+    division: function division() {
+      return this.$store.state.division;
     }
   },
   methods: {
@@ -4774,7 +4780,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        transition-duration: 0.2s;\n        transition-property: opacity;\n        transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        opacity: 0\n}\n#nav[data-v-66ab2f82]{\n        width: 95%;\n}\n.container[data-v-66ab2f82]{\n        padding:10px;\n        width:80%;\n}\n.navbar[data-v-66ab2f82]{\n        text-align: center;\n        padding-left: 10%;\n        padding-right: 10%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#log-out[data-v-66ab2f82]{\n  float: right;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        transition-duration: 0.2s;\n        transition-property: opacity;\n        transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        opacity: 0\n}\n#nav[data-v-66ab2f82]{\n        width: 100%;\n}\n.container[data-v-66ab2f82]{\n        padding:10px;\n        width:80%;\n}\n.navbar[data-v-66ab2f82]{\n        text-align: center;\n        padding-left: 10%;\n        padding-right: 10%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#log-out[data-v-66ab2f82]{\n  float: right;\n}\n", ""]);
 
 // exports
 
@@ -8027,7 +8033,6 @@ var render = function() {
               this.$store.state.isLoggedIn
                 ? _c(
                     "li",
-                    { staticClass: "right" },
                     [
                       _c(
                         "router-link",
@@ -8085,7 +8090,6 @@ var render = function() {
               !this.$store.state.isLoggedIn
                 ? _c(
                     "li",
-                    { staticClass: "right" },
                     [
                       _c(
                         "router-link",
@@ -8103,7 +8107,6 @@ var render = function() {
               !this.$store.state.isLoggedIn
                 ? _c(
                     "li",
-                    { staticClass: "right" },
                     [
                       _c(
                         "router-link",
@@ -8119,7 +8122,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               this.$store.state.isLoggedIn
-                ? _c("li", { staticClass: "right", attrs: { id: "log-out" } }, [
+                ? _c("li", { attrs: { id: "log-out" } }, [
                     _c(
                       "a",
                       {
@@ -8655,25 +8658,27 @@ var render = function() {
       }),
       _vm._v(" "),
       _vm._l(_vm.messages, function(message) {
-        return _c(
-          "div",
-          { key: message.id, staticClass: "card card-default" },
-          [
-            _c("div", { staticClass: "card-header" }, [
-              _c("h5", [_vm._v(_vm._s(message.title))])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("p", [_vm._v(_vm._s(message.body))]),
-              _vm._v(" "),
-              _c("p", { staticClass: "stamp" }, [
-                _vm._v(
-                  _vm._s(message.author) + " " + _vm._s(message.published_at)
-                )
+        return _c("div", { key: message.id }, [
+          _vm.selectedTab === "A" ||
+          (_vm.selectedTab === "B" &&
+            message.receiver_group === 1 &&
+            message.division === _vm.division) ||
+          (_vm.selectedTab === "C" && message.receiver_group === 0)
+            ? _c("div", { staticClass: "card card-default" }, [
+                _c("div", { staticClass: "card-header" }, [
+                  _c("h5", [_vm._v(_vm._s(message.title))])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("p", [_vm._v(_vm._s(message.body))]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "stamp" }, [
+                    _vm._v(_vm._s(message.published_at))
+                  ])
+                ])
               ])
-            ])
-          ]
-        )
+            : _vm._e()
+        ])
       })
     ],
     2

@@ -10,12 +10,15 @@
           <a :class="{activeTab: selectedTab===tab.id}">{{ tab.text }}</a>
         </button>
 
-        <div class="card card-default"  v-for="message in messages" :key="message.id">
+        <div  v-for="message in messages" :key="message.id">
+        <div class="card card-default" 
+        v-if="selectedTab==='A'|| selectedTab==='B'&&message.receiver_group===1&&message.division===division||selectedTab==='C'&&message.receiver_group===0">
           <div class="card-header"><h5>{{message.title}}</h5></div>
           <div class="card-body">
               <p>{{message.body}}</p>
-              <p class="stamp">{{message.author}} {{message.published_at}}</p>
+              <p class="stamp">{{message.published_at}}</p>
           </div>
+        </div>
         </div>
     </div>
 </template>
@@ -35,6 +38,9 @@
     computed:{
       name(){
         return this.$store.state.name;
+      },
+      division(){
+        return this.$store.state.division;
       }
     },
     methods:{
