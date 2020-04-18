@@ -74,10 +74,20 @@
                             return Promise.reject(error.response);
                         })
                 }
-            }
+            },
+            getUser: function(){
+              this.axios.post('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
+              .then(function (response) {
+                 this.$store.commit('refreshUser', response.data[0])
+              }.bind(this)); 
+              
+            },
         },
         created: function(){
             this.checkToken();
+            if (this.$store.state.division === 0 && this.$store.state.isLoggedIn){
+                this.getUser();
+            }
         }
     }
 

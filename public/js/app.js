@@ -1989,10 +1989,19 @@ __webpack_require__.r(__webpack_exports__);
           return Promise.reject(error.response);
         });
       }
+    },
+    getUser: function getUser() {
+      this.axios.post('/api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email).then(function (response) {
+        this.$store.commit('refreshUser', response.data[0]);
+      }.bind(this));
     }
   },
   created: function created() {
     this.checkToken();
+
+    if (this.$store.state.division === 0 && this.$store.state.isLoggedIn) {
+      this.getUser();
+    }
   }
 });
 
@@ -2122,22 +2131,22 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.get('/api/getDivisions').then(function (response) {
         this.divisions = response.data;
       }.bind(this));
-    },
-    getUser: function getUser() {
-      this.axios.post('/api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email).then(function (response) {
-        this.division = response.data[0].division;
-        this.$store.commit('refreshUser', response.data[0]);
-      }.bind(this));
-    }
+    } // getUser: function(){
+    //   this.axios.post('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
+    //   .then(function (response) {
+    //      this.division = response.data[0].division;
+    //      this.$store.commit('refreshUser', response.data[0])
+    //   }.bind(this)); 
+    // },
+
   },
   created: function created() {
-    this.getDivisions();
-
-    if (this.$store.state.division != 0) {
-      this.division = this.$store.state.division;
-    } else {
-      this.getUser();
-    }
+    this.getDivisions(); // if (this.$store.state.division != 0){
+    //     this.division=this.$store.state.division;
+    // }
+    // else{
+    //     this.getUser();
+    // }
   }
 });
 
@@ -2247,15 +2256,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    getUser: function getUser() {
-      this.axios.post('/api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email).then(function (response) {
-        this.$store.commit('refreshUser', response.data[0]);
-      }.bind(this));
-    }
-  },
-  created: function created() {
-    if (this.$store.state.division === 0) {
-      this.getUser();
+    // getUser: function(){
+    //           this.axios.post('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
+    //           .then(function (response) {
+    //              this.$store.commit('refreshUser', response.data[0])
+    //           }.bind(this));
+    //         },
+    //     },
+    created: function created() {//  if (this.$store.state.division === 0){
+      //     this.getUser()
     }
   }
 });
