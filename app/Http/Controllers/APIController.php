@@ -29,6 +29,25 @@ class APIController extends Controller
         return response()->json($data);
     }
 
+    public function authorizeUser(Request $request)
+    {
+        $user= User::find($request->get('id'));
+        $user->is_authorized=1;
+        $user->save();
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function getUnauthorizedUsers(Request $request)
+    {
+        $data = User::where('division', $request->only('division'))
+                ->where('is_authorized', 0)
+                ->orderby('id', 'desc')
+                ->get();
+        return response()->json($data);
+    }
+
     public function updateUser(Request $request){
 
         try{

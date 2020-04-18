@@ -27,6 +27,7 @@
                 </div>
                 <div class="progress" v-if="isProgress">
                     <div class="indeterminate"></div>
+                    <br><br>
                 </div>
                 <button class="btn btn-primary" type="button" name="action" @click="login()">Zaloguj się </button>
             </div>
@@ -172,6 +173,9 @@ label.active {
     .progress{
         margin:0px;
         background-color: transparent;
+    }
+    .indeterminate{
+        background-color: #FEBD09;
     }
     .alert{
         margin-bottom:0px;
