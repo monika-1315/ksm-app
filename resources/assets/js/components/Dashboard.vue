@@ -6,11 +6,14 @@
       <p v-if="!this.$store.state.is_authorized">Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału</p>
       <h3>Najnowsze wiadomości:</h3>
       <br>
-        <div class="card card-default">
-            <div class="card-header">Tytuł wiadomości</div>
+        <div id=messages v-for="message in messages" :key="message.id">
+          <div class="card card-default">
+            <div class="card-header"><h5>{{message.title}}</h5></div>
             <div class="card-body">
-                Treść wiadomości
+                <p>{{message.body}}</p>
+                <p class="stamp">{{message.author}} {{message.published_at}}</p>
             </div>
+          </div>
         </div>
     </div>
 </template>
@@ -19,7 +22,7 @@
      
     data() {
       return {
-        
+        messages: []
       }
     },
     components: {
@@ -31,18 +34,16 @@
       }
     },
     methods:{
-    // getUser: function(){
-    //           this.axios.post('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
-    //           .then(function (response) {
-    //              this.$store.commit('refreshUser', response.data[0])
-    //           }.bind(this));
+    getMessages: function(){
+              this.axios.post('/api/auth/getMessages?token=' + this.$store.state.token)
+              .then(function (response) {
+                 this.messages= response.data;
+              }.bind(this));
              
-    //         },
-    //     },
+            },
+        },
     created: function(){
-      //  if (this.$store.state.division === 0){
-      //     this.getUser()
-       }
+      this.getMessages();
     }
   }
 </script>
@@ -53,6 +54,10 @@
 }
 .card-body{
   text-align: left;
+}
+.stamp{
+  text-align: right;
+  font-style: italic;
 }
 
 </style>

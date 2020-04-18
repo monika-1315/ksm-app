@@ -29,4 +29,5 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/updateUser', 'UsersController@updateUser');
     Route::post('/auth/getUnauthorizedUsers', 'UsersController@getUnauthorizedUsers');
     Route::post('/auth/authorizeUser', 'UsersController@authorizeUser');
+    Route::post('/auth/getMessages', 'APIController@getMessages');
 });

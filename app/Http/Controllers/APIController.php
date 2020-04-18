@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
   
 use Illuminate\Http\Request;
 use App\Division;
-use App\User;
+use App\Message;
 use Illuminate\Support\Facades\Auth;
 
 class APIController extends Controller
@@ -17,6 +17,13 @@ class APIController extends Controller
     public function getDivisions()
     {
         $data = Division::get();
+   
+        return response()->json($data);
+    }
+
+    public function getMessages()
+    {
+        $data = Message::get();
    
         return response()->json($data);
     }

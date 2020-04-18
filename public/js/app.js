@@ -2252,9 +2252,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      messages: []
+    };
   },
   components: {//
   },
@@ -2264,16 +2269,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    // getUser: function(){
-    //           this.axios.post('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
-    //           .then(function (response) {
-    //              this.$store.commit('refreshUser', response.data[0])
-    //           }.bind(this));
-    //         },
-    //     },
-    created: function created() {//  if (this.$store.state.division === 0){
-      //     this.getUser()
+    getMessages: function getMessages() {
+      this.axios.post('/api/auth/getMessages?token=' + this.$store.state.token).then(function (response) {
+        this.messages = response.data;
+      }.bind(this));
     }
+  },
+  created: function created() {
+    this.getMessages();
   }
 });
 
@@ -4816,7 +4819,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container{\r\n  text-align: left;\n}\n.card-body{\r\n  text-align: left;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.container{\r\n  text-align: left;\n}\n.card-body{\r\n  text-align: left;\n}\n.stamp{\r\n  text-align: right;\r\n  font-style: italic;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -8617,38 +8620,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h1", [_vm._v("Witaj " + _vm._s(_vm.name) + "!")]),
-    _vm._v(" "),
-    !this.$store.state.is_authorized
-      ? _c("p", [
-          _vm._v(
-            "Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału"
-          )
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("h3", [_vm._v("Najnowsze wiadomości:")]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _vm._m(0)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card card-default" }, [
-      _c("div", { staticClass: "card-header" }, [_vm._v("Tytuł wiadomości")]),
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("h1", [_vm._v("Witaj " + _vm._s(_vm.name) + "!")]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _vm._v("\n            Treść wiadomości\n        ")
-      ])
-    ])
-  }
-]
+      !this.$store.state.is_authorized
+        ? _c("p", [
+            _vm._v(
+              "Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału"
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("h3", [_vm._v("Najnowsze wiadomości:")]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _vm._l(_vm.messages, function(message) {
+        return _c("div", { key: message.id, attrs: { id: "messages" } }, [
+          _c("div", { staticClass: "card card-default" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _c("h5", [_vm._v(_vm._s(message.title))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("p", [_vm._v(_vm._s(message.body))]),
+              _vm._v(" "),
+              _c("p", { staticClass: "stamp" }, [
+                _vm._v(
+                  _vm._s(message.author) + " " + _vm._s(message.published_at)
+                )
+              ])
+            ])
+          ])
+        ])
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
