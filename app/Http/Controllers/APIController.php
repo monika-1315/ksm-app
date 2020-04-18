@@ -21,9 +21,13 @@ class APIController extends Controller
         return response()->json($data);
     }
 
-    public function getMessages()
+    public function getMessages(Request $request)
     {
-        $data = Message::orderby('published_at', 'desc')
+        $div=$request->get('division');
+        $data = Message::where('receiver_group', '=', 1)
+                        ->where('division', '=', $div)
+                  ->orWhere('receiver_group', '!=', 1)
+            ->orderby('published_at', 'desc')
             ->get();
    
         return response()->json($data);

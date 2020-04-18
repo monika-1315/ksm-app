@@ -2288,7 +2288,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getMessages: function getMessages() {
-      this.axios.post('/api/auth/getMessages?token=' + this.$store.state.token).then(function (response) {
+      this.axios.post('/api/auth/getMessages', {
+        token: this.$store.state.token,
+        division: this.division
+      }).then(function (response) {
         this.messages = response.data;
       }.bind(this));
     }
@@ -8660,9 +8663,7 @@ var render = function() {
       _vm._l(_vm.messages, function(message) {
         return _c("div", { key: message.id }, [
           _vm.selectedTab === "A" ||
-          (_vm.selectedTab === "B" &&
-            message.receiver_group === 1 &&
-            message.division === _vm.division) ||
+          (_vm.selectedTab === "B" && message.receiver_group === 1) ||
           (_vm.selectedTab === "C" && message.receiver_group === 0)
             ? _c("div", { staticClass: "card card-default" }, [
                 _c("div", { staticClass: "card-header" }, [

@@ -12,7 +12,7 @@
 
         <div  v-for="message in messages" :key="message.id">
         <div class="card card-default" 
-        v-if="selectedTab==='A'|| selectedTab==='B'&&message.receiver_group===1&&message.division===division||selectedTab==='C'&&message.receiver_group===0">
+        v-if="selectedTab==='A'|| selectedTab==='B'&&message.receiver_group===1||selectedTab==='C'&&message.receiver_group===0">
           <div class="card-header"><h5>{{message.title}}</h5></div>
           <div class="card-body">
               <p>{{message.body}}</p>
@@ -45,7 +45,10 @@
     },
     methods:{
     getMessages: function(){
-              this.axios.post('/api/auth/getMessages?token=' + this.$store.state.token)
+              this.axios.post('/api/auth/getMessages', {
+                token:this.$store.state.token,
+                division: this.division
+              })
               .then(function (response) {
                  this.messages= response.data;
               }.bind(this));
