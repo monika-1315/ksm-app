@@ -2259,6 +2259,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2272,6 +2275,9 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         id: 'C',
         text: 'Od Zarządu'
+      }, {
+        id: 'D',
+        text: 'Do Kierownictw'
       }],
       selectedTab: 'A'
     };
@@ -2284,6 +2290,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     division: function division() {
       return this.$store.state.division;
+    },
+    is_leadership: function is_leadership() {
+      return this.$store.state.is_leadership;
     }
   },
   methods: {
@@ -4783,7 +4792,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        transition-duration: 0.2s;\n        transition-property: opacity;\n        transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        opacity: 0\n}\n#nav[data-v-66ab2f82]{\n        width: 100%;\n}\n.container[data-v-66ab2f82]{\n        padding:10px;\n        width:80%;\n}\n.navbar[data-v-66ab2f82]{\n        text-align: center;\n        padding-left: 10%;\n        padding-right: 10%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#log-out[data-v-66ab2f82]{\n  float: right;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        transition-duration: 0.2s;\n        transition-property: opacity;\n        transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\n    .fade-leave-active[data-v-66ab2f82] {\n        opacity: 0\n}\n#nav[data-v-66ab2f82]{\n        width: 100%;\n}\n.container[data-v-66ab2f82]{\n        padding-left: 9%;\n        padding-right: 9%;\n}\n.navbar[data-v-66ab2f82]{\n        text-align: center;\n        padding-left: 10%;\n        padding-right: 10%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover{\n        text-decoration: none !important;\n        color:white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus{\n        text-decoration: none !important;\n        color:white;\n        background-color:rgba(0,0,0,0.1);\n}\n#log-out[data-v-66ab2f82]{\n  float: right;\n}\n", ""]);
 
 // exports
 
@@ -8636,35 +8645,54 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("h3", [_vm._v("Najnowsze wiadomości:")]),
+      _c("h3", [
+        _vm._v("Najnowsze wiadomości:\n  "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            staticStyle: { float: "right" },
+            attrs: { type: "button", name: "action" },
+            on: { click: _vm.getMessages }
+          },
+          [_vm._v("Odśwież")]
+        )
+      ]),
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
       _vm._l(_vm.tabs, function(tab) {
-        return _c(
-          "button",
-          {
-            key: tab.id,
-            staticClass: "tab btn btn-light",
-            on: {
-              click: function($event) {
-                _vm.selectedTab = tab.id
-              }
-            }
-          },
-          [
-            _c("a", { class: { activeTab: _vm.selectedTab === tab.id } }, [
-              _vm._v(_vm._s(tab.text))
-            ])
-          ]
-        )
+        return _c("span", { key: tab.id }, [
+          tab.id !== "D" || _vm.is_leadership
+            ? _c(
+                "button",
+                {
+                  staticClass: "tab btn btn-light",
+                  on: {
+                    click: function($event) {
+                      _vm.selectedTab = tab.id
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "a",
+                    { class: { activeTab: _vm.selectedTab === tab.id } },
+                    [_vm._v(_vm._s(tab.text))]
+                  )
+                ]
+              )
+            : _vm._e()
+        ])
       }),
       _vm._v(" "),
       _vm._l(_vm.messages, function(message) {
         return _c("div", { key: message.id }, [
-          _vm.selectedTab === "A" ||
+          (_vm.selectedTab === "A" &&
+            (message.receiver_group !== 2 || _vm.is_leadership)) ||
           (_vm.selectedTab === "B" && message.receiver_group === 1) ||
-          (_vm.selectedTab === "C" && message.receiver_group === 0)
+          (_vm.selectedTab === "C" && message.receiver_group === 0) ||
+          (_vm.selectedTab === "D" && message.receiver_group === 2)
             ? _c("div", { staticClass: "card card-default" }, [
                 _c("div", { staticClass: "card-header" }, [
                   _c("h5", [_vm._v(_vm._s(message.title))])
