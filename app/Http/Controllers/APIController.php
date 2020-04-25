@@ -32,4 +32,21 @@ class APIController extends Controller
    
         return response()->json($data);
     }
+
+    public function newMessage(Request $request)
+    {
+        $message = new Message();
+        $message->division = $request->get('division');
+        $message->receiver_group = $request->get('receiver_group');
+        $message->title = $request->get('title');
+        $message->body = $request->get('body');
+        $message->published_at = date("Y-m-d H:i:s");
+        $message->author = $request->get('author');
+        $message->save();
+   
+        return response()->json([
+
+            'success' => true
+        ]);
+    }
 }

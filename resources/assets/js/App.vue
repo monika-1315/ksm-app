@@ -109,8 +109,8 @@
         width: 100%;
     }
     .container{
-        padding:10px;
-        width:80%;
+        padding-left: 9%;
+        padding-right: 9%;
     }
     .navbar{
         text-align: center;

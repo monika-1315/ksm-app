@@ -8982,7 +8982,7 @@ var render = function() {
                           ],
                           staticClass: "browser-default",
                           attrs: {
-                            disabled: _vm.currentUser.is_authorized,
+                            disabled: _vm.currentUser.is_authorized === 1,
                             required: ""
                           },
                           on: {
