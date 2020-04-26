@@ -6,6 +6,7 @@ import Login from './components/Login.vue';
 import EditData from './components/EditData.vue';
 import AuthorizeUsr from './components/AuthorizeUsr.vue';
 import AddUser from './components/AddUser.vue'
+import NewMessage from './components/NewMessage.vue'
 import VueRouter from 'vue-router';
 import store from './store';
 
@@ -63,6 +64,14 @@ const router = new VueRouter({
         path: '/editdata',
         name: 'edit',
         component: EditData,
+        meta: { 
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/newmessage',
+        name: 'message',
+        component: NewMessage,
         meta: { 
             requiresAuth: true
         }
