@@ -65,6 +65,9 @@
                 if (this.$store.state.isLoggedIn){
                     var myThis=this;
                     this.axios.post('api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
+                        .then(function (response) {
+                            this.$store.commit('refreshUser', response.data[0])
+                            }.bind(this))                
                         .catch(error=> {
                             if (error.response && error.response.status === 401) {
                                 myThis.$store.commit('LogoutUser');
@@ -79,14 +82,13 @@
               .then(function (response) {
                  this.$store.commit('refreshUser', response.data[0])
               }.bind(this)); 
-              
-            },
+           },
         },
         created: function(){
             this.checkToken();
-            if (this.$store.state.division === 0 && this.$store.state.isLoggedIn){
-                this.getUser();
-            }
+            // if (this.$store.state.division === 0 && this.$store.state.isLoggedIn){
+            //     this.getUser();
+            // }
         }
     }
 

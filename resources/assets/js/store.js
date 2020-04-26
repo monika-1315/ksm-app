@@ -49,17 +49,24 @@ export default new Vuex.Store({
         tokenStored (state) {
             state.token = localStorage.getItem('token')
         },
-        refreshUser(state){
-            if (state.isLoggedIn && state.division===0){
-                axios.post('/api/auth/getUser?token=' + state.token+'&email='+state.email)
-                    .then(function (response) {
-                    state.division = response.data[0].division;
-                    state.is_leadership = response.data[0].is_leadership;
-                    state.is_management = response.data[0].is_management;
-                    state.is_authorized = response.data[0].is_authorized;
-                    state.name = response.data[0].name;
-                }.bind(this));
-            }
+        refreshUser(state, data){
+            
+                    state.division = data.division;
+                    state.is_leadership =data.is_leadership;
+                    state.is_management = data.is_management;
+                    state.is_authorized = data.is_authorized;
+                    state.name =data.name;
+               
+            
+            // if (state.isLoggedIn && state.division===0){
+            //     axios.post('/api/auth/getUser?token=' + state.token+'&email='+state.email)
+            //         .then(function (response) {
+            //         state.division = response.data[0].division;
+            //         state.is_leadership = response.data[0].is_leadership;
+            //         state.is_management = response.data[0].is_management;
+            //         state.is_authorized = response.data[0].is_authorized;
+            //         state.name = response.data[0].name;
+            //     }.bind(this));
         }
        
     }

@@ -1977,7 +1977,9 @@ __webpack_require__.r(__webpack_exports__);
     checkToken: function checkToken() {
       if (this.$store.state.isLoggedIn) {
         var myThis = this;
-        this.axios.post('api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email)["catch"](function (error) {
+        this.axios.post('api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email).then(function (response) {
+          this.$store.commit('refreshUser', response.data[0]);
+        }.bind(this))["catch"](function (error) {
           if (error.response && error.response.status === 401) {
             myThis.$store.commit('LogoutUser');
             myThis.$router.push({
@@ -1996,11 +1998,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.checkToken();
-
-    if (this.$store.state.division === 0 && this.$store.state.isLoggedIn) {
-      this.getUser();
-    }
+    this.checkToken(); // if (this.$store.state.division === 0 && this.$store.state.isLoggedIn){
+    //     this.getUser();
+    // }
   }
 });
 
@@ -2295,18 +2295,23 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.state.is_leadership;
     }
   },
+  watch: {
+    division: function division() {
+      this.getMessages();
+    }
+  },
   methods: {
     getMessages: function getMessages() {
       this.axios.post('/api/auth/getMessages', {
         token: this.$store.state.token,
-        division: this.division
+        division: this.$store.state.division
       }).then(function (response) {
         this.messages = response.data;
       }.bind(this));
     }
   },
   created: function created() {
-    this.getMessages();
+    if (this.$store.state.division == -1) this.getMessages();
   }
 });
 
@@ -27373,16 +27378,20 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     tokenStored: function tokenStored(state) {
       state.token = localStorage.getItem('token');
     },
-    refreshUser: function refreshUser(state) {
-      if (state.isLoggedIn && state.division === 0) {
-        axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/auth/getUser?token=' + state.token + '&email=' + state.email).then(function (response) {
-          state.division = response.data[0].division;
-          state.is_leadership = response.data[0].is_leadership;
-          state.is_management = response.data[0].is_management;
-          state.is_authorized = response.data[0].is_authorized;
-          state.name = response.data[0].name;
-        }.bind(this));
-      }
+    refreshUser: function refreshUser(state, data) {
+      state.division = data.division;
+      state.is_leadership = data.is_leadership;
+      state.is_management = data.is_management;
+      state.is_authorized = data.is_authorized;
+      state.name = data.name; // if (state.isLoggedIn && state.division===0){
+      //     axios.post('/api/auth/getUser?token=' + state.token+'&email='+state.email)
+      //         .then(function (response) {
+      //         state.division = response.data[0].division;
+      //         state.is_leadership = response.data[0].is_leadership;
+      //         state.is_management = response.data[0].is_management;
+      //         state.is_authorized = response.data[0].is_authorized;
+      //         state.name = response.data[0].name;
+      //     }.bind(this));
     }
   }
 }));

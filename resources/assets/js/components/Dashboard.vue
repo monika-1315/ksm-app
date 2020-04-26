@@ -32,7 +32,7 @@
       return {
         messages: [],
         tabs: [{id:'A', text:'Wszystkie'},{id:'B', text:'Oddział'}, {id:'C', text:'Od Zarządu'}, {id:'D', text:'Do Kierownictw'}],
-        selectedTab: 'A'
+        selectedTab: 'A',
       }
     },
     components: {
@@ -49,11 +49,16 @@
         return this.$store.state.is_leadership;
       }
     },
+    watch:{
+      division: function(){
+        this.getMessages();
+      }
+    },
     methods:{
     getMessages: function(){
               this.axios.post('/api/auth/getMessages', {
                 token:this.$store.state.token,
-                division: this.division
+                division: this.$store.state.division
               })
               .then(function (response) {
                  this.messages= response.data;
@@ -62,7 +67,8 @@
             },
         },
     created: function(){
-      this.getMessages();
+      if(this.$store.state.division==-1)
+        this.getMessages();
     }
   }
 </script>
