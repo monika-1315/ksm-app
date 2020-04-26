@@ -81,7 +81,6 @@ const router = new VueRouter({
         path: '/editmessage/:id',
         name: 'editmessage',
         component: EditMessage,
-        // props: true,
         meta: { 
             requiresAuth: true
         }

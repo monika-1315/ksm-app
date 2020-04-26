@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="body">Treść</label>
-                    <textarea id="body" cols="100" rows="100" v-model="body"/>
+                    <textarea id="body" cols="100" rows="100" v-model="body" required/>
                     <span class="text text-danger" v-if="error && errors.password">{{ errors.password[0] }}</span>
                 </div>
                 
@@ -68,16 +68,7 @@
                 groups : [{id: 0, text: 'Wszystkich'}, {id: 1, text:'Oddziału'}, {id: 2, text:'Kierownictw'}]
             };
         },
-        // props: {
-        //     mesid:{
-        //         type: String
-        //     }
-        // },
-        // computed:{
-        //     id: function(){
-        //         return this.$route.params.id;
-        //     }
-        // },
+       
         methods: {
             addMessage(){
                 this.axios.post('api/auth/newMessage', {
@@ -111,13 +102,12 @@
               }.bind(this));
          
             },
-            getUser: function(){
-            //   this.axios.post('/api/auth/getUser', {
-            //       token: this.$store.state.token, 
-            //       email:'+this.$store.state.email',})
-             this.axios.post('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
-              .then(function (response) {
-                 this.author = response.data[0].id;
+            getMessage: function(){
+            this.axios.post('/api/auth/getMessageById', {
+                  token: this.$store.state.token, 
+                  id: this.id
+                  })
+                  .then(function (response) {
                  this.division = response.data[0].division;
                  this.$store.commit('refreshUser', response.data[0])
               }.bind(this)); 

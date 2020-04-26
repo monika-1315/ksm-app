@@ -2305,19 +2305,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getMessages: function getMessages() {
-      this.$router.push({
-        name: 'editmessage',
-        params: {
-          id: 1
-        }
-      }); // this.axios.post('/api/auth/getMessages', {
-      //   is_leadership: this.is_leadership,
-      //   token:this.$store.state.token,
-      //   division: this.$store.state.division
-      // })
-      // .then(function (response) {
-      //    this.messages= response.data;
-      // }.bind(this));
+      // this.$router.push({ name: 'editmessage', params:{id:1}})
+      this.axios.post('/api/auth/getMessages', {
+        is_leadership: this.is_leadership,
+        token: this.$store.state.token,
+        division: this.$store.state.division
+      }).then(function (response) {
+        this.messages = response.data;
+      }.bind(this));
     }
   },
   created: function created() {
@@ -2585,16 +2580,6 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
-  // props: {
-  //     mesid:{
-  //         type: String
-  //     }
-  // },
-  // computed:{
-  //     id: function(){
-  //         return this.$route.params.id;
-  //     }
-  // },
   methods: {
     addMessage: function addMessage() {
       var _this = this;
@@ -2632,12 +2617,11 @@ __webpack_require__.r(__webpack_exports__);
         this.divisions = response.data;
       }.bind(this));
     },
-    getUser: function getUser() {
-      //   this.axios.post('/api/auth/getUser', {
-      //       token: this.$store.state.token, 
-      //       email:'+this.$store.state.email',})
-      this.axios.post('/api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email).then(function (response) {
-        this.author = response.data[0].id;
+    getMessage: function getMessage() {
+      this.axios.post('/api/auth/getMessageById', {
+        token: this.$store.state.token,
+        id: this.id
+      }).then(function (response) {
         this.division = response.data[0].division;
         this.$store.commit('refreshUser', response.data[0]);
       }.bind(this));
@@ -2846,6 +2830,13 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
+  watch: {
+    receiver_group: function receiver_group() {
+      if (this.receiver_group !== 1) {
+        this.division = -1;
+      }
+    }
+  },
   methods: {
     addMessage: function addMessage() {
       var _this = this;
@@ -2884,10 +2875,10 @@ __webpack_require__.r(__webpack_exports__);
       }.bind(this));
     },
     getUser: function getUser() {
-      //   this.axios.post('/api/auth/getUser', {
-      //       token: this.$store.state.token, 
-      //       email:'+this.$store.state.email',})
-      this.axios.post('/api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email).then(function (response) {
+      this.axios.post('/api/auth/getUser', {
+        token: this.$store.state.token,
+        email: this.$store.state.email
+      }).then(function (response) {
         this.author = response.data[0].id;
         this.division = response.data[0].division;
         this.$store.commit('refreshUser', response.data[0]);
@@ -9788,7 +9779,12 @@ var render = function() {
                           expression: "body"
                         }
                       ],
-                      attrs: { id: "body", cols: "100", rows: "100" },
+                      attrs: {
+                        id: "body",
+                        cols: "100",
+                        rows: "100",
+                        required: ""
+                      },
                       domProps: { value: _vm.body },
                       on: {
                         input: function($event) {
@@ -10183,7 +10179,11 @@ var render = function() {
                           }
                         ],
                         staticClass: "browser-default",
-                        attrs: { disabled: !this.$store.state.is_management },
+                        attrs: {
+                          disabled:
+                            !this.$store.state.is_management ||
+                            this.receiver_group !== 1
+                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -10267,7 +10267,12 @@ var render = function() {
                           expression: "body"
                         }
                       ],
-                      attrs: { id: "body", cols: "100", rows: "100" },
+                      attrs: {
+                        id: "body",
+                        cols: "100",
+                        rows: "100",
+                        required: ""
+                      },
                       domProps: { value: _vm.body },
                       on: {
                         input: function($event) {
@@ -27838,7 +27843,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]({
     path: '/editmessage/:id',
     name: 'editmessage',
     component: _components_EditMessage_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
-    // props: true,
     meta: {
       requiresAuth: true
     }

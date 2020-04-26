@@ -44,8 +44,9 @@ class APIController extends Controller
     public function newMessage(Request $request)
     {
         $message = new Message();
-        $message->division = $request->get('division');
         $message->receiver_group = $request->get('receiver_group');
+        if ($request->get('receiver_group')===1)
+            $message->division = $request->get('division');
         $message->title = $request->get('title');
         $message->body = $request->get('body');
         $message->published_at = date("Y-m-d H:i:s");
@@ -56,5 +57,13 @@ class APIController extends Controller
 
             'success' => true
         ]);
+    }
+
+    public function getMessageById(Request $request)
+    {
+        $data = Message::where('id', '=', $request->get('id'))
+                ->get();
+   
+        return response()->json($data);
     }
 }

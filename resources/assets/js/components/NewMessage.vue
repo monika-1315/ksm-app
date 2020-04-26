@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group" >
                     <label for="division">Oddział</label><br>
-                      <select class="browser-default" v-model="division" :disabled="!this.$store.state.is_management">
+                      <select class="browser-default" v-model="division" :disabled="!this.$store.state.is_management || this.receiver_group!==1">
                         <option v-for='divi in divisions' :value='divi.id' :key='divi.id'> 
                         <span>{{ '   '+divi.town+' '+divi.parish }}</span></option>
                     </select>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="body">Treść</label>
-                    <textarea id="body" cols="100" rows="100" v-model="body"/>
+                    <textarea id="body" cols="100" rows="100" v-model="body" required/>
                     <span class="text text-danger" v-if="error && errors.password">{{ errors.password[0] }}</span>
                 </div>
                 
@@ -67,6 +67,13 @@
                 groups : [{id: 0, text: 'Wszystkich'}, {id: 1, text:'Oddziału'}, {id: 2, text:'Kierownictw'}]
             };
         },
+        watch:{
+            receiver_group: function(){
+                if(this.receiver_group!==1){
+                    this.division=-1;
+                }
+            }
+        },
         methods: {
             addMessage(){
                 this.axios.post('api/auth/newMessage', {
@@ -101,10 +108,10 @@
          
             },
             getUser: function(){
-            //   this.axios.post('/api/auth/getUser', {
-            //       token: this.$store.state.token, 
-            //       email:'+this.$store.state.email',})
-             this.axios.post('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
+              this.axios.post('/api/auth/getUser', {
+                  token: this.$store.state.token, 
+                  email:this.$store.state.email
+                  })
               .then(function (response) {
                  this.author = response.data[0].id;
                  this.division = response.data[0].division;
@@ -114,7 +121,6 @@
             },
         },
         created: function(){
-           
             this.getUser();
             this.getDivisions();
         }
