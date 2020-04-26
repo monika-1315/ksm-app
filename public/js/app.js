@@ -2306,6 +2306,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getMessages: function getMessages() {
       this.axios.post('/api/auth/getMessages', {
+        is_leadership: this.is_leadership,
         token: this.$store.state.token,
         division: this.$store.state.division
       }).then(function (response) {

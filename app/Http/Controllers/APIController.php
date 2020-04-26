@@ -24,11 +24,19 @@ class APIController extends Controller
     public function getMessages(Request $request)
     {
         $div=$request->get('division');
+        if ($request->get('is_leadership')){
         $data = Message::where('receiver_group', '=', 1)
                         ->where('division', '=', $div)
                   ->orWhere('receiver_group', '!=', 1)
             ->orderby('published_at', 'desc')
             ->get();
+        }else{
+            $data = Message::where('receiver_group', '=', 1)
+                      ->where('division', '=', $div)
+                    ->orWhere('receiver_group', '=', 0)
+            ->orderby('published_at', 'desc')
+            ->get();
+        }
    
         return response()->json($data);
     }
