@@ -58,14 +58,15 @@
     },
     methods:{
     getMessages: function(){
-              this.axios.post('/api/auth/getMessages', {
-                is_leadership: this.is_leadership,
-                token:this.$store.state.token,
-                division: this.$store.state.division
-              })
-              .then(function (response) {
-                 this.messages= response.data;
-              }.bind(this));
+      this.$router.push({ name: 'editmessage', params:{id:1}})
+              // this.axios.post('/api/auth/getMessages', {
+              //   is_leadership: this.is_leadership,
+              //   token:this.$store.state.token,
+              //   division: this.$store.state.division
+              // })
+              // .then(function (response) {
+              //    this.messages= response.data;
+              // }.bind(this));
              
             },
         },

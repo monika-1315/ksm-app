@@ -7,6 +7,7 @@ import EditData from './components/EditData.vue';
 import AuthorizeUsr from './components/AuthorizeUsr.vue';
 import AddUser from './components/AddUser.vue'
 import NewMessage from './components/NewMessage.vue'
+import EditMessage from './components/EditMessage.vue'
 import VueRouter from 'vue-router';
 import store from './store';
 
@@ -75,7 +76,17 @@ const router = new VueRouter({
         meta: { 
             requiresAuth: true
         }
-    },]
+    },
+    {
+        path: '/editmessage/:id',
+        name: 'editmessage',
+        component: EditMessage,
+        // props: true,
+        meta: { 
+            requiresAuth: true
+        }
+    },
+    ]
 });
 
 router.beforeEach((to, from, next) => {
