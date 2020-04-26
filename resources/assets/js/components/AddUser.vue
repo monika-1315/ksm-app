@@ -1,7 +1,6 @@
 <template>
     <div class="container">
     <div class="row justify-content-md-center">
-      <div class="col-6">
         <div class="card card-default">
           <div class="card-header">Dodaj użytkownika</div>
           <div class="card-body">
@@ -56,7 +55,6 @@
                 <button class="btn btn-primary" type="button" name="action" @click.prevent="register()">Zarejestruj członka</button>
                 </div>
             </form>
-          </div>
         </div>
       </div>
     </div>

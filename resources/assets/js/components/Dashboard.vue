@@ -4,6 +4,7 @@
     <div class="container">
       <h1>Witaj {{ name}}!</h1>
       <p v-if="!this.$store.state.is_authorized">Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału</p>
+      <div v-if="this.$store.state.is_authorized">
       <h3>Najnowsze wiadomości:
       <button class="btn btn-primary" type="button" name="action" @click="getMessages" style="float: right">Odśwież</button></h3>
       <br>
@@ -13,7 +14,7 @@
         </button>
       </span>
 
-        <div  v-for="message in messages" :key="message.id">
+        <div  v-for="message in messages" :key="message.id" >
         <div class="card card-default" 
         v-if="selectedTab==='A'&&(message.receiver_group!==2||is_leadership)|| selectedTab==='B'&&message.receiver_group===1||selectedTab==='C'&&message.receiver_group===0||selectedTab==='D'&&message.receiver_group===2">
           <div class="card-header"><h5>{{message.title}}</h5></div>
@@ -23,6 +24,7 @@
           </div>
         </div>
         </div>
+      </div>
     </div>
 </template>
 <script>
@@ -67,7 +69,7 @@
             },
         },
     created: function(){
-      if(this.$store.state.division==-1)
+      if(this.$store.state.division!==-1)
         this.getMessages();
     }
   }

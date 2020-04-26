@@ -1,7 +1,6 @@
 <template>
     <div class="container">
     <div class="row justify-content-md-center">
-      <div class="col-6">
         <div class="card card-default">
           <div class="card-header">Zarejestruj się</div>
           <div class="card-body">
@@ -51,7 +50,6 @@
                 </div>
             </form>
           </div>
-        </div>
       </div>
     </div>
  

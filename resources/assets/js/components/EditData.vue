@@ -1,7 +1,6 @@
 <template>
     <div class="container">
     <div class="row justify-content-md-center">
-      <div class="col-6">
         <div class="card card-default">
           <div class="card-header">Edytuj swoje dane osobowe</div>
           <div class="card-body">
@@ -47,7 +46,7 @@
                 </div>
                  <div class="form-group" v-if="this.$store.state.is_leadership || this.$store.state.is_management">
                     <label>Uprawnienia</label><br>
-                    <label style="color: rgb(211, 7, 41)"> Uwaga! Jeżeli zrezygnujesz z nadanych uprawnień, otrzymasz je dopiero, jeżeli inny uprawiony Ci je nada </label>
+                    <label style="color: rgb(211, 7, 41)"> Uwaga! Jeżeli zrezygnujesz z nadanych uprawnień, otrzymasz je dopiero, jeżeli inny uprawiony Ci je nada </label><br>
                     <label v-if="this.$store.state.is_leadership">
                         <input type="checkbox" class="filled-in" id="leader" v-model="is_leadership" >
                         <span style="color: black"> Członek Kierownictwa </span>
@@ -64,7 +63,6 @@
                 </div>
             </form>
           </div>
-        </div>
       </div>
     </div>
  
