@@ -44,7 +44,7 @@ class UsersController extends Controller
 
     public function updateUser(Request $request){
 
-        try{
+        
         $user= User::find($request->get('id'));
         $user->name=$request->get('name');
         $user->surname=$request->get('surname');
@@ -59,16 +59,7 @@ class UsersController extends Controller
         return response()->json([
             'success' => true
         ]);
-        }
-        catch (Exception $e) {
-            return response()->json([
-                'success' => false,
-                'errors' => [
-                    'message' => [
-                        'Either Email or Password Invalid'
-                    ]
-                ],
-            ]);
-        }
     }
+        
+    
 }

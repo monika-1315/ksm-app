@@ -2372,7 +2372,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9452,9 +9451,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", { staticClass: "stamp" }, [
                           _vm._v(
-                            "Opublikowana: " +
-                              _vm._s(message.published_at) +
-                              "\n            "
+                            "Opublikowana: " + _vm._s(message.published_at)
                           ),
                           message.modified === 1
                             ? _c("span", [_vm._v(", edytowana")])
