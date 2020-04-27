@@ -2305,7 +2305,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getMessages: function getMessages() {
-      // this.$router.push({ name: 'editmessage', params:{id:1}})
       this.axios.post('/api/auth/getMessages', {
         is_leadership: this.is_leadership,
         token: this.$store.state.token,
@@ -2313,6 +2312,14 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         this.messages = response.data;
       }.bind(this));
+    },
+    editMessage: function editMessage() {
+      this.$router.push({
+        name: 'editmessage',
+        params: {
+          id: 1
+        }
+      });
     }
   },
   created: function created() {
@@ -2560,13 +2567,11 @@ __webpack_require__.r(__webpack_exports__);
       body: '',
       email: '',
       receiver_group: 1,
-      author: null,
-      // is_leadership: 0,
       error: false,
       errors: {},
       success: false,
       isProgress: false,
-      division: -1,
+      division: this.$store.state.division,
       divisions: [],
       groups: [{
         id: 0,
@@ -2580,18 +2585,25 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
+  watch: {
+    receiver_group: function receiver_group() {
+      if (this.receiver_group !== 1) {
+        this.division = -1;
+      }
+    }
+  },
   methods: {
-    addMessage: function addMessage() {
+    editMessage: function editMessage() {
       var _this = this;
 
-      this.axios.post('api/auth/newMessage', {
+      this.axios.post('/api/auth/editMessage', {
+        id: this.id,
         token: this.$store.state.token,
         title: this.title,
         body: this.body,
         email: this.email,
         receiver_group: this.receiver_group,
-        division: this.division,
-        author: this.author
+        division: this.division
       }).then(function (response) {
         _this.isProgress = true;
 
@@ -2622,13 +2634,12 @@ __webpack_require__.r(__webpack_exports__);
         token: this.$store.state.token,
         id: this.id
       }).then(function (response) {
-        this.division = response.data[0].division;
-        this.$store.commit('refreshUser', response.data[0]);
+        this.title = response.data[0].title, this.body = response.data[0].body, this.email = response.data[0].email, this.receiver_group = response.data[0].receiver_group, this.division = response.data[0].division;
       }.bind(this));
     }
   },
   created: function created() {
-    this.getUser();
+    this.getMessage();
     this.getDivisions();
   }
 });
@@ -9069,7 +9080,7 @@ var render = function() {
                   staticClass: "btn btn-primary",
                   staticStyle: { float: "right" },
                   attrs: { type: "button", name: "action" },
-                  on: { click: _vm.getMessages }
+                  on: { click: _vm.editMessage }
                 },
                 [_vm._v("Odśwież")]
               )
@@ -9695,7 +9706,11 @@ var render = function() {
                           }
                         ],
                         staticClass: "browser-default",
-                        attrs: { disabled: !this.$store.state.is_management },
+                        attrs: {
+                          disabled:
+                            !this.$store.state.is_management ||
+                            this.receiver_group !== 1
+                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -9812,7 +9827,7 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            return _vm.addMessage()
+                            return _vm.editMessage()
                           }
                         }
                       },

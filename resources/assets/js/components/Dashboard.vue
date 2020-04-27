@@ -6,7 +6,7 @@
       <p v-if="!this.$store.state.is_authorized">Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału</p>
       <div v-if="this.$store.state.is_authorized">
       <h3>Najnowsze wiadomości:
-      <button class="btn btn-primary" type="button" name="action" @click="getMessages" style="float: right">Odśwież</button></h3>
+      <button class="btn btn-primary" type="button" name="action" @click="editMessage" style="float: right">Odśwież</button></h3>
       <br>
       <span v-for="tab in tabs" :key="tab.id">
         <button class="tab btn btn-light" @click="selectedTab=tab.id"  v-if="tab.id!=='D'||is_leadership">
@@ -58,7 +58,6 @@
     },
     methods:{
     getMessages: function(){
-      // this.$router.push({ name: 'editmessage', params:{id:1}})
               this.axios.post('/api/auth/getMessages', {
                 is_leadership: this.is_leadership,
                 token:this.$store.state.token,
@@ -69,7 +68,11 @@
               }.bind(this));
              
             },
-        },
+    editMessage:function(){
+      this.$router.push({ name: 'editmessage', params:{id:1}})
+    },
+    },
+    
     created: function(){
       if(this.$store.state.division!==-1)
         this.getMessages();

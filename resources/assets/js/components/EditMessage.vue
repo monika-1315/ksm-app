@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group" >
                     <label for="division">Oddział</label><br>
-                      <select class="browser-default" v-model="division" :disabled="!this.$store.state.is_management">
+                      <select class="browser-default" v-model="division" :disabled="!this.$store.state.is_management || this.receiver_group!==1">
                         <option v-for='divi in divisions' :value='divi.id' :key='divi.id'> 
                         <span>{{ '   '+divi.town+' '+divi.parish }}</span></option>
                     </select>
@@ -36,7 +36,7 @@
                 
                 
                 <div style="text-align:center">
-                <button class="btn btn-primary" type="button" name="action" @click.prevent="addMessage()">Zapisz wiadomość</button>
+                <button class="btn btn-primary" type="button" name="action" @click.prevent="editMessage()">Zapisz wiadomość</button>
                 </div>
             </form>
           </div>
@@ -57,28 +57,32 @@
                 body: '',
                 email: '',
                 receiver_group: 1,
-                author: null,
-                // is_leadership: 0,
                 error: false,
                 errors: {},
                 success: false,
                 isProgress: false,
-                division: -1,
+                division: this.$store.state.division,
                 divisions: [],
                 groups : [{id: 0, text: 'Wszystkich'}, {id: 1, text:'Oddziału'}, {id: 2, text:'Kierownictw'}]
             };
         },
-       
+       watch:{
+            receiver_group: function(){
+                if(this.receiver_group!==1){
+                    this.division=-1;
+                }
+            }
+        },
         methods: {
-            addMessage(){
-                this.axios.post('api/auth/newMessage', {
+            editMessage(){
+                this.axios.post('/api/auth/editMessage', {
+                    id: this.id,
                     token: this.$store.state.token,
                     title: this. title,
                     body: this.body,
                     email: this.email,
                     receiver_group: this.receiver_group,
                     division: this.division,
-                    author: this.author,
                 }).then(response => {
                     this.isProgress = true;
                     if(response.data.success == true)
@@ -108,15 +112,17 @@
                   id: this.id
                   })
                   .then(function (response) {
-                 this.division = response.data[0].division;
-                 this.$store.commit('refreshUser', response.data[0])
+                    this.title= response.data[0].title,
+                    this.body= response.data[0].body,
+                    this.email=  response.data[0].email,
+                    this.receiver_group= response.data[0].receiver_group,
+                    this.division = response.data[0].division;
               }.bind(this)); 
               
             },
         },
         created: function(){
-           
-            this.getUser();
+            this.getMessage();
             this.getDivisions();
         }
     }
