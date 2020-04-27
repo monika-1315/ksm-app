@@ -2317,7 +2317,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'editmessage',
         params: {
-          id: 1
+          id: 11
         }
       });
     }
@@ -2559,6 +2559,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2622,6 +2624,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.isProgress = false;
         _this.error = true;
         _this.errors = error.response.data.errors;
+
+        _this.$toaster.error('Coś poszło nie tak');
       });
     },
     getDivisions: function getDivisions() {
@@ -2636,6 +2640,34 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         this.title = response.data[0].title, this.body = response.data[0].body, this.email = response.data[0].email, this.receiver_group = response.data[0].receiver_group, this.division = response.data[0].division;
       }.bind(this));
+    },
+    deleteMessage: function deleteMessage() {
+      var _this2 = this;
+
+      this.axios.post('/api/auth/deleteMessage', {
+        id: this.id,
+        token: this.$store.state.token
+      }).then(function (response) {
+        _this2.isProgress = true;
+
+        if (response.data.success == true) {
+          setTimeout(function () {
+            _this2.isProgress = false;
+
+            _this2.$router.push({
+              name: 'dashboard'
+            });
+
+            _this2.$toaster.success('Wiadomość usunięta');
+          }, 2000);
+        }
+      })["catch"](function (error) {
+        _this2.isProgress = false;
+        _this2.error = true;
+        _this2.errors = error.response.data.errors;
+
+        _this2.$toaster.error('Coś poszło nie tak');
+      });
     }
   },
   created: function created() {
@@ -9620,7 +9652,19 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-md-center" }, [
       _c("div", { staticClass: "card card-default" }, [
-        _c("div", { staticClass: "card-header" }, [_vm._v("Nowa wiadomość")]),
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("Edytuj wiadomość\n          "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              staticStyle: { float: "right" },
+              attrs: { type: "button", name: "action" },
+              on: { click: _vm.deleteMessage }
+            },
+            [_vm._v("Usuń")]
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           !_vm.success
@@ -9631,7 +9675,7 @@ var render = function() {
                   on: {
                     submit: function($event) {
                       $event.preventDefault()
-                      return _vm.register($event)
+                      return _vm.editMessage($event)
                     }
                   }
                 },
@@ -9818,22 +9862,7 @@ var render = function() {
                       : _vm._e()
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticStyle: { "text-align": "center" } }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "button", name: "action" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.editMessage()
-                          }
-                        }
-                      },
-                      [_vm._v("Zapisz wiadomość")]
-                    )
-                  ])
+                  _vm._m(0)
                 ]
               )
             : _vm._e()
@@ -9842,7 +9871,23 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "text-align": "center" } }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", name: "action" }
+        },
+        [_vm._v("Zapisz wiadomość")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -10119,7 +10164,7 @@ var render = function() {
                   on: {
                     submit: function($event) {
                       $event.preventDefault()
-                      return _vm.register($event)
+                      return _vm.addMessage($event)
                     }
                   }
                 },
@@ -10306,22 +10351,7 @@ var render = function() {
                       : _vm._e()
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticStyle: { "text-align": "center" } }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "button", name: "action" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.addMessage()
-                          }
-                        }
-                      },
-                      [_vm._v("Zapisz wiadomość")]
-                    )
-                  ])
+                  _vm._m(0)
                 ]
               )
             : _vm._e()
@@ -10330,7 +10360,23 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { "text-align": "center" } }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", name: "action" }
+        },
+        [_vm._v("Zapisz wiadomość")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

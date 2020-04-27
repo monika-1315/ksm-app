@@ -2,10 +2,12 @@
     <div class="container">
     <div class="row justify-content-md-center">
         <div class="card card-default">
-          <div class="card-header">Nowa wiadomość</div>
+          <div class="card-header">Edytuj wiadomość
+              <button class="btn btn-primary" type="button" name="action" @click="deleteMessage" style="float: right">Usuń</button>
+          </div>
           <div class="card-body">
            
-            <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
+            <form autocomplete="off" @submit.prevent="editMessage" v-if="!success" method="post">
 
                 <div class="form-group" >
                     <label for="receivers">Wiadomość do:</label><br>
@@ -36,7 +38,7 @@
                 
                 
                 <div style="text-align:center">
-                <button class="btn btn-primary" type="button" name="action" @click.prevent="editMessage()">Zapisz wiadomość</button>
+                <button class="btn btn-primary" type="submit" name="action">Zapisz wiadomość</button>
                 </div>
             </form>
           </div>
@@ -96,7 +98,8 @@
                 }).catch(error => {
                     this.isProgress = false;
                     this.error = true;
-                    this.errors = error.response.data.errors
+                    this.errors = error.response.data.errors                    
+                    this.$toaster.error('Coś poszło nie tak')
                 });
             },
             getDivisions: function(){
@@ -120,6 +123,28 @@
               }.bind(this)); 
               
             },
+            deleteMessage(){
+                this.axios.post('/api/auth/deleteMessage', {
+                    id: this.id,
+                    token: this.$store.state.token,
+                }).then(response => {
+                    this.isProgress = true;
+                    if(response.data.success == true)
+                    {
+                        setTimeout(() => {
+                            this.isProgress = false;
+                            this.$router.push({ name: 'dashboard'})
+                            this.$toaster.success('Wiadomość usunięta')
+                        }, 2000)
+                    }
+                }).catch(error => {
+                    this.isProgress = false;
+                    this.error = true;
+                    this.errors = error.response.data.errors                    
+                    this.$toaster.error('Coś poszło nie tak')
+                });
+            },
+            
         },
         created: function(){
             this.getMessage();

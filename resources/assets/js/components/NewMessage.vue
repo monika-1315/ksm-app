@@ -5,7 +5,7 @@
           <div class="card-header">Nowa wiadomość</div>
           <div class="card-body">
            
-            <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
+            <form autocomplete="off" @submit.prevent="addMessage" v-if="!success" method="post">
 
                 <div class="form-group" >
                     <label for="receivers">Wiadomość do:</label><br>
@@ -36,7 +36,7 @@
                 
                 
                 <div style="text-align:center">
-                <button class="btn btn-primary" type="button" name="action" @click.prevent="addMessage()">Zapisz wiadomość</button>
+                <button class="btn btn-primary" type="submit" name="action">Zapisz wiadomość</button>
                 </div>
             </form>
           </div>

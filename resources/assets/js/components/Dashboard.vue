@@ -69,7 +69,7 @@
              
             },
     editMessage:function(){
-      this.$router.push({ name: 'editmessage', params:{id:1}})
+      this.$router.push({ name: 'editmessage', params:{id:11}})
     },
     },
     
