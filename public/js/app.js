@@ -1955,6 +1955,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
@@ -2160,6 +2163,103 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorMessages.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/AuthorMessages.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      messages: [],
+      tabs: [{
+        id: 'A',
+        text: 'Wszystkie'
+      }, {
+        id: 'B',
+        text: 'Oddział'
+      }, {
+        id: 'C',
+        text: 'Od Zarządu'
+      }, {
+        id: 'D',
+        text: 'Do Kierownictw'
+      }],
+      selectedTab: 'A'
+    };
+  },
+  components: {//
+  },
+  computed: {
+    is_management: function is_management() {
+      return this.$store.state.is_management;
+    },
+    is_leadership: function is_leadership() {
+      return this.$store.state.is_leadership;
+    }
+  },
+  watch: {
+    division: function division() {
+      this.getMessages();
+    }
+  },
+  methods: {
+    getMessages: function getMessages() {
+      this.axios.post('/api/auth/getMessageByAuthor', {
+        token: this.$store.state.token,
+        author: this.$store.state.user_id
+      }).then(function (response) {
+        this.messages = response.data;
+      }.bind(this));
+    },
+    editMessage: function editMessage(id) {
+      this.$router.push({
+        name: 'editmessage',
+        params: {
+          id: id
+        }
+      });
+    }
+  },
+  created: function created() {
+    if (this.$store.state.division !== -1) this.getMessages();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorizeUsr.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/AuthorizeUsr.vue?vue&type=script&lang=js& ***!
@@ -2312,14 +2412,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         this.messages = response.data;
       }.bind(this));
-    },
-    editMessage: function editMessage() {
-      this.$router.push({
-        name: 'editmessage',
-        params: {
-          id: 11
-        }
-      });
     }
   },
   created: function created() {
@@ -2614,7 +2706,7 @@ __webpack_require__.r(__webpack_exports__);
             _this.isProgress = false;
 
             _this.$router.push({
-              name: 'dashboard'
+              name: 'editmessages'
             });
 
             _this.$toaster.success('Wiadomość zapisana');
@@ -2655,7 +2747,7 @@ __webpack_require__.r(__webpack_exports__);
             _this2.isProgress = false;
 
             _this2.$router.push({
-              name: 'dashboard'
+              name: 'editmessages'
             });
 
             _this2.$toaster.success('Wiadomość usunięta');
@@ -2915,21 +3007,23 @@ __webpack_require__.r(__webpack_exports__);
     getDivisions: function getDivisions() {
       this.axios.get('/api/getDivisions').then(function (response) {
         this.divisions = response.data;
+        this.author = this.$store.state.user_id;
+        this.division = this.$store.state.division;
       }.bind(this));
-    },
-    getUser: function getUser() {
-      this.axios.post('/api/auth/getUser', {
-        token: this.$store.state.token,
-        email: this.$store.state.email
-      }).then(function (response) {
-        this.author = response.data[0].id;
-        this.division = response.data[0].division;
-        this.$store.commit('refreshUser', response.data[0]);
-      }.bind(this));
-    }
+    } // getUser: function(){
+    //   this.axios.post('/api/auth/getUser', {
+    //       token: this.$store.state.token, 
+    //       email:this.$store.state.email
+    //       })
+    //   .then(function (response) {
+    //      this.author = response.data[0].id;
+    //      this.division = response.data[0].division;
+    //      this.$store.commit('refreshUser', response.data[0])
+    //   }.bind(this)); 
+    // },
+
   },
   created: function created() {
-    this.getUser();
     this.getDivisions();
   }
 });
@@ -5158,6 +5252,25 @@ exports.push([module.i, "\n.form-group[data-v-115c53b6]{\r\n    align-content: l
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorMessages.vue?vue&type=style&index=0&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/AuthorMessages.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.container{\r\n  text-align: left;\n}\n.card-body{\r\n  text-align: left;\n}\n.stamp{\r\n  text-align: right;\r\n  font-style: italic;\n}\n.activeTab{\r\n  font-weight: bold;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorizeUsr.vue?vue&type=style&index=0&id=ba7115bc&scoped=true&lang=css&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/AuthorizeUsr.vue?vue&type=style&index=0&id=ba7115bc&scoped=true&lang=css& ***!
@@ -5940,6 +6053,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddUser.vue?vue&type=style&index=0&id=115c53b6&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AddUser.vue?vue&type=style&index=0&id=115c53b6&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorMessages.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/AuthorMessages.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./AuthorMessages.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorMessages.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -8557,6 +8700,27 @@ var render = function() {
                     ],
                     1
                   )
+                : _vm._e(),
+              _vm._v(" "),
+              this.$store.state.isLoggedIn &&
+              this.$store.state.is_authorized &&
+              (this.$store.state.is_leadership ||
+                this.$store.state.is_management)
+                ? _c(
+                    "li",
+                    { staticClass: "right" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "editmessages" } }
+                        },
+                        [_vm._v("Edytuj wiadomości")]
+                      )
+                    ],
+                    1
+                  )
                 : _vm._e()
             ]),
             _vm._v(" "),
@@ -9008,6 +9172,115 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorMessages.vue?vue&type=template&id=f3248324&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/AuthorMessages.vue?vue&type=template&id=f3248324& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("h3", [
+        _vm._v("Twoje wiadomości:\n  "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            staticStyle: { float: "right" },
+            attrs: { type: "button", name: "action" },
+            on: { click: _vm.getMessages }
+          },
+          [_vm._v("Odśwież")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _vm._l(_vm.tabs, function(tab) {
+        return _c("span", { key: tab.id }, [
+          (tab.id !== "D" && tab.id !== "C") || _vm.is_management
+            ? _c(
+                "button",
+                {
+                  staticClass: "tab btn btn-light",
+                  on: {
+                    click: function($event) {
+                      _vm.selectedTab = tab.id
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "a",
+                    { class: { activeTab: _vm.selectedTab === tab.id } },
+                    [_vm._v(_vm._s(tab.text))]
+                  )
+                ]
+              )
+            : _vm._e()
+        ])
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.messages, function(message) {
+        return _c("div", { key: message.id }, [
+          _vm.selectedTab === "A" ||
+          (_vm.selectedTab === "B" && message.receiver_group === 1) ||
+          (_vm.selectedTab === "C" && message.receiver_group === 0) ||
+          (_vm.selectedTab === "D" && message.receiver_group === 2)
+            ? _c("div", { staticClass: "card card-default" }, [
+                _c("div", { staticClass: "card-header" }, [
+                  _c("h5", [
+                    _vm._v(_vm._s(message.title) + "\n        "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        staticStyle: { float: "right" },
+                        attrs: { type: "button", name: "action" },
+                        on: {
+                          click: function($event) {
+                            return _vm.editMessage(message.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Edytuj")]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("p", [_vm._v(_vm._s(message.body))]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "stamp" }, [
+                    _vm._v(_vm._s(message.published_at))
+                  ])
+                ])
+              ])
+            : _vm._e()
+        ])
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorizeUsr.vue?vue&type=template&id=ba7115bc&scoped=true&":
 /*!**********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/AuthorizeUsr.vue?vue&type=template&id=ba7115bc&scoped=true& ***!
@@ -9112,7 +9385,7 @@ var render = function() {
                   staticClass: "btn btn-primary",
                   staticStyle: { float: "right" },
                   attrs: { type: "button", name: "action" },
-                  on: { click: _vm.editMessage }
+                  on: { click: _vm.getMessages }
                 },
                 [_vm._v("Odśwież")]
               )
@@ -27121,6 +27394,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/AuthorMessages.vue":
+/*!***********************************************************!*\
+  !*** ./resources/assets/js/components/AuthorMessages.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AuthorMessages_vue_vue_type_template_id_f3248324___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AuthorMessages.vue?vue&type=template&id=f3248324& */ "./resources/assets/js/components/AuthorMessages.vue?vue&type=template&id=f3248324&");
+/* harmony import */ var _AuthorMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AuthorMessages.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/AuthorMessages.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _AuthorMessages_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AuthorMessages.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/components/AuthorMessages.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _AuthorMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AuthorMessages_vue_vue_type_template_id_f3248324___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AuthorMessages_vue_vue_type_template_id_f3248324___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/AuthorMessages.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/AuthorMessages.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/assets/js/components/AuthorMessages.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AuthorMessages.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorMessages.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/AuthorMessages.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************!*\
+  !*** ./resources/assets/js/components/AuthorMessages.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./AuthorMessages.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorMessages.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/AuthorMessages.vue?vue&type=template&id=f3248324&":
+/*!******************************************************************************************!*\
+  !*** ./resources/assets/js/components/AuthorMessages.vue?vue&type=template&id=f3248324& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_template_id_f3248324___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AuthorMessages.vue?vue&type=template&id=f3248324& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorMessages.vue?vue&type=template&id=f3248324&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_template_id_f3248324___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorMessages_vue_vue_type_template_id_f3248324___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/AuthorizeUsr.vue":
 /*!*********************************************************!*\
   !*** ./resources/assets/js/components/AuthorizeUsr.vue ***!
@@ -27831,8 +28191,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AddUser_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AddUser.vue */ "./resources/assets/js/components/AddUser.vue");
 /* harmony import */ var _components_NewMessage_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/NewMessage.vue */ "./resources/assets/js/components/NewMessage.vue");
 /* harmony import */ var _components_EditMessage_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/EditMessage.vue */ "./resources/assets/js/components/EditMessage.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./store */ "./resources/assets/js/store.js");
+/* harmony import */ var _components_AuthorMessages_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/AuthorMessages.vue */ "./resources/assets/js/components/AuthorMessages.vue");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store */ "./resources/assets/js/store.js");
 
 
 
@@ -27845,7 +28206,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]({
+
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_11__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
@@ -27907,13 +28269,20 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]({
     meta: {
       requiresAuth: true
     }
+  }, {
+    path: '/editmessage',
+    name: 'editmessages',
+    component: _components_AuthorMessages_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    meta: {
+      requiresAuth: true
+    }
   }]
 });
 router.beforeEach(function (to, from, next) {
   // check if the route requires authentication and user is not logged in
   if (to.matched.some(function (route) {
     return route.meta.requiresAuth;
-  }) && !_store__WEBPACK_IMPORTED_MODULE_11__["default"].state.isLoggedIn) {
+  }) && !_store__WEBPACK_IMPORTED_MODULE_12__["default"].state.isLoggedIn) {
     // redirect to login page
     next({
       name: 'login'
@@ -27922,7 +28291,7 @@ router.beforeEach(function (to, from, next) {
   } // if logged in redirect to dashboard
 
 
-  if (to.path === '/login' && _store__WEBPACK_IMPORTED_MODULE_11__["default"].state.isLoggedIn) {
+  if (to.path === '/login' && _store__WEBPACK_IMPORTED_MODULE_12__["default"].state.isLoggedIn) {
     next({
       name: 'dashboard'
     });
@@ -27959,6 +28328,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     isLoggedIn: !!localStorage.getItem('token'),
     token: localStorage.getItem('token'),
     name: '',
+    user_id: 0,
     division: 0,
     is_leadership: false,
     is_management: false,
@@ -27970,6 +28340,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       state.email = email;
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/auth/getUser?token=' + state.token + '&email=' + state.email).then(function (response) {
         state.division = response.data[0].division;
+        state.user_id = response.data[0].id;
         state.is_leadership = response.data[0].is_leadership;
         state.is_management = response.data[0].is_management;
         state.is_authorized = response.data[0].is_authorized;
@@ -27988,6 +28359,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       state.token = localStorage.removeItem('token');
       state.email = localStorage.removeItem('email');
       state.division = 0;
+      state.user_id = 0;
       state.is_leadership = false;
       state.is_management = false;
       state.is_authorized = true;
@@ -28001,7 +28373,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       state.is_leadership = data.is_leadership;
       state.is_management = data.is_management;
       state.is_authorized = data.is_authorized;
-      state.name = data.name; // if (state.isLoggedIn && state.division===0){
+      state.name = data.name;
+      state.user_id = data.id; // if (state.isLoggedIn && state.division===0){
       //     axios.post('/api/auth/getUser?token=' + state.token+'&email='+state.email)
       //         .then(function (response) {
       //         state.division = response.data[0].division;

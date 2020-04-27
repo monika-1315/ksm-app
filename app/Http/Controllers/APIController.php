@@ -70,6 +70,7 @@ class APIController extends Controller
     public function getMessageByAuthor(Request $request)
     {
         $data = Message::where('author', '=', $request->get('author'))
+                ->orderby('published_at', 'desc')
                 ->get();
    
         return response()->json($data);
@@ -84,7 +85,6 @@ class APIController extends Controller
         $message->title = $request->get('title');
         $message->body = $request->get('body');
         $message->modified = 1;
-        $message->author = $request->get('author');
         $message->save();
    
         return response()->json([

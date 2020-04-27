@@ -2,29 +2,28 @@
 
     
     <div class="container">
-      <h1>Witaj {{ name}}!</h1>
-      <p v-if="!this.$store.state.is_authorized">Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału</p>
-      <div v-if="this.$store.state.is_authorized">
-      <h3>Najnowsze wiadomości:
+      
+      <h3>Twoje wiadomości:
       <button class="btn btn-primary" type="button" name="action" @click="getMessages" style="float: right">Odśwież</button></h3>
       <br>
-      <span v-for="tab in tabs" :key="tab.id">
-        <button class="tab btn btn-light" @click="selectedTab=tab.id"  v-if="tab.id!=='D'||is_leadership">
+      <span v-for="tab in tabs" :key="tab.id" >
+        <button class="tab btn btn-light" @click="selectedTab=tab.id" v-if="tab.id!=='D'&&tab.id!=='C'||is_management">
           <a :class="{activeTab: selectedTab===tab.id}" >{{ tab.text }}</a>
         </button>
       </span>
 
         <div  v-for="message in messages" :key="message.id" >
         <div class="card card-default" 
-        v-if="selectedTab==='A'&&(message.receiver_group!==2||is_leadership)|| selectedTab==='B'&&message.receiver_group===1||selectedTab==='C'&&message.receiver_group===0||selectedTab==='D'&&message.receiver_group===2">
-          <div class="card-header"><h5>{{message.title}}</h5></div>
+        v-if="selectedTab==='A'|| selectedTab==='B'&&message.receiver_group===1||selectedTab==='C'&&message.receiver_group===0||selectedTab==='D'&&message.receiver_group===2">
+          <div class="card-header"><h5>{{message.title}}
+            <button class="btn btn-primary" type="button" name="action" @click="editMessage(message.id)" style="float: right">Edytuj</button></h5></div>
           <div class="card-body">
               <p>{{message.body}}</p>
               <p class="stamp">{{message.published_at}}</p>
           </div>
         </div>
         </div>
-      </div>
+      
     </div>
 </template>
 <script>
@@ -41,11 +40,8 @@
       //
     },
     computed:{
-      name(){
-        return this.$store.state.name;
-      },
-      division(){
-        return this.$store.state.division;
+      is_management(){
+        return this.$store.state.is_management;
       },
       is_leadership(){
         return this.$store.state.is_leadership;
@@ -58,16 +54,18 @@
     },
     methods:{
     getMessages: function(){
-              this.axios.post('/api/auth/getMessages', {
-                is_leadership: this.is_leadership,
+              this.axios.post('/api/auth/getMessageByAuthor', {
                 token:this.$store.state.token,
-                division: this.$store.state.division
+                author: this.$store.state.user_id
               })
               .then(function (response) {
                  this.messages= response.data;
               }.bind(this));
              
             },
+    editMessage:function(id){
+      this.$router.push({ name: 'editmessage', params:{id:id}})
+    },
     },
     
     created: function(){

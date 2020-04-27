@@ -8,6 +8,7 @@ import AuthorizeUsr from './components/AuthorizeUsr.vue';
 import AddUser from './components/AddUser.vue'
 import NewMessage from './components/NewMessage.vue'
 import EditMessage from './components/EditMessage.vue'
+import AuthorMessages from './components/AuthorMessages.vue'
 import VueRouter from 'vue-router';
 import store from './store';
 
@@ -81,6 +82,14 @@ const router = new VueRouter({
         path: '/editmessage/:id',
         name: 'editmessage',
         component: EditMessage,
+        meta: { 
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/editmessage',
+        name: 'editmessages',
+        component: AuthorMessages,
         meta: { 
             requiresAuth: true
         }

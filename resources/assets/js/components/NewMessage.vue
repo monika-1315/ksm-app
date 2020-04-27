@@ -104,25 +104,27 @@
               this.axios.get('/api/getDivisions')
               .then(function (response) {
                  this.divisions = response.data;
+                 this.author = this.$store.state.user_id;
+                this.division = this.$store.state.division;
               }.bind(this));
          
             },
-            getUser: function(){
-              this.axios.post('/api/auth/getUser', {
-                  token: this.$store.state.token, 
-                  email:this.$store.state.email
-                  })
-              .then(function (response) {
-                 this.author = response.data[0].id;
-                 this.division = response.data[0].division;
-                 this.$store.commit('refreshUser', response.data[0])
-              }.bind(this)); 
+            // getUser: function(){
+            //   this.axios.post('/api/auth/getUser', {
+            //       token: this.$store.state.token, 
+            //       email:this.$store.state.email
+            //       })
+            //   .then(function (response) {
+            //      this.author = response.data[0].id;
+            //      this.division = response.data[0].division;
+            //      this.$store.commit('refreshUser', response.data[0])
+            //   }.bind(this)); 
               
-            },
+            // },
         },
         created: function(){
-            this.getUser();
             this.getDivisions();
+            
         }
     }
 </script>

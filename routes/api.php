@@ -32,7 +32,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/getMessages', 'APIController@getMessages');
     Route::post('/auth/getMessageById', 'APIController@getMessageById');
     Route::post('/auth/newMessage', 'APIController@newMessage');
-    Route::post('/auth/getMessageByAuthor', 'APIController@ngetMessageByAuthor');
+    Route::post('/auth/getMessageByAuthor', 'APIController@getMessageByAuthor');
     Route::post('/auth/editMessage', 'APIController@editMessage');
     Route::post('/auth/deleteMessage', 'APIController@deleteMessage');
 });

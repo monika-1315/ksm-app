@@ -10,6 +10,7 @@ export default new Vuex.Store({
         isLoggedIn: !!localStorage.getItem('token'),
         token: localStorage.getItem('token'),
         name: '',
+        user_id: 0,
         division: 0,
         is_leadership: false,
         is_management: false,
@@ -23,6 +24,7 @@ export default new Vuex.Store({
             axios.post('/api/auth/getUser?token=' + state.token+'&email='+state.email)
                     .then(function (response) {
                     state.division = response.data[0].division;
+                    state.user_id = response.data[0].id;
                     state.is_leadership = response.data[0].is_leadership;
                     state.is_management = response.data[0].is_management;
                     state.is_authorized = response.data[0].is_authorized;
@@ -41,6 +43,7 @@ export default new Vuex.Store({
             state.token = localStorage.removeItem('token');
             state.email = localStorage.removeItem('email');
             state.division=0;
+            state.user_id=0;
             state.is_leadership = false
             state.is_management = false
             state.is_authorized = true
@@ -56,7 +59,7 @@ export default new Vuex.Store({
                     state.is_management = data.is_management;
                     state.is_authorized = data.is_authorized;
                     state.name =data.name;
-               
+                    state.user_id = data.id;
             
             // if (state.isLoggedIn && state.division===0){
             //     axios.post('/api/auth/getUser?token=' + state.token+'&email='+state.email)

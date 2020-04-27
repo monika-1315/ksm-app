@@ -21,6 +21,9 @@
                         <li v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && (this.$store.state.is_leadership || this.$store.state.is_management)" class="right">
                             <router-link :to="{ name: 'message' }" class="nav-link">Nowa wiadomość</router-link>
                         </li>
+                         <li v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)" class="right">
+                            <router-link :to="{ name: 'editmessages' }" class="nav-link">Edytuj wiadomości</router-link>
+                        </li>
                     </ul>
                     <ul class="right navbar-nav hide-on-med-and-down">
                         <li v-if="!this.$store.state.isLoggedIn">

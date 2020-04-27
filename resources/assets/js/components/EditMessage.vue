@@ -91,7 +91,7 @@
                     {
                         setTimeout(() => {
                             this.isProgress = false;
-                            this.$router.push({ name: 'dashboard'})
+                            this.$router.push({ name: 'editmessages'})
                             this.$toaster.success('Wiadomość zapisana')
                         }, 2000)
                     }
@@ -133,7 +133,7 @@
                     {
                         setTimeout(() => {
                             this.isProgress = false;
-                            this.$router.push({ name: 'dashboard'})
+                            this.$router.push({ name: 'editmessages'})
                             this.$toaster.success('Wiadomość usunięta')
                         }, 2000)
                     }
