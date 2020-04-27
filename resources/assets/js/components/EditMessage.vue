@@ -2,8 +2,8 @@
     <div class="container">
     <div class="row justify-content-md-center">
         <div class="card card-default">
-          <div class="card-header">Edytuj wiadomość
-              <button class="btn btn-primary" type="button" name="action" @click="deleteMessage" style="float: right">Usuń</button>
+          <div class="card-header"><h4>Edytuj wiadomość
+              <button class="btn btn-primary" type="button" name="action" @click="deleteMessage" style="float: right">Usuń</button></h4>
           </div>
           <div class="card-body">
            
@@ -185,5 +185,8 @@
 }
 label.active {
   color: royalblue !important;
+}
+textarea{
+    height: 16em;
 }
 </style>

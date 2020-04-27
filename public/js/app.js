@@ -1964,7 +1964,7 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this = this;
 
-      this.axios.get('api/auth/logout?token=' + this.$store.state.token).then(function (response) {
+      this.axios.get('/api/auth/logout?token=' + this.$store.state.token).then(function (response) {
         if (response.data.success == true) {
           // login user, store the token and redirect to dashboard
           _this.$store.commit('LogoutUser');
@@ -1984,7 +1984,7 @@ __webpack_require__.r(__webpack_exports__);
     checkToken: function checkToken() {
       if (this.$store.state.isLoggedIn) {
         var myThis = this;
-        this.axios.post('api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email).then(function (response) {
+        this.axios.post('/api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email).then(function (response) {
           this.$store.commit('refreshUser', response.data[0]);
         }.bind(this))["catch"](function (error) {
           if (error.response && error.response.status === 401) {
@@ -2201,6 +2201,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2340,6 +2341,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -5344,7 +5348,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-group[data-v-8b59f094]{\r\n    align-content: left;\n}\n.submit[data-v-8b59f094]:hover{\r\n        color:white;\n}\n.btn[data-v-8b59f094]{\r\n        display: inline-flex;\n}\n.btn[data-v-8b59f094]:focus{\r\n        color:white;\n}\n.heading[data-v-8b59f094]{\r\n        padding: 30px;\r\n        border: none;\n}\n.login-form[data-v-8b59f094]{\r\n        background: white;\r\n        padding: 30px;\n}\n.progress[data-v-8b59f094]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\ninput[data-v-8b59f094]:focus{\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-8b59f094] {\r\n  color: royalblue !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.form-group[data-v-8b59f094]{\r\n    align-content: left;\n}\n.submit[data-v-8b59f094]:hover{\r\n        color:white;\n}\n.btn[data-v-8b59f094]{\r\n        display: inline-flex;\n}\n.btn[data-v-8b59f094]:focus{\r\n        color:white;\n}\n.heading[data-v-8b59f094]{\r\n        padding: 30px;\r\n        border: none;\n}\n.login-form[data-v-8b59f094]{\r\n        background: white;\r\n        padding: 30px;\n}\n.progress[data-v-8b59f094]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\ninput[data-v-8b59f094]:focus{\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-8b59f094] {\r\n  color: royalblue !important;\n}\ntextarea[data-v-8b59f094]{\r\n    height: 16em;\n}\r\n", ""]);
 
 // exports
 
@@ -5401,7 +5405,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-group[data-v-75c2a784]{\r\n    align-content: left;\n}\n.submit[data-v-75c2a784]:hover{\r\n        color:white;\n}\n.btn[data-v-75c2a784]{\r\n        display: inline-flex;\n}\n.btn[data-v-75c2a784]:focus{\r\n        color:white;\n}\n.heading[data-v-75c2a784]{\r\n        padding: 30px;\r\n        border: none;\n}\n.login-form[data-v-75c2a784]{\r\n        background: white;\r\n        padding: 30px;\n}\n.progress[data-v-75c2a784]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\ninput[data-v-75c2a784]:focus{\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-75c2a784] {\r\n  color: royalblue !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.form-group[data-v-75c2a784]{\r\n    align-content: left;\n}\n.submit[data-v-75c2a784]:hover{\r\n        color:white;\n}\n.btn[data-v-75c2a784]{\r\n        display: inline-flex;\n}\n.btn[data-v-75c2a784]:focus{\r\n        color:white;\n}\n.heading[data-v-75c2a784]{\r\n        padding: 30px;\r\n        border: none;\n}\n.login-form[data-v-75c2a784]{\r\n        background: white;\r\n        padding: 30px;\n}\n.progress[data-v-75c2a784]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\ninput[data-v-75c2a784]:focus{\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-75c2a784] {\r\n  color: royalblue !important;\n}\ntextarea[data-v-75c2a784]{\r\n    height: 16em;\n}\r\n", ""]);
 
 // exports
 
@@ -9245,7 +9249,7 @@ var render = function() {
           (_vm.selectedTab === "D" && message.receiver_group === 2)
             ? _c("div", { staticClass: "card card-default" }, [
                 _c("div", { staticClass: "card-header" }, [
-                  _c("h5", [
+                  _c("h4", [
                     _vm._v(_vm._s(message.title) + "\n        "),
                     _c(
                       "button",
@@ -9274,7 +9278,11 @@ var render = function() {
               ])
             : _vm._e()
         ])
-      })
+      }),
+      _vm._v(" "),
+      _vm.messages.length == 0
+        ? _c("p", [_c("br"), _vm._v(" Nie publikowałeś żadnych wiadomości")])
+        : _vm._e()
     ],
     2
   )
@@ -9436,10 +9444,21 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "card-body" }, [
-                        _c("p", [_vm._v(_vm._s(message.body))]),
+                        _c(
+                          "p",
+                          { staticStyle: { "white-space": "pre-line" } },
+                          [_vm._v(_vm._s(message.body))]
+                        ),
                         _vm._v(" "),
                         _c("p", { staticClass: "stamp" }, [
-                          _vm._v(_vm._s(message.published_at))
+                          _vm._v(
+                            "Opublikowana: " +
+                              _vm._s(message.published_at) +
+                              "\n            "
+                          ),
+                          message.modified === 1
+                            ? _c("span", [_vm._v(", edytowana")])
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -9931,17 +9950,19 @@ var render = function() {
     _c("div", { staticClass: "row justify-content-md-center" }, [
       _c("div", { staticClass: "card card-default" }, [
         _c("div", { staticClass: "card-header" }, [
-          _vm._v("Edytuj wiadomość\n          "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary",
-              staticStyle: { float: "right" },
-              attrs: { type: "button", name: "action" },
-              on: { click: _vm.deleteMessage }
-            },
-            [_vm._v("Usuń")]
-          )
+          _c("h4", [
+            _vm._v("Edytuj wiadomość\n          "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                staticStyle: { float: "right" },
+                attrs: { type: "button", name: "action" },
+                on: { click: _vm.deleteMessage }
+              },
+              [_vm._v("Usuń")]
+            )
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [

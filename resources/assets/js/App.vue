@@ -56,7 +56,7 @@
 
             logout() {
 
-                this.axios.get('api/auth/logout?token=' + this.$store.state.token).then(response => {
+                this.axios.get('/api/auth/logout?token=' + this.$store.state.token).then(response => {
                     if(response.data.success == true)
                     {
                         // login user, store the token and redirect to dashboard
@@ -71,7 +71,7 @@
             checkToken(){
                 if (this.$store.state.isLoggedIn){
                     var myThis=this;
-                    this.axios.post('api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
+                    this.axios.post('/api/auth/getUser?token=' + this.$store.state.token+'&email='+this.$store.state.email)
                         .then(function (response) {
                             this.$store.commit('refreshUser', response.data[0])
                             }.bind(this))                

@@ -162,4 +162,7 @@
 label.active {
   color: royalblue !important;
 }
+textarea{
+    height: 16em;
+}
 </style>

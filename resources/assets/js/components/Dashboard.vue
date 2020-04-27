@@ -19,8 +19,11 @@
         v-if="selectedTab==='A'&&(message.receiver_group!==2||is_leadership)|| selectedTab==='B'&&message.receiver_group===1||selectedTab==='C'&&message.receiver_group===0||selectedTab==='D'&&message.receiver_group===2">
           <div class="card-header"><h5>{{message.title}}</h5></div>
           <div class="card-body">
-              <p>{{message.body}}</p>
-              <p class="stamp">{{message.published_at}}</p>
+              <p style="white-space: pre-line">{{message.body}}</p>
+              <!-- <textarea disabled :placeholder=message.body></textarea> -->
+              <p class="stamp">Opublikowana: {{message.published_at}}
+                <span v-if="message.modified===1">, edytowana</span>
+              </p>
           </div>
         </div>
         </div>

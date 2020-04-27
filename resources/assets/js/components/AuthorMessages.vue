@@ -15,14 +15,15 @@
         <div  v-for="message in messages" :key="message.id" >
         <div class="card card-default" 
         v-if="selectedTab==='A'|| selectedTab==='B'&&message.receiver_group===1||selectedTab==='C'&&message.receiver_group===0||selectedTab==='D'&&message.receiver_group===2">
-          <div class="card-header"><h5>{{message.title}}
-            <button class="btn btn-primary" type="button" name="action" @click="editMessage(message.id)" style="float: right">Edytuj</button></h5></div>
+          <div class="card-header"><h4>{{message.title}}
+            <button class="btn btn-primary" type="button" name="action" @click="editMessage(message.id)" style="float: right">Edytuj</button></h4></div>
           <div class="card-body">
               <p>{{message.body}}</p>
               <p class="stamp">{{message.published_at}}</p>
           </div>
         </div>
         </div>
+        <p v-if="messages.length==0"><br> Nie publikowałeś żadnych wiadomości</p>
       
     </div>
 </template>
