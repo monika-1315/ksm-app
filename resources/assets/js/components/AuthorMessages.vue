@@ -40,6 +40,9 @@
       //
     },
     computed:{
+      user_id(){
+        return this.$store.state.user_id;
+      },
       is_management(){
         return this.$store.state.is_management;
       },
@@ -48,7 +51,7 @@
       }
     },
     watch:{
-      division: function(){
+      user_id: function(){
         this.getMessages();
       }
     },
@@ -69,7 +72,7 @@
     },
     
     created: function(){
-      if(this.$store.state.division!==-1)
+      if(this.user_id!==0)
         this.getMessages();
     }
   }

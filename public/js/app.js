@@ -1958,6 +1958,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
@@ -2223,6 +2224,9 @@ __webpack_require__.r(__webpack_exports__);
   components: {//
   },
   computed: {
+    user_id: function user_id() {
+      return this.$store.state.user_id;
+    },
     is_management: function is_management() {
       return this.$store.state.is_management;
     },
@@ -2231,7 +2235,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   watch: {
-    division: function division() {
+    user_id: function user_id() {
       this.getMessages();
     }
   },
@@ -2254,7 +2258,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    if (this.$store.state.division !== -1) this.getMessages();
+    if (this.user_id !== 0) this.getMessages();
   }
 });
 
@@ -8615,7 +8619,8 @@ var render = function() {
                               src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
                               width: "40"
                             }
-                          })
+                          }),
+                          _vm._v(" Wiadomości")
                         ]
                       )
                     ],
@@ -8693,9 +8698,9 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav-link",
-                          attrs: { to: { name: "message" } }
+                          attrs: { to: { name: "editmessages" } }
                         },
-                        [_vm._v("Nowa wiadomość")]
+                        [_vm._v("Edytuj wiadomości")]
                       )
                     ],
                     1
@@ -8714,9 +8719,9 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav-link",
-                          attrs: { to: { name: "editmessages" } }
+                          attrs: { to: { name: "message" } }
                         },
-                        [_vm._v("Edytuj wiadomości")]
+                        [_vm._v("Nowa wiadomość")]
                       )
                     ],
                     1
