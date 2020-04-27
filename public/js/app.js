@@ -2372,24 +2372,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       messages: [],
       tabs: [{
-        id: 'A',
-        text: 'Wszystkie'
+        id: "A",
+        text: "Wszystkie"
       }, {
-        id: 'B',
-        text: 'Oddział'
+        id: "B",
+        text: "Oddział"
       }, {
-        id: 'C',
-        text: 'Od Zarządu'
+        id: "C",
+        text: "Od Zarządu"
       }, {
-        id: 'D',
-        text: 'Do Kierownictw'
+        id: "D",
+        text: "Do Kierownictw"
       }],
-      selectedTab: 'A'
+      selectedTab: "A"
     };
   },
   components: {//
@@ -2412,7 +2446,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getMessages: function getMessages() {
-      this.axios.post('/api/auth/getMessages', {
+      this.axios.post("/api/auth/getMessages", {
+        is_leadership: this.is_leadership,
+        token: this.$store.state.token,
+        division: this.$store.state.division
+      }).then(function (response) {
+        this.messages = response.data;
+      }.bind(this));
+    },
+    getPage: function getPage(url) {
+      this.axios.post(url, {
         is_leadership: this.is_leadership,
         token: this.$store.state.token,
         division: this.$store.state.division
@@ -5309,7 +5352,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container{\r\n  text-align: left;\n}\n.card-body{\r\n  text-align: left;\n}\n.stamp{\r\n  text-align: right;\r\n  font-style: italic;\n}\n.activeTab{\r\n  font-weight: bold;\n}\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n  text-align: left;\n}\n.card-body {\r\n  text-align: left;\n}\n.stamp {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.activeTab {\r\n  font-weight: bold;\n}\r\n", ""]);
 
 // exports
 
@@ -9390,7 +9433,7 @@ var render = function() {
           "div",
           [
             _c("h3", [
-              _vm._v("Najnowsze wiadomości:\n  "),
+              _vm._v("\n      Najnowsze wiadomości:\n      "),
               _c(
                 "button",
                 {
@@ -9430,7 +9473,7 @@ var render = function() {
               ])
             }),
             _vm._v(" "),
-            _vm._l(_vm.messages, function(message) {
+            _vm._l(_vm.messages.data, function(message) {
               return _c("div", { key: message.id }, [
                 (_vm.selectedTab === "A" &&
                   (message.receiver_group !== 2 || _vm.is_leadership)) ||
@@ -9451,7 +9494,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", { staticClass: "stamp" }, [
                           _vm._v(
-                            "Opublikowana: " + _vm._s(message.published_at)
+                            "\n            Opublikowana: " +
+                              _vm._s(message.published_at) +
+                              "\n            "
                           ),
                           message.modified === 1
                             ? _c("span", [_vm._v(", edytowana")])
@@ -9461,7 +9506,42 @@ var render = function() {
                     ])
                   : _vm._e()
               ])
-            })
+            }),
+            _c("br"),
+            _vm._v(" "),
+            _vm.messages.prev_page_url !== null
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    staticStyle: { float: "left" },
+                    attrs: { type: "button", name: "action" },
+                    on: {
+                      click: function($event) {
+                        return _vm.getPage(_vm.messages.prev_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Poprzednia strona")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.messages.next_page_url !== null
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    staticStyle: { float: "right" },
+                    attrs: { type: "button", name: "action" },
+                    on: {
+                      click: function($event) {
+                        return _vm.getPage(_vm.messages.next_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Następna strona")]
+                )
+              : _vm._e()
           ],
           2
         )
