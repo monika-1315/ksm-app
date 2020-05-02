@@ -9,6 +9,7 @@ import AddUser from './components/AddUser.vue'
 import NewMessage from './components/NewMessage.vue'
 import EditMessage from './components/EditMessage.vue'
 import AuthorMessages from './components/AuthorMessages.vue'
+import Divisions from './components/Divisions.vue'
 import VueRouter from 'vue-router';
 import store from './store';
 
@@ -90,6 +91,14 @@ const router = new VueRouter({
         path: '/editmessage',
         name: 'editmessages',
         component: AuthorMessages,
+        meta: { 
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/divisions',
+        name: 'divisions',
+        component: Divisions,
         meta: { 
             requiresAuth: true
         }

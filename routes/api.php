@@ -35,4 +35,8 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/getMessageByAuthor', 'MessageController@getMessageByAuthor');
     Route::post('/auth/editMessage', 'MessageController@editMessage');
     Route::post('/auth/deleteMessage', 'MessageController@deleteMessage');
+
+    Route::post('/auth/newDivision', 'APIController@newDivision');
+    Route::post('/auth/updateDivision', 'APIController@updateDivision');
+    Route::post('/auth/deleteDivision', 'APIController@deleteDivision');
 });
