@@ -1,8 +1,11 @@
 <template>
 <div class="container" >
-    <h2>Zarządzaj oddziałami</h2>
     <br>
-   
+     <button class="btn btn-primary floating yellow" type="button"  @click="newDiv">Dodaj nowy</button>
+    <h2>Zarządzaj oddziałami</h2>
+   <br>
+    
+   <hr>
     <div v-for="division in divisions" :key="division.id" >
         <p>
             <button class="btn btn-primary floating" type="button"  @click="edit(division.id)">Edytuj</button>
@@ -26,6 +29,9 @@
             edit: function(id){
                 this.$router.push({ name: 'division', params:{id:id}})
             },
+            newDiv: function(){
+                this.$router.push({ name: 'newdivision'});
+            },
             getDivisions: function(){
               this.axios.post('/api/auth/allDivisions',{token: this.$store.state.token})
               .then(function (response) {
@@ -48,4 +54,10 @@
         font-size: normal;
         color: darkgrey;
     }
+    .yellow{
+        background-color:  rgb(254, 209, 9) !important;
+        border-color:  rgb(254, 209, 9);
+        color: black;
+    }
+   
 </style>
