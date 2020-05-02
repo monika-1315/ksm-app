@@ -29,10 +29,10 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/updateUser', 'UsersController@updateUser');
     Route::post('/auth/getUnauthorizedUsers', 'UsersController@getUnauthorizedUsers');
     Route::post('/auth/authorizeUser', 'UsersController@authorizeUser');
-    Route::post('/auth/getMessages', 'APIController@getMessages');
-    Route::post('/auth/getMessageById', 'APIController@getMessageById');
-    Route::post('/auth/newMessage', 'APIController@newMessage');
-    Route::post('/auth/getMessageByAuthor', 'APIController@getMessageByAuthor');
-    Route::post('/auth/editMessage', 'APIController@editMessage');
-    Route::post('/auth/deleteMessage', 'APIController@deleteMessage');
+    Route::post('/auth/getMessages', 'MessageController@getMessages');
+    Route::post('/auth/getMessageById', 'MessageController@getMessageById');
+    Route::post('/auth/newMessage', 'MessageController@newMessage');
+    Route::post('/auth/getMessageByAuthor', 'MessageController@getMessageByAuthor');
+    Route::post('/auth/editMessage', 'MessageController@editMessage');
+    Route::post('/auth/deleteMessage', 'MessageController@deleteMessage');
 });
