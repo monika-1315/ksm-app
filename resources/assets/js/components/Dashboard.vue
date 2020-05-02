@@ -1,12 +1,11 @@
 <template>
   <div class="container">
-    <h1>Witaj {{ name}}!</h1>
     <p
       v-if="!this.$store.state.is_authorized"
     >Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału</p>
     <div v-if="this.$store.state.is_authorized">
       <h3>
-        Najnowsze wiadomości:
+        Najnowsze ogłoszenia:
         <button
           class="btn btn-primary yellow"
           type="button"
@@ -90,9 +89,7 @@ export default {
     //
   },
   computed: {
-    name() {
-      return this.$store.state.name;
-    },
+   
     division() {
       return this.$store.state.division;
     },

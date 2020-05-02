@@ -12,6 +12,7 @@ import AuthorMessages from './components/AuthorMessages.vue'
 import Divisions from './components/Divisions.vue'
 import EditDivision from './components/EditDivision.vue'
 import NewDivision from './components/NewDivision.vue'
+import ControlPanel from './components/ControlPanel.vue'
 import VueRouter from 'vue-router';
 import store from './store';
 
@@ -117,6 +118,14 @@ const router = new VueRouter({
         path: '/newdivision',
         name: 'newdivision',
         component: NewDivision,
+        meta: { 
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/panel',
+        name: 'panel',
+        component: ControlPanel,
         meta: { 
             requiresAuth: true
         }
