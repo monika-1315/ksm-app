@@ -1,5 +1,5 @@
 <template>
-<div class="container" >
+<div class="container" v-if="this.$store.state.is_management" >
     <br>
      <button class="btn btn-primary floating yellow" type="button"  @click="newDiv">Dodaj nowy</button>
     <h2>Zarządzaj oddziałami</h2>

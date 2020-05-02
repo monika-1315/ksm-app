@@ -1,5 +1,5 @@
 <template>
-<div class="container" style="text-align:center">
+<div class="container" style="text-align:center" v-if=" this.$store.state.is_leadership">
     <h2>Na autoryzację oczekuje: {{users.length}} członków</h2>
     <br>
     <div class="progress" v-if="isProgress">

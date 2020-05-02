@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="this.$store.state.is_management">
     <div class="row justify-content-md-center">
       <div class="card card-default">
         <div class="card-header">

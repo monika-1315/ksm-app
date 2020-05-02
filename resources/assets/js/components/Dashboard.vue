@@ -8,6 +8,14 @@
       <h3>
         Najnowsze wiadomości:
         <button
+          class="btn btn-primary yellow"
+          type="button"
+          name="action"
+          @click="newMessage"
+          style="float: right"
+          v-if="this.$store.state.is_leadership || this.$store.state.is_management"
+        >Nowa wiadomość</button>
+        <button
           class="btn btn-primary"
           type="button"
           name="action"
@@ -43,7 +51,8 @@
             </p>
           </div>
         </div>
-      </div><br>
+      </div>
+      <br />
       <button
         class="btn btn-primary"
         type="button"
@@ -110,7 +119,9 @@ export default {
           }.bind(this)
         );
     },
-
+    newMessage: function() {
+      this.$router.push({ name: "message" });
+    },
     getPage: function(url) {
       this.axios
         .post(url, {
@@ -145,5 +156,11 @@ export default {
 
 .activeTab {
   font-weight: bold;
+}
+
+.yellow {
+  background-color: rgb(254, 209, 9) !important;
+  border-color: rgb(254, 209, 9);
+  color: black;
 }
 </style>
