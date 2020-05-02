@@ -18,6 +18,14 @@ class APIController extends Controller
 
     public function getDivisions()
     {
+        $data = Division::where('is_active', '=', 1)
+                    ->get();
+
+        return response()->json($data);
+    }
+
+    public function getAllDivisions()
+    {
         $data = Division::get();
 
         return response()->json($data);

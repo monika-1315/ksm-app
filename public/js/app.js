@@ -2506,7 +2506,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     edit: function edit(id) {},
     getDivisions: function getDivisions() {
-      this.axios.get('/api/getDivisions').then(function (response) {
+      this.axios.post('/api/auth/allDivisions', {
+        token: this.$store.state.token
+      }).then(function (response) {
         this.divisions = response.data;
       }.bind(this));
     }
@@ -5418,7 +5420,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.floating[data-v-57c5823f]{\n    float: right;\n}\n", ""]);
+exports.push([module.i, "\n.floating[data-v-57c5823f]{\n    float: right;\n}\n.inactive[data-v-57c5823f]{\n    font-size: normal;\n    color: darkgrey;\n}\n", ""]);
 
 // exports
 
@@ -9691,9 +9693,14 @@ var render = function() {
               [_vm._v("Edytuj")]
             )
           ]),
-          _c("h4", [_vm._v(_vm._s(division.town))]),
+          _c("h4", [
+            _vm._v(_vm._s(division.town) + " "),
+            division.is_active === 0
+              ? _c("span", { staticClass: "inactive" }, [_vm._v(" NIEAKTYWNY")])
+              : _vm._e()
+          ]),
           _vm._v(
-            "  \r\n            \r\n            " +
+            "\r\n            \r\n            " +
               _vm._s("parafia " + division.parish) +
               "       \r\n            "
           ),
