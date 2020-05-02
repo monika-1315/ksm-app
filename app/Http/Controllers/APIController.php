@@ -24,6 +24,14 @@ class APIController extends Controller
         return response()->json($data);
     }
 
+    public function getDivisionById(Request $request)
+    {
+        $data = Division::where('id', '=', $request->get('id'))
+                    ->get();
+
+        return response()->json($data);
+    }
+
     public function getAllDivisions()
     {
         $data = Division::get();
@@ -46,6 +54,7 @@ class APIController extends Controller
         $division = Division::find($request->get('id'));
         $division->town = $request->get('town');
         $division->parish = $request->get('parish');
+        $division->is_active= $request->get('is_active');
         $division->save();
 
         return response()->json([

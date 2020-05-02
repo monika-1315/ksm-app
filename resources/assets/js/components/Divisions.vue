@@ -24,7 +24,7 @@
         },
         methods:{
             edit: function(id){
-
+                this.$router.push({ name: 'division', params:{id:id}})
             },
             getDivisions: function(){
               this.axios.post('/api/auth/allDivisions',{token: this.$store.state.token})

@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 Route::get('/api/getDivisions', 'APIController@getDivisions');
+Route::get('/api/getDivisionById', 'APIController@getDivisionById');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -29,6 +30,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/updateUser', 'UsersController@updateUser');
     Route::post('/auth/getUnauthorizedUsers', 'UsersController@getUnauthorizedUsers');
     Route::post('/auth/authorizeUser', 'UsersController@authorizeUser');
+
     Route::post('/auth/getMessages', 'MessageController@getMessages');
     Route::post('/auth/getMessageById', 'MessageController@getMessageById');
     Route::post('/auth/newMessage', 'MessageController@newMessage');
@@ -38,6 +40,6 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
     Route::post('/auth/newDivision', 'APIController@newDivision');
     Route::post('/auth/allDivisions', 'APIController@getAllDivisions');
-    Route::post('/auth/updateDivision', 'APIController@updateDivision');
+    Route::post('/auth/editDivision', 'APIController@updateDivision');
     Route::post('/auth/deleteDivision', 'APIController@deleteDivision');
 });
