@@ -1,55 +1,96 @@
 <template>
-    <div class="container">
-      <h1>Witaj {{ name}}!</h1>
-            <div id="nav">
-                    <ul>
-                        
-                        <li v-if="this.$store.state.isLoggedIn">
-                            <router-link :to="{ name: 'dashboard' }" class="nav-link" > Wiadomości</router-link>
-                        </li>
-                        <li v-if="this.$store.state.isLoggedIn" >
-                            <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
-                        </li>
-                        <li v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)" class="right">
-                            <router-link :to="{ name: 'adduser' }" class="nav-link">Dodaj członka</router-link>
-                        </li>
-                         <li v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized && this.$store.state.is_leadership" class="right">
-                            <router-link :to="{ name: 'authorize' }" class="nav-link">Zatwierdzaj</router-link>
-                        </li>
-                        <li v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)" class="right">
-                            <router-link :to="{ name: 'editmessages' }" class="nav-link">Edytuj wiadomości</router-link>
-                        </li>
-                        <li v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && (this.$store.state.is_leadership || this.$store.state.is_management)" class="right">
-                            <router-link :to="{ name: 'message' }" class="nav-link">Nowa wiadomość</router-link>
-                        </li>
-                        <li v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management" class="right">
-                            <router-link :to="{ name: 'divisions' }" class="nav-link">Zarządzaj oddziałami</router-link>
-                        </li>
-                        <li v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management" class="right">
-                            <router-link :to="{ name: 'newdivision' }" class="nav-link">Nowy oddział</router-link>
-                        </li>
-                    </ul>
-                   
-            </div>
-      
-    </div>
+  <div class="container">
+    <h2>Panel sterowania</h2>
+    <hr>
+    <h4>Twoje konto</h4>
+    <router-link :to="{ name: 'edit' }" class="" v-if="this.$store.state.isLoggedIn">
+      <button class="btn-light btn-large">Edytuj swoje dane</button>
+    </router-link>
+<hr>
+   
+   <h4>Ogłoszenia</h4>
+    <router-link
+      :to="{ name: 'editmessages' }"
+      class=""
+      v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
+    >
+      <button class="btn-light btn-large left-btn">Edytuj swoje ogłoszenia</button>
+    </router-link>
+
+    <router-link
+      :to="{ name: 'message' }"
+      class=""
+      v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && (this.$store.state.is_leadership || this.$store.state.is_management)"
+    >
+      <button class="btn-light btn-large right-btn">Nowa wiadomość</button>
+    </router-link>
+
+<hr>
+    <h4 v-if="this.$store.state.is_leadership || this.$store.state.is_management"> Zarządzaj członkami:</h4>
+    <router-link
+      :to="{ name: 'adduser' }"
+      class=""
+      v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
+    >
+      <button class="btn-light btn-large left-btn">Dodaj członka</button>
+    </router-link>
+
+    <router-link
+      :to="{ name: 'authorize' }"
+      class=""
+      v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized && this.$store.state.is_leadership"
+    >
+      <button class="btn-light btn-large right-btn">Zatwierdzaj członków oddziału</button>
+    </router-link>
+
+<hr>
+   <h4 v-if="this.$store.state.is_management"> Zarządzaj oddziałami:</h4>
+    <router-link
+      :to="{ name: 'divisions' }"
+      class=""
+      v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
+    >
+      <button class="btn-light btn-large left-btn">Zarządzaj oddziałami</button>
+    </router-link>
+
+    <router-link
+      :to="{ name: 'newdivision' }"
+      class=""
+      v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
+    >
+      <button class="btn-light btn-large right-btn">Nowy oddział</button>
+    </router-link>
+
+  <br><br>
+    <router-link :to="{ name: 'dashboard' }" class="" v-if="this.$store.state.isLoggedIn">
+      <button class="btn btn-primary right">Wróć do tablicy ogłoszeń</button>
+    </router-link>
+  </div>
 </template>
 
-<script> 
-
-    export default {
-        methods: {
-
-        },
-        computed: {
+<script>
+export default {
+  methods: {},
+  computed: {
     name() {
       return this.$store.state.name;
-    },
     }
-    }
-
+  }
+};
 </script>
 
 <style scoped>
-   
+.btn-light{
+    width: 23em;
+}
+
+button{
+    display: inline-block;
+    margin: 1em;
+    font-weight: 500;
+}
+h4{
+    text-indent: 1em;
+}
+
 </style>
