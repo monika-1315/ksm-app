@@ -1,4 +1,4 @@
-import {mount} from 'vue-test-utils';
+import { mount } from 'vue-test-utils';
 import expect from 'expect';
 
 import Register from "../components/Register.vue";
@@ -7,12 +7,14 @@ import App from "../App.vue";
 import Home from "../components/Home.vue";
 
 
-describe('Register', () =>{
-    let wrapper= mount(Home);
-it('starts with no division selected', ()=>{
-        // expect(wrapper.vm.loginError).toBe(false);
+describe('Home', () => {
+    let wrapper = mount(Home);
+    it('shows welcoming text', () => {
+        expect(wrapper.html()).toContain("Witamy w aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej")
     })
+    
     // it('starts with no division selected', ()=>{
     //     expect(wrapper.vm.division).toBe(0);
+    // expect(wrapper.vm.loginError).toBe(false);
     // })
 })
