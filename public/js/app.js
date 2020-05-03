@@ -3119,7 +3119,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/assets/js/store.js");
+/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store.js */ "./resources/assets/js/store.js");
 //
 //
 //
@@ -3193,8 +3193,8 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data.success == true) {
           setTimeout(function () {
             _this.isProgress = false;
-            _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit('LoginUser', response.data);
-            _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit('LoginEmail', _this.email);
+            _store_js__WEBPACK_IMPORTED_MODULE_0__["default"].commit('LoginUser', response.data);
+            _store_js__WEBPACK_IMPORTED_MODULE_0__["default"].commit('LoginEmail', _this.email);
 
             _this.$router.push({
               name: 'dashboard'
