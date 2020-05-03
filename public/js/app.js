@@ -3533,6 +3533,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5755,7 +5756,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container {\r\n  text-align: left;\n}\n.card-body {\r\n  text-align: left;\n}\n.stamp {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.activeTab {\r\n  font-weight: bold;\n}\n.yellow {\r\n  background-color: rgb(254, 209, 9) !important;\r\n  border-color: rgb(254, 209, 9);\r\n  color: black;\n}\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n  text-align: left;\n}\n.card-body {\r\n  text-align: left;\n}\n.stamp {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.activeTab {\r\n  font-weight: bold;\n}\n.yellow {\r\n  background-color: rgb(254, 209, 9) !important;\r\n  border-color: rgb(254, 209, 9);\r\n  color: black;\n}\ndiv.card-header{\r\n    background-color:  rgba(254, 209, 9, 0.61);\n}\r\n", ""]);
 
 // exports
 
@@ -5926,7 +5927,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-group[data-v-f88ac34c]{\r\n    align-content: left;\n}\n.submit[data-v-f88ac34c]:hover{\r\n        color:white;\n}\n.btn[data-v-f88ac34c]{\r\n        display: inline-flex;\n}\n.btn[data-v-f88ac34c]:focus{\r\n        color:white;\n}\n.heading[data-v-f88ac34c]{\r\n        padding: 30px;\r\n        border: none;\n}\n.login-form[data-v-f88ac34c]{\r\n        background: white;\r\n        padding: 30px;\n}\n.progress[data-v-f88ac34c]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\ninput[data-v-f88ac34c]:focus{\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-f88ac34c] {\r\n  color: royalblue !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.form-group[data-v-f88ac34c]{\r\n    align-content: left;\n}\n.submit[data-v-f88ac34c]:hover{\r\n        color:white;\n}\n.btn[data-v-f88ac34c]{\r\n        display: inline-flex;\n}\n.btn[data-v-f88ac34c]:focus{\r\n        color:white;\n}\n.heading[data-v-f88ac34c]{\r\n        padding: 30px;\r\n        border: none;\n}\n.login-form[data-v-f88ac34c]{\r\n        background: white;\r\n        padding: 30px;\n}\n.progress[data-v-f88ac34c]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\ninput[data-v-f88ac34c]:focus{\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-f88ac34c] {\r\n  color: royalblue !important;\n}\ndiv.card-header[data-v-f88ac34c]{\r\n    background-color:  rgba(254, 209, 9, 0.712);\n}\r\n", ""]);
 
 // exports
 
@@ -11933,7 +11934,7 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-md-center" }, [
       _c("div", { staticClass: "card card-default" }, [
-        _c("div", { staticClass: "card-header" }, [_vm._v("Zarejestruj się")]),
+        _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           !_vm.success
@@ -12229,7 +12230,17 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h4", [_vm._v("Zarejestruj się")]),
+      _vm._v("\n      Cieszymy się, że chcesz działać razem z nami!")
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -2,7 +2,8 @@
     <div class="container">
     <div class="row justify-content-md-center">
         <div class="card card-default">
-          <div class="card-header">Zarejestruj się</div>
+          <div class="card-header"><h4>Zarejestruj się</h4>
+          Cieszymy się, że chcesz działać razem z nami!</div>
           <div class="card-body">
            
             <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
@@ -148,5 +149,8 @@
 }
 label.active {
   color: royalblue !important;
+}
+div.card-header{
+    background-color:  rgba(254, 209, 9, 0.712);
 }
 </style>

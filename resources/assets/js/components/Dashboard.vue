@@ -160,4 +160,9 @@ export default {
   border-color: rgb(254, 209, 9);
   color: black;
 }
+
+
+div.card-header{
+    background-color:  rgba(254, 209, 9, 0.61);
+}
 </style>
