@@ -2423,6 +2423,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {},
   computed: {
@@ -5734,7 +5736,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.btn-light[data-v-fb002644]{\r\n    width: 23em;\n}\nbutton[data-v-fb002644]{\r\n    display: inline-block;\r\n    margin: 1em;\r\n    font-weight: 500;\n}\nh4[data-v-fb002644]{\r\n    text-indent: 1em;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.btn-light[data-v-fb002644]{\r\n    width: 23em;\n}\nbutton .hover[data-v-fb002644]{\r\n    background-color:rgba(248, 203, 0, 0.788) ;\n}\nbutton[data-v-fb002644]{\r\n    display: inline-block;\r\n    margin: 1em;\r\n    font-weight: 500;\n}\nh4[data-v-fb002644]{\r\n    margin-top: 1em;\r\n    /* text-indent: 1em;\r\n    text-align: left; */\n}\nhr[data-v-fb002644]{\r\n    border-color:  rgba(248, 203, 0, 0.788);\r\n    /* width: 50em;\r\n    margin-left: 0%; */\r\n    /* border-color:  rgba(0, 0, 139, 0.719); */\n}\r\n", ""]);
 
 // exports
 
@@ -9963,13 +9965,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "container", staticStyle: { "text-align": "center" } },
     [
       _c("h2", [_vm._v("Panel sterowania")]),
       _vm._v(" "),
       _c("hr"),
+      _c("br"),
       _vm._v(" "),
-      _c("h4", [_vm._v("Twoje konto")]),
+      _c("h4", [_vm._v("Twoje konto:")]),
       _vm._v(" "),
       this.$store.state.isLoggedIn
         ? _c("router-link", { attrs: { to: { name: "edit" } } }, [
@@ -9979,9 +9982,7 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("h4", [_vm._v("Ogłoszenia")]),
+      _c("h4", [_vm._v("Ogłoszenia:")]),
       _vm._v(" "),
       this.$store.state.isLoggedIn &&
       this.$store.state.is_authorized &&
@@ -10003,56 +10004,79 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
       this.$store.state.is_leadership || this.$store.state.is_management
-        ? _c("h4", [_vm._v(" Zarządzaj członkami:")])
+        ? _c(
+            "div",
+            [
+              _c("h4", [_vm._v(" Zarządzaj członkami:")]),
+              _vm._v(" "),
+              this.$store.state.isLoggedIn &&
+              this.$store.state.is_authorized &&
+              (this.$store.state.is_leadership ||
+                this.$store.state.is_management)
+                ? _c("router-link", { attrs: { to: { name: "adduser" } } }, [
+                    _c(
+                      "button",
+                      { staticClass: "btn-light btn-large left-btn" },
+                      [_vm._v("Dodaj członka")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.$store.state.isLoggedIn &&
+              this.$store.state.is_authorized &&
+              this.$store.state.is_leadership
+                ? _c("router-link", { attrs: { to: { name: "authorize" } } }, [
+                    _c(
+                      "button",
+                      { staticClass: "btn-light btn-large right-btn" },
+                      [_vm._v("Zatwierdzaj członków oddziału")]
+                    )
+                  ])
+                : _vm._e()
+            ],
+            1
+          )
         : _vm._e(),
-      _vm._v(" "),
-      this.$store.state.isLoggedIn &&
-      this.$store.state.is_authorized &&
-      (this.$store.state.is_leadership || this.$store.state.is_management)
-        ? _c("router-link", { attrs: { to: { name: "adduser" } } }, [
-            _c("button", { staticClass: "btn-light btn-large left-btn" }, [
-              _vm._v("Dodaj członka")
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      this.$store.state.isLoggedIn &&
-      this.$store.state.is_authorized &&
-      this.$store.state.is_leadership
-        ? _c("router-link", { attrs: { to: { name: "authorize" } } }, [
-            _c("button", { staticClass: "btn-light btn-large right-btn" }, [
-              _vm._v("Zatwierdzaj członków oddziału")
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("hr"),
       _vm._v(" "),
       this.$store.state.is_management
-        ? _c("h4", [_vm._v(" Zarządzaj oddziałami:")])
-        : _vm._e(),
-      _vm._v(" "),
-      this.$store.state.isLoggedIn &&
-      this.$store.state.is_authorized &&
-      this.$store.state.is_management
-        ? _c("router-link", { attrs: { to: { name: "divisions" } } }, [
-            _c("button", { staticClass: "btn-light btn-large left-btn" }, [
-              _vm._v("Zarządzaj oddziałami")
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      this.$store.state.isLoggedIn &&
-      this.$store.state.is_authorized &&
-      this.$store.state.is_management
-        ? _c("router-link", { attrs: { to: { name: "newdivision" } } }, [
-            _c("button", { staticClass: "btn-light btn-large right-btn" }, [
-              _vm._v("Nowy oddział")
-            ])
-          ])
+        ? _c(
+            "div",
+            [
+              this.$store.state.is_management
+                ? _c("h4", [_vm._v(" Zarządzaj oddziałami:")])
+                : _vm._e(),
+              _vm._v(" "),
+              this.$store.state.isLoggedIn &&
+              this.$store.state.is_authorized &&
+              this.$store.state.is_management
+                ? _c("router-link", { attrs: { to: { name: "divisions" } } }, [
+                    _c(
+                      "button",
+                      { staticClass: "btn-light btn-large left-btn" },
+                      [_vm._v("Zarządzaj oddziałami")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              this.$store.state.isLoggedIn &&
+              this.$store.state.is_authorized &&
+              this.$store.state.is_management
+                ? _c(
+                    "router-link",
+                    { attrs: { to: { name: "newdivision" } } },
+                    [
+                      _c(
+                        "button",
+                        { staticClass: "btn-light btn-large right-btn" },
+                        [_vm._v("Nowy oddział")]
+                      )
+                    ]
+                  )
+                : _vm._e()
+            ],
+            1
+          )
         : _vm._e(),
       _vm._v(" "),
       _c("br"),

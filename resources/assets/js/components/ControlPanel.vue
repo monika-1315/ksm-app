@@ -1,14 +1,14 @@
 <template>
-  <div class="container">
+  <div class="container" style="text-align: center">
     <h2>Panel sterowania</h2>
-    <hr>
-    <h4>Twoje konto</h4>
+    <hr><br>
+    <h4>Twoje konto:</h4>
     <router-link :to="{ name: 'edit' }" class="" v-if="this.$store.state.isLoggedIn">
       <button class="btn-light btn-large">Edytuj swoje dane</button>
     </router-link>
-<hr>
+<!-- <hr> -->
    
-   <h4>Ogłoszenia</h4>
+   <h4>Ogłoszenia:</h4>
     <router-link
       :to="{ name: 'editmessages' }"
       class=""
@@ -25,8 +25,9 @@
       <button class="btn-light btn-large right-btn">Nowa wiadomość</button>
     </router-link>
 
-<hr>
-    <h4 v-if="this.$store.state.is_leadership || this.$store.state.is_management"> Zarządzaj członkami:</h4>
+<div v-if="this.$store.state.is_leadership || this.$store.state.is_management">
+<!-- <hr> -->
+    <h4 > Zarządzaj członkami:</h4>
     <router-link
       :to="{ name: 'adduser' }"
       class=""
@@ -42,8 +43,9 @@
     >
       <button class="btn-light btn-large right-btn">Zatwierdzaj członków oddziału</button>
     </router-link>
-
-<hr>
+</div>
+<div v-if="this.$store.state.is_management">
+<!-- <hr> -->
    <h4 v-if="this.$store.state.is_management"> Zarządzaj oddziałami:</h4>
     <router-link
       :to="{ name: 'divisions' }"
@@ -60,7 +62,7 @@
     >
       <button class="btn-light btn-large right-btn">Nowy oddział</button>
     </router-link>
-
+</div>
   <br><br>
     <router-link :to="{ name: 'dashboard' }" class="" v-if="this.$store.state.isLoggedIn">
       <button class="btn btn-primary right">Wróć do tablicy ogłoszeń</button>
@@ -83,14 +85,23 @@ export default {
 .btn-light{
     width: 23em;
 }
-
+button .hover{
+    background-color:rgba(248, 203, 0, 0.788) ;
+}
 button{
     display: inline-block;
     margin: 1em;
     font-weight: 500;
 }
 h4{
-    text-indent: 1em;
+    margin-top: 1em;
+    /* text-indent: 1em;
+    text-align: left; */
 }
-
+hr{
+    border-color:  rgba(248, 203, 0, 0.788);
+    /* width: 50em;
+    margin-left: 0%; */
+    /* border-color:  rgba(0, 0, 139, 0.719); */
+}
 </style>
