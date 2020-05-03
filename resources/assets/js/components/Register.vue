@@ -72,7 +72,7 @@
                 errors: {},
                 success: false,
                 isProgress: false,
-                division: '',
+                division: 0,
                 divisions: []
             };
         },
