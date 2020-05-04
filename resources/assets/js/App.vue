@@ -22,6 +22,11 @@
 
         <ul class="right navbar-nav hide-on-med-and-down">
           <li
+             class="right"
+          >
+            <router-link :to="{ name: 'calendar' }" class="nav-link">Kalendarium</router-link>
+          </li>
+          <li
             v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
             class="right"
           >

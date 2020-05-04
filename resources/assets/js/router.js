@@ -13,6 +13,7 @@ import Divisions from './components/Divisions.vue'
 import EditDivision from './components/EditDivision.vue'
 import NewDivision from './components/NewDivision.vue'
 import ControlPanel from './components/ControlPanel.vue'
+import Calendar from './components/Calendar.vue'
 import VueRouter from 'vue-router';
 import store from './store';
 
@@ -128,6 +129,14 @@ const router = new VueRouter({
         component: ControlPanel,
         meta: { 
             requiresAuth: true
+        }
+    },
+    {
+        path: '/calendar',
+        name: 'calendar',
+        component: Calendar,
+        meta: { 
+            requiresAuth: false
         }
     },
     ]

@@ -1,3 +1,3 @@
 require('jsdom-global')();
 
-global.localStorage = window.localStorage;
+// global.localStorage = window.localStorage;
