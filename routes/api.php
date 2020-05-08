@@ -31,6 +31,11 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/getUnauthorizedUsers', 'UsersController@getUnauthorizedUsers');
     Route::post('/auth/authorizeUser', 'UsersController@authorizeUser');
 
+    Route::post('/auth/getAuthorizedUsers', 'UsersController@getAuthorizedUsers');
+    Route::post('/auth/getAuthorizedUsersDiv', 'UsersController@getAuthorizedUsersDiv');
+    Route::post('/auth/changeLeadership', 'UsersController@changeLeadership');
+    Route::post('/auth/changeManagement', 'UsersController@changeManagement');
+
     Route::post('/auth/getMessages', 'MessageController@getMessages');
     Route::post('/auth/getMessageById', 'MessageController@getMessageById');
     Route::post('/auth/newMessage', 'MessageController@newMessage');
