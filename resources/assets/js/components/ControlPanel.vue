@@ -6,6 +6,13 @@
     <router-link :to="{ name: 'edit' }" class="" v-if="this.$store.state.isLoggedIn">
       <button class="btn-light btn-large">Edytuj swoje dane</button>
     </router-link>
+    <router-link
+      :to="{ name: 'delegate' }"
+      class=""
+      v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
+    >
+      <button class="btn-light btn-large left-btn">Deleguj uprawnienia</button>
+    </router-link>
 <!-- <hr> -->
    
    <h4>Ogłoszenia:</h4>
@@ -73,11 +80,7 @@
 <script>
 export default {
   methods: {},
-  computed: {
-    name() {
-      return this.$store.state.name;
-    }
-  }
+  
 };
 </script>
 

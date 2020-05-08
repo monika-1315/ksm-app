@@ -14,6 +14,7 @@ import EditDivision from './components/EditDivision.vue'
 import NewDivision from './components/NewDivision.vue'
 import ControlPanel from './components/ControlPanel.vue'
 import Calendar from './components/Calendar.vue'
+import DelegateAuthority from './components/DelegateAuthority.vue'
 import VueRouter from 'vue-router';
 import store from './store';
 
@@ -137,6 +138,14 @@ const router = new VueRouter({
         component: Calendar,
         meta: { 
             requiresAuth: false
+        }
+    },
+    {
+        path: '/delegate',
+        name: 'delegate',
+        component: DelegateAuthority,
+        meta: { 
+            requiresAuth: true
         }
     },
     ]
