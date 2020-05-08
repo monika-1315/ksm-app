@@ -22,7 +22,7 @@ describe('Home', () => {
     it('shows welcoming text', () => {
         expect(wrapper.html()).toContain("Witamy w aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej")
     })
-
+ 
 })
 
 describe('Register', () => {

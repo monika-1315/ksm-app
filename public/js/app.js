@@ -2371,6 +2371,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -5792,7 +5793,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container {\r\n  text-align: left;\n}\n.card-body {\r\n  text-align: left;\n}\n.stamp {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.activeTab {\r\n  font-weight: bold;\n}\n.yellow {\r\n  background-color: rgb(254, 209, 9) !important;\r\n  border-color: rgb(254, 209, 9);\r\n  color: black;\n}\r\n\r\n\r\n/* div.card-header{\r\n    background-color:  rgba(254, 209, 9, 0.61);\r\n} */\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n  text-align: left;\n}\n.card-body {\r\n  text-align: left;\n}\n.stamp {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.activeTab {\r\n  font-weight: bold;\n}\n.yellow {\r\n  background-color: rgb(254, 209, 9) !important;\r\n  border-color: rgb(254, 209, 9);\r\n  color: black;\n}\ndiv.card-header{\r\n    background-color:  rgba(254, 209, 9, 0.61);\n}\r\n", ""]);
 
 // exports
 
@@ -10028,6 +10029,8 @@ var staticRenderFns = [
         staticStyle: { border: "0px currentColor" },
         attrs: {
           src:
+            "https://calendar.google.com/calendar/embed?src=7f7ckv17bg45kn80pofks6o0ck%40group.calendar.google.com&ctz=Europe%2FWarsaw",
+          "script-src-elem":
             "https://calendar.google.com/calendar/embed?src=7f7ckv17bg45kn80pofks6o0ck%40group.calendar.google.com&ctz=Europe%2FWarsaw",
           width: "800",
           height: "600",

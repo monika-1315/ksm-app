@@ -162,7 +162,7 @@ export default {
 }
 
 
-/* div.card-header{
+div.card-header{
     background-color:  rgba(254, 209, 9, 0.61);
-} */
+}
 </style>
