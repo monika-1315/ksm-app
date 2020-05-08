@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/api/getDivisions', 'APIController@getDivisions');
-Route::get('/api/getDivisionById', 'APIController@getDivisionById');
+Route::get('/api/getDivisions', 'DivisionsController@getDivisions');
+Route::get('/api/getDivisionById', 'DivisionsController@getDivisionById');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -38,8 +38,8 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/editMessage', 'MessageController@editMessage');
     Route::post('/auth/deleteMessage', 'MessageController@deleteMessage');
 
-    Route::post('/auth/newDivision', 'APIController@newDivision');
-    Route::post('/auth/allDivisions', 'APIController@getAllDivisions');
-    Route::post('/auth/editDivision', 'APIController@updateDivision');
-    Route::post('/auth/deleteDivision', 'APIController@deleteDivision');
+    Route::post('/auth/newDivision', 'DivisionsController@newDivision');
+    Route::post('/auth/allDivisions', 'DivisionsController@getAllDivisions');
+    Route::post('/auth/editDivision', 'DivisionsController@updateDivision');
+    Route::post('/auth/deleteDivision', 'DivisionsController@deleteDivision');
 });

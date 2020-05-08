@@ -14,8 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/api/getDivisions', 'APIController@getDivisions');
-Route::get('/api/getDivisionById', 'APIController@getDivisionById');
+Route::get('/api/getDivisions', 'DivisionsController@getDivisions');
+Route::get('/api/getDivisionById', 'DivisionsController@getDivisionById');
 
 Route::get('/{id}', function () {
     return view('welcome');
