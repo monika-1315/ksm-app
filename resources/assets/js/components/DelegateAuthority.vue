@@ -6,19 +6,31 @@
       <div class="indeterminate"></div>
     </div>
     <h3>Obecne Kierownictwo:</h3>
-    <div v-for="user in usersDiv" :key="user.id">
-      <div v-if="user.is_leadership===1">
-        <h4>{{user.name+' '+user.surname}}
-        <button class="btn btn-primary" type="button" @click="chLeader(user.id)">Odbierz uprawnienia</button></h4>
-      </div>
+    <div align="left" v-for="user in usersDiv1" :key="user.id">
+      <button v-if="user.id!==user_id"
+        class="btn btn-primary btn-small floating"
+        type="button"
+        @click="chLeader(user.id)"
+      >Odbierz uprawnienia</button>
+      <button v-else
+        class="btn btn-primary btn-small floating"
+        type="button"
+        @click="chLeader(user.id)"
+      >Zrezygnuj</button>
+      <h5>{{user.name+' '+user.surname}}</h5>
+
+      <hr />
     </div>
-    <br>
+    <br />
     <h3>Pozostali członkowie:</h3>
-    <div v-for="user in usersDiv" :key="user.id">
-      <div v-if="user.is_leadership===0">
-        <h4>{{user.name+' '+user.surname}}
-        <button class="btn btn-primary" type="button" @click="chLeader(user.id)">Nadaj uprawnienia</button></h4>
-      </div>
+    <div align="left" v-for="user in usersDiv0" :key="user.id">
+      <button
+        class="btn btn-primary btn-small floating"
+        type="button"
+        @click="chLeader(user.id)"
+      >Nadaj uprawnienia</button>
+      <h5>{{user.name+' '+user.surname}}</h5>
+      <hr />
     </div>
   </div>
 </template>
@@ -27,14 +39,19 @@
 export default {
   data() {
     return {
-      usersDiv: [],
-      usersAll: [],
+      usersDiv0: [],
+      usersDiv1: [],
+      usersAll0: [],
+      usersAll1: [],
       isProgress: false
     };
   },
   computed: {
     is_management() {
       return this.$store.state.is_management;
+    },
+    user_id() {
+      return this.$store.state.user_id;
     },
     is_leadership() {
       return this.$store.state.is_leadership;
@@ -96,7 +113,10 @@ export default {
           })
           .then(
             function(response) {
-              this.usersAll = response.data;
+              for (var user of response.data) {
+                if (user.is_management === 0) this.usersAll0.push(user);
+                else this.usersAll1.push(user);
+              }
             }.bind(this)
           );
       }
@@ -108,7 +128,10 @@ export default {
           })
           .then(
             function(response) {
-              this.usersDiv = response.data;
+              for (var user of response.data) {
+                if (user.is_management === 0) this.usersDiv0.push(user);
+                else this.usersDiv1.push(user);
+              }
             }.bind(this)
           );
       }
@@ -127,5 +150,11 @@ export default {
 }
 .indeterminate {
   background-color: royalblue;
+}
+.floating {
+  float: right;
+}
+.btn{
+    width:15em;
 }
 </style>

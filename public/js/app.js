@@ -2633,6 +2633,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2661,14 +2679,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      usersDiv: [],
-      usersAll: [],
+      usersDiv0: [],
+      usersDiv1: [],
+      usersAll0: [],
+      usersAll1: [],
       isProgress: false
     };
   },
   computed: {
     is_management: function is_management() {
       return this.$store.state.is_management;
+    },
+    user_id: function user_id() {
+      return this.$store.state.user_id;
     },
     is_leadership: function is_leadership() {
       return this.$store.state.is_leadership;
@@ -2733,7 +2756,19 @@ __webpack_require__.r(__webpack_exports__);
         this.axios.post("/api/auth/getAuthorizedUsers", {
           token: this.$store.state.token
         }).then(function (response) {
-          this.usersAll = response.data;
+          var _iterator = _createForOfIteratorHelper(response.data),
+              _step;
+
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var user = _step.value;
+              if (user.is_management === 0) this.usersAll0.push(user);else this.usersAll1.push(user);
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
         }.bind(this));
       }
 
@@ -2742,7 +2777,19 @@ __webpack_require__.r(__webpack_exports__);
           token: this.$store.state.token,
           division: this.$store.state.division
         }).then(function (response) {
-          this.usersDiv = response.data;
+          var _iterator2 = _createForOfIteratorHelper(response.data),
+              _step2;
+
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var user = _step2.value;
+              if (user.is_management === 0) this.usersDiv0.push(user);else this.usersDiv1.push(user);
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
         }.bind(this));
       }
     }
@@ -5944,7 +5991,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.progress[data-v-6c9061d2] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\n.indeterminate[data-v-6c9061d2] {\r\n  background-color: royalblue;\n}\r\n", ""]);
+exports.push([module.i, "\n.progress[data-v-6c9061d2] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\n.indeterminate[data-v-6c9061d2] {\r\n  background-color: royalblue;\n}\n.floating[data-v-6c9061d2] {\r\n  float: right;\n}\n.btn[data-v-6c9061d2]{\r\n    width:15em;\n}\r\n", ""]);
 
 // exports
 
@@ -10587,30 +10634,39 @@ var render = function() {
           _vm._v(" "),
           _c("h3", [_vm._v("Obecne Kierownictwo:")]),
           _vm._v(" "),
-          _vm._l(_vm.usersDiv, function(user) {
-            return _c("div", { key: user.id }, [
-              user.is_leadership === 1
-                ? _c("div", [
-                    _c("h4", [
-                      _vm._v(
-                        _vm._s(user.name + " " + user.surname) + "\n      "
-                      ),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.chLeader(user.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Odbierz uprawnienia")]
-                      )
-                    ])
-                  ])
-                : _vm._e()
+          _vm._l(_vm.usersDiv1, function(user) {
+            return _c("div", { key: user.id, attrs: { align: "left" } }, [
+              user.id !== _vm.user_id
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-small floating",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.chLeader(user.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Odbierz uprawnienia")]
+                  )
+                : _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-small floating",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.chLeader(user.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Zrezygnuj")]
+                  ),
+              _vm._v(" "),
+              _c("h5", [_vm._v(_vm._s(user.name + " " + user.surname))]),
+              _vm._v(" "),
+              _c("hr")
             ])
           }),
           _vm._v(" "),
@@ -10618,30 +10674,25 @@ var render = function() {
           _vm._v(" "),
           _c("h3", [_vm._v("Pozostali członkowie:")]),
           _vm._v(" "),
-          _vm._l(_vm.usersDiv, function(user) {
-            return _c("div", { key: user.id }, [
-              user.is_leadership === 0
-                ? _c("div", [
-                    _c("h4", [
-                      _vm._v(
-                        _vm._s(user.name + " " + user.surname) + "\n      "
-                      ),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              return _vm.chLeader(user.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Nadaj uprawnienia")]
-                      )
-                    ])
-                  ])
-                : _vm._e()
+          _vm._l(_vm.usersDiv0, function(user) {
+            return _c("div", { key: user.id, attrs: { align: "left" } }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-small floating",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.chLeader(user.id)
+                    }
+                  }
+                },
+                [_vm._v("Nadaj uprawnienia")]
+              ),
+              _vm._v(" "),
+              _c("h5", [_vm._v(_vm._s(user.name + " " + user.surname))]),
+              _vm._v(" "),
+              _c("hr")
             ])
           })
         ],
