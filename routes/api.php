@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 Route::get('/api/getDivisions', 'DivisionsController@getDivisions');
 Route::get('/api/getDivisionById', 'DivisionsController@getDivisionById');
+Route::get('/api/getManagement', 'APIController@getManagement');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
