@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div id="nav">
         <ul class="left navbar-nav hide-on-med-and-down">
@@ -166,6 +166,7 @@ export default {
   text-align: center;
   padding-left: 10%;
   padding-right: 10%;
+  
 }
 #nav-mobile a:hover {
   text-decoration: none !important;
@@ -188,5 +189,9 @@ export default {
 }
 #log-out {
   float: right;
+}
+.nav-link{
+  font-weight: 400 !important;
+  color:black !important;
 }
 </style>

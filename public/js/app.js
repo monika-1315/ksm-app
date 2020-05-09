@@ -2780,6 +2780,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5987,7 +5995,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.header[data-v-66ab2f82]{\r\n    color: black;\r\n    font-size: x-large;\r\n    font-weight: 600;\r\n    align-content: center;\r\n    align-items: center;\r\n    padding: 7.5px;\n}\n.fade-enter-active[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  transition-duration: 0.2s;\r\n  transition-property: opacity;\r\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  opacity: 0;\n}\n#nav[data-v-66ab2f82] {\r\n  width: 100%;\n}\n.container[data-v-66ab2f82] {\r\n  padding-left: 9%;\r\n  padding-right: 9%;\n}\n.navbar[data-v-66ab2f82] {\r\n  text-align: center;\r\n  padding-left: 10%;\r\n  padding-right: 10%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover {\r\n  text-decoration: none !important;\r\n  color: white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus {\r\n  text-decoration: none !important;\r\n  color: white;\r\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover {\r\n  text-decoration: none !important;\r\n  color: white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus {\r\n  text-decoration: none !important;\r\n  color: white;\r\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#log-out[data-v-66ab2f82] {\r\n  float: right;\n}\r\n", ""]);
+exports.push([module.i, "\n.header[data-v-66ab2f82]{\r\n    color: black;\r\n    font-size: x-large;\r\n    font-weight: 600;\r\n    align-content: center;\r\n    align-items: center;\r\n    padding: 7.5px;\n}\n.fade-enter-active[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  transition-duration: 0.2s;\r\n  transition-property: opacity;\r\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  opacity: 0;\n}\n#nav[data-v-66ab2f82] {\r\n  width: 100%;\n}\n.container[data-v-66ab2f82] {\r\n  padding-left: 9%;\r\n  padding-right: 9%;\n}\n.navbar[data-v-66ab2f82] {\r\n  text-align: center;\r\n  padding-left: 10%;\r\n  padding-right: 10%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover {\r\n  text-decoration: none !important;\r\n  color: white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus {\r\n  text-decoration: none !important;\r\n  color: white;\r\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover {\r\n  text-decoration: none !important;\r\n  color: white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus {\r\n  text-decoration: none !important;\r\n  color: white;\r\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#log-out[data-v-66ab2f82] {\r\n  float: right;\n}\n.nav-link[data-v-66ab2f82]{\r\n  font-weight: 400 !important;\r\n  color:black !important;\n}\r\n", ""]);
 
 // exports
 
@@ -6120,7 +6128,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.progress[data-v-6c9061d2] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\n.indeterminate[data-v-6c9061d2] {\r\n  background-color: rgb(254, 209, 9);\n}\n.floating[data-v-6c9061d2] {\r\n  float: right;\n}\n.btn[data-v-6c9061d2]{\r\n    width:15em;\n}\r\n", ""]);
+exports.push([module.i, "\n.progress[data-v-6c9061d2] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\n.indeterminate[data-v-6c9061d2] {\r\n  background-color: rgb(254, 209, 9);\n}\n.floating[data-v-6c9061d2] {\r\n  float: right;\n}\n.btn[data-v-6c9061d2] {\r\n  width: 15em;\n}\n.container[data-v-6c9061d2] {\r\n  padding-left: 9%;\r\n  padding-right: 9%;\n}\n.yellow[data-v-6c9061d2] {\r\n  background-color: rgb(254, 209, 9) !important;\r\n  border-color: rgb(254, 209, 9);\r\n  color: rgb(201, 0, 0);\n}\r\n", ""]);
 
 // exports
 
@@ -11007,193 +11015,181 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return this.$store.state.is_leadership
-    ? _c(
-        "div",
-        { staticClass: "container", staticStyle: { "text-align": "center" } },
-        [
-          _vm.isProgress
-            ? _c("div", { staticClass: "progress" }, [
-                _c("div", { staticClass: "indeterminate" })
+  return _c("div", [
+    this.$store.state.is_leadership
+      ? _c(
+          "div",
+          { staticClass: "container", staticStyle: { "text-align": "center" } },
+          [
+            _vm.isProgress
+              ? _c("div", { staticClass: "progress" }, [
+                  _c("div", { staticClass: "indeterminate" })
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("h2", [_vm._v("Zmień uprawnienia Kierownictwa")]),
+            _vm._v(" "),
+            _c("hr", {
+              staticStyle: { "border-color": "rgba(248, 203, 0, 0.788)" }
+            }),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("h3", [_vm._v("Obecne Kierownictwo:")]),
+            _vm._v(" "),
+            _vm._l(_vm.usersDiv1, function(user) {
+              return _c("div", { key: user.id, attrs: { align: "left" } }, [
+                user.id !== _vm.user_id
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-small floating",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.chLeader(user.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Odbierz uprawnienia")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-primary btn-small floating yellow",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.chLeader(user.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Zrezygnuj")]
+                    ),
+                _vm._v(" "),
+                _c("h5", [_vm._v(_vm._s(user.name + " " + user.surname))]),
+                _vm._v(" "),
+                _c("hr")
               ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("h2", [_vm._v("Zmień uprawnienia Kierownictwa")]),
-          _vm._v(" "),
-          _c("hr", {
-            staticStyle: { "border-color": "rgba(248, 203, 0, 0.788)" }
-          }),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("h3", [_vm._v("Obecne Kierownictwo:")]),
-          _vm._v(" "),
-          _vm._l(_vm.usersDiv1, function(user) {
-            return _c("div", { key: user.id, attrs: { align: "left" } }, [
-              user.id !== _vm.user_id
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary btn-small floating",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.chLeader(user.id)
-                        }
+            }),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("h3", [_vm._v("Pozostali członkowie:")]),
+            _vm._v(" "),
+            _vm._l(_vm.usersDiv0, function(user) {
+              return _c("div", { key: user.id, attrs: { align: "left" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-small floating",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.chLeader(user.id)
                       }
-                    },
-                    [_vm._v("Odbierz uprawnienia")]
-                  )
-                : _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary btn-small floating",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.chLeader(user.id)
-                        }
-                      }
-                    },
-                    [_vm._v("Zrezygnuj")]
-                  ),
-              _vm._v(" "),
-              _c("h5", [_vm._v(_vm._s(user.name + " " + user.surname))]),
-              _vm._v(" "),
-              _c("hr")
-            ])
-          }),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("h3", [_vm._v("Pozostali członkowie:")]),
-          _vm._v(" "),
-          _vm._l(_vm.usersDiv0, function(user) {
-            return _c("div", { key: user.id, attrs: { align: "left" } }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-small floating",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.chLeader(user.id)
                     }
-                  }
-                },
-                [_vm._v("Nadaj uprawnienia")]
-              ),
-              _vm._v(" "),
-              _c("h5", [_vm._v(_vm._s(user.name + " " + user.surname))]),
-              _vm._v(" "),
-              _c("hr")
-            ])
-          }),
-          _vm._v(" "),
-          _c("br"),
-          _c("br"),
-          _vm._v(" "),
-          this.$store.state.is_management
-            ? _c(
-                "div",
-                {
-                  staticClass: "container",
-                  staticStyle: { "text-align": "center" }
-                },
-                [
-                  _c("h2", [_vm._v("Zmień uprawnienia Zarządu")]),
-                  _vm._v(" "),
-                  _c("hr", {
-                    staticStyle: { "border-color": "rgba(248, 203, 0, 0.788)" }
-                  }),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("h3", [_vm._v("Obecny Zarząd:")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.usersAll1, function(user) {
-                    return _c(
-                      "div",
-                      { key: user.id, attrs: { align: "left" } },
-                      [
-                        user.id !== _vm.user_id
-                          ? _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-primary btn-small floating",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.chMan(user.id)
-                                  }
-                                }
-                              },
-                              [_vm._v("Odbierz uprawnienia")]
-                            )
-                          : _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-primary btn-small floating",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.chMan(user.id)
-                                  }
-                                }
-                              },
-                              [_vm._v("Zrezygnuj")]
-                            ),
-                        _vm._v(" "),
-                        _c("h5", [
-                          _vm._v(_vm._s(user.name + " " + user.surname))
-                        ]),
-                        _vm._v(" "),
-                        _c("hr")
-                      ]
+                  },
+                  [_vm._v("Nadaj uprawnienia")]
+                ),
+                _vm._v(" "),
+                _c("h5", [_vm._v(_vm._s(user.name + " " + user.surname))]),
+                _vm._v(" "),
+                _c("hr")
+              ])
+            })
+          ],
+          2
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    this.$store.state.is_management
+      ? _c(
+          "div",
+          { staticClass: "container", staticStyle: { "text-align": "center" } },
+          [
+            _c("h2", [_vm._v("Zmień uprawnienia Zarządu")]),
+            _vm._v(" "),
+            _c("hr", {
+              staticStyle: { "border-color": "rgba(248, 203, 0, 0.788)" }
+            }),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("h3", [_vm._v("Obecny Zarząd:")]),
+            _vm._v(" "),
+            _vm._l(_vm.usersAll1, function(user) {
+              return _c("div", { key: user.id, attrs: { align: "left" } }, [
+                user.id !== _vm.user_id
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-small floating",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.chMan(user.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Odbierz uprawnienia")]
                     )
-                  }),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("h3", [_vm._v("Pozostali członkowie:")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.usersAll0, function(user) {
-                    return _c(
-                      "div",
-                      { key: user.id, attrs: { align: "left" } },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary btn-small floating",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.chMan(user.id)
-                              }
-                            }
-                          },
-                          [_vm._v("Nadaj uprawnienia")]
-                        ),
-                        _vm._v(" "),
-                        _c("h5", [
-                          _vm._v(_vm._s(user.name + " " + user.surname))
-                        ]),
-                        _vm._v(" "),
-                        _c("hr")
-                      ]
-                    )
-                  })
-                ],
-                2
-              )
-            : _vm._e()
-        ],
-        2
-      )
-    : _vm._e()
+                  : _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-primary btn-small floating yellow",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.chMan(user.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Zrezygnuj")]
+                    ),
+                _vm._v(" "),
+                _c("h5", [_vm._v(_vm._s(user.name + " " + user.surname))]),
+                _vm._v(" "),
+                _c("hr")
+              ])
+            }),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("h3", [_vm._v("Pozostali członkowie:")]),
+            _vm._v(" "),
+            _vm._l(_vm.usersAll0, function(user) {
+              return _c("div", { key: user.id, attrs: { align: "left" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-small floating",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.chMan(user.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Nadaj uprawnienia")]
+                ),
+                _vm._v(" "),
+                _c("h5", [_vm._v(_vm._s(user.name + " " + user.surname))]),
+                _vm._v(" "),
+                _c("hr")
+              ])
+            })
+          ],
+          2
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

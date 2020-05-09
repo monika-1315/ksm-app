@@ -1,71 +1,79 @@
 <template>
-  <div class="container" style="text-align:center" v-if=" this.$store.state.is_leadership">
+  <div>
+    <div class="container" style="text-align:center" v-if=" this.$store.state.is_leadership">
       <div class="progress" v-if="isProgress">
-      <div class="indeterminate"></div>
-    </div>
-    <h2>Zmień uprawnienia Kierownictwa</h2>
-    <hr style="border-color:  rgba(248, 203, 0, 0.788);">
-    <br />
-    
-    <h3>Obecne Kierownictwo:</h3>
-    <div align="left" v-for="user in usersDiv1" :key="user.id">
-      <button v-if="user.id!==user_id"
-        class="btn btn-primary btn-small floating"
-        type="button"
-        @click="chLeader(user.id)"
-      >Odbierz uprawnienia</button>
-      <button v-else
-        class="btn btn-primary btn-small floating"
-        type="button"
-        @click="chLeader(user.id)"
-      >Zrezygnuj</button>
-      <h5>{{user.name+' '+user.surname}}</h5>
+        <div class="indeterminate"></div>
+      </div>
+      <h2>Zmień uprawnienia Kierownictwa</h2>
+      <hr style="border-color:  rgba(248, 203, 0, 0.788);" />
+      <br />
 
-      <hr />
-    </div>
-    <br />
-    <h3>Pozostali członkowie:</h3>
-    <div align="left" v-for="user in usersDiv0" :key="user.id">
-      <button
-        class="btn btn-primary btn-small floating"
-        type="button"
-        @click="chLeader(user.id)"
-      >Nadaj uprawnienia</button>
-      <h5>{{user.name+' '+user.surname}}</h5>
-      <hr />
-    </div>
-<br><br>
-     <div class="container" style="text-align:center" v-if=" this.$store.state.is_management">
-    <h2>Zmień uprawnienia Zarządu</h2>
-    <hr style="border-color:  rgba(248, 203, 0, 0.788);">
-    <br />
-    <h3>Obecny Zarząd:</h3>
-    <div align="left" v-for="user in usersAll1" :key="user.id">
-      <button v-if="user.id!==user_id"
-        class="btn btn-primary btn-small floating"
-        type="button"
-        @click="chMan(user.id)"
-      >Odbierz uprawnienia</button>
-      <button v-else
-        class="btn btn-primary btn-small floating"
-        type="button"
-        @click="chMan(user.id)"
-      >Zrezygnuj</button>
-      <h5>{{user.name+' '+user.surname}}</h5>
+      <h3>Obecne Kierownictwo:</h3>
+      <div align="left" v-for="user in usersDiv1" :key="user.id">
+        <button
+          v-if="user.id!==user_id"
+          class="btn btn-primary btn-small floating"
+          type="button"
+          @click="chLeader(user.id)"
+        >Odbierz uprawnienia</button>
+        <button
+          v-else
+          class="btn btn-primary btn-small floating yellow"
+          type="button"
+          @click="chLeader(user.id)"
+        >Zrezygnuj</button>
+        <h5>{{user.name+' '+user.surname}}</h5>
 
-      <hr />
+        <hr />
+      </div>
+      <br />
+      <h3>Pozostali członkowie:</h3>
+      <div align="left" v-for="user in usersDiv0" :key="user.id">
+        <button
+          class="btn btn-primary btn-small floating"
+          type="button"
+          @click="chLeader(user.id)"
+        >Nadaj uprawnienia</button>
+        <h5>{{user.name+' '+user.surname}}</h5>
+        <hr />
+      </div>
     </div>
     <br />
-    <h3>Pozostali członkowie:</h3>
-    <div align="left" v-for="user in usersAll0" :key="user.id">
-      <button
-        class="btn btn-primary btn-small floating"
-        type="button"
-        @click="chMan(user.id)"
-      >Nadaj uprawnienia</button>
-      <h5>{{user.name+' '+user.surname}}</h5>
-      <hr />
-    </div></div>
+    <br />
+    <div class="container" style="text-align:center" v-if=" this.$store.state.is_management">
+      <h2>Zmień uprawnienia Zarządu</h2>
+      <hr style="border-color:  rgba(248, 203, 0, 0.788);" />
+      <br />
+      <h3>Obecny Zarząd:</h3>
+      <div align="left" v-for="user in usersAll1" :key="user.id">
+        <button
+          v-if="user.id!==user_id"
+          class="btn btn-primary btn-small floating"
+          type="button"
+          @click="chMan(user.id)"
+        >Odbierz uprawnienia</button>
+        <button
+          v-else
+          class="btn btn-primary btn-small floating yellow"
+          type="button"
+          @click="chMan(user.id)"
+        >Zrezygnuj</button>
+        <h5>{{user.name+' '+user.surname}}</h5>
+
+        <hr />
+      </div>
+      <br />
+      <h3>Pozostali członkowie:</h3>
+      <div align="left" v-for="user in usersAll0" :key="user.id">
+        <button
+          class="btn btn-primary btn-small floating"
+          type="button"
+          @click="chMan(user.id)"
+        >Nadaj uprawnienia</button>
+        <h5>{{user.name+' '+user.surname}}</h5>
+        <hr />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -147,8 +155,8 @@ export default {
           })
           .then(
             function(response) {
-                this.usersAll0.length=0;
-                this.usersAll1.length=0;
+              this.usersAll0.length = 0;
+              this.usersAll1.length = 0;
               for (var user of response.data) {
                 if (user.is_management === 0) this.usersAll0.push(user);
                 else this.usersAll1.push(user);
@@ -164,8 +172,8 @@ export default {
           })
           .then(
             function(response) {
-                this.usersDiv0.length=0;
-                this.usersDiv1.length=0;
+              this.usersDiv0.length = 0;
+              this.usersDiv1.length = 0;
               for (var user of response.data) {
                 if (user.is_leadership === 0) this.usersDiv0.push(user);
                 else this.usersDiv1.push(user);
@@ -192,7 +200,16 @@ export default {
 .floating {
   float: right;
 }
-.btn{
-    width:15em;
+.btn {
+  width: 15em;
+}
+.container {
+  padding-left: 9%;
+  padding-right: 9%;
+}
+.yellow {
+  background-color: rgb(254, 209, 9) !important;
+  border-color: rgb(254, 209, 9);
+  color: rgb(201, 0, 0);
 }
 </style>
