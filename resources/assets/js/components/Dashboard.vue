@@ -45,7 +45,7 @@
             <p style="white-space: pre-line">{{message.body}}</p>
             <!-- <textarea disabled :placeholder=message.body></textarea> -->
             <p class="stamp">
-              Opublikowana: {{message.published_at}}
+              {{message.name+' '+message.surname+', '+message.published_at}}
               <span v-if="message.modified===1">, edytowana</span>
             </p>
           </div>

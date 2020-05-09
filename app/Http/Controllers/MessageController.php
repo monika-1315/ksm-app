@@ -15,19 +15,23 @@ class MessageController extends Controller
     {
         $div = $request->get('division');
         if ($request->get('is_leadership')) {
-            $data = Message::where('receiver_group', '=', 1)
-                ->where('division', '=', $div)
+            $data =DB::table('messages')
+                ->join('users','messages.author', '=', 'users.id')
+                ->where('receiver_group', '=', 1)
+                ->where('messages.division', '=', $div)
                 ->orWhere('receiver_group', '!=', 1)
+                ->select('messages.*', 'users.name','users.surname')
                 ->orderby('published_at', 'desc')
-                ->paginate(2);
-                // ->get();
+                ->paginate(5);
         } else {
-            $data = Message::where('receiver_group', '=', 1)
-                ->where('division', '=', $div)
+            $data = DB::table('messages')
+                ->join('users','messages.author', '=', 'users.id')
+                ->where('receiver_group', '=', 1)
+                ->where('messages.division', '=', $div)
                 ->orWhere('receiver_group', '=', 0)
+                ->select('messages.*', 'users.name','users.surname')
                 ->orderby('published_at', 'desc')
-                ->paginate(3);
-                // ->get();
+                ->paginate(5);
         }
         
         return response()->json($data);
@@ -61,10 +65,7 @@ class MessageController extends Controller
 
     public function getMessageByAuthor(Request $request)
     {
-        $data =DB::table('messages')
-                ->join('users', 'messages.author', '=', 'users.id')
-                ->where('author', '=', $request->get('author'))
-                ->select('messages.*', 'users.name','users.surname')
+        $data = Message::where('author', '=', $request->get('author'))
                 ->orderby('published_at', 'desc')
                 ->get();
 

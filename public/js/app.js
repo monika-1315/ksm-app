@@ -10919,8 +10919,14 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", { staticClass: "stamp" }, [
                           _vm._v(
-                            "\n            Opublikowana: " +
-                              _vm._s(message.published_at) +
+                            "\n            " +
+                              _vm._s(
+                                message.name +
+                                  " " +
+                                  message.surname +
+                                  ", " +
+                                  message.published_at
+                              ) +
                               "\n            "
                           ),
                           message.modified === 1
