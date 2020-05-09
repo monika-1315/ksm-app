@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Division;
 use App\Message;
 
@@ -60,9 +61,12 @@ class MessageController extends Controller
 
     public function getMessageByAuthor(Request $request)
     {
-        $data = Message::where('author', '=', $request->get('author'))
-            ->orderby('published_at', 'desc')
-            ->get();
+        $data =DB::table('messages')
+                ->join('users', 'messages.author', '=', 'users.id')
+                ->where('author', '=', $request->get('author'))
+                ->select('messages.*', 'users.name','users.surname')
+                ->orderby('published_at', 'desc')
+                ->get();
 
         return response()->json($data);
     }

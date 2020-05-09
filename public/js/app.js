@@ -2372,6 +2372,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -5981,6 +6046,25 @@ exports.push([module.i, "\n.progress[data-v-ba7115bc]{\r\n        margin:0px;\r\
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ndiv[data-v-5700b516]{\r\n  text-align:center;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ControlPanel.vue?vue&type=style&index=0&id=fb002644&scoped=true&lang=css&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/ControlPanel.vue?vue&type=style&index=0&id=fb002644&scoped=true&lang=css& ***!
@@ -6899,6 +6983,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./AuthorizeUsr.vue?vue&type=style&index=0&id=ba7115bc&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/AuthorizeUsr.vue?vue&type=style&index=0&id=ba7115bc&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -10305,7 +10419,232 @@ var staticRenderFns = [
           frameborder: "0",
           scrolling: "no"
         }
-      })
+      }),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "text-align": "justify" } }, [
+        _vm._v(
+          "Podczas LII Zjazdu Diecezjalnego odbyły się wybory i delegaci oddziałów wybrali członków nowego Zarządu Diecezjalnego oraz Diecezjalnej Komisji Rewizyjnej."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "text-align": "justify" } }, [
+        _vm._v(
+          "Poniżej przedstawiamy Wam członków pełniących poszczególne funkcje we władzach naszego Stowarzyszenia wraz z danymi kontaktowymi:"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "text-align": "justify" } }, [
+        _c("span", { staticStyle: { "text-decoration": "underline" } }, [
+          _vm._v("Zarząd Diecezjalny")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "text-align": "justify" } }, [
+        _vm._v(
+          "Dekretem Biskupa Legnickiego ks. prof. Zbigniewa Kiernikowskiego Prezesem Zarządu została mianowana:"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "text-align": "center" } }, [
+        _c("strong", [_vm._v("Ewelina Wołoszyn")])
+      ]),
+      _vm._v(
+        '\n\n\n[caption id="attachment_127" align="aligncenter" width="220"]'
+      ),
+      _c("img", {
+        staticClass: "wp-image-127 size-medium",
+        attrs: {
+          src:
+            'http://ksm.legnica.pl/wp-content/uploads/2019/08/Ewelina-e1567724881600-200x300.jpg"',
+          alt: "",
+          width: "240",
+          height: "360"
+        }
+      }),
+      _vm._v(
+        " Kontakt: ksmdl.prezes@gmail.com[/caption]\n\nPoszczególne funkcje w Zarządzie Diecezjalnym objęli:\n"
+      ),
+      _c("p", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("Zastępca Prezesa Zarządu\n"),
+        _c("strong", [_vm._v("Nikola Mączka")])
+      ]),
+      _vm._v(
+        '\n\n\n[caption id="attachment_253" align="aligncenter" width="220"]'
+      ),
+      _c("img", {
+        staticClass: "wp-image-253 size-medium",
+        attrs: {
+          src:
+            'http://ksm.legnica.pl/wp-content/uploads/2020/05/Nikola-e1588937581485.jpeg"',
+          alt: "",
+          width: "240",
+          height: "360"
+        }
+      }),
+      _vm._v(" Kontakt: ksmdl.prezes@gmail.com[/caption]\n\n \n"),
+      _c("p", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("Delegat na Krajową Radę Stowarzyszenia\n"),
+        _c("strong", [_vm._v("Dominika Janicka")])
+      ]),
+      _vm._v(
+        '\n\n\n[caption id="attachment_132" align="aligncenter" width="220"]'
+      ),
+      _c("img", {
+        staticClass: "wp-image-132 size-medium",
+        staticStyle: { "text-align": "center" },
+        attrs: {
+          src:
+            "http://ksm.legnica.pl/wp-content/uploads/2020/05/Dominika-e1588937646617.jpg",
+          alt: "",
+          width: "220",
+          height: "330"
+        }
+      }),
+      _vm._v(" Kontakt: ksmdl.delegat@gmail.com[/caption]\n\n \n"),
+      _c("p", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("Sekretarz Zarządu\n"),
+        _c("strong", [_vm._v("Katarzyna Marusiak")])
+      ]),
+      _vm._v(
+        '\n\n\n[caption id="attachment_130" align="aligncenter" width="220"]'
+      ),
+      _c("img", {
+        staticClass: "wp-image-130 size-medium",
+        attrs: {
+          src:
+            "http://ksm.legnica.pl/wp-content/uploads/2020/05/kasia-e1588937784594.jpg",
+          alt: "",
+          width: "220",
+          height: "330"
+        }
+      }),
+      _vm._v(" Kontakt: ksmdl.sekretarz@gmail.com[/caption]\n"),
+      _c("p", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("Zastępca Sekretarza Zarządu\n"),
+        _c("strong", [_vm._v("Piotr Tsarakhov")])
+      ]),
+      _vm._v(
+        '\n\n\n[caption id="attachment_131" align="aligncenter" width="220"]'
+      ),
+      _c("img", {
+        staticClass: "wp-image-131 size-medium",
+        attrs: {
+          src:
+            "http://ksm.legnica.pl/wp-content/uploads/2020/05/Piotrek-e1588937880481.png",
+          alt: "",
+          width: "240",
+          height: "360"
+        }
+      }),
+      _vm._v(" Kontakt: ksmdl.sekretarz@gmail.com[/caption]\n"),
+      _c("p", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("Skarbnik Zarządu\n"),
+        _c("strong", [_vm._v("Daria Pańczyszyn")])
+      ]),
+      _vm._v(
+        '\n\n\n[caption id="attachment_126" align="aligncenter" width="220"]'
+      ),
+      _c("img", {
+        staticClass: "wp-image-126 size-medium",
+        attrs: {
+          src:
+            "http://ksm.legnica.pl/wp-content/uploads/2019/09/DSC_4008-e1569277344822-200x300.jpg",
+          alt: "",
+          width: "240",
+          height: "360"
+        }
+      }),
+      _vm._v(" Kontakt: ksmdl.skarbnik@gmail.com[/caption]\n\n \n"),
+      _c("p", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("Członek Zarządu\n"),
+        _c("strong", [_vm._v("Karolina Friedek")])
+      ]),
+      _vm._v(" "),
+      _c(
+        "p",
+        { attrs: { id: "attachment_126", align: "center", width: "200" } },
+        [
+          _c("img", {
+            staticClass: "wp-image-126 size-medium",
+            attrs: {
+              src:
+                "http://ksm.legnica.pl/wp-content/uploads/2020/05/Karolina-e1588937952821.jpg",
+              alt: "",
+              width: "240",
+              height: "360"
+            }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v("Kontakt: ksmdl.czlonek@gmail.com")
+        ]
+      ),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "text-align": "justify" } }, [
+        _vm._v(
+          "W razie jakichkolwiek problemów przy próbach kontaktu z poszczególnymi członkami zarządu posiadamy jeszcze wspólny adres mailowy "
+        ),
+        _c("a", { attrs: { href: "mailto:ksmdl.zarzad@gmail.com" } }, [
+          _c("strong", [_vm._v("ksmdl.zarzad@gmail.com")])
+        ]),
+        _vm._v(
+          ", przez który możecie się z nami skontaktować. Prosimy wszystkich naszych przyjaciół, sympatyków, seniorów a także ludzi dobrego serca o modlitwę w intencji naszego Zarządu, abyśmy zawsze byli motywowani miłością do Pana Boga, Ojczyzny i bliźnich, aby w naszych wyborach wspierał nas Duch Święty, a Jezus prowadził przez życie w duchu służby, ofiarności i pokory."
+        )
+      ]),
+      _vm._v("\nW skład "),
+      _c("strong", [_vm._v("Diecezjalnej Komisji Rewizyjnej")]),
+      _vm._v(" weszli:\n"),
+      _c("ul", [
+        _c("li", [_vm._v("Piotr Śliwiak")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("Wojciech Orleski")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("Gabriela Kałuża")])
+      ]),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "text-align": "justify" } }, [
+        _vm._v(
+          "Jeżeli chcecie skontaktować się z Komisją Rewizyjną, możecie napisać maila na adres: "
+        ),
+        _c(
+          "a",
+          { attrs: { href: "mailto:komisja.rewizyjna.ksmdl@gmail.com" } },
+          [_vm._v("komisja.rewizyjna.ksmdl@gmail.com.")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "text-align": "justify" } }, [
+        _vm._v(
+          "Rok 2018 jest rokiem wielu zmian. Po wielu latach służby w naszym stowarzyszeniu z funkcji Diecezjalnego Asystenta Stowarzyszenia ustąpił\nks. Janusz Wilk, który został powołany do bycia Proboszczem w parafii pod wezwaniem Matki Boskiej Częstochowskiej w Gościszowie. Dziękujemy ks. Januszowi za lata współpracy, ogrom zaangażowania oraz wszystkie chwile spędzone razem. Zapewniamy o naszej modlitwie i życzymy Bożego błogosławieństwa i opieki Maryi w trudach prowadzenia parafialnej wspólnoty."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "text-align": "justify" } }, [
+        _vm._v(
+          "Dekretem Biskupa Diecezjalnego ks. prof. Zbigniewa Kiernikowskiego nowym Asystentem Diecezjalnym został mianowany ks. Tomasz Pązik. Z młodym ciałem i młodą duszą wprowadza w nasze Stowarzyszenie ogrom entuzjazmu, poczucia wspólnoty oraz wiele ciekawych pomysłów. Prosimy o modlitwę w jego intencji, aby Pan Bóg wspierał go w jego misji asystowania naszemu Stowarzyszeniu."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticStyle: { "text-align": "center" } }, [
+        _vm._v("Diecezjalny Ksiądz Asystent\n"),
+        _c("strong", [_vm._v("ks. Tomasz Pązik")])
+      ]),
+      _vm._v(
+        '\n\n\n[caption id="attachment_128" align="aligncenter" width="220"]'
+      ),
+      _c("img", {
+        staticClass: "wp-image-128 size-medium",
+        attrs: {
+          src:
+            "http://ksm.legnica.pl/wp-content/uploads/2018/12/40448930_1480421468727872_6407550520789041152_o-200x300.png",
+          alt: "",
+          width: "240",
+          height: "360"
+        }
+      }),
+      _vm._v(
+        " Kontakt: asystent.ksmdl@gmail.com Numer telefonu: 609099791[/caption]\n\n \n  "
+      )
     ])
   }
 ]
@@ -29467,7 +29806,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Calendar_vue_vue_type_template_id_5700b516_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Calendar.vue?vue&type=template&id=5700b516&scoped=true& */ "./resources/assets/js/components/Calendar.vue?vue&type=template&id=5700b516&scoped=true&");
 /* harmony import */ var _Calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Calendar.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/Calendar.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _Calendar_vue_vue_type_style_index_0_id_5700b516_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css& */ "./resources/assets/js/components/Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -29475,7 +29816,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _Calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Calendar_vue_vue_type_template_id_5700b516_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Calendar_vue_vue_type_template_id_5700b516_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -29504,6 +29845,22 @@ component.options.__file = "resources/assets/js/components/Calendar.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Calendar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Calendar.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/assets/js/components/Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css& ***!
+  \**************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_id_5700b516_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/Calendar.vue?vue&type=style&index=0&id=5700b516&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_id_5700b516_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_id_5700b516_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_id_5700b516_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_id_5700b516_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Calendar_vue_vue_type_style_index_0_id_5700b516_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
