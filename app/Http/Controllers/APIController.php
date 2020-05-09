@@ -23,6 +23,8 @@ class APIController extends Controller
                 ->join('managements','users.id', '=', 'managements.user_id')
                 ->join('functions', 'functions.id', '=','managements.function_id')
                 ->select('name', 'surname', 'function_name', 'function_mail', 'term_start', 'term_end', 'user_id')
+                ->where('term_end', '=', null)
+                ->orWhere('term_end', '>=', date('Y-m-d'))
                 ->get();
 
         return response()->json($data);
