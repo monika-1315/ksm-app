@@ -2676,6 +2676,40 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2703,12 +2737,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   methods: {
-    chLeader: function chLeader(id) {
+    chLeader: function chLeader(idi) {
       var _this = this;
 
       this.axios.post("/api/auth/changeLeadership", {
         token: this.$store.state.token,
-        id: id
+        id: idi
       }).then(function (response) {
         _this.isProgress = true;
 
@@ -2727,12 +2761,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         _this.$toaster.error("Coś poszło nie tak!");
       });
     },
-    chMan: function chMan(id) {
+    chMan: function chMan(idi) {
       var _this2 = this;
 
       this.axios.post("/api/auth/changeManagement", {
         token: this.$store.state.token,
-        id: id
+        id: idi
       }).then(function (response) {
         _this2.isProgress = true;
 
@@ -2756,6 +2790,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.axios.post("/api/auth/getAuthorizedUsers", {
           token: this.$store.state.token
         }).then(function (response) {
+          this.usersAll0.length = 0;
+          this.usersAll1.length = 0;
+
           var _iterator = _createForOfIteratorHelper(response.data),
               _step;
 
@@ -2777,13 +2814,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           token: this.$store.state.token,
           division: this.$store.state.division
         }).then(function (response) {
+          this.usersDiv0.length = 0;
+          this.usersDiv1.length = 0;
+
           var _iterator2 = _createForOfIteratorHelper(response.data),
               _step2;
 
           try {
             for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
               var user = _step2.value;
-              if (user.is_management === 0) this.usersDiv0.push(user);else this.usersDiv1.push(user);
+              if (user.is_leadership === 0) this.usersDiv0.push(user);else this.usersDiv1.push(user);
             }
           } catch (err) {
             _iterator2.e(err);
@@ -5991,7 +6031,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.progress[data-v-6c9061d2] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\n.indeterminate[data-v-6c9061d2] {\r\n  background-color: royalblue;\n}\n.floating[data-v-6c9061d2] {\r\n  float: right;\n}\n.btn[data-v-6c9061d2]{\r\n    width:15em;\n}\r\n", ""]);
+exports.push([module.i, "\n.progress[data-v-6c9061d2] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\n.indeterminate[data-v-6c9061d2] {\r\n  background-color: rgb(254, 209, 9);\n}\n.floating[data-v-6c9061d2] {\r\n  float: right;\n}\n.btn[data-v-6c9061d2]{\r\n    width:15em;\n}\r\n", ""]);
 
 // exports
 
@@ -10622,15 +10662,19 @@ var render = function() {
         "div",
         { staticClass: "container", staticStyle: { "text-align": "center" } },
         [
-          _c("h2", [_vm._v("Zmień uprawnienia Kierownictwa")]),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
           _vm.isProgress
             ? _c("div", { staticClass: "progress" }, [
                 _c("div", { staticClass: "indeterminate" })
               ])
             : _vm._e(),
+          _vm._v(" "),
+          _c("h2", [_vm._v("Zmień uprawnienia Kierownictwa")]),
+          _vm._v(" "),
+          _c("hr", {
+            staticStyle: { "border-color": "rgba(248, 203, 0, 0.788)" }
+          }),
+          _vm._v(" "),
+          _c("br"),
           _vm._v(" "),
           _c("h3", [_vm._v("Obecne Kierownictwo:")]),
           _vm._v(" "),
@@ -10694,7 +10738,108 @@ var render = function() {
               _vm._v(" "),
               _c("hr")
             ])
-          })
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          this.$store.state.is_management
+            ? _c(
+                "div",
+                {
+                  staticClass: "container",
+                  staticStyle: { "text-align": "center" }
+                },
+                [
+                  _c("h2", [_vm._v("Zmień uprawnienia Zarządu")]),
+                  _vm._v(" "),
+                  _c("hr", {
+                    staticStyle: { "border-color": "rgba(248, 203, 0, 0.788)" }
+                  }),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("Obecny Zarząd:")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.usersAll1, function(user) {
+                    return _c(
+                      "div",
+                      { key: user.id, attrs: { align: "left" } },
+                      [
+                        user.id !== _vm.user_id
+                          ? _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-primary btn-small floating",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.chMan(user.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Odbierz uprawnienia")]
+                            )
+                          : _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-primary btn-small floating",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.chMan(user.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Zrezygnuj")]
+                            ),
+                        _vm._v(" "),
+                        _c("h5", [
+                          _vm._v(_vm._s(user.name + " " + user.surname))
+                        ]),
+                        _vm._v(" "),
+                        _c("hr")
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("h3", [_vm._v("Pozostali członkowie:")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.usersAll0, function(user) {
+                    return _c(
+                      "div",
+                      { key: user.id, attrs: { align: "left" } },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary btn-small floating",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.chMan(user.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Nadaj uprawnienia")]
+                        ),
+                        _vm._v(" "),
+                        _c("h5", [
+                          _vm._v(_vm._s(user.name + " " + user.surname))
+                        ]),
+                        _vm._v(" "),
+                        _c("hr")
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            : _vm._e()
         ],
         2
       )
