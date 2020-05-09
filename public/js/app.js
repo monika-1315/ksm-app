@@ -2374,69 +2374,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -2513,6 +2450,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6053,7 +5996,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.header[data-v-66ab2f82]{\r\n    color: black;\r\n    font-size: x-large;\r\n    font-weight: 600;\r\n    align-content: center;\r\n    align-items: center;\r\n    padding: 7.5px;\n}\n.fade-enter-active[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  transition-duration: 0.2s;\r\n  transition-property: opacity;\r\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  opacity: 0;\n}\n#nav[data-v-66ab2f82] {\r\n  width: 100%;\n}\n.container[data-v-66ab2f82] {\r\n  padding-left: 9%;\r\n  padding-right: 9%;\n}\n.navbar[data-v-66ab2f82] {\r\n  text-align: center;\r\n  padding-left: 10%;\r\n  padding-right: 10%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover {\r\n  text-decoration: none !important;\r\n  color: white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus {\r\n  text-decoration: none !important;\r\n  color: white;\r\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover {\r\n  text-decoration: none !important;\r\n  color: white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus {\r\n  text-decoration: none !important;\r\n  color: white;\r\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#log-out[data-v-66ab2f82] {\r\n  float: right;\n}\n.nav-link[data-v-66ab2f82]{\r\n  font-weight: 400 !important;\r\n  color:black !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.header[data-v-66ab2f82] {\r\n  color: black;\r\n  font-size: x-large;\r\n  font-weight: 600;\r\n  align-content: center;\r\n  align-items: center;\r\n  padding: 7.5px;\n}\n.fade-enter-active[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  transition-duration: 0.2s;\r\n  transition-property: opacity;\r\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  opacity: 0;\n}\n#nav[data-v-66ab2f82] {\r\n  width: 100%;\n}\n.container[data-v-66ab2f82] {\r\n  padding-left: 9%;\r\n  padding-right: 9%;\n}\n.navbar[data-v-66ab2f82] {\r\n  text-align: center;\r\n  padding-left: 10%;\r\n  padding-right: 10%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover {\r\n  text-decoration: none !important;\r\n  color: white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus {\r\n  text-decoration: none !important;\r\n  color: white;\r\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover {\r\n  text-decoration: none !important;\r\n  color: white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus {\r\n  text-decoration: none !important;\r\n  color: white;\r\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#log-out[data-v-66ab2f82] {\r\n  float: right;\n}\n.nav-link[data-v-66ab2f82] {\r\n  font-weight: 400 !important;\r\n  color: black !important;\n}\r\n", ""]);
 
 // exports
 
@@ -6167,7 +6110,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.btn-light[data-v-fb002644]{\r\n    width: 23em;\n}\nbutton .hover[data-v-fb002644]{\r\n    background-color:rgba(248, 203, 0, 0.788) ;\n}\nbutton[data-v-fb002644]{\r\n    display: inline-block;\r\n    margin: 1em;\r\n    font-weight: 500;\n}\nh4[data-v-fb002644]{\r\n    margin-top: 1em;\r\n    /* text-indent: 1em;\r\n    text-align: left; */\n}\nhr[data-v-fb002644]{\r\n    border-color:  rgba(248, 203, 0, 0.788);\r\n    /* width: 50em;\r\n    margin-left: 0%; */\r\n    /* border-color:  rgba(0, 0, 139, 0.719); */\n}\r\n", ""]);
+exports.push([module.i, "\n.btn-light[data-v-fb002644] {\r\n  width: 23em;\n}\n#contact[data-v-fb002644]{\r\n  width: -webkit-min-content;\r\n  width: -moz-min-content;\r\n  width: min-content;\n}\nbutton .hover[data-v-fb002644] {\r\n  background-color: rgba(248, 203, 0, 0.788);\n}\nbutton[data-v-fb002644] {\r\n  display: inline-block;\r\n  margin: 1em;\r\n  font-weight: 500;\n}\nh4[data-v-fb002644] {\r\n  margin-top: 1em;\r\n  /* text-indent: 1em;\r\n    text-align: left; */\n}\nhr[data-v-fb002644] {\r\n  border-color: rgba(248, 203, 0, 0.788);\r\n  /* width: 50em;\r\n    margin-left: 0%; */\r\n  /* border-color:  rgba(0, 0, 139, 0.719); */\n}\r\n", ""]);
 
 // exports
 
@@ -9796,7 +9739,7 @@ var render = function() {
               this.$store.state.isLoggedIn
                 ? _c("li", [
                     _c("div", { staticClass: "header nav" }, [
-                      _vm._v("Witaj " + _vm._s(_vm.name) + "!\n          ")
+                      _vm._v("Witaj " + _vm._s(_vm.name) + "!")
                     ])
                   ])
                 : _vm._e()
@@ -9863,6 +9806,23 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _c("li"),
+              _vm._v(" "),
+              !this.$store.state.isLoggedIn
+                ? _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { to: { name: "contact" } }
+                        },
+                        [_vm._v("Kontakt")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
               _vm._v(" "),
               !this.$store.state.isLoggedIn
                 ? _c(
@@ -10539,232 +10499,7 @@ var staticRenderFns = [
           frameborder: "0",
           scrolling: "no"
         }
-      }),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "text-align": "justify" } }, [
-        _vm._v(
-          "Podczas LII Zjazdu Diecezjalnego odbyły się wybory i delegaci oddziałów wybrali członków nowego Zarządu Diecezjalnego oraz Diecezjalnej Komisji Rewizyjnej."
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "text-align": "justify" } }, [
-        _vm._v(
-          "Poniżej przedstawiamy Wam członków pełniących poszczególne funkcje we władzach naszego Stowarzyszenia wraz z danymi kontaktowymi:"
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "text-align": "justify" } }, [
-        _c("span", { staticStyle: { "text-decoration": "underline" } }, [
-          _vm._v("Zarząd Diecezjalny")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "text-align": "justify" } }, [
-        _vm._v(
-          "Dekretem Biskupa Legnickiego ks. prof. Zbigniewa Kiernikowskiego Prezesem Zarządu została mianowana:"
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "text-align": "center" } }, [
-        _c("strong", [_vm._v("Ewelina Wołoszyn")])
-      ]),
-      _vm._v(
-        '\n\n\n[caption id="attachment_127" align="aligncenter" width="220"]'
-      ),
-      _c("img", {
-        staticClass: "wp-image-127 size-medium",
-        attrs: {
-          src:
-            'http://ksm.legnica.pl/wp-content/uploads/2019/08/Ewelina-e1567724881600-200x300.jpg"',
-          alt: "",
-          width: "240",
-          height: "360"
-        }
-      }),
-      _vm._v(
-        " Kontakt: ksmdl.prezes@gmail.com[/caption]\n\nPoszczególne funkcje w Zarządzie Diecezjalnym objęli:\n"
-      ),
-      _c("p", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Zastępca Prezesa Zarządu\n"),
-        _c("strong", [_vm._v("Nikola Mączka")])
-      ]),
-      _vm._v(
-        '\n\n\n[caption id="attachment_253" align="aligncenter" width="220"]'
-      ),
-      _c("img", {
-        staticClass: "wp-image-253 size-medium",
-        attrs: {
-          src:
-            'http://ksm.legnica.pl/wp-content/uploads/2020/05/Nikola-e1588937581485.jpeg"',
-          alt: "",
-          width: "240",
-          height: "360"
-        }
-      }),
-      _vm._v(" Kontakt: ksmdl.prezes@gmail.com[/caption]\n\n \n"),
-      _c("p", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Delegat na Krajową Radę Stowarzyszenia\n"),
-        _c("strong", [_vm._v("Dominika Janicka")])
-      ]),
-      _vm._v(
-        '\n\n\n[caption id="attachment_132" align="aligncenter" width="220"]'
-      ),
-      _c("img", {
-        staticClass: "wp-image-132 size-medium",
-        staticStyle: { "text-align": "center" },
-        attrs: {
-          src:
-            "http://ksm.legnica.pl/wp-content/uploads/2020/05/Dominika-e1588937646617.jpg",
-          alt: "",
-          width: "220",
-          height: "330"
-        }
-      }),
-      _vm._v(" Kontakt: ksmdl.delegat@gmail.com[/caption]\n\n \n"),
-      _c("p", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Sekretarz Zarządu\n"),
-        _c("strong", [_vm._v("Katarzyna Marusiak")])
-      ]),
-      _vm._v(
-        '\n\n\n[caption id="attachment_130" align="aligncenter" width="220"]'
-      ),
-      _c("img", {
-        staticClass: "wp-image-130 size-medium",
-        attrs: {
-          src:
-            "http://ksm.legnica.pl/wp-content/uploads/2020/05/kasia-e1588937784594.jpg",
-          alt: "",
-          width: "220",
-          height: "330"
-        }
-      }),
-      _vm._v(" Kontakt: ksmdl.sekretarz@gmail.com[/caption]\n"),
-      _c("p", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Zastępca Sekretarza Zarządu\n"),
-        _c("strong", [_vm._v("Piotr Tsarakhov")])
-      ]),
-      _vm._v(
-        '\n\n\n[caption id="attachment_131" align="aligncenter" width="220"]'
-      ),
-      _c("img", {
-        staticClass: "wp-image-131 size-medium",
-        attrs: {
-          src:
-            "http://ksm.legnica.pl/wp-content/uploads/2020/05/Piotrek-e1588937880481.png",
-          alt: "",
-          width: "240",
-          height: "360"
-        }
-      }),
-      _vm._v(" Kontakt: ksmdl.sekretarz@gmail.com[/caption]\n"),
-      _c("p", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Skarbnik Zarządu\n"),
-        _c("strong", [_vm._v("Daria Pańczyszyn")])
-      ]),
-      _vm._v(
-        '\n\n\n[caption id="attachment_126" align="aligncenter" width="220"]'
-      ),
-      _c("img", {
-        staticClass: "wp-image-126 size-medium",
-        attrs: {
-          src:
-            "http://ksm.legnica.pl/wp-content/uploads/2019/09/DSC_4008-e1569277344822-200x300.jpg",
-          alt: "",
-          width: "240",
-          height: "360"
-        }
-      }),
-      _vm._v(" Kontakt: ksmdl.skarbnik@gmail.com[/caption]\n\n \n"),
-      _c("p", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Członek Zarządu\n"),
-        _c("strong", [_vm._v("Karolina Friedek")])
-      ]),
-      _vm._v(" "),
-      _c(
-        "p",
-        { attrs: { id: "attachment_126", align: "center", width: "200" } },
-        [
-          _c("img", {
-            staticClass: "wp-image-126 size-medium",
-            attrs: {
-              src:
-                "http://ksm.legnica.pl/wp-content/uploads/2020/05/Karolina-e1588937952821.jpg",
-              alt: "",
-              width: "240",
-              height: "360"
-            }
-          }),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v("Kontakt: ksmdl.czlonek@gmail.com")
-        ]
-      ),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "text-align": "justify" } }, [
-        _vm._v(
-          "W razie jakichkolwiek problemów przy próbach kontaktu z poszczególnymi członkami zarządu posiadamy jeszcze wspólny adres mailowy "
-        ),
-        _c("a", { attrs: { href: "mailto:ksmdl.zarzad@gmail.com" } }, [
-          _c("strong", [_vm._v("ksmdl.zarzad@gmail.com")])
-        ]),
-        _vm._v(
-          ", przez który możecie się z nami skontaktować. Prosimy wszystkich naszych przyjaciół, sympatyków, seniorów a także ludzi dobrego serca o modlitwę w intencji naszego Zarządu, abyśmy zawsze byli motywowani miłością do Pana Boga, Ojczyzny i bliźnich, aby w naszych wyborach wspierał nas Duch Święty, a Jezus prowadził przez życie w duchu służby, ofiarności i pokory."
-        )
-      ]),
-      _vm._v("\nW skład "),
-      _c("strong", [_vm._v("Diecezjalnej Komisji Rewizyjnej")]),
-      _vm._v(" weszli:\n"),
-      _c("ul", [
-        _c("li", [_vm._v("Piotr Śliwiak")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("Wojciech Orleski")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("Gabriela Kałuża")])
-      ]),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "text-align": "justify" } }, [
-        _vm._v(
-          "Jeżeli chcecie skontaktować się z Komisją Rewizyjną, możecie napisać maila na adres: "
-        ),
-        _c(
-          "a",
-          { attrs: { href: "mailto:komisja.rewizyjna.ksmdl@gmail.com" } },
-          [_vm._v("komisja.rewizyjna.ksmdl@gmail.com.")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "text-align": "justify" } }, [
-        _vm._v(
-          "Rok 2018 jest rokiem wielu zmian. Po wielu latach służby w naszym stowarzyszeniu z funkcji Diecezjalnego Asystenta Stowarzyszenia ustąpił\nks. Janusz Wilk, który został powołany do bycia Proboszczem w parafii pod wezwaniem Matki Boskiej Częstochowskiej w Gościszowie. Dziękujemy ks. Januszowi za lata współpracy, ogrom zaangażowania oraz wszystkie chwile spędzone razem. Zapewniamy o naszej modlitwie i życzymy Bożego błogosławieństwa i opieki Maryi w trudach prowadzenia parafialnej wspólnoty."
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "text-align": "justify" } }, [
-        _vm._v(
-          "Dekretem Biskupa Diecezjalnego ks. prof. Zbigniewa Kiernikowskiego nowym Asystentem Diecezjalnym został mianowany ks. Tomasz Pązik. Z młodym ciałem i młodą duszą wprowadza w nasze Stowarzyszenie ogrom entuzjazmu, poczucia wspólnoty oraz wiele ciekawych pomysłów. Prosimy o modlitwę w jego intencji, aby Pan Bóg wspierał go w jego misji asystowania naszemu Stowarzyszeniu."
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticStyle: { "text-align": "center" } }, [
-        _vm._v("Diecezjalny Ksiądz Asystent\n"),
-        _c("strong", [_vm._v("ks. Tomasz Pązik")])
-      ]),
-      _vm._v(
-        '\n\n\n[caption id="attachment_128" align="aligncenter" width="220"]'
-      ),
-      _c("img", {
-        staticClass: "wp-image-128 size-medium",
-        attrs: {
-          src:
-            "http://ksm.legnica.pl/wp-content/uploads/2018/12/40448930_1480421468727872_6407550520789041152_o-200x300.png",
-          alt: "",
-          width: "240",
-          height: "360"
-        }
-      }),
-      _vm._v(
-        " Kontakt: asystent.ksmdl@gmail.com Numer telefonu: 609099791[/caption]\n\n \n  "
-      )
+      })
     ])
   }
 ]
@@ -10870,6 +10605,7 @@ var render = function() {
       _c("h2", [_vm._v("Panel sterowania")]),
       _vm._v(" "),
       _c("hr"),
+      _vm._v(" "),
       _c("br"),
       _vm._v(" "),
       _c("h4", [_vm._v("Twoje konto:")]),
@@ -10918,7 +10654,7 @@ var render = function() {
         ? _c(
             "div",
             [
-              _c("h4", [_vm._v(" Zarządzaj członkami:")]),
+              _c("h4", [_vm._v("Zarządzaj członkami:")]),
               _vm._v(" "),
               this.$store.state.isLoggedIn &&
               this.$store.state.is_authorized &&
@@ -10954,7 +10690,7 @@ var render = function() {
             "div",
             [
               this.$store.state.is_management
-                ? _c("h4", [_vm._v(" Zarządzaj oddziałami:")])
+                ? _c("h4", [_vm._v("Zarządzaj oddziałami:")])
                 : _vm._e(),
               _vm._v(" "),
               this.$store.state.isLoggedIn &&
@@ -10990,6 +10726,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _c("br"),
+      _vm._v(" "),
       _c("br"),
       _vm._v(" "),
       this.$store.state.isLoggedIn
@@ -10998,7 +10735,24 @@ var render = function() {
               _vm._v("Wróć do tablicy ogłoszeń")
             ])
           ])
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        { staticClass: "nav-link", attrs: { to: { name: "contact" } } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-light btn-small left",
+              attrs: { id: "contact" }
+            },
+            [_vm._v("Kontakt")]
+          )
+        ]
+      )
     ],
     1
   )

@@ -1,24 +1,25 @@
 <template>
   <div class="container" style="text-align: center">
     <h2>Panel sterowania</h2>
-    <hr><br>
+    <hr />
+    <br />
     <h4>Twoje konto:</h4>
-    <router-link :to="{ name: 'edit' }" class="" v-if="this.$store.state.isLoggedIn">
+    <router-link :to="{ name: 'edit' }" class v-if="this.$store.state.isLoggedIn">
       <button class="btn-light btn-large">Edytuj swoje dane</button>
     </router-link>
     <router-link
       :to="{ name: 'delegate' }"
-      class=""
+      class
       v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
     >
       <button class="btn-light btn-large left-btn">Deleguj uprawnienia</button>
     </router-link>
-<!-- <hr> -->
-   
-   <h4>Ogłoszenia:</h4>
+    <!-- <hr> -->
+
+    <h4>Ogłoszenia:</h4>
     <router-link
       :to="{ name: 'editmessages' }"
-      class=""
+      class
       v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
     >
       <button class="btn-light btn-large left-btn">Edytuj swoje ogłoszenia</button>
@@ -26,85 +27,92 @@
 
     <router-link
       :to="{ name: 'message' }"
-      class=""
+      class
       v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && (this.$store.state.is_leadership || this.$store.state.is_management)"
     >
       <button class="btn-light btn-large right-btn">Nowa wiadomość</button>
     </router-link>
 
-<div v-if="this.$store.state.is_leadership || this.$store.state.is_management">
-<!-- <hr> -->
-    <h4 > Zarządzaj członkami:</h4>
-    <router-link
-      :to="{ name: 'adduser' }"
-      class=""
-      v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
-    >
-      <button class="btn-light btn-large left-btn">Dodaj członka</button>
-    </router-link>
+    <div v-if="this.$store.state.is_leadership || this.$store.state.is_management">
+      <!-- <hr> -->
+      <h4>Zarządzaj członkami:</h4>
+      <router-link
+        :to="{ name: 'adduser' }"
+        class
+        v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
+      >
+        <button class="btn-light btn-large left-btn">Dodaj członka</button>
+      </router-link>
 
-    <router-link
-      :to="{ name: 'authorize' }"
-      class=""
-      v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized && this.$store.state.is_leadership"
-    >
-      <button class="btn-light btn-large right-btn">Zatwierdzaj członków oddziału</button>
-    </router-link>
-</div>
-<div v-if="this.$store.state.is_management">
-<!-- <hr> -->
-   <h4 v-if="this.$store.state.is_management"> Zarządzaj oddziałami:</h4>
-    <router-link
-      :to="{ name: 'divisions' }"
-      class=""
-      v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
-    >
-      <button class="btn-light btn-large left-btn">Zarządzaj oddziałami</button>
-    </router-link>
+      <router-link
+        :to="{ name: 'authorize' }"
+        class
+        v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized && this.$store.state.is_leadership"
+      >
+        <button class="btn-light btn-large right-btn">Zatwierdzaj członków oddziału</button>
+      </router-link>
+    </div>
+    <div v-if="this.$store.state.is_management">
+      <!-- <hr> -->
+      <h4 v-if="this.$store.state.is_management">Zarządzaj oddziałami:</h4>
+      <router-link
+        :to="{ name: 'divisions' }"
+        class
+        v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
+      >
+        <button class="btn-light btn-large left-btn">Zarządzaj oddziałami</button>
+      </router-link>
 
-    <router-link
-      :to="{ name: 'newdivision' }"
-      class=""
-      v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
-    >
-      <button class="btn-light btn-large right-btn">Nowy oddział</button>
-    </router-link>
-</div>
-  <br><br>
-    <router-link :to="{ name: 'dashboard' }" class="" v-if="this.$store.state.isLoggedIn">
+      <router-link
+        :to="{ name: 'newdivision' }"
+        class
+        v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
+      >
+        <button class="btn-light btn-large right-btn">Nowy oddział</button>
+      </router-link>
+    </div>
+    <br />
+    <br />
+    <router-link :to="{ name: 'dashboard' }"  v-if="this.$store.state.isLoggedIn">
       <button class="btn btn-primary right">Wróć do tablicy ogłoszeń</button>
     </router-link>
+
+    <br />
+
+    <router-link :to="{ name: 'contact' }"  class="nav-link" ><button id="contact" class="btn btn-light btn-small left">Kontakt</button></router-link>
   </div>
 </template>
 
 <script>
 export default {
-  methods: {},
-  
+  methods: {}
 };
 </script>
 
 <style scoped>
-.btn-light{
-    width: 23em;
+.btn-light {
+  width: 23em;
 }
-button .hover{
-    background-color:rgba(248, 203, 0, 0.788) ;
+#contact{
+  width: min-content;
 }
-button{
-    display: inline-block;
-    margin: 1em;
-    font-weight: 500;
+button .hover {
+  background-color: rgba(248, 203, 0, 0.788);
 }
-h4{
-    margin-top: 1em;
-    /* text-indent: 1em;
+button {
+  display: inline-block;
+  margin: 1em;
+  font-weight: 500;
+}
+h4 {
+  margin-top: 1em;
+  /* text-indent: 1em;
     text-align: left; */
 }
-hr{
-    border-color:  rgba(248, 203, 0, 0.788);
-    /* width: 50em;
+hr {
+  border-color: rgba(248, 203, 0, 0.788);
+  /* width: 50em;
     margin-left: 0%; */
-    /* border-color:  rgba(0, 0, 139, 0.719); */
+  /* border-color:  rgba(0, 0, 139, 0.719); */
 }
 </style>

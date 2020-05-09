@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div id="nav">
         <ul class="left navbar-nav hide-on-med-and-down">
@@ -14,16 +14,13 @@
             </router-link>
           </li>
 
-          <li v-if="this.$store.state.isLoggedIn" >
-            <div class="header nav">Witaj {{ name}}!
-            </div>
+          <li v-if="this.$store.state.isLoggedIn">
+            <div class="header nav">Witaj {{ name}}!</div>
           </li>
         </ul>
 
         <ul class="right navbar-nav hide-on-med-and-down">
-          <li
-             class="right"
-          >
+          <li class="right">
             <router-link :to="{ name: 'calendar' }" class="nav-link">Kalendarium</router-link>
           </li>
           <li
@@ -38,8 +35,11 @@
           >
             <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
           </li>
-        <li/>
+          <li />
 
+          <li v-if="!this.$store.state.isLoggedIn">
+            <router-link :to="{ name: 'contact' }" class="nav-link">Kontakt</router-link>
+          </li>
           <li v-if="!this.$store.state.isLoggedIn">
             <router-link :to="{ name: 'login' }" class="nav-link">Zaloguj się</router-link>
           </li>
@@ -133,15 +133,14 @@ export default {
 </script>
 
 <style scoped>
-
-.header{
-    color: black;
-    font-size: x-large;
-    font-weight: 600;
-    align-content: center;
-    align-items: center;
-    padding: 7.5px;
-    }
+.header {
+  color: black;
+  font-size: x-large;
+  font-weight: 600;
+  align-content: center;
+  align-items: center;
+  padding: 7.5px;
+}
 
 .fade-enter-active,
 .fade-leave-active {
@@ -166,7 +165,6 @@ export default {
   text-align: center;
   padding-left: 10%;
   padding-right: 10%;
-  
 }
 #nav-mobile a:hover {
   text-decoration: none !important;
@@ -190,8 +188,8 @@ export default {
 #log-out {
   float: right;
 }
-.nav-link{
+.nav-link {
   font-weight: 400 !important;
-  color:black !important;
+  color: black !important;
 }
 </style>
