@@ -10,30 +10,63 @@ use App\Message;
 class MessageController extends Controller
 {
 
-
     public function getMessages(Request $request)
     {
+       define('PAGE_SIZE',3);
         $div = $request->get('division');
-        if ($request->get('is_leadership')) {
-            $data =DB::table('messages')
-                ->join('users','messages.author', '=', 'users.id')
-                ->where('receiver_group', '=', 1)
-                ->where('messages.division', '=', $div)
-                ->orWhere('receiver_group', '!=', 1)
-                ->select('messages.*', 'users.name','users.surname')
-                ->orderby('published_at', 'desc')
-                ->paginate(5);
-        } else {
-            $data = DB::table('messages')
-                ->join('users','messages.author', '=', 'users.id')
-                ->where('receiver_group', '=', 1)
-                ->where('messages.division', '=', $div)
-                ->orWhere('receiver_group', '=', 0)
-                ->select('messages.*', 'users.name','users.surname')
-                ->orderby('published_at', 'desc')
-                ->paginate(5);
+        switch ($request->get('card')) {
+            case ('A'):
+
+                if ($request->get('is_leadership')) {
+                    $data = DB::table('messages')
+                        ->join('users', 'messages.author', '=', 'users.id')
+                        ->where('receiver_group', '=', 1)
+                        ->where('messages.division', '=', $div)
+                        ->orWhere('receiver_group', '!=', 1)
+                        ->select('messages.*', 'users.name', 'users.surname')
+                        ->orderby('published_at', 'desc')
+                        ->paginate(constant('PAGE_SIZE'));
+                } else {
+                    $data = DB::table('messages')
+                        ->join('users', 'messages.author', '=', 'users.id')
+                        ->where('receiver_group', '=', 1)
+                        ->where('messages.division', '=', $div)
+                        ->orWhere('receiver_group', '=', 0)
+                        ->select('messages.*', 'users.name', 'users.surname')
+                        ->orderby('published_at', 'desc')
+                        ->paginate(constant('PAGE_SIZE'));
+                }
+                break;
+            case ('B'):
+                $data = DB::table('messages')
+                    ->join('users', 'messages.author', '=', 'users.id')
+                    ->where('receiver_group', '=', 1)
+                    ->where('messages.division', '=', $div)
+                    ->select('messages.*', 'users.name', 'users.surname')
+                    ->orderby('published_at', 'desc')
+                    ->paginate(constant('PAGE_SIZE'));
+                break;
+            case ('C'):
+                $data = DB::table('messages')
+                    ->join('users', 'messages.author', '=', 'users.id')
+                    ->where('receiver_group', '=', 0)
+                    ->select('messages.*', 'users.name', 'users.surname')
+                    ->orderby('published_at', 'desc')
+                    ->paginate(constant('PAGE_SIZE'));
+                break;
+            case ('D'):
+                if ($request->get('is_leadership')) {
+                    $data = DB::table('messages')
+                        ->join('users', 'messages.author', '=', 'users.id')
+                        ->where('receiver_group', '=', 2)
+                        ->select('messages.*', 'users.name', 'users.surname')
+                        ->orderby('published_at', 'desc')
+                        ->paginate(constant('PAGE_SIZE'));
+                } else
+                    $data = [];
+                break;
         }
-        
+
         return response()->json($data);
     }
 
@@ -66,8 +99,8 @@ class MessageController extends Controller
     public function getMessageByAuthor(Request $request)
     {
         $data = Message::where('author', '=', $request->get('author'))
-                ->orderby('published_at', 'desc')
-                ->get();
+            ->orderby('published_at', 'desc')
+            ->get();
 
         return response()->json($data);
     }

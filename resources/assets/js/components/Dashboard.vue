@@ -26,7 +26,7 @@
       <span v-for="tab in tabs" :key="tab.id">
         <button
           class="tab btn btn-light"
-          @click="selectedTab=tab.id"
+          @click="tabSelected(tab.id)"
           v-if="tab.id!=='D'||is_leadership"
         >
           <a :class="{activeTab: selectedTab===tab.id}">{{ tab.text }}</a>
@@ -43,7 +43,6 @@
           </div>
           <div class="card-body">
             <p style="white-space: pre-line">{{message.body}}</p>
-            <!-- <textarea disabled :placeholder=message.body></textarea> -->
             <p class="stamp">
               {{message.name+' '+message.surname+', '+message.published_at}}
               <span v-if="message.modified===1">, edytowana</span>
@@ -108,13 +107,18 @@ export default {
         .post("/api/auth/getMessages", {
           is_leadership: this.is_leadership,
           token: this.$store.state.token,
-          division: this.$store.state.division
+          division: this.$store.state.division,
+          card: this.selectedTab
         })
         .then(
           function(response) {
             this.messages = response.data;
           }.bind(this)
         );
+    },
+    tabSelected: function(cardId){
+      this.selectedTab=cardId;
+      this.getMessages();
     },
     newMessage: function() {
       this.$router.push({ name: "message" });
@@ -124,7 +128,8 @@ export default {
         .post(url, {
           is_leadership: this.is_leadership,
           token: this.$store.state.token,
-          division: this.$store.state.division
+          division: this.$store.state.division,
+          card: this.selectedTab
         })
         .then(
           function(response) {

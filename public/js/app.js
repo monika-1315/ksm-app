@@ -2621,7 +2621,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2662,10 +2661,15 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.post("/api/auth/getMessages", {
         is_leadership: this.is_leadership,
         token: this.$store.state.token,
-        division: this.$store.state.division
+        division: this.$store.state.division,
+        card: this.selectedTab
       }).then(function (response) {
         this.messages = response.data;
       }.bind(this));
+    },
+    tabSelected: function tabSelected(cardId) {
+      this.selectedTab = cardId;
+      this.getMessages();
     },
     newMessage: function newMessage() {
       this.$router.push({
@@ -2676,7 +2680,8 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.post(url, {
         is_leadership: this.is_leadership,
         token: this.$store.state.token,
-        division: this.$store.state.division
+        division: this.$store.state.division,
+        card: this.selectedTab
       }).then(function (response) {
         this.messages = response.data;
       }.bind(this));
@@ -10882,7 +10887,7 @@ var render = function() {
                         staticClass: "tab btn btn-light",
                         on: {
                           click: function($event) {
-                            _vm.selectedTab = tab.id
+                            return _vm.tabSelected(tab.id)
                           }
                         }
                       },
