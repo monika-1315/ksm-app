@@ -29,7 +29,7 @@ export default {
           this.dataa=response.data;
           for (var division of response.data) {
             this.labels.push(division.town);
-            this.data.push(division.cnt1);
+            this.data.push(division.cnt_all);
           }
           this.fillData();
         }.bind(this)

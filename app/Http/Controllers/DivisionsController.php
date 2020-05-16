@@ -24,21 +24,22 @@ class DivisionsController extends Controller
         $select2 = DB::table('divisions')
             ->leftJoinSub($select, 'sel', function ($join) {
                 $join->on('divisions.id', '=', 'sel.division');
-            }) ->selectRaw('divisions.town, count(sel.id) cnt1 ')
+            }) ->selectRaw('divisions.town, divisions.id, count(sel.id) cnt_aut ')
             ->where('is_active', '=', 1)
-            ->groupByRaw('divisions.town')
-            ->get();
+            ->groupByRaw('divisions.town, divisions.id');
+            // ->get();
         
-            $data=$select2;
-        // $data = DB::table('users')
-        //     ->where('is_authorized', '=', 0)
-        //     ->rightJoin('divisions', 'users.division', '=', 'divisions.id')
-        //     ->where('is_active', '=', 1)
-        //     ->selectRaw('divisions.town, count(users.id) cnt0, sel.cnt1')
-        //     ->groupByRaw('divisions.town, sel.cnt1')
-        //     ->joinSub($select, 'sel', function ($join) {
-        //         $join->on('divisions.town', '=', 'sel.town');
-        //     })->get();
+            // $data=$select2;
+        $select3= DB::table('users')
+        ->where('is_authorized', '=', 0);
+
+        $data = DB::table('users')
+            // ->where('is_authorized', '=', 0)
+            ->selectRaw('sel.town, count(users.id) cnt_all, sel.cnt_aut')
+            ->groupByRaw('sel.town, sel.cnt_aut')
+            ->rightJoinSub($select2, 'sel', function ($join) {
+                $join->on('users.division', '=', 'sel.id');
+            })->get();
         
         return response()->json($data);
     }

@@ -2433,7 +2433,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var division = _step.value;
             this.labels.push(division.town);
-            this.data.push(division.cnt1);
+            this.data.push(division.cnt_all);
           }
         } catch (err) {
           _iterator.e(err);
