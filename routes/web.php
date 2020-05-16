@@ -17,6 +17,7 @@ Route::get('/', function () {
 Route::get('/api/getDivisions', 'DivisionsController@getDivisions');
 Route::get('/api/getDivisionById', 'DivisionsController@getDivisionById');
 Route::get('/api/getManagement', 'APIController@getManagement');
+Route::get('/api/getDivisionsStats', 'DivisionsController@getDivisionsStats');
 
 Route::get('/{id}', function () {
     return view('welcome');

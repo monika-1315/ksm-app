@@ -1,53 +1,67 @@
 <template>
   <div class="small">
     <line-chart :chart-data="datacollection"></line-chart>
-    <button @click="fillData()">Randomize</button>
   </div>
 </template>
 
 <script>
-  import LineChart from '../Chart.js'
+import LineChart from "../Chart.js";
 
-  export default {
-    components: { 
-      LineChart
+export default {
+  components: {
+    LineChart
+  },
+  data() {
+    return {
+      datacollection: null,
+      labels: [],
+      data: []
+    };
+  },
+  mounted() {
+    this.getStats();
+  },
+  methods: {
+    getStats: function() {
+      this.axios.get("/api/getDivisionsStats").then(
+        function(response) {
+          // this.data=response.data;
+          for (var division of response.data) {
+            this.labels.push(division.town);
+            this.data.push(division.cnt);
+          }
+          this.fillData();
+        }.bind(this)
+      );
     },
-    data () {
-      return {
-        datacollection: null
-      }
-    },
-    mounted () {
-      this.fillData()
-    },
-    methods: {
-      fillData () {
-        this.datacollection = {
-        
-          labels: ['a','b','c','d', 'e','f','g'],
-         
-    datasets: [{
-        label: 'my',
-        barPercentage: 0.5,
-        barThickness: 16,
-        maxBarThickness: 18,
-        minBarLength: 2,
-        data: [5, 20, 30, 40, 50, 60, 70],
-        backgroundColor: 'lightblue'
-    }]
+    fillData() {
+      this.datacollection = {
+        labels: this.labels,
 
-        }
-      },
-      getRandomInt () {
-        return Math.floor(Math.random() * (50 - 5 + 1)) + 5
-      }
+        datasets: [
+          {
+            label: "Liczba zatwierdzonych członków w oddziale",
+            barPercentage: 0.8,
+            barThickness: 20,
+            maxBarThickness: 30,
+            minBarLength: 10,
+            data: this.data,
+            backgroundColor: "rgba(255, 201, 24, 0.719)"
+          }
+        ]
+      };
+    },
+    getRandomInt() {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
     }
   }
+};
 </script>
 
 <style>
-  .small {
-    max-width: 600px;
-    margin:  150px auto;
-  }
+.small {
+  max-width: 600px;
+  margin: 150px auto;
+  backgroundcolor: rgba(255, 201, 24, 0.719);
+}
 </style>

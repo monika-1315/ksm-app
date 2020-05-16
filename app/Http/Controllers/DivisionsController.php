@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Division;
-use App\Message;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Auth;
 
 class DivisionsController extends Controller
@@ -14,12 +15,24 @@ class DivisionsController extends Controller
      *
      * @return void
      */
+    public function getDivisionsStats()
+    {
+        $data = Division::where('is_active', '=', 1)
+            ->get();
+        $data = DB::table('divisions')
+            ->join('users', 'users.division', '=', 'divisions.id')
+            ->where('is_active', '=', 1)
+            ->where('is_authorized', '=', 1)
+            ->selectRaw('divisions.town, count(users.id) cnt')
+            ->groupBy('divisions.town')
+            ->get();
 
-
+        return response()->json($data);
+    }
     public function getDivisions()
     {
         $data = Division::where('is_active', '=', 1)
-                    ->get();
+            ->get();
 
         return response()->json($data);
     }
@@ -27,7 +40,7 @@ class DivisionsController extends Controller
     public function getDivisionById(Request $request)
     {
         $data = Division::where('id', '=', $request->get('id'))
-                    ->get();
+            ->get();
 
         return response()->json($data);
     }
@@ -54,7 +67,7 @@ class DivisionsController extends Controller
         $division = Division::find($request->get('id'));
         $division->town = $request->get('town');
         $division->parish = $request->get('parish');
-        $division->is_active= $request->get('is_active');
+        $division->is_active = $request->get('is_active');
         $division->save();
 
         return response()->json([
@@ -63,7 +76,7 @@ class DivisionsController extends Controller
         ]);
     }
 
-    
+
     public function newDivision(Request $request)
     {
         $division = new Division();

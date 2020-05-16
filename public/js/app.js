@@ -2393,7 +2393,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Chart.js */ "./resources/assets/js/Chart.js");
-//
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -2407,24 +2412,47 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      datacollection: null
+      datacollection: null,
+      labels: [],
+      data: []
     };
   },
   mounted: function mounted() {
-    this.fillData();
+    this.getStats();
   },
   methods: {
+    getStats: function getStats() {
+      this.axios.get("/api/getDivisionsStats").then(function (response) {
+        // this.data=response.data;
+        var _iterator = _createForOfIteratorHelper(response.data),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var division = _step.value;
+            this.labels.push(division.town);
+            this.data.push(division.cnt);
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        this.fillData();
+      }.bind(this));
+    },
     fillData: function fillData() {
       this.datacollection = {
-        labels: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+        labels: this.labels,
         datasets: [{
-          label: 'my',
-          barPercentage: 0.5,
-          barThickness: 16,
-          maxBarThickness: 18,
-          minBarLength: 2,
-          data: [5, 20, 30, 40, 50, 60, 70],
-          backgroundColor: 'lightblue'
+          label: "Liczba zatwierdzonych członków w oddziale",
+          barPercentage: 0.8,
+          barThickness: 20,
+          maxBarThickness: 30,
+          minBarLength: 10,
+          data: this.data,
+          backgroundColor: "rgba(255, 201, 24, 0.719)"
         }]
       };
     },
@@ -22305,7 +22333,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.small {\n  max-width: 600px;\n  margin:  150px auto;\n}\n", ""]);
+exports.push([module.i, "\n.small {\r\n  max-width: 600px;\r\n  margin: 150px auto;\r\n  backgroundcolor: rgba(255, 201, 24, 0.719);\n}\r\n", ""]);
 
 // exports
 
@@ -47933,21 +47961,7 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "small" },
-    [
-      _c("line-chart", { attrs: { "chart-data": _vm.datacollection } }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              return _vm.fillData()
-            }
-          }
-        },
-        [_vm._v("Randomize")]
-      )
-    ],
+    [_c("line-chart", { attrs: { "chart-data": _vm.datacollection } })],
     1
   )
 }
@@ -66892,7 +66906,20 @@ var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactivePr
 /* harmony default export */ __webpack_exports__["default"] = ({
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Bar"],
   mixins: [reactiveProp],
-  props: ['chartData', 'options'],
+  props: ['chartData'],
+  data: function data() {
+    return {
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    };
+  },
   mounted: function mounted() {
     // this.chartData is created in the mixin.
     // If you want to pass options please create a local options object
