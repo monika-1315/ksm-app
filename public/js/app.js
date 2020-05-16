@@ -2416,15 +2416,15 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     fillData: function fillData() {
       this.datacollection = {
-        labels: [this.getRandomInt(), this.getRandomInt()],
+        labels: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
         datasets: [{
-          label: 'Data One',
-          backgroundColor: '#f87979',
-          data: [this.getRandomInt(), this.getRandomInt()]
-        }, {
-          label: 'Data One',
-          backgroundColor: '#f87979',
-          data: [this.getRandomInt(), this.getRandomInt()]
+          label: 'my',
+          barPercentage: 0.5,
+          barThickness: 16,
+          maxBarThickness: 18,
+          minBarLength: 2,
+          data: [5, 20, 30, 40, 50, 60, 70],
+          backgroundColor: 'lightblue'
         }]
       };
     },
@@ -46803,8 +46803,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Radar", function() { return Radar; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Bubble", function() { return Bubble; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Scatter", function() { return Scatter; });
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_0__);
 
 function generateChart(chartId, chartType) {
   return {
@@ -46865,7 +46865,7 @@ function generateChart(chartId, chartType) {
       },
       renderChart: function renderChart(data, options) {
         if (this.$data._chart) this.$data._chart.destroy();
-        this.$data._chart = new chart_js__WEBPACK_IMPORTED_MODULE_1___default.a(this.$refs.canvas.getContext('2d'), {
+        this.$data._chart = new chart_js__WEBPACK_IMPORTED_MODULE_0___default.a(this.$refs.canvas.getContext('2d'), {
           type: chartType,
           data: data,
           options: options,
@@ -66886,13 +66886,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
 
-var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_1__["mixins"].reactiveProp;
+var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactiveProp;
 /* harmony default export */ __webpack_exports__["default"] = ({
-  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_1__["Line"],
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Bar"],
   mixins: [reactiveProp],
-  props: ['options'],
+  props: ['chartData', 'options'],
   mounted: function mounted() {
     // this.chartData is created in the mixin.
     // If you want to pass options please create a local options object

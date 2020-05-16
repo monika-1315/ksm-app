@@ -23,19 +23,20 @@
     methods: {
       fillData () {
         this.datacollection = {
-        
-          labels: ['a','b','c','d', 'e','f','g'],
-         
-    datasets: [{
-        label: 'my',
-        barPercentage: 0.5,
-        barThickness: 16,
-        maxBarThickness: 18,
-        minBarLength: 2,
-        data: [5, 20, 30, 40, 50, 60, 70],
-        backgroundColor: 'lightblue'
-    }]
-
+          labels: [this.getRandomInt(), this.getRandomInt()],
+          datasets: [
+              {data: [10, 20, 30],
+              backgroundColor: ['lightblue','#f87909','#f87979']}
+            // {
+            //   label: 'Data One',
+            //   backgroundColor: '#f87979',
+            //   data: [this.getRandomInt(), this.getRandomInt()]
+            // }, {
+            //   label: 'Data Two',
+            //   backgroundColor: '#f87909',
+            //   data: [this.getRandomInt(), this.getRandomInt()]
+            // }
+          ]
         }
       },
       getRandomInt () {
