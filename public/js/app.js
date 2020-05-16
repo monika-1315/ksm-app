@@ -2393,6 +2393,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BarChart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../BarChart.js */ "./resources/assets/js/BarChart.js");
+/* harmony import */ var _PieChart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../PieChart.js */ "./resources/assets/js/PieChart.js");
 function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -2405,16 +2406,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    BarChart: _BarChart_js__WEBPACK_IMPORTED_MODULE_0__["default"]
+    BarChart: _BarChart_js__WEBPACK_IMPORTED_MODULE_0__["default"],
+    PieChart: _PieChart_js__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
       datacollection: null,
-      labels: [],
-      data: [],
+      datacollections: [],
+      divisions: [],
+      all_members: [],
+      aut_members: [],
       dataa: []
     };
   },
@@ -2432,8 +2443,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var division = _step.value;
-            this.labels.push(division.town);
-            this.data.push(division.cnt_all);
+            this.divisions.push(division.town);
+            this.all_members.push(division.cnt_all);
+            this.aut_members.push(division.cnt_aut);
           }
         } catch (err) {
           _iterator.e(err);
@@ -2446,17 +2458,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     fillData: function fillData() {
       this.datacollection = {
-        labels: this.labels,
+        labels: this.divisions,
         datasets: [{
           label: "Liczba członków w oddziale",
           barPercentage: 0.8,
           barThickness: 20,
           maxBarThickness: 30,
           minBarLength: 2,
-          data: this.data,
+          data: this.all_members,
           backgroundColor: "rgba(255, 201, 24, 0.719)"
         }]
       };
+
+      for (var i = 0; i < this.divisions.length; i++) {
+        this.datacollections.push({
+          labels: ['Zautoryzowani członkowie', 'Niezatwierdzeni'],
+          datasets: [{
+            label: "Liczba członków w oddziale",
+            data: [this.aut_members[i], this.all_members[i] - this.aut_members[i]],
+            backgroundColor: ["rgba(255, 201, 24, 0.719)", "darkblue"]
+          }]
+        });
+      }
     },
     getRandomInt: function getRandomInt() {
       return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
@@ -47962,9 +47985,28 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "small" },
-    [_c("bar-chart", { attrs: { "chart-data": _vm.datacollection } })],
-    1
+    [
+      _c(
+        "div",
+        { staticClass: "small" },
+        [_c("bar-chart", { attrs: { "chart-data": _vm.datacollection } })],
+        1
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.divisions, function(division, i) {
+        return _c(
+          "div",
+          { key: i, staticClass: "small" },
+          [
+            _c("h4", [_vm._v(_vm._s(division))]),
+            _vm._v(" "),
+            _c("pie-chart", { attrs: { "chart-data": _vm.datacollections[i] } })
+          ],
+          1
+        )
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -66907,6 +66949,44 @@ __webpack_require__.r(__webpack_exports__);
 var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactiveProp;
 /* harmony default export */ __webpack_exports__["default"] = ({
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Bar"],
+  mixins: [reactiveProp],
+  props: ['chartData'],
+  data: function data() {
+    return {
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    };
+  },
+  mounted: function mounted() {
+    // this.chartData is created in the mixin.
+    // If you want to pass options please create a local options object
+    this.renderChart(this.chartData, this.options);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/js/PieChart.js":
+/*!*****************************************!*\
+  !*** ./resources/assets/js/PieChart.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactiveProp;
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Pie"],
   mixins: [reactiveProp],
   props: ['chartData'],
   data: function data() {
