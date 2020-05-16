@@ -48,6 +48,7 @@
                     <label>
                     <input type="checkbox" class="filled-in" id="leader" v-model="is_leadership" >
                     <span style="color: black"> Członek Kierownictwa </span>
+                    Członek zostanie automatycznie zautoryzowany.
                     </label>
                 </div>
                 
@@ -93,7 +94,8 @@
                     confirmPassword: this.confirmPassword,
                     birthdate: this.birthdate,
                     division: this.division,
-                    is_leadership: this.is_leadership
+                    is_leadership: this.is_leadership,
+                    is_authorized: this.is_leadership
                 }).then(response => {
                     this.isProgress = true;
                     if(response.data.success == true)

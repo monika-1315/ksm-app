@@ -70,6 +70,14 @@
       >
         <button class="btn-light btn-large right-btn">Nowy oddział</button>
       </router-link>
+
+       <router-link
+        :to="{ name: 'chart' }"
+        class
+        v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
+      >
+        <button class="btn-light btn-large left-btn">Statystyki</button>
+      </router-link>
     </div>
     <br />
     <br />

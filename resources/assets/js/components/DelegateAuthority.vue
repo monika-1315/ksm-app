@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="container" style="text-align:center" v-if=" this.$store.state.is_leadership">
-      <div class="progress" v-if="isProgress">
+    <div class="progress" v-if="isProgress">
         <div class="indeterminate"></div>
       </div>
+    <div class="container" style="text-align:center" v-if=" this.$store.state.is_leadership">
+      
       <h2>Zmień uprawnienia Kierownictwa</h2>
       <hr style="border-color:  rgba(248, 203, 0, 0.788);" />
       <br />
@@ -115,8 +116,15 @@ export default {
           this.isProgress = true;
           if (response.data.success == true) {
             setTimeout(() => {
-              this.isProgress = false;
-              this.$toaster.success("Zmieniono uprawnienia");
+              this.isProgress = false;              
+              if (idi === this.user_id) {
+                this.$toaster.warning
+                (
+                  "Zmieniono uprawnienia. Stracisz uprawnienia po odświeżeniu strony lub ponownym zalogowaniu"
+                );
+              } else {
+                this.$toaster.success("Zmieniono uprawnienia");
+              }
               this.getUsers();
             }, 2000);
           }
@@ -137,7 +145,15 @@ export default {
           if (response.data.success == true) {
             setTimeout(() => {
               this.isProgress = false;
-              this.$toaster.success("Zmieniono uprawnienia");
+
+              if (idi === this.user_id) {
+                this.$toaster.warning
+                (
+                  "Zmieniono uprawnienia. Stracisz uprawnienia po odświeżeniu strony lub ponownym zalogowaniu"
+                );
+              } else {
+                this.$toaster.success("Zmieniono uprawnienia");
+              }
               this.getUsers();
             }, 2000);
           }

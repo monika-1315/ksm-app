@@ -24,9 +24,9 @@ class DivisionsController extends Controller
         $select2 = DB::table('divisions')
             ->leftJoinSub($select, 'sel', function ($join) {
                 $join->on('divisions.id', '=', 'sel.division');
-            }) ->selectRaw('divisions.town, divisions.id, count(sel.id) cnt_aut ')
+            }) ->selectRaw('divisions.town,divisions.parish, divisions.id, count(sel.id) cnt_aut ')
             ->where('is_active', '=', 1)
-            ->groupByRaw('divisions.town, divisions.id');
+            ->groupByRaw('divisions.town,divisions.parish, divisions.id');
             // ->get();
         
             // $data=$select2;
@@ -35,8 +35,8 @@ class DivisionsController extends Controller
 
         $data = DB::table('users')
             // ->where('is_authorized', '=', 0)
-            ->selectRaw('sel.town, count(users.id) cnt_all, sel.cnt_aut')
-            ->groupByRaw('sel.town, sel.cnt_aut')
+            ->selectRaw('sel.town, sel.parish, count(users.id) cnt_all, sel.cnt_aut')
+            ->groupByRaw('sel.town, sel.parish, sel.cnt_aut')
             ->rightJoinSub($select2, 'sel', function ($join) {
                 $join->on('users.division', '=', 'sel.id');
             })->get();
