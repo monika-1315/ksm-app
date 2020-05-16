@@ -8,13 +8,7 @@ export default {
     data() {
         return {
             options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
+            
             }
         }
     },

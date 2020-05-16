@@ -1,6 +1,6 @@
 <template>
-<div>
-  <div class="small">
+<div class="container">
+  <div class="big">
     <bar-chart :chart-data="datacollection"></bar-chart>
   </div>
   <div v-for="(division,i) in divisions" :key="i" class="small">
@@ -56,9 +56,11 @@ export default {
             barPercentage: 0.8,
             barThickness: 20,
             maxBarThickness: 30,
-            minBarLength: 2,
+            minBarLength: 3,
             data: this.all_members,
-            backgroundColor: "rgba(255, 201, 24, 0.719)"
+            backgroundColor: "rgba(255, 201, 24, 0.5)",
+            borderColor: "rgb(255, 201, 24)",
+            borderWidth: 2
           }
         ]
       };
@@ -69,7 +71,7 @@ export default {
             {
               label: "Liczba członków w oddziale",
               data: [this.aut_members[i], this.all_members[i]-this.aut_members[i]],
-              backgroundColor: ["rgba(255, 201, 24, 0.719)", "darkblue"],
+              backgroundColor: ["rgba(255, 201, 24, 0.719)", "rgba(3, 35, 138, 0.774)"],
             }
           ]
         });
@@ -83,9 +85,17 @@ export default {
 </script>
 
 <style>
+.big {
+  max-width: 800px;
+  margin: 50px auto;
+  backgroundcolor: rgba(3, 35, 138, 0.774);
+}
 .small {
-  max-width: 600px;
-  margin: 150px auto;
-  backgroundcolor: rgba(255, 201, 24, 0.719);
+  max-width: 400px;
+  margin: 30px auto;
+  display: inline-block;
+}
+.container{
+  text-align: center;
 }
 </style>

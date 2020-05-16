@@ -2464,9 +2464,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           barPercentage: 0.8,
           barThickness: 20,
           maxBarThickness: 30,
-          minBarLength: 2,
+          minBarLength: 3,
           data: this.all_members,
-          backgroundColor: "rgba(255, 201, 24, 0.719)"
+          backgroundColor: "rgba(255, 201, 24, 0.5)",
+          borderColor: "rgb(255, 201, 24)",
+          borderWidth: 2
         }]
       };
 
@@ -2476,7 +2478,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           datasets: [{
             label: "Liczba członków w oddziale",
             data: [this.aut_members[i], this.all_members[i] - this.aut_members[i]],
-            backgroundColor: ["rgba(255, 201, 24, 0.719)", "darkblue"]
+            backgroundColor: ["rgba(255, 201, 24, 0.719)", "rgba(3, 35, 138, 0.774)"]
           }]
         });
       }
@@ -22358,7 +22360,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.small {\r\n  max-width: 600px;\r\n  margin: 150px auto;\r\n  backgroundcolor: rgba(255, 201, 24, 0.719);\n}\r\n", ""]);
+exports.push([module.i, "\n.big {\r\n  max-width: 800px;\r\n  margin: 50px auto;\r\n  backgroundcolor: rgba(3, 35, 138, 0.774);\n}\n.small {\r\n  max-width: 400px;\r\n  margin: 30px auto;\r\n  display: inline-block;\n}\n.container{\r\n  text-align: center;\n}\r\n", ""]);
 
 // exports
 
@@ -47985,10 +47987,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "container" },
     [
       _c(
         "div",
-        { staticClass: "small" },
+        { staticClass: "big" },
         [_c("bar-chart", { attrs: { "chart-data": _vm.datacollection } })],
         1
       ),
@@ -66991,15 +66994,7 @@ var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactivePr
   props: ['chartData'],
   data: function data() {
     return {
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
+      options: {}
     };
   },
   mounted: function mounted() {
