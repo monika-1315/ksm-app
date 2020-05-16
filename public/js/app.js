@@ -2392,7 +2392,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Chart.js */ "./resources/assets/js/Chart.js");
+/* harmony import */ var _BarChart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../BarChart.js */ "./resources/assets/js/BarChart.js");
 function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -2408,13 +2408,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    LineChart: _Chart_js__WEBPACK_IMPORTED_MODULE_0__["default"]
+    BarChart: _BarChart_js__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
       datacollection: null,
       labels: [],
-      data: []
+      data: [],
+      dataa: []
     };
   },
   mounted: function mounted() {
@@ -2423,7 +2424,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   methods: {
     getStats: function getStats() {
       this.axios.get("/api/getDivisionsStats").then(function (response) {
-        // this.data=response.data;
+        this.dataa = response.data;
+
         var _iterator = _createForOfIteratorHelper(response.data),
             _step;
 
@@ -2431,7 +2433,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var division = _step.value;
             this.labels.push(division.town);
-            this.data.push(division.cnt);
+            this.data.push(division.cnt1);
           }
         } catch (err) {
           _iterator.e(err);
@@ -2446,11 +2448,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.datacollection = {
         labels: this.labels,
         datasets: [{
-          label: "Liczba zatwierdzonych członków w oddziale",
+          label: "Liczba członków w oddziale",
           barPercentage: 0.8,
           barThickness: 20,
           maxBarThickness: 30,
-          minBarLength: 10,
+          minBarLength: 2,
           data: this.data,
           backgroundColor: "rgba(255, 201, 24, 0.719)"
         }]
@@ -47961,7 +47963,7 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "small" },
-    [_c("line-chart", { attrs: { "chart-data": _vm.datacollection } })],
+    [_c("bar-chart", { attrs: { "chart-data": _vm.datacollection } })],
     1
   )
 }
@@ -66891,10 +66893,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/Chart.js":
-/*!**************************************!*\
-  !*** ./resources/assets/js/Chart.js ***!
-  \**************************************/
+/***/ "./resources/assets/js/BarChart.js":
+/*!*****************************************!*\
+  !*** ./resources/assets/js/BarChart.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

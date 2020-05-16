@@ -1,21 +1,22 @@
 <template>
   <div class="small">
-    <line-chart :chart-data="datacollection"></line-chart>
+    <bar-chart :chart-data="datacollection"></bar-chart>
   </div>
 </template>
 
 <script>
-import LineChart from "../Chart.js";
+import BarChart from "../BarChart.js";
 
 export default {
   components: {
-    LineChart
+    BarChart
   },
   data() {
     return {
       datacollection: null,
       labels: [],
-      data: []
+      data: [],
+      dataa:[],
     };
   },
   mounted() {
@@ -25,10 +26,10 @@ export default {
     getStats: function() {
       this.axios.get("/api/getDivisionsStats").then(
         function(response) {
-          // this.data=response.data;
+          this.dataa=response.data;
           for (var division of response.data) {
             this.labels.push(division.town);
-            this.data.push(division.cnt);
+            this.data.push(division.cnt1);
           }
           this.fillData();
         }.bind(this)
@@ -40,11 +41,11 @@ export default {
 
         datasets: [
           {
-            label: "Liczba zatwierdzonych członków w oddziale",
+            label: "Liczba członków w oddziale",
             barPercentage: 0.8,
             barThickness: 20,
             maxBarThickness: 30,
-            minBarLength: 10,
+            minBarLength: 2,
             data: this.data,
             backgroundColor: "rgba(255, 201, 24, 0.719)"
           }

@@ -17,18 +17,26 @@ class DivisionsController extends Controller
      */
     public function getDivisionsStats()
     {
-        $data = Division::where('is_active', '=', 1)
-            ->get();
-        $data = DB::table('divisions')
-            ->join('users', 'users.division', '=', 'divisions.id')
-            ->where('is_active', '=', 1)
+        $select = DB::table('users')
             ->where('is_authorized', '=', 1)
-            ->selectRaw('divisions.town, count(users.id) cnt')
-            ->groupBy('divisions.town')
-            ->get();
+            ->rightJoin('divisions', 'users.division', '=', 'divisions.id')
+            ->where('is_active', '=', 1)
+            ->selectRaw('divisions.town, count(users.id) cnt1 ')
+            ->groupByRaw('divisions.town');
 
+        $data = DB::table('users')
+            ->where('is_authorized', '=', 0)
+            ->rightJoin('divisions', 'users.division', '=', 'divisions.id')
+            ->where('is_active', '=', 1)
+            ->selectRaw('divisions.town, count(users.id) cnt0, sel.cnt1')
+            ->groupByRaw('divisions.town, sel.cnt1')
+            ->joinSub($select, 'sel', function ($join) {
+                $join->on('divisions.town', '=', 'sel.town');
+            })->get();
+        
         return response()->json($data);
     }
+    
     public function getDivisions()
     {
         $data = Division::where('is_active', '=', 1)
