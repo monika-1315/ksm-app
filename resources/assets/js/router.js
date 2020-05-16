@@ -14,6 +14,7 @@ import EditDivision from './components/EditDivision.vue'
 import NewDivision from './components/NewDivision.vue'
 import ControlPanel from './components/ControlPanel.vue'
 import Calendar from './components/Calendar.vue'
+import Chart from './components/Chart.vue'
 import Contact from './components/Contact.vue'
 import DelegateAuthority from './components/DelegateAuthority.vue'
 import VueRouter from 'vue-router';
@@ -155,6 +156,14 @@ const router = new VueRouter({
         component: DelegateAuthority,
         meta: { 
             requiresAuth: true
+        }
+    },
+    {
+        path: '/statistics',
+        name: 'chart',
+        component: Chart,
+        meta: { 
+            requiresAuth: false
         }
     },
     ]
