@@ -86,7 +86,7 @@ export default {
       usersDiv1: [],
       usersAll0: [],
       usersAll1: [],
-      isProgress: false
+      isProgress: true,
     };
   },
   computed: {
@@ -177,6 +177,7 @@ export default {
                 if (user.is_management === 0) this.usersAll0.push(user);
                 else this.usersAll1.push(user);
               }
+              this.isProgress=false;
             }.bind(this)
           );
       }

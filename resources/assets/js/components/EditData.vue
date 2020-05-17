@@ -4,7 +4,9 @@
         <div class="card card-default">
           <div class="card-header">Edytuj swoje dane osobowe</div>
           <div class="card-body">
-           
+            <div class="progress" v-if="isProgress">
+                    <div class="indeterminate"></div>
+                </div>
             <form autocomplete="off" @submit.prevent="update" v-if="currentUser" method="post">
                 <div class="form-group">
                         <label for="name">Imię</label>
@@ -84,7 +86,7 @@
                 error: false,
                 errors: {},
                 success: false,
-                isProgress: false,
+                isProgress: true,
                 division: '',
                 divisions: [],
                 currentUser: null,
@@ -149,6 +151,7 @@
                  this.division = myThis.currentUser.division;
                  this.is_leadership = myThis.currentUser.is_leadership
                  this.is_management = myThis.currentUser.is_management
+                 this.isProgress=false;
               }.bind(this)); 
               
             },
@@ -193,4 +196,7 @@
 label.active {
   color: royalblue !important;
 }
+.indeterminate{
+        background-color: #FEBD09;
+    }
 </style>

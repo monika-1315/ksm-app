@@ -6,6 +6,9 @@
           <h4>Edytuj informacje o oddziale</h4>
         </div>
         <div class="card-body">
+          <div class="progress" v-if="isProgress">
+      <div class="indeterminate"></div>
+    </div>
           <form autocomplete="off" @submit.prevent="editDivision" v-if="!success" method="post">
             <div class="form-group">
               <label for="town">Miasto</label>
@@ -47,7 +50,7 @@ export default {
       error: false,
       errors: {},
       success: false,
-      isProgress: false
+      isProgress: true,
     };
   },
   watch: {
@@ -92,6 +95,7 @@ export default {
             this.town = response.data[0].town,
             this.parish = response.data[0].parish,
             this.is_active = response.data[0].is_active;
+            this.isProgress=false;
           }.bind(this)
         );
     }
@@ -115,7 +119,9 @@ export default {
 .btn:focus {
   color: white;
 }
-
+.indeterminate {
+  background-color:royalblue;
+}
 .heading {
   padding: 30px;
   border: none;

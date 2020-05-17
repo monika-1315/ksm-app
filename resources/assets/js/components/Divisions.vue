@@ -3,6 +3,9 @@
     <br>
      <button class="btn btn-primary floating yellow" type="button"  @click="newDiv">Dodaj nowy</button>
     <h2>Zarządzaj oddziałami</h2>
+    <div class="progress" v-if="isProgress">
+      <div class="indeterminate"></div>
+    </div>
    <br>
     
    <hr>
@@ -22,6 +25,7 @@
     export default {
         data(){
             return{
+                isProgress:true,
             divisions: [],
             }
         },
@@ -36,6 +40,7 @@
               this.axios.post('/api/auth/allDivisions',{token: this.$store.state.token})
               .then(function (response) {
                  this.divisions = response.data;
+                 this.isProgress=false;
               }.bind(this));
          
             },
@@ -59,5 +64,8 @@
         border-color:  rgb(254, 209, 9);
         color: black;
     }
+    .indeterminate {
+  background-color: rgb(254, 209, 9);
+}
    
 </style>

@@ -23,6 +23,7 @@
         >Odśwież</button>
       </h3>
       <br />
+
       <span v-for="tab in tabs" :key="tab.id">
         <button
           class="tab btn btn-light"
@@ -45,7 +46,9 @@
             <p style="white-space: pre-line">{{message.body}}</p>
             <p class="stamp">
               {{message.name+' '+message.surname+', '+message.published_at}}
-              <span v-if="message.modified===1">, edytowana</span>
+              <span
+                v-if="message.modified===1"
+              >, edytowana</span>
             </p>
           </div>
         </div>
@@ -68,12 +71,17 @@
         v-if="messages.next_page_url!==null"
       >Następna strona</button>
     </div>
+    <div class="progress" v-if="isProgress">
+      <div class="indeterminate"></div>
+    </div>
+    
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      isProgress: true,
       messages: [],
       tabs: [
         { id: "A", text: "Wszystkie" },
@@ -88,7 +96,6 @@ export default {
     //
   },
   computed: {
-   
     division() {
       return this.$store.state.division;
     },
@@ -103,6 +110,7 @@ export default {
   },
   methods: {
     getMessages: function() {
+      this.isProgress = true;
       this.axios
         .post("/api/auth/getMessages", {
           is_leadership: this.is_leadership,
@@ -113,11 +121,12 @@ export default {
         .then(
           function(response) {
             this.messages = response.data;
+            this.isProgress = false;
           }.bind(this)
         );
     },
-    tabSelected: function(cardId){
-      this.selectedTab=cardId;
+    tabSelected: function(cardId) {
+      this.selectedTab = cardId;
       this.getMessages();
     },
     newMessage: function() {
@@ -144,7 +153,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   text-align: left;
 }
@@ -166,8 +175,10 @@ export default {
   color: black;
 }
 
-
-div.card-header{
-    background-color:  rgba(254, 209, 9, 0.61);
+.indeterminate {
+  background-color: rgba(3, 35, 138, 0.774);
+}
+div.card-header {
+  background-color: rgba(254, 209, 9, 0.61);
 }
 </style>
