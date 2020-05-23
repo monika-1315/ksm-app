@@ -4073,6 +4073,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -50776,7 +50779,11 @@ var render = function() {
             : _vm._e()
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("br")
   ])
 }
 var staticRenderFns = [
@@ -50787,6 +50794,18 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header" }, [
       _c("h4", [_vm._v("Zarejestruj się")]),
       _vm._v("\n      Cieszymy się, że chcesz działać razem z nami!")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", { attrs: { align: "center" } }, [
+      _c("br"),
+      _vm._v("Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej "),
+      _c("a", { attrs: { href: "http://ksm.legnica.pl" } }, [
+        _vm._v("stronie! ->")
+      ])
     ])
   }
 ]

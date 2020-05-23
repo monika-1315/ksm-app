@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" >
     <div class="row justify-content-md-center">
         <div class="card card-default">
           <div class="card-header"><h4>Zarejestruj się</h4>
@@ -51,11 +51,14 @@
                 </div>
             </form>
           </div>
+           
       </div>
+     
+
     </div>
  
-        
-        
+        <h6 align="center"><br>Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej <a href="http://ksm.legnica.pl">stronie! -></a></h6>
+        <br>
     </div>
 </template>
 

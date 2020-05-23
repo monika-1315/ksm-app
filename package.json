@@ -21,6 +21,7 @@
         "lodash": "^4.17.13",
         "mocha": "^7.1.2",
         "mocha-webpack": "2.0.0-beta.0",
+        "moxios": "^0.4.0",
         "preload-webpack-plugin": "^3.0.0-beta.4",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.26.5",
