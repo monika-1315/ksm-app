@@ -27,11 +27,7 @@ class DivisionsController extends Controller
             }) ->selectRaw('divisions.town,divisions.parish, divisions.id, count(sel.id) cnt_aut ')
             ->where('is_active', '=', 1)
             ->groupByRaw('divisions.town,divisions.parish, divisions.id');
-            // ->get();
-        
-            // $data=$select2;
-        $select3= DB::table('users')
-        ->where('is_authorized', '=', 0);
+            
 
         $data = DB::table('users')
             // ->where('is_authorized', '=', 0)

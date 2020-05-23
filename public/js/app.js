@@ -67133,7 +67133,6 @@ var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactivePr
           yAxes: [{
             ticks: {
               beginAtZero: true,
-              // callback: function(value) {if (value % 1 === 0) {return value;}}
               stepSize: 1
             }
           }]
