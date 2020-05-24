@@ -8,6 +8,7 @@ import Home from "../components/Home.vue";
 import moxios from 'moxios'
 import axios from 'axios';
 import VueAxios from 'vue-axios'
+import flushPromises from 'flush-promises'
 // import VueRouter from 'vue-router';
 // import router from '../router.js'
 // import store from '../store.js'
@@ -31,31 +32,66 @@ describe('Login', () => {
         localVue,
         axios
     });
-    it.only('shows welcoming text', () => {
+    it('shows welcoming text', () => {
         expect(wrapper.html()).toContain("Witamy w aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej")
     })
 
-    it('doesn\'t allow empty fields', done => {
-        moxios.stubRequest('api/auth/login', {
+    it('has working data binding', () =>{
+        expect(wrapper.vm.email).toBe('');
+        type('monika@m.pl', 'input[id=email]');
+        expect(wrapper.vm.email).toBe('monika@m.pl');
+
+        expect(wrapper.vm.password).toBe('');
+        type('Marusiak', 'input[id=password]');
+        expect(wrapper.vm.password).toBe('Marusiak');
+    })
+
+    // it('doesn\'t allow empty fields', async() => {
+    //     type('moniusiar@gmail.com', 'input[id=email]');
+    //     type('password', 'input[id=password]');
+    //     moxios.stubRequest('api/auth/login', {
+    //         status: 200,
+    //         response:{
+    //             success: false,
+    //             errors: {
+    //                 message: ['wrong'],
+    //                 email:['Pole email jest wymagane.'],
+    //                 password:['Pole password jest wymagane.']
+    //             }
+    //         }
+    //       })
+    //     wrapper.find('button').trigger('click');
+        
+    //     await flushPromises();
+    //     // wrapper.vm.$nextTick(() => {
+    //         // expect(wrapper.html()).toContain("Pole email jest wymagane.")
+    //         // expect(wrapper.html()).toContain("Pole password jest wymagane.")
+    //     //     done()
+    //     //   })
+           
+    // })
+
+    it('shows progress bar after clicking button', (done) => {
+
+        wrapper.find('#log-in').trigger('click');
+        moxios.wait(function () {
+          let request = moxios.requests.mostRecent()
+          request.respondWith({
             status: 200,
-            response:{
-                success: false,
+            response: {
+              success: false,
                 errors: {
                     message: ['wrong'],
                     email:['Pole email jest wymagane.'],
                     password:['Pole password jest wymagane.']
                 }
             }
+          }).then( function () {
+              expect(wrapper.html()).toContain('progress');
+              done()
           })
-        wrapper.find('button').trigger('click');
-        
-        wrapper.vm.$nextTick(() => {
-            expect(wrapper.html()).toContain("Pole email jest wymagane.")
-            expect(wrapper.html()).toContain("Pole password jest wymagane.")
-            done()
-          })
-           
-    })
+        })
+      })
 
     let type = (text, selector) => {
 

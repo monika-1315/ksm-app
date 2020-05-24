@@ -29,7 +29,7 @@
                     <div class="indeterminate"></div>
                     <br><br>
                 </div>
-                <button class="btn btn-primary" type="button" name="action" @click="login()">Zaloguj się </button>
+                <button id="log-in" class="btn btn-primary" type="button" name="action" @click="login()">Zaloguj się </button>
             </div>
         
    <br>

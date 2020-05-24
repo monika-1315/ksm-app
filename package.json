@@ -15,6 +15,7 @@
         "axios": "^0.19",
         "cross-env": "^5.1",
         "expect": "^25.5.0",
+        "flush-promises": "^1.0.2",
         "jsdom": "^16.2.2",
         "jsdom-global": "^3.0.2",
         "laravel-mix": "^4.0.7",
