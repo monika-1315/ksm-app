@@ -44,10 +44,10 @@ class APITest extends TestCase
         $response = $this->get('/api/auth/allDivisions');
         $response->assertStatus(405);
 
-        $user = User::where('email', 'moniusiar@gmail.com')->first();
-        $token = \JWTAuth::fromUser($user);
-        $response= $this->json('POST', '/api/auth/allDivisions');//, ['token' => $token]);
-        $response->dump();
+        $user = User::first();       
+        $token = \JWTAuth::fromUser($user); 
+        $response= $this->json('POST', '/api/auth/allDivisions', ['token' => $token]);
+        // $response->dump();
         $response->assertStatus(200);
         $response->assertJsonStructure([
                 '*' => [
@@ -55,4 +55,36 @@ class APITest extends TestCase
                 ]
         ]);        
     }
+
+    public function testLogin()
+{
+
+    $response = $this->json('POST', '/api/auth/login', [
+        'email' => 'moniusiar@gmail.com',
+        'password' => 'password'
+    ]);
+
+    $response
+        // ->dump()
+        ->assertStatus(200)
+        ->assertJsonStructure([
+            'access_token', 'token_type', 'user'
+        ]);
+}
+
+public function testLogout()
+{
+    $user = User::first();
+    $token = \JWTAuth::fromUser($user);
+
+    $response = $this->json('GET', '/api/auth/logout?token=' . $token, []);
+
+    $response
+    // ->dump()
+        ->assertStatus(200)
+        ->assertExactJson([
+            'success' => true
+        ]);
+}
+
 }

@@ -18,6 +18,7 @@ class VerifyJWTToken
     {
         try{
             // $user = \JWTAuth::toUser($request->input('token'));
+            $user = auth()->user();
         }catch (JWTException $e) {
             if($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
                 return response()->json(['token_expired'], $e->getStatusCode());
