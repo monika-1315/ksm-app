@@ -35,7 +35,7 @@
    <br>
       <h6>Nie masz konta?<br></h6>
     <div >
-      <router-link :to="{ name: 'register' }" class="nav-link" ><button class="btn btn-primary">Zarejestruj się</button></router-link>
+      <router-link id="reg"  :to="{ name: 'register' }" class="nav-link" ><button class="btn btn-primary">Zarejestruj się</button></router-link>
     </div>
 <h6><br>Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej <a href="http://ksm.legnica.pl">stronie! -></a></h6>
   </div>

@@ -17,5 +17,10 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+        $response->assertSee('<div id="app">');
+
+        $response = $this->json('GET','/api/getDivisions');
+        $response->assertStatus(200);
+        // $response->assertSee('<div id="app">');
     }
 }

@@ -19,84 +19,60 @@ const localVue = createLocalVue()
 localVue.use(VueAxios, axios);
 
 beforeEach(function () {
-    moxios.install()
-  })
+  moxios.install()
+})
 
-  afterEach(function () {
-    moxios.uninstall()
-  })
+afterEach(function () {
+  moxios.uninstall()
+})
 
 
 describe('Login', () => {
-    let wrapper = mount(Login, {
-        localVue,
-        axios
-    });
-    it('shows welcoming text', () => {
-        expect(wrapper.html()).toContain("Witamy w aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej")
-    })
+  let wrapper = mount(Login, {
+    localVue,
+    axios
+  });
+  it('shows welcoming text', () => {
+    expect(wrapper.html()).toContain("Witamy w aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej")
+  })
+  
+  it('has working data binding', () => {
+    expect(wrapper.vm.email).toBe('');
+    type('monika@m.pl', 'input[id=email]');
+    expect(wrapper.vm.email).toBe('monika@m.pl');
 
-    it('has working data binding', () =>{
-        expect(wrapper.vm.email).toBe('');
-        type('monika@m.pl', 'input[id=email]');
-        expect(wrapper.vm.email).toBe('monika@m.pl');
+    expect(wrapper.vm.password).toBe('');
+    type('Marusiak', 'input[id=password]');
+    expect(wrapper.vm.password).toBe('Marusiak');
+  })
 
-        expect(wrapper.vm.password).toBe('');
-        type('Marusiak', 'input[id=password]');
-        expect(wrapper.vm.password).toBe('Marusiak');
-    })
+  it('shows progress bar after clicking button', (done) => {
 
-    // it('doesn\'t allow empty fields', async() => {
-    //     type('moniusiar@gmail.com', 'input[id=email]');
-    //     type('password', 'input[id=password]');
-    //     moxios.stubRequest('api/auth/login', {
-    //         status: 200,
-    //         response:{
-    //             success: false,
-    //             errors: {
-    //                 message: ['wrong'],
-    //                 email:['Pole email jest wymagane.'],
-    //                 password:['Pole password jest wymagane.']
-    //             }
-    //         }
-    //       })
-    //     wrapper.find('button').trigger('click');
-        
-    //     await flushPromises();
-    //     // wrapper.vm.$nextTick(() => {
-    //         // expect(wrapper.html()).toContain("Pole email jest wymagane.")
-    //         // expect(wrapper.html()).toContain("Pole password jest wymagane.")
-    //     //     done()
-    //     //   })
-           
-    // })
-
-    it('shows progress bar after clicking button', (done) => {
-
-        wrapper.find('#log-in').trigger('click');
-        moxios.wait(function () {
-          let request = moxios.requests.mostRecent()
-          request.respondWith({
-            status: 200,
-            response: {
-              success: false,
-                errors: {
-                    message: ['wrong'],
-                    email:['Pole email jest wymagane.'],
-                    password:['Pole password jest wymagane.']
-                }
-            }
-          }).then( function () {
-              expect(wrapper.html()).toContain('progress');
-              done()
-          })
-        })
+    wrapper.find('#log-in').trigger('click');
+    moxios.wait(function () {
+      let request = moxios.requests.mostRecent()
+      request.respondWith({
+        status: 200,
+        response: {
+          success: false,
+          errors: {
+            message: ['Błędny email lub hasło'],
+            email: ['Pole email jest wymagane.'],
+            password: ['Pole password jest wymagane.']
+          }
+        }
+      }).then(function () {
+        expect(wrapper.html()).toContain('progress');
+        done()
       })
 
-    let type = (text, selector) => {
+    })
+  })
 
-        let node = wrapper.find(selector);
-        node.element.value = text;
-        node.trigger('input');
-    };
+  let type = (text, selector) => {
+
+    let node = wrapper.find(selector);
+    node.element.value = text;
+    node.trigger('input');
+  };
 })
