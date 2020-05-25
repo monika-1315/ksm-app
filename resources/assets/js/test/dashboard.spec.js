@@ -99,36 +99,7 @@ describe('Dashboard', () => {
         done()
       })
     })
-    // wrapper.find( '#Od_Zarządu').trigger('click');
-    // moxios.wait(function () {
-    //   let request = moxios.requests.mostRecent()
-    //   request.respondWith({
-    //     status: 200,
-    //     response: {
-    //       data: {
-    //         data:{
-    //           author:12,
-    //           body:"Spotkanie dzisiaj na Messengerze o 19! ;)",
-    //           division:1,
-    //           id:13,
-    //           modified:0,
-    //           name:"Karolina",
-    //           published_at:"2020-04-27 11:48:33",
-    //           receiver_group:1,
-    //           surname:"Friedek",
-    //           title:"Witajcie ludziołki"
-              
-    //         }
-    //       }
-    //     }
-    //   }).then(function () {
-    //     expect(wrapper.html()).not.toContain('progress');
-    //     expect(wrapper.html()).not.toContain('Witajcie ludziołki');
-    //     expect(wrapper.html()).not.toContain('Spotkanie dzisiaj na Messengerze o 19! ;)');
-    //     expect(wrapper.html()).not.toContain('Karolina Friedek');
-    //     done()
-    //   })
-    // })
+
   })
 
   
