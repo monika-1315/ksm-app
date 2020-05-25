@@ -49,7 +49,7 @@ class AuthTest extends TestCase
         ]);
 
         $response
-            ->dump()
+            // ->dump()
             ->assertStatus(422)
             ->assertExactJson([
                 'errors'=>[
