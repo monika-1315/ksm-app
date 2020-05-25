@@ -52,6 +52,18 @@ class APITest extends TestCase
         ]);
     }
 
+    public function testGetDivisionsStats()
+    {
+        $response = $this->get('/api/getDivisionsStats');
+        // $response->dump();
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            '*' => [
+                'town', 'parish', 'cnt_all', 'cnt_aut'
+            ]
+        ]);
+    }
+
     public function testGetUser()
     {
         $response = $this->get('/api/auth/getUser');
