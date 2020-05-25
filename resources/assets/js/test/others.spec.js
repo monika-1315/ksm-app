@@ -3,6 +3,7 @@ import expect from 'expect';
 import moxios from 'moxios'
 
 import Contact from "../components/Contact.vue";
+import Calendar from "../components/Calendar.vue";
 
 import axios from 'axios';
 import VueAxios from 'vue-axios'
@@ -31,18 +32,19 @@ describe('Contact', () => {
 
     it('shows emails', (done) => {
         wrapper.vm.axios.get("/api/getManagement").then(
-            function(response) {
+            function (response) {
                 wrapper.vm.management = response.data;
-                wrapper.vm.isProgress=false;
+                wrapper.vm.isProgress = false;
             }.bind(this)
-          );
+        );
         moxios.wait(function () {
             let request = moxios.requests.mostRecent()
             request.respondWith({
                 status: 200,
                 response: {
                     success: false,
-                    data: {function_mail: "ksmdl.skarbnik@gmail.com",
+                    data: {
+                        function_mail: "ksmdl.skarbnik@gmail.com",
                         function_name: "Skarbnik",
                         name: "Daria",
                         surname: "Pańczyszyn",
@@ -57,4 +59,16 @@ describe('Contact', () => {
             })
         })
     })
+})
+
+describe('Calendar', () => {
+    let wrapper = mount(Calendar, {
+        localVue,
+        axios
+    });
+    it('shows calendar', () => {
+        expect(wrapper.html()).toContain("calendar")
+    })
+
+
 })

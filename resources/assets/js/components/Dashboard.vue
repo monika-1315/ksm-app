@@ -18,6 +18,7 @@
           class="btn btn-primary"
           type="button"
           name="action"
+          id="getMessages"
           @click="getMessages"
           style="float: right"
         >Odśwież</button>
@@ -29,6 +30,7 @@
           class="tab btn btn-light"
           @click="tabSelected(tab.id)"
           v-if="tab.id!=='D'||is_leadership"
+          :id="tab.text"
         >
           <a :class="{activeTab: selectedTab===tab.id}">{{ tab.text }}</a>
         </button>
@@ -86,7 +88,7 @@ export default {
       tabs: [
         { id: "A", text: "Wszystkie" },
         { id: "B", text: "Oddział" },
-        { id: "C", text: "Od Zarządu" },
+        { id: "C", text: "Od_Zarządu" },
         { id: "D", text: "Do Kierownictw" }
       ],
       selectedTab: "A"
