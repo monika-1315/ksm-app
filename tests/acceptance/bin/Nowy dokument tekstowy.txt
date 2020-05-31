@@ -1,1 +1,3 @@
 java -jar -D"webdriver.chrome.driver"=C:\Users\moniu\Documents\PWr\semestr6\chromedriver selenium-server-standalone-3.141.59.jar
+
+vendor/bin/codecept run

@@ -11,7 +11,7 @@
    <hr>
     <div v-for="division in divisions" :key="division.id" >
         <p>
-            <button class="btn btn-primary floating" type="button"  @click="edit(division.id)">Edytuj</button>
+            <button class="btn btn-primary floating edit" type="button"  @click="edit(division.id)">Edytuj</button>
             <h4>{{division.town}} <span class="inactive" v-if="division.is_active===0"> NIEAKTYWNY</span></h4>
             
             {{'parafia '+division.parish}}       

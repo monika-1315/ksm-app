@@ -48856,7 +48856,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-primary floating",
+                    staticClass: "btn btn-primary floating edit",
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
