@@ -26,8 +26,8 @@ $I->click('Zapisz');
 
 $I->wantTo('see statistics');
 $I->amOnPage('/panel');
-$I->waitForElement('#edit_data',30);
-$I->see('Zarządzaj');
+$I->waitForElement('#new-mes',30);
+// $I->see('Zarządzaj');
 $I->click('Statystyki');
 $I->waitForElement('.small',30);
 $I->see('Statystyki dotyczące liczby członków w oddziałach');
