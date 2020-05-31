@@ -64,7 +64,7 @@ class UsersController extends Controller
         $user->name = $request->get('name');
         $user->surname = $request->get('surname');
         $user->email = $request->get('email');
-        if ($request->get('password') === $request->get('confirmPassword') && $request->get('password') !== '')
+        if ($request->get('password') === $request->get('confirmPassword') && $request->get('password') !== null)
             $user->password = bcrypt($request->get('password'));
         $user->birthdate = $request->get('birthdate');
         $user->division = $request->get('division');

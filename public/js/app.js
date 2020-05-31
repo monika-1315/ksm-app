@@ -3291,7 +3291,7 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this = this;
 
-      if (this.password === this.confirmPassword) {
+      if (this.password === this.confirmPassword && (this.password === null || this.password.length > 5)) {
         this.axios.post('api/auth/updateUser?token=' + this.$store.state.token, {
           id: this.currentUser.id,
           name: this.name,
@@ -3326,7 +3326,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         this.error = true;
-        this.errors.confirmPassword = ['Wpisz 2 razy to samo hasło'];
+        this.errors.confirmPassword = ['Wpisz 2 razy to samo hasło, minimum 6 znaków'];
       }
     },
     getDivisions: function getDivisions() {
