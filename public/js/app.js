@@ -2800,6 +2800,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2813,7 +2815,7 @@ __webpack_require__.r(__webpack_exports__);
         text: "Oddział"
       }, {
         id: "C",
-        text: "Od Zarządu"
+        text: "Od_Zarządu"
       }, {
         id: "D",
         text: "Do Kierownictw"
@@ -22630,7 +22632,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#app[data-v-6707e3d4]{\n    text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n#app[data-v-6707e3d4] {\r\n  text-align: center;\n}\n.center[data-v-6707e3d4]{\r\n    padding: 10%;\n}\r\n", ""]);
 
 // exports
 
@@ -48473,7 +48475,7 @@ var render = function() {
                 {
                   staticClass: "btn btn-primary",
                   staticStyle: { float: "right" },
-                  attrs: { type: "button", name: "action" },
+                  attrs: { type: "button", name: "action", id: "getMessages" },
                   on: { click: _vm.getMessages }
                 },
                 [_vm._v("Odśwież")]
@@ -48489,6 +48491,7 @@ var render = function() {
                       "button",
                       {
                         staticClass: "tab btn btn-light",
+                        attrs: { id: tab.text },
                         on: {
                           click: function($event) {
                             return _vm.tabSelected(tab.id)
@@ -49837,30 +49840,112 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "app" } }, [
-    _c("img", {
-      attrs: { alt: "KSM logo", src: __webpack_require__(/*! ./assets/logo.png */ "./resources/assets/js/components/assets/logo.png") }
-    }),
-    _vm._v(" "),
-    _c("br"),
     _c("br"),
     _vm._v(" "),
     _c(
       "div",
-      { staticStyle: {} },
       [
         _c("center", [
           _c("h4", [
-            _vm._v(
-              "Witamy w aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej"
-            )
+            _vm._v("Witamy w aplikacji "),
+            _c("br"),
+            _vm._v("Katolickiego Stowarzyszenia Młodzieży "),
+            _c("br"),
+            _vm._v("Diecezji Legnickiej")
           ])
-        ])
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("img", {
+          attrs: { alt: "KSM logo", src: __webpack_require__(/*! ./assets/logo.png */ "./resources/assets/js/components/assets/logo.png") }
+        }),
+        _vm._v(" "),
+        _c("br")
       ],
       1
-    )
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "nav-link",
+            attrs: { id: "reg", to: { name: "login" } }
+          },
+          [
+            _c("button", { staticClass: "btn btn-primary" }, [
+              _vm._v("Zaloguj się")
+            ])
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c(
+      "div",
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "nav-link",
+            attrs: { id: "reg", to: { name: "register" } }
+          },
+          [
+            _c("button", { staticClass: "btn btn-primary" }, [
+              _vm._v("Zarejestruj się")
+            ])
+          ]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm._m(2)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [
+      _vm._v(
+        "\n    Zaloguj się, aby uzyskać dostęp do tablicy ogłoszeń.\n    "
+      ),
+      _c("br")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_vm._v("\n    Nie masz konta?\n    "), _c("br")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", [
+      _c("br"),
+      _vm._v(
+        "Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej\n    "
+      ),
+      _c("a", { attrs: { href: "http://ksm.legnica.pl" } }, [
+        _vm._v("stronie! ->")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -50002,7 +50087,7 @@ var render = function() {
         "button",
         {
           staticClass: "btn btn-primary",
-          attrs: { type: "button", name: "action" },
+          attrs: { id: "log-in", type: "button", name: "action" },
           on: {
             click: function($event) {
               return _vm.login()
@@ -50022,7 +50107,10 @@ var render = function() {
       [
         _c(
           "router-link",
-          { staticClass: "nav-link", attrs: { to: { name: "register" } } },
+          {
+            staticClass: "nav-link",
+            attrs: { id: "reg", to: { name: "register" } }
+          },
           [
             _c("button", { staticClass: "btn btn-primary" }, [
               _vm._v("Zarejestruj się")
