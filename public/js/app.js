@@ -47921,7 +47921,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-primary",
+                        staticClass: "btn btn-primary editbtn",
                         staticStyle: { float: "right" },
                         attrs: { type: "button", name: "action" },
                         on: {
@@ -48266,7 +48266,10 @@ var render = function() {
         ? _c("router-link", { attrs: { to: { name: "edit" } } }, [
             _c(
               "button",
-              { staticClass: "btn-light btn-large", attrs: { id: "edit" } },
+              {
+                staticClass: "btn-light btn-large",
+                attrs: { id: "edit_data" }
+              },
               [_vm._v("Edytuj swoje dane")]
             )
           ])
@@ -48298,9 +48301,14 @@ var render = function() {
       this.$store.state.is_authorized &&
       (this.$store.state.is_leadership || this.$store.state.is_management)
         ? _c("router-link", { attrs: { to: { name: "message" } } }, [
-            _c("button", { staticClass: "btn-light btn-large right-btn" }, [
-              _vm._v("Nowa wiadomość")
-            ])
+            _c(
+              "button",
+              {
+                staticClass: "btn-light btn-large right-btn",
+                attrs: { id: "new-mes" }
+              },
+              [_vm._v("Nowa wiadomość")]
+            )
           ])
         : _vm._e(),
       _vm._v(" "),

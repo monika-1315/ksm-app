@@ -5,7 +5,7 @@
     <br />
     <h4>Twoje konto:</h4>
     <router-link :to="{ name: 'edit' }" class v-if="this.$store.state.isLoggedIn">
-      <button class="btn-light btn-large" id="edit">Edytuj swoje dane</button>
+      <button class="btn-light btn-large" id="edit_data">Edytuj swoje dane</button>
     </router-link>
     <router-link
       :to="{ name: 'delegate' }"
@@ -30,7 +30,7 @@
       class
       v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && (this.$store.state.is_leadership || this.$store.state.is_management)"
     >
-      <button class="btn-light btn-large right-btn">Nowa wiadomość</button>
+      <button id="new-mes" class="btn-light btn-large right-btn">Nowa wiadomość</button>
     </router-link>
 
     <div v-if="this.$store.state.is_leadership || this.$store.state.is_management">

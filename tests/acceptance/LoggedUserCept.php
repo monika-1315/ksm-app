@@ -13,7 +13,7 @@ $I->see('Witaj');
 $I->wantTo('see the control panel');
 $I->waitForElement('#panel',30);
 $I->click('Panel sterowania');
-$I->waitForElement('#edit',30);
+$I->waitForElement('#new-mes',30);
 $I->see('Twoje konto');
 $I->see('Ogłoszenia:');
 $I->see('Zarządzaj członkami:');
@@ -26,7 +26,7 @@ $I->click('Zapisz');
 
 $I->wantTo('see statistics');
 $I->amOnPage('/panel');
-$I->waitForElement('#edit',30);
+$I->waitForElement('#edit_data',30);
 $I->see('Zarządzaj');
 $I->click('Statystyki');
 $I->waitForElement('.small',30);
@@ -40,6 +40,33 @@ $I->click('Zarządzaj oddziałami');
 $I->waitForElement('.edit',30);
 $I->see('Bolesławiec');
 
+$I->wantTo('add new division');
+$I->click('Dodaj nowy');
+$I->waitForElement('.form-group',30);
+$I->fillField('#town','Chojnów');
+$I->fillField('#parish','p.w. św. Michała Archanioła');
+$I->click('Zapisz');
+$I->waitForElement('.v-toaster',10);
+
+$I->wantTo('add new message');
+$I->click('Panel sterowania');
+$I->waitForElement('#new-mes',30);
+$I->click('Nowa wiadomość');
+$I->waitForElement('.form-group',30);
+$I->fillField('#title','Test');
+$I->fillField('#body','Testowa wiadomość');
+$I->click('Zapisz wiadomość');
+$I->waitForElement('.v-toaster',10);
+
+$I->wantTo('delete my messsage');
+$I->click('Panel sterowania');
+$I->waitForElement('#new-mes',30);
+$I->click('Edytuj swoje ogłoszenia');
+$I->waitForElement('.editbtn',30);
+$I->click('Edytuj');
+$I->waitForElement('.form-group',30);
+$I->click('Usuń');
+$I->waitForElement('.v-toaster',10);
 
 $I->click('Wyloguj się');
 $I->waitForElement('#email',30);

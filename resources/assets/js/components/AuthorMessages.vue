@@ -30,7 +30,7 @@
           <h4>
             {{message.title}}
             <button
-              class="btn btn-primary"
+              class="btn btn-primary editbtn"
               type="button"
               name="action"
               @click="editMessage(message.id)"
