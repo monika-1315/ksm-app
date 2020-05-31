@@ -2721,6 +2721,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store.js */ "./resources/assets/js/store.js");
 //
 //
 //
@@ -2801,7 +2802,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2849,11 +2850,17 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         this.messages = response.data;
         this.isProgress = false;
+        if (this.selectedTab === "A") _store_js__WEBPACK_IMPORTED_MODULE_0__["default"].commit("SaveMessages", response.data);
       }.bind(this));
     },
     tabSelected: function tabSelected(cardId) {
       this.selectedTab = cardId;
-      this.getMessages();
+
+      if (cardId === "A" && this.$store.state.messages !== null) {
+        this.messages = this.$store.state.messages;
+      } else {
+        this.getMessages();
+      }
     },
     newMessage: function newMessage() {
       this.$router.push({
@@ -2872,7 +2879,12 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    if (this.$store.state.division !== -1) this.getMessages();
+    if (this.$store.state.division !== -1) {
+      if (this.$store.state.messages !== null) {
+        this.messages = this.$store.state.messages;
+        this.isProgress = false;
+      } else this.getMessages();
+    }
   }
 });
 
@@ -69171,9 +69183,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     division: 0,
     is_leadership: false,
     is_management: false,
-    is_authorized: true
+    is_authorized: true,
+    messages: null
   },
   mutations: {
+    SaveMessages: function SaveMessages(state, messages) {
+      state.messages = messages;
+    },
     LoginEmail: function LoginEmail(state, email) {
       localStorage.setItem('email', email);
       state.email = email;

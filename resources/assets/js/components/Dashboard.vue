@@ -76,10 +76,10 @@
     <div class="progress" v-if="isProgress">
       <div class="indeterminate"></div>
     </div>
-    
   </div>
 </template>
 <script>
+import store from "../store.js";
 export default {
   data() {
     return {
@@ -124,12 +124,18 @@ export default {
           function(response) {
             this.messages = response.data;
             this.isProgress = false;
+            if ((this.selectedTab === "A"))
+              store.commit("SaveMessages", response.data);
           }.bind(this)
         );
     },
     tabSelected: function(cardId) {
       this.selectedTab = cardId;
-      this.getMessages();
+      if (cardId === "A" && this.$store.state.messages !== null) {
+        this.messages = this.$store.state.messages;
+      } else {
+        this.getMessages();
+      }
     },
     newMessage: function() {
       this.$router.push({ name: "message" });
@@ -150,7 +156,12 @@ export default {
     }
   },
   created: function() {
-    if (this.$store.state.division !== -1) this.getMessages();
+    if (this.$store.state.division !== -1) {
+      if (this.$store.state.messages !== null) {
+        this.messages = this.$store.state.messages;
+        this.isProgress = false;
+      } else this.getMessages();
+    }
   }
 };
 </script>

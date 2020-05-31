@@ -14,10 +14,14 @@ export default new Vuex.Store({
         division: 0,
         is_leadership: false,
         is_management: false,
-        is_authorized: true
+        is_authorized: true,
+        messages: null
 
     },
     mutations: {
+        SaveMessages(state, messages){
+            state.messages=messages;
+        },
         LoginEmail(state, email) {
             localStorage.setItem('email', email);
             state.email = email;
