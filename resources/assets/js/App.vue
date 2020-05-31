@@ -27,7 +27,7 @@
             v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
             class="right"
           >
-            <router-link :to="{ name: 'panel' }" class="nav-link">Panel sterowania</router-link>
+            <router-link id="panel" :to="{ name: 'panel' }" class="nav-link">Panel sterowania</router-link>
           </li>
           <li
             v-if="this.$store.state.isLoggedIn  &&!(this.$store.state.is_leadership || this.$store.state.is_management)"

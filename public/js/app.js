@@ -47336,7 +47336,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav-link",
-                          attrs: { to: { name: "panel" } }
+                          attrs: { id: "panel", to: { name: "panel" } }
                         },
                         [_vm._v("Panel sterowania")]
                       )
@@ -48063,6 +48063,7 @@ var staticRenderFns = [
       _c("iframe", {
         staticStyle: { border: "0px currentColor" },
         attrs: {
+          id: "calendar",
           src:
             "https://calendar.google.com/calendar/embed?src=7f7ckv17bg45kn80pofks6o0ck%40group.calendar.google.com&ctz=Europe%2FWarsaw",
           "script-src-elem":
@@ -48188,7 +48189,7 @@ var render = function() {
     _c(
       "table",
       _vm._l(_vm.management, function(person) {
-        return _c("tr", { key: person.user_id }, [
+        return _c("tr", { key: person.user_id, attrs: { id: "person" } }, [
           _c("td", [_vm._v(_vm._s(person.function_name))]),
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(person.name + " " + person.surname))]),
@@ -48209,7 +48210,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { attrs: { align: "justify" } }, [
+    return _c("p", { attrs: { align: "justify", id: "info" } }, [
       _vm._v(
         "\n    Jeżeli masz jakieś pytania, sprawy - napisz do nas na\n    "
       ),
@@ -48263,9 +48264,11 @@ var render = function() {
       _vm._v(" "),
       this.$store.state.isLoggedIn
         ? _c("router-link", { attrs: { to: { name: "edit" } } }, [
-            _c("button", { staticClass: "btn-light btn-large" }, [
-              _vm._v("Edytuj swoje dane")
-            ])
+            _c(
+              "button",
+              { staticClass: "btn-light btn-large", attrs: { id: "edit" } },
+              [_vm._v("Edytuj swoje dane")]
+            )
           ])
         : _vm._e(),
       _vm._v(" "),

@@ -5,7 +5,7 @@
     <br />
     <h4>Twoje konto:</h4>
     <router-link :to="{ name: 'edit' }" class v-if="this.$store.state.isLoggedIn">
-      <button class="btn-light btn-large">Edytuj swoje dane</button>
+      <button class="btn-light btn-large" id="edit">Edytuj swoje dane</button>
     </router-link>
     <router-link
       :to="{ name: 'delegate' }"

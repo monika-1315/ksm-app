@@ -9,7 +9,7 @@
         <h4>Skontaktuj się z nami!</h4>
       </center>
     </div>
-    <p align="justify">
+    <p align="justify" id="info">
       Jeżeli masz jakieś pytania, sprawy - napisz do nas na
       <a
         href="mailto:ksmdl.zarzad@gmail.com"
@@ -25,7 +25,7 @@
         <div class="indeterminate"></div>
     </div>
     <table>
-      <tr v-for="person in management" :key="person.user_id">
+      <tr id="person" v-for="person in management" :key="person.user_id">
         <td>{{person.function_name}}</td>
         <td>{{person.name+' '+person.surname}}</td>
         <td>
