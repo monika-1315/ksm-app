@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use App\Division;
 use Illuminate\Support\Facades\DB;
@@ -48,7 +49,7 @@ class DivisionsController extends Controller
         return response()->json($data);
     }
 
-    public function getDivisionById(Request $request)
+    public function getDivisionById(IdRequest $request)
     {
         $data = Division::where('id', '=', $request->get('id'))
             ->get();
@@ -63,7 +64,7 @@ class DivisionsController extends Controller
         return response()->json($data);
     }
 
-    public function deleteDivision(Request $request)
+    public function deleteDivision(IdRequest $request)
     {
         $data = Division::find($request->get('id'));
         $data->delete();

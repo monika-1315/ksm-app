@@ -2290,7 +2290,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isProgress = true;
       this.axios.post("/api/auth/getMessageByAuthor", {
         token: this.$store.state.token,
-        author: this.$store.state.user_id
+        id: this.$store.state.user_id
       }).then(function (response) {
         this.messages = response.data;
         this.isProgress = false;

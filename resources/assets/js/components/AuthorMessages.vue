@@ -92,7 +92,7 @@ export default {
       this.axios
         .post("/api/auth/getMessageByAuthor", {
           token: this.$store.state.token,
-          author: this.$store.state.user_id
+          id: this.$store.state.user_id
         })
         .then(
           function(response) {

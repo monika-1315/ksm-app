@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Division;
@@ -88,7 +89,7 @@ class MessageController extends Controller
         ]);
     }
 
-    public function getMessageById(Request $request)
+    public function getMessageById(IdRequest $request)
     {
         $data = Message::where('id', '=', $request->get('id'))
             ->get();
@@ -96,9 +97,9 @@ class MessageController extends Controller
         return response()->json($data);
     }
 
-    public function getMessageByAuthor(Request $request)
+    public function getMessageByAuthor(IdRequest $request)
     {
-        $data = Message::where('author', '=', $request->get('author'))
+        $data = Message::where('author', '=', $request->get('id'))
             ->orderby('published_at', 'desc')
             ->get();
 
@@ -122,7 +123,7 @@ class MessageController extends Controller
         ]);
     }
 
-    public function deleteMessage(Request $request)
+    public function deleteMessage(IdRequest $request)
     {
         $data = Message::find($request->get('id'));
         $data->delete();

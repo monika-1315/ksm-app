@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DivisionIdRequest;
+use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use App\Division;
 use App\User;
@@ -23,7 +25,7 @@ class UsersController extends Controller
         return response()->json($data);
     }
 
-    public function authorizeUser(Request $request)
+    public function authorizeUser(IdRequest $request)
     {
         $user = User::find($request->get('id'));
         $user->is_authorized = 1;
@@ -33,7 +35,7 @@ class UsersController extends Controller
         ]);
     }
 
-    public function getUnauthorizedUsers(Request $request)
+    public function getUnauthorizedUsers(DivisionIdRequest $request)
     {
         $data = User::where('division', $request->only('division'))
             ->where('is_authorized', 0)
@@ -49,7 +51,7 @@ class UsersController extends Controller
         return response()->json($data);
     }
 
-    public function getAuthorizedUsersDiv(Request $request)
+    public function getAuthorizedUsersDiv(DivisionIdRequest $request)
     {
         $data = User::where('division', $request->only('division'))
             ->where('is_authorized', 1)
@@ -76,7 +78,7 @@ class UsersController extends Controller
         ]);
     }
 
-    public function changeLeadership(Request $request)
+    public function changeLeadership(IdRequest $request)
     {
         $user = User::find($request->get('id'));
 
@@ -90,7 +92,7 @@ class UsersController extends Controller
         ]);
     }
 
-    public function changeManagement(Request $request)
+    public function changeManagement(IdRequest $request)
     {
         $user = User::find($request->get('id'));
 
