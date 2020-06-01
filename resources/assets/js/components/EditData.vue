@@ -115,8 +115,7 @@
                         
                         setTimeout(() => {
                             this.isProgress = false;
-                            this.$store.state.is_leadership=this.is_leadership;
-                            this.$store.state.is_management=this.is_management;
+                            this.$store.commit('LoginEmail', this.email);
                             this.$router.push({ name: 'dashboard'})
                             this.$toaster.success('Dane pomyślnie zapisane')
                         }, 2000)

@@ -3324,8 +3324,8 @@ __webpack_require__.r(__webpack_exports__);
           if (response.data.success == true) {
             setTimeout(function () {
               _this.isProgress = false;
-              _this.$store.state.is_leadership = _this.is_leadership;
-              _this.$store.state.is_management = _this.is_management;
+
+              _this.$store.commit('LoginEmail', _this.email);
 
               _this.$router.push({
                 name: 'dashboard'
