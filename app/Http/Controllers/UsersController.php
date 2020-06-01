@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmailRequest;
+use App\Http\Requests\UserRequest;
 use App\Http\Requests\DivisionIdRequest;
 use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
@@ -17,7 +19,7 @@ class UsersController extends Controller
      * @return void
      */
 
-    public function getUser(Request $request)
+    public function getUser(EmailRequest $request)
     {
         $data = User::where('email', $request->only('email'))
             ->get();
@@ -59,7 +61,7 @@ class UsersController extends Controller
         return response()->json($data);
     }
 
-    public function updateUser(Request $request)
+    public function updateUser(UserRequest $request)
     {
 
         $user = User::find($request->get('id'));

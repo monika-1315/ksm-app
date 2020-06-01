@@ -96,7 +96,7 @@
         },
         methods: {
             update(){
-                if(this.password===this.confirmPassword &&( this.password===null  || this.password.length>5)){
+                if(this.password===this.confirmPassword &&( this.password===""  || this.password.length>5)){
                 this.axios.post('api/auth/updateUser?token=' + this.$store.state.token, {
                     id: this.currentUser.id,
                     name: this.name,
