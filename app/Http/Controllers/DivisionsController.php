@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\IdRequest;
+use App\Http\Requests\DivisionRequest;
 use Illuminate\Http\Request;
 use App\Division;
 use Illuminate\Support\Facades\DB;
@@ -74,7 +75,7 @@ class DivisionsController extends Controller
         ]);
     }
 
-    public function updateDivision(Request $request)
+    public function updateDivision(DivisionRequest $request)
     {
         $division = Division::find($request->get('id'));
         $division->town = $request->get('town');
@@ -89,7 +90,7 @@ class DivisionsController extends Controller
     }
 
 
-    public function newDivision(Request $request)
+    public function newDivision(DivisionRequest $request)
     {
         $division = new Division();
         $division->town = $request->get('town');

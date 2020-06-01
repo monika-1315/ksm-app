@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetMessagesRequest;
+use App\Http\Requests\MessageRequest;
 use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +13,7 @@ use App\Message;
 class MessageController extends Controller
 {
 
-    public function getMessages(Request $request)
+    public function getMessages(GetMessagesRequest $request)
     {
        define('PAGE_SIZE',3);
         $div = $request->get('division');
@@ -71,7 +73,7 @@ class MessageController extends Controller
         return response()->json($data);
     }
 
-    public function newMessage(Request $request)
+    public function newMessage( MessageRequest $request)
     {
         $message = new Message();
         $message->receiver_group = $request->get('receiver_group');
@@ -106,7 +108,7 @@ class MessageController extends Controller
         return response()->json($data);
     }
 
-    public function editMessage(Request $request)
+    public function editMessage( MessageRequest $request)
     {
         $message = Message::find($request->get('id'));
         $message->receiver_group = $request->get('receiver_group');
