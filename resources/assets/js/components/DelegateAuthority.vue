@@ -182,6 +182,7 @@ export default {
           );
       }
       if (this.is_leadership) {
+        this.isProgress=true;
         this.axios
           .post("/api/auth/getAuthorizedUsersDiv", {
             token: this.$store.state.token,
@@ -195,6 +196,7 @@ export default {
                 if (user.is_leadership === 0) this.usersDiv0.push(user);
                 else this.usersDiv1.push(user);
               }
+              this.isProgress=false;
             }.bind(this)
           );
       }

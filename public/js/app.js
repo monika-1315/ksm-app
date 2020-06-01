@@ -3095,6 +3095,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       if (this.is_leadership) {
+        this.isProgress = true;
         this.axios.post("/api/auth/getAuthorizedUsersDiv", {
           token: this.$store.state.token,
           division: this.$store.state.division
@@ -3115,6 +3116,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           } finally {
             _iterator2.f();
           }
+
+          this.isProgress = false;
         }.bind(this));
       }
     }
@@ -4118,7 +4121,8 @@ __webpack_require__.r(__webpack_exports__);
         password: this.password,
         confirmPassword: this.confirmPassword,
         birthdate: this.birthdate,
-        division: this.division
+        division: this.division,
+        is_leadership: 0
       }).then(function (response) {
         _this.isProgress = true;
 

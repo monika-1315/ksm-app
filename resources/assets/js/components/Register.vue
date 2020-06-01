@@ -89,7 +89,8 @@
                     password: this.password,
                     confirmPassword: this.confirmPassword,
                     birthdate: this.birthdate,
-                    division: this.division
+                    division: this.division,
+                    is_leadership: 0
                 }).then(response => {
                     this.isProgress = true;
                     if(response.data.success == true)
