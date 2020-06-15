@@ -18,7 +18,6 @@ class AuthTest extends TestCase
         ]);
 
         $response
-            // ->dump()
             ->assertStatus(200)
             ->assertJsonStructure([
                 'access_token', 'token_type', 'user'

@@ -106,7 +106,7 @@ class APITest extends TestCase
         $user = User::first();
         $token = JWTAuth::fromUser($user);
         $response = $this->json('POST', '/api/auth/getAuthorizedUsersDiv', ['token' =>$token, 'division' =>1]);
-        // $response->dump();
+        
         $response->assertStatus(200);
         $response->assertJsonStructure([
             '*' => [
@@ -162,7 +162,7 @@ class APITest extends TestCase
 
         $user = User::first();
         $token = JWTAuth::fromUser($user);
-        $response = $this->json('POST', '/api/auth/getMessages', ['token' =>$token, 'division' =>1, 'card'=>'A']);
+        $response = $this->json('POST', '/api/auth/getMessages', ['token' =>$token, 'division' =>1, 'card'=>'A', 'is_leadership'=>'1']);
         // $response->dump();
         $response->assertStatus(200);
         $response->assertJsonStructure([
