@@ -2341,21 +2341,21 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       users: [],
-      isProgress: false
+      isProgress: true
     };
   },
   methods: {
     authorize: function authorize(id) {
       var _this = this;
 
-      this.axios.post('/api/auth/authorizeUser?token=' + this.$store.state.token + '&id=' + id).then(function (response) {
+      this.axios.post("/api/auth/authorizeUser?token=" + this.$store.state.token + "&id=" + id).then(function (response) {
         _this.isProgress = true;
 
         if (response.data.success == true) {
           setTimeout(function () {
             _this.isProgress = false;
 
-            _this.$toaster.success('Zatwierdzono członka oddziału');
+            _this.$toaster.success("Zatwierdzono członka oddziału");
 
             _this.getUsers();
           }, 2000);
@@ -2363,11 +2363,12 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         _this.isProgress = false;
 
-        _this.$toaster.error('Coś poszło nie tak!');
+        _this.$toaster.error("Coś poszło nie tak!");
       });
     },
     getUsers: function getUsers() {
       this.axios.post('/api/auth/getUnauthorizedUsers?token=' + this.$store.state.token + '&division=' + this.$store.state.division).then(function (response) {
+        this.isProgress = false;
         this.users = response.data;
       }.bind(this));
     }
@@ -22439,7 +22440,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.progress[data-v-ba7115bc]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\n.indeterminate[data-v-ba7115bc]{\r\n        background-color: royalblue;\n}\r\n", ""]);
+exports.push([module.i, "\n.progress[data-v-ba7115bc] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\n.indeterminate[data-v-ba7115bc] {\r\n  background-color: royalblue;\n}\r\n", ""]);
 
 // exports
 
@@ -47362,10 +47363,11 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               this.$store.state.isLoggedIn &&
-              !(
+              (!(
                 this.$store.state.is_leadership ||
                 this.$store.state.is_management
-              )
+              ) ||
+                !this.$store.state.is_authorized)
                 ? _c(
                     "li",
                     { staticClass: "right" },
@@ -48022,7 +48024,7 @@ var render = function() {
           _vm._l(_vm.users, function(user) {
             return _c("div", { key: user.id }, [
               _c("p"),
-              _c("h4", [_vm._v(_vm._s(user.name + " " + user.surname) + " ")]),
+              _c("h4", [_vm._v(_vm._s(user.name + " " + user.surname))]),
               _vm._v(" "),
               _c(
                 "button",

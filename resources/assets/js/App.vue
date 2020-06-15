@@ -30,7 +30,7 @@
             <router-link id="panel" :to="{ name: 'panel' }" class="nav-link">Panel sterowania</router-link>
           </li>
           <li
-            v-if="this.$store.state.isLoggedIn  &&!(this.$store.state.is_leadership || this.$store.state.is_management)"
+            v-if="this.$store.state.isLoggedIn  &&(!(this.$store.state.is_leadership || this.$store.state.is_management) || !this.$store.state.is_authorized)"
             class="right"
           >
             <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
