@@ -22,6 +22,8 @@
           @click="getMessages"
           style="float: right"
         >Odśwież</button>
+        <a href="https://calendar.google.com/calendar/r/eventedit?trp=false&sf=true&text=VueConference&location=Bolesławiec,+Polska&details=The+first+Official+Vue.js+Conference+in+the+world!&dates=20200901T120000/20200901T123000">
+        add</a>
       </h3>
       <br />
 
@@ -88,7 +90,7 @@ export default {
       tabs: [
         { id: "A", text: "Wszystkie" },
         { id: "B", text: "Oddział" },
-        { id: "C", text: "Od_Zarządu" },
+        { id: "C", text: "Od Zarządu" },
         { id: "D", text: "Do Kierownictw" }
       ],
       selectedTab: "A"

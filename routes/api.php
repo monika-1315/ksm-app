@@ -12,10 +12,13 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::get('/api/getDivisions', 'DivisionsController@getDivisions');
 Route::get('/api/getDivisionById', 'DivisionsController@getDivisionById');
 Route::get('/api/getManagement', 'APIController@getManagement');
 Route::get('/api/getDivisionsStats', 'DivisionsController@getDivisionsStats');
+Route::get('/api/getEvents', 'EventsController@getUpcomingEvents');
+Route::get('/api/getOldEvents', 'EventsController@getOldEvents');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -49,4 +52,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/allDivisions', 'DivisionsController@getAllDivisions');
     Route::post('/auth/editDivision', 'DivisionsController@updateDivision');
     Route::post('/auth/deleteDivision', 'DivisionsController@deleteDivision');
+
+    Route::post('/api/getUserUpcomingEvents', 'EventsController@getUserUpcomingEvents');
+    Route::post('/api/getUserOldEvents', 'EventsController@getUserOldEvents');
 });

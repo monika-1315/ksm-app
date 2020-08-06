@@ -2803,6 +2803,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2817,7 +2819,7 @@ __webpack_require__.r(__webpack_exports__);
         text: "Oddział"
       }, {
         id: "C",
-        text: "Od_Zarządu"
+        text: "Od Zarządu"
       }, {
         id: "D",
         text: "Do Kierownictw"
@@ -48508,6 +48510,17 @@ var render = function() {
                   on: { click: _vm.getMessages }
                 },
                 [_vm._v("Odśwież")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href:
+                      "https://calendar.google.com/calendar/r/eventedit?trp=false&sf=true&text=VueConference&location=Bolesławiec,+Polska&details=The+first+Official+Vue.js+Conference+in+the+world!&dates=20200901T120000/20200901T123000"
+                  }
+                },
+                [_vm._v("\n      add")]
               )
             ]),
             _vm._v(" "),
@@ -69268,8 +69281,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\ksm_app_ang\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\moniu\Documents\PWr\semestr6\Zaawansowane Technologie Webowe\ksm_app_ang\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! C:\Users\moniu\Documents\PWr\inżynierka\ksm_app\resources\assets\js\app.js */"./resources/assets/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\moniu\Documents\PWr\inżynierka\ksm_app\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
 
 
 /***/ })
