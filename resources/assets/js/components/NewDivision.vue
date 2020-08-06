@@ -17,6 +17,11 @@
               <input id="parish" type="text" class="validate" v-model="parish" required />
               <span class="text text-danger" v-if="error && errors.parish">{{ errors.parish[0] }}</span>
             </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" type="text" class="validate" v-model="email"/>
+              <span class="text text-danger" v-if="error && errors.email">{{ errors.email[0] }}</span>
+            </div>
             <br />
             <div style="text-align:center">
               <button class="btn btn-primary" type="submit" name="action">Zapisz</button>
@@ -35,6 +40,7 @@ export default {
       id: this.$route.params.id,
       town: "",
       parish: "",
+      email: "",
      
       error: false,
       errors: {},
@@ -57,6 +63,7 @@ export default {
           token: this.$store.state.token,
           town: this.town,
           parish: this.parish,
+          email: this.email
         })
         .then(response => {
           this.isProgress = true;

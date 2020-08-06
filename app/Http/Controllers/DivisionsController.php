@@ -81,6 +81,7 @@ class DivisionsController extends Controller
         $division->town = $request->get('town');
         $division->parish = $request->get('parish');
         $division->is_active = $request->get('is_active');
+        $division->email = $request->get('email');
         $division->save();
 
         return response()->json([

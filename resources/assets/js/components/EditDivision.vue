@@ -20,6 +20,11 @@
               <input id="parish" type="text" class="validate" v-model="parish" required />
               <span class="text text-danger" v-if="error && errors.parish">{{ errors.parish[0] }}</span>
             </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" type="text" class="validate" v-model="email"/>
+              <span class="text text-danger" v-if="error && errors.email">{{ errors.email[0] }}</span>
+            </div>
             <div class="switch">
               <label>
                 Zawieszony
@@ -47,6 +52,7 @@ export default {
       town: "",
       parish: "",
       is_active: 0,
+      email:"",
       error: false,
       errors: {},
       success: false,
@@ -68,6 +74,7 @@ export default {
           token: this.$store.state.token,
           town: this.town,
           parish: this.parish,
+          email: this.email,
           is_active: this.is_active
         })
         .then(response => {
@@ -94,6 +101,7 @@ export default {
           function(response) {
             this.town = response.data[0].town,
             this.parish = response.data[0].parish,
+            this.email = response.data[0].email,
             this.is_active = response.data[0].is_active;
             this.isProgress=false;
           }.bind(this)

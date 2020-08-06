@@ -3425,6 +3425,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3432,6 +3437,7 @@ __webpack_require__.r(__webpack_exports__);
       town: "",
       parish: "",
       is_active: 0,
+      email: "",
       error: false,
       errors: {},
       success: false,
@@ -3454,6 +3460,7 @@ __webpack_require__.r(__webpack_exports__);
         token: this.$store.state.token,
         town: this.town,
         parish: this.parish,
+        email: this.email,
         is_active: this.is_active
       }).then(function (response) {
         _this.isProgress = true;
@@ -3479,7 +3486,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     getDivision: function getDivision() {
       this.axios.get("/api/getDivisionById?id=" + this.id).then(function (response) {
-        this.town = response.data[0].town, this.parish = response.data[0].parish, this.is_active = response.data[0].is_active;
+        this.town = response.data[0].town, this.parish = response.data[0].parish, this.email = response.data[0].email, this.is_active = response.data[0].is_active;
         this.isProgress = false;
       }.bind(this));
     }
@@ -3817,12 +3824,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       id: this.$route.params.id,
       town: "",
       parish: "",
+      email: "",
       error: false,
       errors: {},
       success: false,
@@ -3844,7 +3857,8 @@ __webpack_require__.r(__webpack_exports__);
         id: this.id,
         token: this.$store.state.token,
         town: this.town,
-        parish: this.parish
+        parish: this.parish,
+        email: this.email
       }).then(function (response) {
         _this.isProgress = true;
 
@@ -49504,6 +49518,40 @@ var render = function() {
                           : _vm._e()
                       ]),
                       _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "email" } }, [
+                          _vm._v("Email")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.email,
+                              expression: "email"
+                            }
+                          ],
+                          staticClass: "validate",
+                          attrs: { id: "email", type: "text" },
+                          domProps: { value: _vm.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.email = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.error && _vm.errors.email
+                          ? _c("span", { staticClass: "text text-danger" }, [
+                              _vm._v(_vm._s(_vm.errors.email[0]))
+                            ])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
                       _c("div", { staticClass: "switch" }, [
                         _c("label", [
                           _vm._v("\n              Zawieszony\n              "),
@@ -50291,6 +50339,40 @@ var render = function() {
                         _vm.error && _vm.errors.parish
                           ? _c("span", { staticClass: "text text-danger" }, [
                               _vm._v(_vm._s(_vm.errors.parish[0]))
+                            ])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "email" } }, [
+                          _vm._v("Email")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.email,
+                              expression: "email"
+                            }
+                          ],
+                          staticClass: "validate",
+                          attrs: { id: "email", type: "text" },
+                          domProps: { value: _vm.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.email = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.error && _vm.errors.email
+                          ? _c("span", { staticClass: "text text-danger" }, [
+                              _vm._v(_vm._s(_vm.errors.email[0]))
                             ])
                           : _vm._e()
                       ]),

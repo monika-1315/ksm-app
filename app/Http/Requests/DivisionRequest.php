@@ -28,7 +28,7 @@ class DivisionRequest extends FormRequest
             'town' => 'required|string',
             'parish' => 'required|string', 
             'is_active' => 'boolean',
-
+            'email' => 'email',
         ];
     }
 }
