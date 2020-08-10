@@ -20,6 +20,7 @@ Route::get('/api/getDivisionsStats', 'DivisionsController@getDivisionsStats');
 
 Route::get('/api/getEvents', 'EventsController@getUpcomingEvents');
 Route::get('/api/getOldEvents', 'EventsController@getOldEvents');
+Route::get('/api/getDivisionEvents', 'EventsController@getDivisionEvents');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -58,7 +59,6 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/getUserOldEvents', 'EventsController@getUserOldEvents');
     Route::post('/auth/getEventInfo', 'EventsController@getEventInfo');
     Route::post('/auth/getParticipants', 'EventsController@getParticipants');
-    Route::post('/auth/getDivisionEvents', 'EventsController@getDivisionEvents');
     Route::post('/auth/newEvent', 'EventsController@newEvent');
     Route::post('/auth/editEvent', 'EventsController@editEvent');
 });

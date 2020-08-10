@@ -3927,6 +3927,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3945,7 +3958,7 @@ __webpack_require__.r(__webpack_exports__);
         id: "D",
         text: "Zbliżające się w oddziale"
       }],
-      selectedTab: "A"
+      selectedTab: "C"
     };
   },
   components: {//
@@ -3998,8 +4011,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case "C":
-          this.axios.post("/api/auth/getDivisionEvents", {
-            token: this.$store.state.token,
+          this.axios.get("/api/getDivisionEvents?id=0", {
             id: 0
           }).then(function (response) {
             this.events = response.data;
@@ -4008,10 +4020,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case "D":
-          this.axios.post("/api/auth/getDivisionEvents", {
-            token: this.$store.state.token,
-            id: this.division
-          }).then(function (response) {
+          this.axios.get("/api/getDivisionEvents?id=" + this.division).then(function (response) {
             this.events = response.data;
             this.isProgress = false;
           }.bind(this));
@@ -4037,7 +4046,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    if (this.user_id !== 0) this.getEvents();
+    if (this.user_id !== 0) {
+      this.selectedTab = "A";
+      this.getEvents();
+    }
   }
 });
 
@@ -23321,7 +23333,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.card-body[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.stamp[data-v-3a297ce0] {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.indeterminate[data-v-3a297ce0] {\r\n  background-color: rgba(3, 35, 138, 0.774);\n}\n.activeTab[data-v-3a297ce0] {\r\n  font-weight: bold;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.card-body[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.stamp[data-v-3a297ce0] {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.indeterminate[data-v-3a297ce0] {\r\n  background-color: rgba(3, 35, 138, 0.774);\n}\n.activeTab[data-v-3a297ce0] {\r\n  font-weight: bold;\n}\n.card-title[data-v-3a297ce0] {\r\n  font-weight: 400;\n}\r\n", ""]);
 
 // exports
 
@@ -48133,7 +48145,7 @@ var render = function() {
                     "router-link",
                     {
                       staticClass: "nav-link",
-                      attrs: { to: { name: "calendar" } }
+                      attrs: { to: { name: "events" } }
                     },
                     [_vm._v("Kalendarium")]
                   )
@@ -51216,7 +51228,7 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.tabs, function(tab) {
         return _c("span", { key: tab.id }, [
-          tab.id !== "C" || _vm.user_id !== 0
+          tab.id === "C" || _vm.user_id !== 0
             ? _c(
                 "button",
                 {
@@ -51246,45 +51258,32 @@ var render = function() {
             _vm.selectedTab === "B" ||
             _vm.selectedTab === "D") &&
             _vm.user_id !== 0)
-            ? _c("div", { staticClass: "card card-default" }, [
-                _c("div", { staticClass: "card-header" }, [
-                  _c("h4", [
-                    _vm._v(
-                      "\n          " + _vm._s(event.title) + "\n          "
-                    ),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn editbtn",
-                        staticStyle: { float: "right" },
-                        attrs: { type: "button", name: "action" },
-                        on: {
-                          click: function($event) {
-                            return _vm.showEvent(event.id)
-                          }
-                        }
-                      },
-                      [_vm._v("Szczegóły")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary editbtn",
-                        staticStyle: { float: "right" },
-                        attrs: { type: "button", name: "action" },
-                        on: {
-                          click: function($event) {
-                            return _vm.editEvent(event.id)
-                          }
-                        }
-                      },
-                      [_vm._v("Edytuj")]
-                    )
-                  ])
+            ? _c("div", { staticClass: "card card-default sticky-action" }, [
+                _c("div", { staticClass: "card-header card-title activator" }, [
+                  _vm._v("\n        " + _vm._s(event.title) + "\n         "),
+                  _c(
+                    "i",
+                    { staticStyle: { float: "right", "font-size": "small" } },
+                    [_vm._v("więcej")]
+                  )
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "card-content" }, [
+                  _c("h5", [_vm._v(_vm._s(event.start + " - " + event.end))]),
+                  _vm._v(" "),
+                  _c("h6", [_vm._v(_vm._s(event.location))])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-reveal" }, [
+                  _c("div", { staticClass: "card-title activator" }, [
+                    _vm._v(_vm._s(event.title) + "\n           "),
+                    _c(
+                      "i",
+                      { staticStyle: { float: "right", "font-size": "small" } },
+                      [_vm._v("mniej")]
+                    )
+                  ]),
+                  _vm._v(" "),
                   _c("h5", [_vm._v(_vm._s(event.start + " - " + event.end))]),
                   _vm._v(" "),
                   _c("h6", [_vm._v(_vm._s(event.location))]),
@@ -51292,6 +51291,38 @@ var render = function() {
                   _c("p", { staticStyle: { "white-space": "pre-line" } }, [
                     _vm._v(_vm._s(event.about))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-action" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn editbtn",
+                      staticStyle: { float: "right" },
+                      attrs: { type: "button", name: "action" },
+                      on: {
+                        click: function($event) {
+                          return _vm.showEvent(event.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Szczegóły")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary editbtn",
+                      staticStyle: { float: "right" },
+                      attrs: { type: "button", name: "action" },
+                      on: {
+                        click: function($event) {
+                          return _vm.editEvent(event.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Edytuj")]
+                  )
                 ])
               ])
             : _vm._e()

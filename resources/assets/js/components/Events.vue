@@ -15,7 +15,7 @@
       <button
         class="tab btn btn-light"
         @click="selectedTab=tab.id"
-        v-if="tab.id!=='C'||user_id!==0"
+        v-if="tab.id==='C'||user_id!==0"
       >
         <a :class="{activeTab: selectedTab===tab.id}">{{ tab.text }}</a>
       </button>
@@ -23,32 +23,45 @@
 
     <div v-for="event in events" :key="event.id">
       <div
-        class="card card-default"
+        class="card card-default sticky-action"
         v-if="selectedTab==='C'|| (selectedTab==='A'||selectedTab==='B'||selectedTab==='D')&&user_id!==0"
       >
-        <div class="card-header">
-          <h4>
-            {{event.title}}
-            <button
-              class="btn editbtn"
-              type="button"
-              name="action"
-              @click="showEvent(event.id)"
-              style="float: right"
-            >Szczegóły</button>
-            <button
-              class="btn btn-primary editbtn"
-              type="button"
-              name="action"
-              @click="editEvent(event.id)"
-              style="float: right"
-            >Edytuj</button>
-          </h4>
+        <div class="card-header card-title activator">
+          {{event.title}}
+           <i
+            style="float: right; font-size:small"
+          >więcej</i>
         </div>
-        <div class="card-body">
+
+        <div class="card-content">
+          <h5>{{event.start+" - "+event.end}}</h5>
+          <h6>{{event.location}}</h6>
+        </div>
+        <div class="card-reveal">
+          <div class="card-title activator">{{event.title}}
+             <i
+            style="float: right; font-size:small"
+          >mniej</i>
+          </div>
           <h5>{{event.start+" - "+event.end}}</h5>
           <h6>{{event.location}}</h6>
           <p style="white-space: pre-line">{{event.about}}</p>
+        </div>
+        <div class="card-action">
+          <button
+            class="btn editbtn"
+            type="button"
+            name="action"
+            @click="showEvent(event.id)"
+            style="float: right"
+          >Szczegóły</button>
+           <button
+            class="btn btn-primary editbtn"
+            type="button"
+            name="action"
+            @click="editEvent(event.id)"
+            style="float: right"
+          >Edytuj</button>
         </div>
       </div>
     </div>
@@ -72,7 +85,7 @@ export default {
         { id: "C", text: "Zbliżające się w diecezji" },
         { id: "D", text: "Zbliżające się w oddziale" },
       ],
-      selectedTab: "A",
+      selectedTab: "C",
     };
   },
   components: {
@@ -116,12 +129,12 @@ export default {
                 this.isProgress = false;
               }.bind(this)
             );
-            break;
+          break;
         case "B":
           this.axios
             .post("/api/auth/getUserOldEvents", {
               token: this.$store.state.token,
-              id:  this.user_id,
+              id: this.user_id,
             })
             .then(
               function (response) {
@@ -129,11 +142,10 @@ export default {
                 this.isProgress = false;
               }.bind(this)
             );
-            break;
+          break;
         case "C":
           this.axios
-             .post("/api/auth/getDivisionEvents", {
-              token: this.$store.state.token,
+            .get("/api/getDivisionEvents?id=0", {
               id: 0,
             })
             .then(
@@ -142,21 +154,16 @@ export default {
                 this.isProgress = false;
               }.bind(this)
             );
-            break;
+          break;
         case "D":
-          this.axios
-            .post("/api/auth/getDivisionEvents", {
-              token: this.$store.state.token,
-              id: this.division,
-            })
-            .then(
-              function (response) {
-                this.events = response.data;
-                this.isProgress = false;
-              }.bind(this)
-            );
-            break;
-      }//switch case
+          this.axios.get("/api/getDivisionEvents?id=" + this.division).then(
+            function (response) {
+              this.events = response.data;
+              this.isProgress = false;
+            }.bind(this)
+          );
+          break;
+      } //switch case
     },
     editEvent: function (id) {
       this.$router.push({ name: "editevent", params: { id: id } });
@@ -167,7 +174,10 @@ export default {
   },
 
   created: function () {
-    if (this.user_id !== 0) this.getEvents();
+    if (this.user_id !== 0) {
+      this.selectedTab = "A";
+      this.getEvents();
+    }
   },
 };
 </script>
@@ -188,5 +198,8 @@ export default {
 }
 .activeTab {
   font-weight: bold;
+}
+.card-title {
+  font-weight: 400;
 }
 </style>
