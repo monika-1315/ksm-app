@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EmailRequest;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\EventRequest;
 use App\Http\Requests\ParticipantsRequest;
 use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
@@ -137,5 +137,23 @@ class EventsController extends Controller
             ->get();
 
         return response()->json($data);
+    }
+
+    public function newEvent( EventRequest $request)
+    {
+        // $message = new Event();
+        // $message->receiver_group = $request->get('receiver_group');
+        // if ($request->get('receiver_group') === 1)
+        //     $message->division = $request->get('division');
+        // $message->title = $request->get('title');
+        // $message->body = $request->get('body');
+        // $message->published_at = date("Y-m-d H:i:s");
+        // $message->author = $request->get('author');
+        // $message->save();
+
+        return response()->json([
+
+            'success' => true
+        ]);
     }
 }

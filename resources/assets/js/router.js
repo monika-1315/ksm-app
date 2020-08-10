@@ -12,6 +12,7 @@ import AuthorMessages from './components/AuthorMessages.vue'
 import Divisions from './components/Divisions.vue'
 import EditDivision from './components/EditDivision.vue'
 import NewDivision from './components/NewDivision.vue'
+import NewEvent from './components/NewEvent.vue'
 import ControlPanel from './components/ControlPanel.vue'
 import Calendar from './components/Calendar.vue'
 import Chart from './components/Chart.vue'
@@ -164,6 +165,14 @@ const router = new VueRouter({
         component: Chart,
         meta: { 
             requiresAuth: false
+        }
+    },
+    {
+        path: '/newevent',
+        name: 'newevent',
+        component: NewEvent,
+        meta: { 
+            requiresAuth: true
         }
     },
     ]
