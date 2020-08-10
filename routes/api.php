@@ -60,4 +60,5 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/getParticipants', 'EventsController@getParticipants');
     Route::post('/auth/getDivisionEvents', 'EventsController@getDivisionEvents');
     Route::post('/auth/newEvent', 'EventsController@newEvent');
+    Route::post('/auth/editEvent', 'EventsController@editEvent');
 });

@@ -13,6 +13,8 @@ import Divisions from './components/Divisions.vue'
 import EditDivision from './components/EditDivision.vue'
 import NewDivision from './components/NewDivision.vue'
 import NewEvent from './components/NewEvent.vue'
+import EditEvent from './components/EditEvent.vue'
+import Events from './components/Events.vue'
 import ControlPanel from './components/ControlPanel.vue'
 import Calendar from './components/Calendar.vue'
 import Chart from './components/Chart.vue'
@@ -173,6 +175,30 @@ const router = new VueRouter({
         component: NewEvent,
         meta: { 
             requiresAuth: true
+        }
+    },
+    {
+        path: '/editevent/:id',
+        name: 'editevent',
+        component: EditEvent,
+        meta: { 
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/event/:id',
+        name: 'showevent',
+        component: EditEvent,
+        meta: { 
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/events',
+        name: 'events',
+        component: Events,
+        meta: { 
+            // requiresAuth: true
         }
     },
     ]
