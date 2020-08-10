@@ -44,6 +44,20 @@ class EventsController extends Controller
         return response()->json($data);
     }
 
+    public function getDivisionEvents(IdRequest $request)
+    {
+        if ($request->get('id')==0){
+            $data = Event::whereNull('division')
+            ->orderby('start', 'desc')
+            ->get();
+        }else{
+        $data = Event::where('division', '=', $request->get('id'))
+            ->orderby('start', 'desc')
+            ->get();}
+        return response()->json($data);
+    }
+
+
     public function getUserUpcomingEvents(IdRequest $request)
     {
 
@@ -54,7 +68,7 @@ class EventsController extends Controller
         $data = DB::table('events')
             ->leftJoinSub($select, 'sel', function ($join) {
                 $join->on('events.id', '=', 'sel.event_id');
-            })->selectRaw('events.id, events.receiver_group, events.division, events.title, events.about, events.start, events.end, events.location')
+            })->selectRaw('events.id, events.division, events.title, events.about, events.start, events.end, events.location')
             ->where('end', '>=', date('Y-m-d'))
             ->orderByRaw('events.start')
             ->get();
@@ -72,7 +86,7 @@ class EventsController extends Controller
         $data = DB::table('events')
             ->leftJoinSub($select, 'sel', function ($join) {
                 $join->on('events.id', '=', 'sel.event_id');
-            })->selectRaw('events.id, events.receiver_group, events.division, events.title, events.about, events.start, events.end, events.location')
+            })->selectRaw('events.id, events.division, events.title, events.about, events.start, events.end, events.location')
             ->where('end', '<', date('Y-m-d'))
             ->orderByRaw('events.start')
             ->get();
@@ -87,13 +101,19 @@ class EventsController extends Controller
             ->where('event_id', '=', $request->get('id'));
 
 
-        $data = DB::table('events')
+        $data1 = DB::table('events')
             ->leftJoinSub($select, 'sel', function ($join) {
                 $join->on('events.id', '=', 'sel.event_id');
-            })->selectRaw('events.id, events.receiver_group, events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, count(sel.user_id) participants')
+            })->selectRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, count(sel.user_id) participants')
             ->orderByRaw('events.start')
-            ->groupByRaw('events.id, events.receiver_group, events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at')
-            ->get();
+            ->groupByRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at')
+            ;
+
+        $data = DB::table('divisions')
+        ->rightJoinSub($data1, 'events', function ($join) {
+            $join->on('events.division', '=', 'divisions.id');
+        })->selectRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, events.participants, divisions.email')
+        ->get();
 
         return response()->json($data);
     }
