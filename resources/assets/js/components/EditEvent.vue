@@ -5,7 +5,9 @@
         <div class="card-header">
           <h4>Edytuj wydarzenie</h4>
         </div>
-
+        <div class="progress" v-if="isProgress">
+          <div class="indeterminate"></div>
+        </div>
         <div class="card-body">
           <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
             <div class="form-group">
@@ -81,9 +83,6 @@
               <span class="text text-danger" v-if="error && errors.details">{{ errors.details[0] }}</span>
             </div>
 
-            <div class="progress" v-if="isProgress">
-              <div class="indeterminate"></div>
-            </div>
             <div style="text-align:center">
               <button
                 class="btn btn-primary"
@@ -126,7 +125,7 @@ export default {
   methods: {
     register() {
       this.axios
-        .post("api/auth/editEvent", {
+        .post("/api/auth/editEvent", {
           token: this.$store.state.token,
           id: this.id,
           title: this.title,
@@ -138,14 +137,14 @@ export default {
           price: this.price,
           timetable: this.timetable,
           details: this.details,
-          author: this.author,
+          // author: this.author,
         })
         .then((response) => {
           this.isProgress = true;
           if (response.data.success == true) {
             setTimeout(() => {
               this.isProgress = false;
-              //   this.$router.push({ name: "login" });
+              this.$router.push({ name: "events" });
               this.$toaster.success("Zapisano wydarzenie");
             }, 2000);
           }
@@ -164,8 +163,35 @@ export default {
         }.bind(this)
       );
     },
+    getEventInfo: function () {
+      this.isProgress = true;
+      this.axios
+        .post("/api/auth/getEventInfo", {
+          token: this.$store.state.token,
+          id: this.id,
+        })
+        .then(
+          function (response) {
+            this.title = response.data[0].title;
+            this.division = response.data[0].division;
+            this.about = response.data[0].about;
+            this.start_date = response.data[0].start.split(" ")[0];
+            this.start_time = response.data[0].start.split(" ")[1];
+            this.end_date = response.data[0].end.split(" ")[0];
+            this.end_time = response.data[0].end.split(" ")[1];
+            this.division = response.data[0].division;
+            if (this.division === null) this.division = 0;
+            this.location = response.data[0].location;
+            this.price = response.data[0].price;
+            this.timetable = response.data[0].timetable;
+            this.details = response.data[0].details;
+            this.isProgress = false;
+          }.bind(this)
+        );
+    },
   },
   created: function () {
+    this.getEventInfo();
     this.getDivisions();
   },
 };

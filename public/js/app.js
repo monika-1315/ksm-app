@@ -3607,7 +3607,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3635,7 +3634,7 @@ __webpack_require__.r(__webpack_exports__);
     register: function register() {
       var _this = this;
 
-      this.axios.post("api/auth/editEvent", {
+      this.axios.post("/api/auth/editEvent", {
         token: this.$store.state.token,
         id: this.id,
         title: this.title,
@@ -3646,14 +3645,18 @@ __webpack_require__.r(__webpack_exports__);
         location: this.location,
         price: this.price,
         timetable: this.timetable,
-        details: this.details,
-        author: this.author
+        details: this.details // author: this.author,
+
       }).then(function (response) {
         _this.isProgress = true;
 
         if (response.data.success == true) {
           setTimeout(function () {
-            _this.isProgress = false; //   this.$router.push({ name: "login" });
+            _this.isProgress = false;
+
+            _this.$router.push({
+              name: "events"
+            });
 
             _this.$toaster.success("Zapisano wydarzenie");
           }, 2000);
@@ -3669,9 +3672,32 @@ __webpack_require__.r(__webpack_exports__);
         this.divisions = response.data;
         this.author = this.$store.state.user_id;
       }.bind(this));
+    },
+    getEventInfo: function getEventInfo() {
+      this.isProgress = true;
+      this.axios.post("/api/auth/getEventInfo", {
+        token: this.$store.state.token,
+        id: this.id
+      }).then(function (response) {
+        this.title = response.data[0].title;
+        this.division = response.data[0].division;
+        this.about = response.data[0].about;
+        this.start_date = response.data[0].start.split(" ")[0];
+        this.start_time = response.data[0].start.split(" ")[1];
+        this.end_date = response.data[0].end.split(" ")[0];
+        this.end_time = response.data[0].end.split(" ")[1];
+        this.division = response.data[0].division;
+        if (this.division === null) this.division = 0;
+        this.location = response.data[0].location;
+        this.price = response.data[0].price;
+        this.timetable = response.data[0].timetable;
+        this.details = response.data[0].details;
+        this.isProgress = false;
+      }.bind(this));
     }
   },
   created: function created() {
+    this.getEventInfo();
     this.getDivisions();
   }
 });
@@ -50458,6 +50484,12 @@ var render = function() {
       _c("div", { staticClass: "card card-default" }, [
         _vm._m(0),
         _vm._v(" "),
+        _vm.isProgress
+          ? _c("div", { staticClass: "progress" }, [
+              _c("div", { staticClass: "indeterminate" })
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           !_vm.success
             ? _c(
@@ -50872,12 +50904,6 @@ var render = function() {
                         ])
                       : _vm._e()
                   ]),
-                  _vm._v(" "),
-                  _vm.isProgress
-                    ? _c("div", { staticClass: "progress" }, [
-                        _c("div", { staticClass: "indeterminate" })
-                      ])
-                    : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticStyle: { "text-align": "center" } }, [
                     _c(
