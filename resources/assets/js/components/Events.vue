@@ -2,6 +2,7 @@
   <div class="container">
     <h3>
       Wydarzenia:
+      
       <button
         class="btn btn-primary"
         type="button"
@@ -9,6 +10,14 @@
         @click="getEvents"
         style="float: right"
       >Odśwież</button>
+      <router-link :to="{ name: 'newevent' }" >
+      <button
+        class="btn btn-primary yellow"
+        type="button"
+        name="action"
+        style="float: right"
+      >Utwórz</button>
+      </router-link>
     </h3>
     <br />
     <span v-for="tab in tabs" :key="tab.id">
@@ -201,5 +210,10 @@ export default {
 }
 .card-title {
   font-weight: 400;
+}
+.yellow {
+  background-color: rgb(254, 209, 9) !important;
+  border-color: rgb(254, 209, 9);
+  color: black;
 }
 </style>

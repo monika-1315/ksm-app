@@ -3607,6 +3607,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3694,6 +3703,34 @@ __webpack_require__.r(__webpack_exports__);
         this.details = response.data[0].details;
         this.isProgress = false;
       }.bind(this));
+    },
+    deleteEvent: function deleteEvent() {
+      var _this2 = this;
+
+      this.axios.post("/api/auth/deleteEvent", {
+        id: this.id,
+        token: this.$store.state.token
+      }).then(function (response) {
+        _this2.isProgress = true;
+
+        if (response.data.success == true) {
+          setTimeout(function () {
+            _this2.isProgress = false;
+
+            _this2.$router.push({
+              name: "events"
+            });
+
+            _this2.$toaster.success("Wydarzenie usunięte");
+          }, 2000);
+        }
+      })["catch"](function (error) {
+        _this2.isProgress = false;
+        _this2.error = true;
+        _this2.errors = error.response.data.errors;
+
+        _this2.$toaster.error("Coś poszło nie tak");
+      });
     }
   },
   created: function created() {
@@ -3891,6 +3928,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -23359,7 +23405,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.card-body[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.stamp[data-v-3a297ce0] {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.indeterminate[data-v-3a297ce0] {\r\n  background-color: rgba(3, 35, 138, 0.774);\n}\n.activeTab[data-v-3a297ce0] {\r\n  font-weight: bold;\n}\n.card-title[data-v-3a297ce0] {\r\n  font-weight: 400;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.card-body[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.stamp[data-v-3a297ce0] {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.indeterminate[data-v-3a297ce0] {\r\n  background-color: rgba(3, 35, 138, 0.774);\n}\n.activeTab[data-v-3a297ce0] {\r\n  font-weight: bold;\n}\n.card-title[data-v-3a297ce0] {\r\n  font-weight: 400;\n}\n.yellow[data-v-3a297ce0] {\r\n  background-color: rgb(254, 209, 9) !important;\r\n  border-color: rgb(254, 209, 9);\r\n  color: black;\n}\r\n", ""]);
 
 // exports
 
@@ -50482,7 +50528,21 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-md-center" }, [
       _c("div", { staticClass: "card card-default" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "card-header" }, [
+          _c("h4", [
+            _vm._v("\n          Edytuj wydarzenie\n          "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                staticStyle: { float: "right" },
+                attrs: { type: "button", name: "action" },
+                on: { click: _vm.deleteEvent }
+              },
+              [_vm._v("Usuń")]
+            )
+          ])
+        ]),
         _vm._v(" "),
         _vm.isProgress
           ? _c("div", { staticClass: "progress" }, [
@@ -50929,16 +50989,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h4", [_vm._v("Edytuj wydarzenie")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -51236,19 +51287,35 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("h3", [
-        _vm._v("\n    Wydarzenia:\n    "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            staticStyle: { float: "right" },
-            attrs: { type: "button", name: "action" },
-            on: { click: _vm.getEvents }
-          },
-          [_vm._v("Odśwież")]
-        )
-      ]),
+      _c(
+        "h3",
+        [
+          _vm._v("\n    Wydarzenia:\n    \n    "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              staticStyle: { float: "right" },
+              attrs: { type: "button", name: "action" },
+              on: { click: _vm.getEvents }
+            },
+            [_vm._v("Odśwież")]
+          ),
+          _vm._v(" "),
+          _c("router-link", { attrs: { to: { name: "newevent" } } }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary yellow",
+                staticStyle: { float: "right" },
+                attrs: { type: "button", name: "action" }
+              },
+              [_vm._v("Utwórz")]
+            )
+          ])
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),

@@ -188,4 +188,14 @@ class EventsController extends Controller
             'success' => true
         ]);
     }
+
+    public function deleteEvent(IdRequest $request)
+    {
+        $data = Event::find($request->get('id'));
+        $data->delete();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
 }

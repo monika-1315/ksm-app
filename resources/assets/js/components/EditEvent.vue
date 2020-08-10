@@ -3,7 +3,16 @@
     <div class="row justify-content-md-center">
       <div class="card card-default">
         <div class="card-header">
-          <h4>Edytuj wydarzenie</h4>
+          <h4>
+            Edytuj wydarzenie
+            <button
+              class="btn btn-primary"
+              type="button"
+              name="action"
+              @click="deleteEvent"
+              style="float: right"
+            >Usuń</button>
+          </h4>
         </div>
         <div class="progress" v-if="isProgress">
           <div class="indeterminate"></div>
@@ -188,6 +197,30 @@ export default {
             this.isProgress = false;
           }.bind(this)
         );
+    },
+
+    deleteEvent() {
+      this.axios
+        .post("/api/auth/deleteEvent", {
+          id: this.id,
+          token: this.$store.state.token,
+        })
+        .then((response) => {
+          this.isProgress = true;
+          if (response.data.success == true) {
+            setTimeout(() => {
+              this.isProgress = false;
+              this.$router.push({ name: "events" });
+              this.$toaster.success("Wydarzenie usunięte");
+            }, 2000);
+          }
+        })
+        .catch((error) => {
+          this.isProgress = false;
+          this.error = true;
+          this.errors = error.response.data.errors;
+          this.$toaster.error("Coś poszło nie tak");
+        });
     },
   },
   created: function () {
