@@ -5,11 +5,12 @@
         <div class="card-header">
           <h4>Dodaj nowe wydarzenie</h4>
         </div>
+
         <div class="card-body">
           <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
             <div class="form-group">
               <label for="title">Tytuł wydarzenia</label>
-              <input id="title" type="text" class="validate" v-model="title" required />
+              <input id="title" type="text" class="validate" v-model="title" required autofocus/>
               <span class="text text-danger" v-if="error && errors.title">{{ errors.title[0] }}</span>
             </div>
             <div class="form-group">
@@ -20,28 +21,26 @@
             <div class="form-group">
               <label for="start_date">Data rozpoczęcia</label>
               <input type="date" id="start_date" v-model="start_date" required />
-              <span class="text text-danger" v-if="error && errors.start_date">{{ errors.start_date[0] }}</span>
+              <span class="text text-danger" v-if="error && errors.start">{{ errors.start[0] }}</span>
             </div>
             <div class="form-group">
               <label for="start_time">Godzina rozpoczęcia</label>
               <input type="time" id="start_time" v-model="start_time" required />
-              <span class="text text-danger" v-if="error && errors.start_time">{{ errors.start_time[0] }}</span>
             </div>
             <div class="form-group">
               <label for="end_date">Data zakończenia</label>
               <input type="date" id="end_date" v-model="end_date" required />
-              <span class="text text-danger" v-if="error && errors.end_date">{{ errors.end_date[0] }}</span>
+              <span class="text text-danger" v-if="error && errors.end">{{ errors.end[0] }}</span>
             </div>
             <div class="form-group">
               <label for="end_time">Godzina zakończenia</label>
               <input type="time" id="end_time" v-model="end_time" required />
-              <span class="text text-danger" v-if="error && errors.end_time">{{ errors.end_time[0] }}</span>
             </div>
             <div class="form-group">
               <label for="division">Grupa docelowa:</label>
               <br />
               <select class="browser-default" v-model="division">
-                <option value=0 key=0 >Wydarzenie diecezjalne</option>
+                <option value="0" key="0">Wydarzenie diecezjalne</option>
                 <option v-for="divi in divisions" :value="divi.id" :key="divi.id">
                   <span>{{ 'Oddział '+divi.town+' parafia '+divi.parish }}</span>
                 </option>
@@ -68,8 +67,8 @@
             </div>
 
             <div class="form-group">
-              <label for="timetable">Plan wydarzenia:</label>
-              <textarea id="timetable" cols="50" rows="100" v-model="timetable" />
+              <label for="timetable" class="form-group">Plan wydarzenia:</label>
+              <textarea id="timetable" cols="50" rows="10" v-model="timetable" />
               <span
                 class="text text-danger"
                 v-if="error && errors.timetable"
@@ -78,10 +77,13 @@
 
             <div class="form-group">
               <label for="details">Dodatkowe informacje:</label>
-              <textarea id="details" cols="50" rows="50" v-model="details" />
+              <textarea id="details" cols="50" rows="5" v-model="details" />
               <span class="text text-danger" v-if="error && errors.details">{{ errors.details[0] }}</span>
             </div>
 
+            <div class="progress" v-if="isProgress">
+              <div class="indeterminate"></div>
+            </div>
             <div style="text-align:center">
               <button
                 class="btn btn-primary"
@@ -110,28 +112,31 @@ export default {
       division: 0,
       location: "",
       price: "",
-      timetable: "",
+      timetable: " ",
       details: "",
       divisions: [],
       error: false,
       errors: {},
       success: false,
       isProgress: false,
+      author: null
     };
   },
   methods: {
     register() {
       this.axios
         .post("api/auth/newEvent", {
+          token: this.$store.state.token,
           title: this.title,
           about: this.about,
-          start: this.start_date +' '+this.start_time,
-          end: this.end_date +' '+this.end_time,
+          start: this.start_date + " " + this.start_time,
+          end: this.end_date + " " + this.end_time,
           division: this.division,
           location: this.location,
           price: this.price,
           timetable: this.timetable,
           details: this.details,
+          author: this.author,
         })
         .then((response) => {
           this.isProgress = true;
@@ -152,7 +157,8 @@ export default {
     getDivisions: function () {
       this.axios.get("/api/getDivisions").then(
         function (response) {
-          this.divisions = response.data;
+          this.divisions = response.data;          
+          this.author = this.$store.state.user_id;
         }.bind(this)
       );
     },

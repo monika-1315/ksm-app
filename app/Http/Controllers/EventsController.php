@@ -141,15 +141,20 @@ class EventsController extends Controller
 
     public function newEvent( EventRequest $request)
     {
-        // $message = new Event();
-        // $message->receiver_group = $request->get('receiver_group');
-        // if ($request->get('receiver_group') === 1)
-        //     $message->division = $request->get('division');
-        // $message->title = $request->get('title');
-        // $message->body = $request->get('body');
-        // $message->published_at = date("Y-m-d H:i:s");
-        // $message->author = $request->get('author');
-        // $message->save();
+        $event = new Event();
+        if ($request->get('division') !== 0)
+            $event->division = $request->get('division');
+        $event->title = $request->get('title');
+        $event->about = $request->get('about');
+        $event->start = $request->get('start');
+        $event->end = $request->get('end');
+        $event->details = $request->get('details');
+        $event->location = $request->get('location');
+        $event->price = $request->get('price');
+        $event->timetable = $request->get('timetable');
+        $event->created_at = date("Y-m-d H:i:s");
+        $event->author = $request->get('author');
+        $event->save();
 
         return response()->json([
 

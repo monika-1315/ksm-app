@@ -3994,6 +3994,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4006,13 +4008,14 @@ __webpack_require__.r(__webpack_exports__);
       division: 0,
       location: "",
       price: "",
-      timetable: "",
+      timetable: " ",
       details: "",
       divisions: [],
       error: false,
       errors: {},
       success: false,
-      isProgress: false
+      isProgress: false,
+      author: null
     };
   },
   methods: {
@@ -4020,15 +4023,17 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.axios.post("api/auth/newEvent", {
+        token: this.$store.state.token,
         title: this.title,
         about: this.about,
-        start: this.start_date + ' ' + this.start_time,
-        end: this.end_date + ' ' + this.end_time,
+        start: this.start_date + " " + this.start_time,
+        end: this.end_date + " " + this.end_time,
         division: this.division,
         location: this.location,
         price: this.price,
         timetable: this.timetable,
-        details: this.details
+        details: this.details,
+        author: this.author
       }).then(function (response) {
         _this.isProgress = true;
 
@@ -4048,6 +4053,7 @@ __webpack_require__.r(__webpack_exports__);
     getDivisions: function getDivisions() {
       this.axios.get("/api/getDivisions").then(function (response) {
         this.divisions = response.data;
+        this.author = this.$store.state.user_id;
       }.bind(this));
     }
   },
@@ -50690,7 +50696,12 @@ var render = function() {
                         }
                       ],
                       staticClass: "validate",
-                      attrs: { id: "title", type: "text", required: "" },
+                      attrs: {
+                        id: "title",
+                        type: "text",
+                        required: "",
+                        autofocus: ""
+                      },
                       domProps: { value: _vm.title },
                       on: {
                         input: function($event) {
@@ -50769,9 +50780,9 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm.error && _vm.errors.start_date
+                    _vm.error && _vm.errors.start
                       ? _c("span", { staticClass: "text text-danger" }, [
-                          _vm._v(_vm._s(_vm.errors.start_date[0]))
+                          _vm._v(_vm._s(_vm.errors.start[0]))
                         ])
                       : _vm._e()
                   ]),
@@ -50800,13 +50811,7 @@ var render = function() {
                           _vm.start_time = $event.target.value
                         }
                       }
-                    }),
-                    _vm._v(" "),
-                    _vm.error && _vm.errors.start_time
-                      ? _c("span", { staticClass: "text text-danger" }, [
-                          _vm._v(_vm._s(_vm.errors.start_time[0]))
-                        ])
-                      : _vm._e()
+                    })
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
@@ -50835,9 +50840,9 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm.error && _vm.errors.end_date
+                    _vm.error && _vm.errors.end
                       ? _c("span", { staticClass: "text text-danger" }, [
-                          _vm._v(_vm._s(_vm.errors.end_date[0]))
+                          _vm._v(_vm._s(_vm.errors.end[0]))
                         ])
                       : _vm._e()
                   ]),
@@ -50866,13 +50871,7 @@ var render = function() {
                           _vm.end_time = $event.target.value
                         }
                       }
-                    }),
-                    _vm._v(" "),
-                    _vm.error && _vm.errors.end_time
-                      ? _c("span", { staticClass: "text text-danger" }, [
-                          _vm._v(_vm._s(_vm.errors.end_time[0]))
-                        ])
-                      : _vm._e()
+                    })
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
@@ -51013,9 +51012,14 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "timetable" } }, [
-                      _vm._v("Plan wydarzenia:")
-                    ]),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-group",
+                        attrs: { for: "timetable" }
+                      },
+                      [_vm._v("Plan wydarzenia:")]
+                    ),
                     _vm._v(" "),
                     _c("textarea", {
                       directives: [
@@ -51026,7 +51030,7 @@ var render = function() {
                           expression: "timetable"
                         }
                       ],
-                      attrs: { id: "timetable", cols: "50", rows: "100" },
+                      attrs: { id: "timetable", cols: "50", rows: "10" },
                       domProps: { value: _vm.timetable },
                       on: {
                         input: function($event) {
@@ -51059,7 +51063,7 @@ var render = function() {
                           expression: "details"
                         }
                       ],
-                      attrs: { id: "details", cols: "50", rows: "50" },
+                      attrs: { id: "details", cols: "50", rows: "5" },
                       domProps: { value: _vm.details },
                       on: {
                         input: function($event) {
@@ -51077,6 +51081,12 @@ var render = function() {
                         ])
                       : _vm._e()
                   ]),
+                  _vm._v(" "),
+                  _vm.isProgress
+                    ? _c("div", { staticClass: "progress" }, [
+                        _c("div", { staticClass: "indeterminate" })
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticStyle: { "text-align": "center" } }, [
                     _c(

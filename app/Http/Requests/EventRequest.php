@@ -13,7 +13,7 @@ class EventRequest extends FormRequest
      */
     public function authorize()
     {
-        return true; 
+        return true;
     }
 
     /**
@@ -25,10 +25,16 @@ class EventRequest extends FormRequest
     {
         return [
             'id' => 'numeric',
-            'receiver_group' => 'required|int',
+            'title' => 'required|string|max:100',
+            'about' => 'required|string|max:300',
+            'start' => 'required|string|date',
+            'end' => 'required|string|date|after_or_equal:start',
             'division' => 'required|int',
-            'title' => 'required|string', 
-            'body' => 'required|string',
+            'location' => 'required|string|max:100',
+            // 'price' => 'string|max:100',
+            // 'timetable' => 'string|max:2000',
+            // 'details' => 'string|max:1000',
+            'author' => 'numeric',
         ];
     }
 }
