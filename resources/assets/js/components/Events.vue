@@ -2,7 +2,6 @@
   <div class="container">
     <h3>
       Wydarzenia:
-      
       <button
         class="btn btn-primary"
         type="button"
@@ -10,13 +9,13 @@
         @click="getEvents"
         style="float: right"
       >Odśwież</button>
-      <router-link :to="{ name: 'newevent' }" >
-      <button
-        class="btn btn-primary yellow"
-        type="button"
-        name="action"
-        style="float: right"
-      >Utwórz</button>
+      <router-link :to="{ name: 'newevent' }">
+        <button
+          class="btn btn-primary yellow"
+          type="button"
+          name="action"
+          style="float: right"
+        >Utwórz</button>
       </router-link>
     </h3>
     <br />
@@ -37,9 +36,7 @@
       >
         <div class="card-header card-title activator">
           {{event.title}}
-           <i
-            style="float: right; font-size:small"
-          >więcej</i>
+          <i style="float: right; font-size:small">więcej</i>
         </div>
 
         <div class="card-content">
@@ -47,10 +44,9 @@
           <h6>{{event.location}}</h6>
         </div>
         <div class="card-reveal">
-          <div class="card-title activator">{{event.title}}
-             <i
-            style="float: right; font-size:small"
-          >mniej</i>
+          <div class="card-title activator">
+            {{event.title}}
+            <i style="float: right; font-size:small">mniej</i>
           </div>
           <h5>{{event.start+" - "+event.end}}</h5>
           <h6>{{event.location}}</h6>
@@ -64,7 +60,7 @@
             @click="showEvent(event.id)"
             style="float: right"
           >Szczegóły</button>
-           <button
+          <button
             class="btn btn-primary editbtn"
             type="button"
             name="action"
@@ -155,9 +151,7 @@ export default {
           break;
         case "C":
           this.axios
-            .get("/api/getDivisionEvents?id=0", {
-              id: 0,
-            })
+            .get("/api/getDivisionEvents?id=0&user_id="+this.user_id)
             .then(
               function (response) {
                 this.events = response.data;
@@ -166,7 +160,7 @@ export default {
             );
           break;
         case "D":
-          this.axios.get("/api/getDivisionEvents?id=" + this.division).then(
+          this.axios.get("/api/getDivisionEvents?id=" + this.division+"&user_id="+this.user_id).then(
             function (response) {
               this.events = response.data;
               this.isProgress = false;
@@ -186,8 +180,8 @@ export default {
   created: function () {
     if (this.user_id !== 0) {
       this.selectedTab = "A";
-      this.getEvents();
     }
+    this.getEvents();
   },
 };
 </script>

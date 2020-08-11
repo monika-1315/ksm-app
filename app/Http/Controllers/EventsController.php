@@ -49,15 +49,25 @@ class EventsController extends Controller
         if ($request->get('id') == 0) {
             $data = Event::whereNull('division')
                 ->orderby('start', 'desc')
-                ->select('id', 'division', 'title', 'about', 'start', 'end', 'location')
-                ->get();
+                ->select('id', 'division', 'title', 'about', 'start', 'end', 'location');
+                // ->get();
         } else {
             $data = Event::where('division', '=', $request->get('id'))
                 ->orderby('start', 'desc')
-                ->select('id', 'division', 'title', 'about', 'start', 'end', 'location')
-                ->get();
+                ->select('id', 'division', 'title', 'about', 'start', 'end', 'location');
+                // ->get();
         }
-        return response()->json($data);
+
+        $select1 = DB::table('participants')
+            ->where('user_id', '=', $request->get('user_id'));
+        $select = $data
+            ->leftJoinSub($select1, 'participants', function ($join) {
+                $join->on('events.id', '=', 'participants.event_id');
+            })
+            ->selectRaw('events.id, events.division, events.title, events.about, events.start, events.end, events.location, participants.is_sure')
+            ->get();
+
+        return response()->json($select);
     }
 
 
