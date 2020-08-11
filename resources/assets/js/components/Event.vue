@@ -15,11 +15,11 @@
           </div>
           <div>
             <h6>Data rozpoczęcia</h6>
-            <p>{{start_date+" godz. "+start_time}}</p>
+            <p>{{new Date(start_date).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })+" godz. "+start_time.substring(0,5)}}</p>
           </div>
           <div>
             <h6>Data zakończenia</h6>
-            <p>{{end_date+" godz. "+end_time}}</p>
+            <p>{{new Date(end_date).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })+" godz. "+end_time.substring(0,5)}}</p>
           </div>
           <div>
             <h6>Grupa docelowa</h6>

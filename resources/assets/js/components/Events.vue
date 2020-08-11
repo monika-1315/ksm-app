@@ -11,7 +11,7 @@
       >Odśwież</button>
       <router-link :to="{ name: 'newevent' }">
         <button
-        v-if="is_leadership||is_management"
+          v-if="is_leadership||is_management"
           class="btn btn-primary yellow"
           type="button"
           name="action"
@@ -41,7 +41,8 @@
         </div>
 
         <div class="card-content">
-          <h5>{{event.start+" - "+event.end}}</h5>
+          <h5>{{new Date(event.start).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })+" - "
+            +new Date(event.end).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}}</h5>
           <h6>{{event.location}}</h6>
         </div>
         <div class="card-reveal">
@@ -49,25 +50,29 @@
             {{event.title}}
             <i style="float: right; font-size:small">mniej</i>
           </div>
-          <h5>{{event.start+" - "+event.end}}</h5>
+          <h5>
+            {{new Date(event.start).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+            +" "+event.start.split(" ")[1].substring(0,5)+" - "
+            +new Date(event.end).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })+" "
+            +event.end.split(" ")[1].substring(0,5)}}
+          </h5>
           <h6>{{event.location}}</h6>
-          <p style="white-space: pre-line">{{event.about}}</p>
+
+          <p style="white-space: pre-line">
+            <em>Opis:</em>
+            {{event.about}}
+          </p>
         </div>
         <div class="card-action">
-          <span v-if="event.is_sure===0">zapisano </span>
-            <button v-if="event.is_sure===0"
+          <span v-if="event.is_sure===0" style="color: darkblue; font-style:italic">zapisano</span>
+          <button v-if="event.is_sure===0" class="btn editbtn" type="button" name="action">Potwierdź</button>
+
+          <span v-if="event.is_sure===1" style="color: darkgreen; font-style:italic">potwierdzono</span>
+          <button
+            v-if="event.is_sure===null && user_id!=0"
             class="btn editbtn"
             type="button"
             name="action"
-          >Potwierdź</button>
-         
-          <span v-if="event.is_sure===1">potwierdzono</span>
-           <button
-           v-if="event.is_sure===null && user_id!=0"
-            class="btn editbtn"
-            type="button"
-            name="action"
-            
           >Zapisz się</button>
           <button
             class="btn editbtn"
@@ -168,7 +173,7 @@ export default {
           break;
         case "C":
           this.axios
-            .get("/api/getDivisionEvents?id=0&user_id="+this.user_id)
+            .get("/api/getDivisionEvents?id=0&user_id=" + this.user_id)
             .then(
               function (response) {
                 this.events = response.data;
@@ -177,12 +182,19 @@ export default {
             );
           break;
         case "D":
-          this.axios.get("/api/getDivisionEvents?id=" + this.division+"&user_id="+this.user_id).then(
-            function (response) {
-              this.events = response.data;
-              this.isProgress = false;
-            }.bind(this)
-          );
+          this.axios
+            .get(
+              "/api/getDivisionEvents?id=" +
+                this.division +
+                "&user_id=" +
+                this.user_id
+            )
+            .then(
+              function (response) {
+                this.events = response.data;
+                this.isProgress = false;
+              }.bind(this)
+            );
           break;
       } //switch case
     },
@@ -223,9 +235,21 @@ export default {
 .card-title {
   font-weight: 400;
 }
+em {
+  font-weight: 500;
+  font-style: normal;
+}
+
 .yellow {
   background-color: rgb(254, 209, 9) !important;
   border-color: rgb(254, 209, 9);
   color: black;
+}
+div.card-header {
+  background-color: rgba(254, 209, 9, 0.61);
+}
+
+.card-reveal {
+  overflow: scroll;
 }
 </style>

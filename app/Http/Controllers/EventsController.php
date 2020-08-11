@@ -118,14 +118,23 @@ class EventsController extends Controller
             ->where('id', '=', $request->get('id'))
             ->leftJoinSub($select, 'sel', function ($join) {
                 $join->on('events.id', '=', 'sel.event_id');
-            })->selectRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, count(sel.user_id) participants, sel.is_sure')
+            })->selectRaw('events.id eventsid,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, count(sel.user_id) participants, sel.is_sure')
             ->orderByRaw('events.start')
             ->groupByRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, sel.is_sure');
 
+            $author=DB::table('users')
+            ->leftJoinSub($data1, 'sel', function ($join) {
+                $join->on('users.id', '=', 'sel.author')
+                ->selectRaw('sel.id event_id2, users.name+" "+users.surname author_name');
+            });
         $data = DB::table('divisions')
             ->rightJoinSub($data1, 'events', function ($join) {
                 $join->on('events.division', '=', 'divisions.id');
-            })->selectRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, events.participants, divisions.email, events.is_sure')
+            })
+            ->JoinSub($author, 'author', function ($join) {
+                $join->on('author.event_id2', '=', 'events.id');
+            })
+            ->selectRaw('events.eventsid id,  events.division, events.title, author.author_name, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, events.participants, divisions.email, events.is_sure')
             ->get();
 
         return response()->json($data);

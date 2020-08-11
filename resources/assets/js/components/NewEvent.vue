@@ -143,7 +143,7 @@ export default {
           if (response.data.success == true) {
             setTimeout(() => {
               this.isProgress = false;
-              //   this.$router.push({ name: "login" });
+                this.$router.push({ name: "events" });
               this.$toaster.success("Dodano wydarzenie");
             }, 2000);
           }

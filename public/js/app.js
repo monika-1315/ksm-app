@@ -4228,6 +4228,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4822,7 +4827,11 @@ __webpack_require__.r(__webpack_exports__);
 
         if (response.data.success == true) {
           setTimeout(function () {
-            _this.isProgress = false; //   this.$router.push({ name: "login" });
+            _this.isProgress = false;
+
+            _this.$router.push({
+              name: "events"
+            });
 
             _this.$toaster.success("Dodano wydarzenie");
           }, 2000);
@@ -23665,7 +23674,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.card-body[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.stamp[data-v-3a297ce0] {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.indeterminate[data-v-3a297ce0] {\r\n  background-color: rgba(3, 35, 138, 0.774);\n}\n.activeTab[data-v-3a297ce0] {\r\n  font-weight: bold;\n}\n.card-title[data-v-3a297ce0] {\r\n  font-weight: 400;\n}\n.yellow[data-v-3a297ce0] {\r\n  background-color: rgb(254, 209, 9) !important;\r\n  border-color: rgb(254, 209, 9);\r\n  color: black;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.card-body[data-v-3a297ce0] {\r\n  text-align: left;\n}\n.stamp[data-v-3a297ce0] {\r\n  text-align: right;\r\n  font-style: italic;\n}\n.indeterminate[data-v-3a297ce0] {\r\n  background-color: rgba(3, 35, 138, 0.774);\n}\n.activeTab[data-v-3a297ce0] {\r\n  font-weight: bold;\n}\n.card-title[data-v-3a297ce0] {\r\n  font-weight: 400;\n}\nem[data-v-3a297ce0] {\r\n  font-weight: 500;\r\n  font-style: normal;\n}\n.yellow[data-v-3a297ce0] {\r\n  background-color: rgb(254, 209, 9) !important;\r\n  border-color: rgb(254, 209, 9);\r\n  color: black;\n}\ndiv.card-header[data-v-3a297ce0] {\r\n  background-color: rgba(254, 209, 9, 0.61);\n}\n.card-reveal[data-v-3a297ce0] {\r\n  overflow: scroll;\n}\r\n", ""]);
 
 // exports
 
@@ -51624,14 +51633,38 @@ var render = function() {
             _c("h6", [_vm._v("Data rozpoczęcia")]),
             _vm._v(" "),
             _c("p", [
-              _vm._v(_vm._s(_vm.start_date + " godz. " + _vm.start_time))
+              _vm._v(
+                _vm._s(
+                  new Date(_vm.start_date).toLocaleDateString("PL", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                  }) +
+                    " godz. " +
+                    _vm.start_time.substring(0, 5)
+                )
+              )
             ])
           ]),
           _vm._v(" "),
           _c("div", [
             _c("h6", [_vm._v("Data zakończenia")]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.end_date + " godz. " + _vm.end_time))])
+            _c("p", [
+              _vm._v(
+                _vm._s(
+                  new Date(_vm.end_date).toLocaleDateString("PL", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                  }) +
+                    " godz. " +
+                    _vm.end_time.substring(0, 5)
+                )
+              )
+            ])
           ]),
           _vm._v(" "),
           _c("div", [
@@ -51926,7 +51959,25 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-content" }, [
-                  _c("h5", [_vm._v(_vm._s(event.start + " - " + event.end))]),
+                  _c("h5", [
+                    _vm._v(
+                      _vm._s(
+                        new Date(event.start).toLocaleDateString("PL", {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric"
+                        }) +
+                          " - " +
+                          new Date(event.end).toLocaleDateString("PL", {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric"
+                          })
+                      )
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("h6", [_vm._v(_vm._s(event.location))])
                 ]),
@@ -51943,18 +51994,52 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("h5", [_vm._v(_vm._s(event.start + " - " + event.end))]),
+                  _c("h5", [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(
+                          new Date(event.start).toLocaleDateString("PL", {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric"
+                          }) +
+                            " " +
+                            event.start.split(" ")[1].substring(0, 5) +
+                            " - " +
+                            new Date(event.end).toLocaleDateString("PL", {
+                              weekday: "long",
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric"
+                            }) +
+                            " " +
+                            event.end.split(" ")[1].substring(0, 5)
+                        ) +
+                        "\n        "
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("h6", [_vm._v(_vm._s(event.location))]),
                   _vm._v(" "),
                   _c("p", { staticStyle: { "white-space": "pre-line" } }, [
-                    _vm._v(_vm._s(event.about))
+                    _c("em", [_vm._v("Opis:")]),
+                    _vm._v("\n          " + _vm._s(event.about) + "\n        ")
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-action" }, [
                   event.is_sure === 0
-                    ? _c("span", [_vm._v("zapisano ")])
+                    ? _c(
+                        "span",
+                        {
+                          staticStyle: {
+                            color: "darkblue",
+                            "font-style": "italic"
+                          }
+                        },
+                        [_vm._v("zapisano")]
+                      )
                     : _vm._e(),
                   _vm._v(" "),
                   event.is_sure === 0
@@ -51969,7 +52054,16 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   event.is_sure === 1
-                    ? _c("span", [_vm._v("potwierdzono")])
+                    ? _c(
+                        "span",
+                        {
+                          staticStyle: {
+                            color: "darkgreen",
+                            "font-style": "italic"
+                          }
+                        },
+                        [_vm._v("potwierdzono")]
+                      )
                     : _vm._e(),
                   _vm._v(" "),
                   event.is_sure === null && _vm.user_id != 0
