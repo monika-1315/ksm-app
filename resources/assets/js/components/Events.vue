@@ -11,6 +11,7 @@
       >Odśwież</button>
       <router-link :to="{ name: 'newevent' }">
         <button
+        v-if="is_leadership||is_management"
           class="btn btn-primary yellow"
           type="button"
           name="action"
@@ -53,12 +54,28 @@
           <p style="white-space: pre-line">{{event.about}}</p>
         </div>
         <div class="card-action">
+          <span v-if="event.is_sure===0">zapisano </span>
+            <button v-if="event.is_sure===0"
+            class="btn editbtn"
+            type="button"
+            name="action"
+          >Potwierdź</button>
+         
+          <span v-if="event.is_sure===1">potwierdzono</span>
+           <button
+           v-if="event.is_sure===null && user_id!=0"
+            class="btn editbtn"
+            type="button"
+            name="action"
+            
+          >Zapisz się</button>
           <button
             class="btn editbtn"
             type="button"
             name="action"
             @click="showEvent(event.id)"
             style="float: right"
+            v-if="user_id!=0"
           >Szczegóły</button>
           <button
             class="btn btn-primary editbtn"

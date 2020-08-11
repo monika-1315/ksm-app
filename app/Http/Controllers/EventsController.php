@@ -81,7 +81,7 @@ class EventsController extends Controller
         $data = DB::table('events')
             ->joinSub($select, 'sel', function ($join) {
                 $join->on('events.id', '=', 'sel.event_id');
-            })->selectRaw('events.id, events.division, events.title, events.about, events.start, events.end, events.location')
+            })->selectRaw('events.id, events.division, events.title, events.about, events.start, events.end, events.location, sel.is_sure')
             ->where('end', '>=', date('Y-m-d'))
             ->orderByRaw('events.start')
             ->get();
@@ -118,14 +118,14 @@ class EventsController extends Controller
             ->where('id', '=', $request->get('id'))
             ->leftJoinSub($select, 'sel', function ($join) {
                 $join->on('events.id', '=', 'sel.event_id');
-            })->selectRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, count(sel.user_id) participants')
+            })->selectRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, count(sel.user_id) participants, sel.is_sure')
             ->orderByRaw('events.start')
-            ->groupByRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at');
+            ->groupByRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, sel.is_sure');
 
         $data = DB::table('divisions')
             ->rightJoinSub($data1, 'events', function ($join) {
                 $join->on('events.division', '=', 'divisions.id');
-            })->selectRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, events.participants, divisions.email')
+            })->selectRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, events.participants, divisions.email, events.is_sure')
             ->get();
 
         return response()->json($data);
@@ -146,7 +146,7 @@ class EventsController extends Controller
             ->joinSub($select, 'sel', function ($join) {
                 $join->on('users.id', '=', 'sel.user_id');
             })->join('divisions', 'users.division', '=', 'divisions.id')
-            ->select('sel.is_sure', 'users.name', 'users.surname', 'divisions.town', 'divisions.parish')
+            ->select('sel.is_sure', 'users.id', 'users.name', 'users.surname', 'divisions.town', 'divisions.parish')
             ->get();
 
         return response()->json($data);

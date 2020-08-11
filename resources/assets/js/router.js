@@ -15,6 +15,7 @@ import NewDivision from './components/NewDivision.vue'
 import NewEvent from './components/NewEvent.vue'
 import EditEvent from './components/EditEvent.vue'
 import Events from './components/Events.vue'
+import Event from './components/Event.vue'
 import ControlPanel from './components/ControlPanel.vue'
 import Calendar from './components/Calendar.vue'
 import Chart from './components/Chart.vue'
@@ -188,7 +189,7 @@ const router = new VueRouter({
     {
         path: '/event/:id',
         name: 'showevent',
-        component: EditEvent,
+        component: Event,
         meta: { 
             requiresAuth: true
         }
