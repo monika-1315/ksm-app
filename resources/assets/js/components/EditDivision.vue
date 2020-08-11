@@ -34,7 +34,7 @@
               </label>
             </div>
             <br />
-            <div style="text-align:center">
+            <div class="card-action" style="text-align:center">
               <button class="btn btn-primary" type="submit" name="action">Zapisz</button>
             </div>
           </form>

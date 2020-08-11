@@ -92,7 +92,7 @@
               <span class="text text-danger" v-if="error && errors.details">{{ errors.details[0] }}</span>
             </div>
 
-            <div style="text-align:center">
+            <div class="card-action" style="text-align:center">
               <button
                 class="btn btn-primary"
                 type="button"

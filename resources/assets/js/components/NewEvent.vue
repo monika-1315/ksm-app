@@ -39,7 +39,7 @@
             <div class="form-group">
               <label for="division">Grupa docelowa:</label>
               <br />
-              <select class="browser-default" v-model="division">
+              <select class="browser-default" v-model="division" :disabled="!this.$store.state.is_management">
                 <option value="0" key="0">Wydarzenie diecezjalne</option>
                 <option v-for="divi in divisions" :value="divi.id" :key="divi.id">
                   <span>{{ 'Oddział '+divi.town+' parafia '+divi.parish }}</span>
@@ -84,7 +84,7 @@
             <div class="progress" v-if="isProgress">
               <div class="indeterminate"></div>
             </div>
-            <div style="text-align:center">
+            <div class="card-action" style="text-align:center">
               <button
                 class="btn btn-primary"
                 type="button"
@@ -159,6 +159,7 @@ export default {
         function (response) {
           this.divisions = response.data;          
           this.author = this.$store.state.user_id;
+          this.division= this.$store.state.division;
         }.bind(this)
       );
     },

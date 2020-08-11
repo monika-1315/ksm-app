@@ -52,7 +52,7 @@
                     </label>
                 </div>
                 
-                <div style="text-align:center">
+                <div class="card-action" style="text-align:center">
                 <button class="btn btn-primary" type="button" name="action" @click.prevent="register()">Zarejestruj członka</button>
                 </div>
             </form>
