@@ -8,7 +8,20 @@
         <div class="progress" v-if="isProgress">
           <div class="indeterminate"></div>
         </div>
+
         <div class="card-body">
+        <a
+          :href="`https://calendar.google.com/calendar/r/eventedit?trp=false&sf=true&text=${title}&location=${location}&details=${about}&dates=${start_date.replace(/-/g,'')}T${start_time.replace(/:/g,'')}/${end_date.replace(/-/g,'')}T${end_time.replace(/:/g,'')}`"
+          target="_blank"
+        >
+          <button
+            class="btn btn-primary"
+            type="button"
+            name="action"
+            style="float: right"
+          >Dodaj do kalendarza Google</button>
+        </a>
+        <br>
           <div>
             <h6>Opis</h6>
             <p style="white-space: pre-line">{{about}}</p>
@@ -24,11 +37,11 @@
           <div>
             <h6>Grupa docelowa</h6>
             <select class="browser-default" v-model="division" disabled>
-                <option value="0" key="0">Wydarzenie diecezjalne</option>
-                <option v-for="divi in divisions" :value="divi.id" :key="divi.id">
-                  <span>{{ 'Oddział '+divi.town+' parafia '+divi.parish }}</span>
-                </option>
-              </select>
+              <option value="0" key="0">Wydarzenie diecezjalne</option>
+              <option v-for="divi in divisions" :value="divi.id" :key="divi.id">
+                <span>{{ 'Oddział '+divi.town+' parafia '+divi.parish }}</span>
+              </option>
+            </select>
           </div>
 
           <div>
@@ -58,14 +71,15 @@
             <p style="white-space: pre-line">{{details}}</p>
           </div>
           <div>
-            <h5>Liczba zadeklarowanych uczestników: {{participants_cnt}} 
-            <button
-              class="btn btn-light"
-              type="button"
-              name="action"
-              @click="getParticipantsList"
-              v-if="!this.showParticipants &&this.participants_cnt>0"
-            >Pokaż</button>
+            <h5>
+              Liczba zadeklarowanych uczestników: {{participants_cnt}}
+              <button
+                class="btn btn-light"
+                type="button"
+                name="action"
+                @click="getParticipantsList"
+                v-if="!this.showParticipants &&this.participants_cnt>0"
+              >Pokaż</button>
             </h5>
             <table v-if="this.showParticipants">
               <th>Imię i nazwisko</th>
@@ -84,8 +98,15 @@
               v-if="!is_admin&&showParticipants"
               style="font-size: x-small"
             >* Niektórzy użytkownicy mogą nie być widoczni dla wszystkich</p>
-           
-            <p style="font-style:italic; font-size:small">Utworzono {{this.created_at}} przez {{author}}<span v-if="modified_at!==null">,<br>ostatnia modyfikacja: {{modified_at}}</span></p>
+
+            <p style="font-style:italic; font-size:small">
+              Utworzono {{this.created_at}} przez {{author}}
+              <span v-if="modified_at!==null">
+                ,
+                <br />
+                ostatnia modyfikacja: {{modified_at}}
+              </span>
+            </p>
           </div>
 
           <div class="card-action" style="text-align:center">
@@ -127,10 +148,10 @@ export default {
       is_coming: null,
       participants_cnt: 0,
       participants: [],
-      email:"",
-      author:"",
-      created_at:"",
-      modified_at:null,
+      email: "",
+      author: "",
+      created_at: "",
+      modified_at: null,
     };
   },
   computed: {
@@ -175,7 +196,8 @@ export default {
             this.details = response.data[0].details;
             this.is_coming = response.data[0].is_coming;
             this.participants_cnt = response.data[0].participants;
-            this.author = response.data[0].name +' '+response.data[0].surname;
+            this.author =
+              response.data[0].name + " " + response.data[0].surname;
             this.created_at = response.data[0].created_at;
             this.modified_at = response.data[0].modified_at;
             this.isProgress = false;
@@ -205,7 +227,6 @@ export default {
   created: function () {
     this.getDivisions();
     this.getEventInfo();
-    
   },
 };
 </script>
@@ -220,7 +241,6 @@ export default {
 .btn {
   display: inline-flex;
 }
-
 
 .heading {
   padding: 30px;
@@ -245,7 +265,7 @@ div.card-header {
   background-color: rgba(254, 209, 9, 0.712);
 }
 
-div.card{
+div.card {
   width: 32em;
 }
 
@@ -256,7 +276,7 @@ table {
 th {
   font-weight: 500;
 }
-select{
+select {
   color: black !important;
 }
 </style>

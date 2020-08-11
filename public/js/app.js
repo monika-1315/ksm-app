@@ -2804,7 +2804,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4033,6 +4032,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4095,7 +4115,7 @@ __webpack_require__.r(__webpack_exports__);
         this.details = response.data[0].details;
         this.is_coming = response.data[0].is_coming;
         this.participants_cnt = response.data[0].participants;
-        this.author = response.data[0].name + ' ' + response.data[0].surname;
+        this.author = response.data[0].name + " " + response.data[0].surname;
         this.created_at = response.data[0].created_at;
         this.modified_at = response.data[0].modified_at;
         this.isProgress = false;
@@ -23664,7 +23684,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-group[data-v-49441df3] {\r\n  align-content: left;\n}\n.submit[data-v-49441df3]:hover {\r\n  color: white;\n}\n.btn[data-v-49441df3] {\r\n  display: inline-flex;\n}\n.heading[data-v-49441df3] {\r\n  padding: 30px;\r\n  border: none;\n}\n.login-form[data-v-49441df3] {\r\n  background: white;\r\n  padding: 30px;\n}\n.progress[data-v-49441df3] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\ninput[data-v-49441df3]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-49441df3] {\r\n  color: royalblue !important;\n}\ndiv.card-header[data-v-49441df3] {\r\n  background-color: rgba(254, 209, 9, 0.712);\n}\ndiv.card[data-v-49441df3]{\r\n  width: 32em;\n}\ntable td[data-v-49441df3],\r\ntable[data-v-49441df3] {\r\n  text-align: center;\n}\nth[data-v-49441df3] {\r\n  font-weight: 500;\n}\nselect[data-v-49441df3]{\r\n  color: black !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.form-group[data-v-49441df3] {\r\n  align-content: left;\n}\n.submit[data-v-49441df3]:hover {\r\n  color: white;\n}\n.btn[data-v-49441df3] {\r\n  display: inline-flex;\n}\n.heading[data-v-49441df3] {\r\n  padding: 30px;\r\n  border: none;\n}\n.login-form[data-v-49441df3] {\r\n  background: white;\r\n  padding: 30px;\n}\n.progress[data-v-49441df3] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\ninput[data-v-49441df3]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-49441df3] {\r\n  color: royalblue !important;\n}\ndiv.card-header[data-v-49441df3] {\r\n  background-color: rgba(254, 209, 9, 0.712);\n}\ndiv.card[data-v-49441df3] {\r\n  width: 32em;\n}\ntable td[data-v-49441df3],\r\ntable[data-v-49441df3] {\r\n  text-align: center;\n}\nth[data-v-49441df3] {\r\n  font-weight: 500;\n}\nselect[data-v-49441df3] {\r\n  color: black !important;\n}\r\n", ""]);
 
 // exports
 
@@ -49707,17 +49727,6 @@ var render = function() {
                   on: { click: _vm.getMessages }
                 },
                 [_vm._v("Odśwież")]
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href:
-                      "https://calendar.google.com/calendar/r/eventedit?trp=false&sf=true&text=VueConference&location=Bolesławiec,+Polska&details=The+first+Official+Vue.js+Conference+in+the+world!&dates=20200901T120000/20200901T123000"
-                  }
-                },
-                [_vm._v("\n      add")]
               )
             ]),
             _vm._v(" "),
@@ -51630,6 +51639,43 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
+          _c(
+            "a",
+            {
+              attrs: {
+                href:
+                  "https://calendar.google.com/calendar/r/eventedit?trp=false&sf=true&text=" +
+                  _vm.title +
+                  "&location=" +
+                  _vm.location +
+                  "&details=" +
+                  _vm.about +
+                  "&dates=" +
+                  _vm.start_date.replace(/-/g, "") +
+                  "T" +
+                  _vm.start_time.replace(/:/g, "") +
+                  "/" +
+                  _vm.end_date.replace(/-/g, "") +
+                  "T" +
+                  _vm.end_time.replace(/:/g, ""),
+                target: "_blank"
+              }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  staticStyle: { float: "right" },
+                  attrs: { type: "button", name: "action" }
+                },
+                [_vm._v("Dodaj do kalendarza Google")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
           _c("div", [
             _c("h6", [_vm._v("Opis")]),
             _vm._v(" "),
@@ -51780,9 +51826,9 @@ var render = function() {
           _c("div", [
             _c("h5", [
               _vm._v(
-                "Liczba zadeklarowanych uczestników: " +
+                "\n            Liczba zadeklarowanych uczestników: " +
                   _vm._s(_vm.participants_cnt) +
-                  " \n          "
+                  "\n            "
               ),
               !this.showParticipants && this.participants_cnt > 0
                 ? _c(
@@ -51844,16 +51890,21 @@ var render = function() {
               { staticStyle: { "font-style": "italic", "font-size": "small" } },
               [
                 _vm._v(
-                  "Utworzono " +
+                  "\n            Utworzono " +
                     _vm._s(this.created_at) +
                     " przez " +
-                    _vm._s(_vm.author)
+                    _vm._s(_vm.author) +
+                    "\n            "
                 ),
                 _vm.modified_at !== null
                   ? _c("span", [
-                      _vm._v(","),
+                      _vm._v("\n              ,\n              "),
                       _c("br"),
-                      _vm._v("ostatnia modyfikacja: " + _vm._s(_vm.modified_at))
+                      _vm._v(
+                        "\n              ostatnia modyfikacja: " +
+                          _vm._s(_vm.modified_at) +
+                          "\n            "
+                      )
                     ])
                   : _vm._e()
               ]
