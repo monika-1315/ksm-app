@@ -4030,6 +4030,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4053,7 +4056,10 @@ __webpack_require__.r(__webpack_exports__);
       is_coming: null,
       participants_cnt: 0,
       participants: [],
-      email: ""
+      email: "",
+      author: "",
+      created_at: "",
+      modified_at: null
     };
   },
   computed: {
@@ -4089,6 +4095,9 @@ __webpack_require__.r(__webpack_exports__);
         this.details = response.data[0].details;
         this.is_coming = response.data[0].is_coming;
         this.participants_cnt = response.data[0].participants;
+        this.author = response.data[0].name + ' ' + response.data[0].surname;
+        this.created_at = response.data[0].created_at;
+        this.modified_at = response.data[0].modified_at;
         this.isProgress = false;
       }.bind(this));
     },
@@ -23655,7 +23664,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-group[data-v-49441df3] {\r\n  align-content: left;\n}\n.submit[data-v-49441df3]:hover {\r\n  color: white;\n}\n.btn[data-v-49441df3] {\r\n  display: inline-flex;\n}\n.btn[data-v-49441df3]:focus {\r\n  color: white;\n}\n.heading[data-v-49441df3] {\r\n  padding: 30px;\r\n  border: none;\n}\n.login-form[data-v-49441df3] {\r\n  background: white;\r\n  padding: 30px;\n}\n.progress[data-v-49441df3] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\ninput[data-v-49441df3]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-49441df3] {\r\n  color: royalblue !important;\n}\ndiv.card-header[data-v-49441df3] {\r\n  background-color: rgba(254, 209, 9, 0.712);\n}\ndiv.card[data-v-49441df3]{\r\n  width: 32em;\n}\ntable td[data-v-49441df3],\r\ntable[data-v-49441df3] {\r\n  text-align: center;\n}\nth[data-v-49441df3] {\r\n  font-weight: 500;\n}\nselect[data-v-49441df3]{\r\n  color: black !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.form-group[data-v-49441df3] {\r\n  align-content: left;\n}\n.submit[data-v-49441df3]:hover {\r\n  color: white;\n}\n.btn[data-v-49441df3] {\r\n  display: inline-flex;\n}\n.heading[data-v-49441df3] {\r\n  padding: 30px;\r\n  border: none;\n}\n.login-form[data-v-49441df3] {\r\n  background: white;\r\n  padding: 30px;\n}\n.progress[data-v-49441df3] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\ninput[data-v-49441df3]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-49441df3] {\r\n  color: royalblue !important;\n}\ndiv.card-header[data-v-49441df3] {\r\n  background-color: rgba(254, 209, 9, 0.712);\n}\ndiv.card[data-v-49441df3]{\r\n  width: 32em;\n}\ntable td[data-v-49441df3],\r\ntable[data-v-49441df3] {\r\n  text-align: center;\n}\nth[data-v-49441df3] {\r\n  font-weight: 500;\n}\nselect[data-v-49441df3]{\r\n  color: black !important;\n}\r\n", ""]);
 
 // exports
 
@@ -51772,21 +51781,21 @@ var render = function() {
             _c("h5", [
               _vm._v(
                 "Liczba zadeklarowanych uczestników: " +
-                  _vm._s(_vm.participants_cnt)
-              )
+                  _vm._s(_vm.participants_cnt) +
+                  " \n          "
+              ),
+              !this.showParticipants && this.participants_cnt > 0
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light",
+                      attrs: { type: "button", name: "action" },
+                      on: { click: _vm.getParticipantsList }
+                    },
+                    [_vm._v("Pokaż")]
+                  )
+                : _vm._e()
             ]),
-            _vm._v(" "),
-            !this.showParticipants && this.participants_cnt > 0
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn editbtn",
-                    attrs: { type: "button", name: "action" },
-                    on: { click: _vm.getParticipantsList }
-                  },
-                  [_vm._v("Pokaż")]
-                )
-              : _vm._e(),
             _vm._v(" "),
             this.showParticipants
               ? _c(
@@ -51828,7 +51837,27 @@ var render = function() {
                     "* Niektórzy użytkownicy mogą nie być widoczni dla wszystkich"
                   )
                 ])
-              : _vm._e()
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticStyle: { "font-style": "italic", "font-size": "small" } },
+              [
+                _vm._v(
+                  "Utworzono " +
+                    _vm._s(this.created_at) +
+                    " przez " +
+                    _vm._s(_vm.author)
+                ),
+                _vm.modified_at !== null
+                  ? _c("span", [
+                      _vm._v(","),
+                      _c("br"),
+                      _vm._v("ostatnia modyfikacja: " + _vm._s(_vm.modified_at))
+                    ])
+                  : _vm._e()
+              ]
+            )
           ]),
           _vm._v(" "),
           _c(
@@ -52046,7 +52075,7 @@ var render = function() {
                     ? _c(
                         "button",
                         {
-                          staticClass: "btn editbtn",
+                          staticClass: "btn btn-light editbtn",
                           attrs: { type: "button", name: "action" }
                         },
                         [_vm._v("Potwierdź")]
@@ -52070,7 +52099,7 @@ var render = function() {
                     ? _c(
                         "button",
                         {
-                          staticClass: "btn editbtn",
+                          staticClass: "btn btn-light editbtn",
                           attrs: { type: "button", name: "action" }
                         },
                         [_vm._v("Zapisz się")]
@@ -52081,7 +52110,7 @@ var render = function() {
                     ? _c(
                         "button",
                         {
-                          staticClass: "btn editbtn",
+                          staticClass: "btn btn-light editbtn",
                           staticStyle: { float: "right" },
                           attrs: { type: "button", name: "action" },
                           on: {

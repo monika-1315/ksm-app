@@ -58,14 +58,15 @@
             <p style="white-space: pre-line">{{details}}</p>
           </div>
           <div>
-            <h5>Liczba zadeklarowanych uczestników: {{participants_cnt}}</h5>
+            <h5>Liczba zadeklarowanych uczestników: {{participants_cnt}} 
             <button
-              class="btn editbtn"
+              class="btn btn-light"
               type="button"
               name="action"
               @click="getParticipantsList"
               v-if="!this.showParticipants &&this.participants_cnt>0"
             >Pokaż</button>
+            </h5>
             <table v-if="this.showParticipants">
               <th>Imię i nazwisko</th>
               <th>Miasto</th>
@@ -83,6 +84,8 @@
               v-if="!is_admin&&showParticipants"
               style="font-size: x-small"
             >* Niektórzy użytkownicy mogą nie być widoczni dla wszystkich</p>
+           
+            <p style="font-style:italic; font-size:small">Utworzono {{this.created_at}} przez {{author}}<span v-if="modified_at!==null">,<br>ostatnia modyfikacja: {{modified_at}}</span></p>
           </div>
 
           <div class="card-action" style="text-align:center">
@@ -125,6 +128,9 @@ export default {
       participants_cnt: 0,
       participants: [],
       email:"",
+      author:"",
+      created_at:"",
+      modified_at:null,
     };
   },
   computed: {
@@ -169,6 +175,9 @@ export default {
             this.details = response.data[0].details;
             this.is_coming = response.data[0].is_coming;
             this.participants_cnt = response.data[0].participants;
+            this.author = response.data[0].name +' '+response.data[0].surname;
+            this.created_at = response.data[0].created_at;
+            this.modified_at = response.data[0].modified_at;
             this.isProgress = false;
           }.bind(this)
         );
@@ -211,9 +220,7 @@ export default {
 .btn {
   display: inline-flex;
 }
-.btn:focus {
-  color: white;
-}
+
 
 .heading {
   padding: 30px;

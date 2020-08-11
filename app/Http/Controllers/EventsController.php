@@ -50,12 +50,12 @@ class EventsController extends Controller
             $data = Event::whereNull('division')
                 ->orderby('start', 'desc')
                 ->select('id', 'division', 'title', 'about', 'start', 'end', 'location');
-                // ->get();
+            // ->get();
         } else {
             $data = Event::where('division', '=', $request->get('id'))
                 ->orderby('start', 'desc')
                 ->select('id', 'division', 'title', 'about', 'start', 'end', 'location');
-                // ->get();
+            // ->get();
         }
 
         $select1 = DB::table('participants')
@@ -118,23 +118,22 @@ class EventsController extends Controller
             ->where('id', '=', $request->get('id'))
             ->leftJoinSub($select, 'sel', function ($join) {
                 $join->on('events.id', '=', 'sel.event_id');
-            })->selectRaw('events.id eventsid,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, count(sel.user_id) participants, sel.is_sure')
+            })->selectRaw('events.id eventsid,  events.division aim_division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, count(sel.user_id) participants, sel.is_sure')
             ->orderByRaw('events.start')
             ->groupByRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, sel.is_sure');
 
-            $author=DB::table('users')
-            ->leftJoinSub($data1, 'sel', function ($join) {
-                $join->on('users.id', '=', 'sel.author')
-                ->selectRaw('sel.id event_id2, users.name+" "+users.surname author_name');
-            });
+        $author = DB::table('users')
+            ->JoinSub($data1, 'sel', function ($join) {
+                $join->on('users.id', '=', 'sel.author');
+            })->selectRaw('sel.eventsid event_id2, users.name, users.surname ');
         $data = DB::table('divisions')
             ->rightJoinSub($data1, 'events', function ($join) {
-                $join->on('events.division', '=', 'divisions.id');
+                $join->on('events.aim_division', '=', 'divisions.id');
             })
             ->JoinSub($author, 'author', function ($join) {
-                $join->on('author.event_id2', '=', 'events.id');
+                $join->on('author.event_id2', '=', 'events.eventsid');
             })
-            ->selectRaw('events.eventsid id,  events.division, events.title, author.author_name, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, events.participants, divisions.email, events.is_sure')
+            ->selectRaw('events.eventsid id,  events.aim_division division, events.title, author.name,author.surname, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.created_at, events.modified_at, events.participants, divisions.email, events.is_sure')
             ->get();
 
         return response()->json($data);

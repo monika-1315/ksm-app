@@ -65,17 +65,17 @@
         </div>
         <div class="card-action">
           <span v-if="event.is_sure===0" style="color: darkblue; font-style:italic">zapisano</span>
-          <button v-if="event.is_sure===0" class="btn editbtn" type="button" name="action">Potwierdź</button>
+          <button v-if="event.is_sure===0" class="btn btn-light editbtn" type="button" name="action">Potwierdź</button>
 
           <span v-if="event.is_sure===1" style="color: darkgreen; font-style:italic">potwierdzono</span>
           <button
             v-if="event.is_sure===null && user_id!=0"
-            class="btn editbtn"
+            class="btn btn-light editbtn"
             type="button"
             name="action"
           >Zapisz się</button>
           <button
-            class="btn editbtn"
+            class="btn btn-light editbtn"
             type="button"
             name="action"
             @click="showEvent(event.id)"
