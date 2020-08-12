@@ -110,11 +110,16 @@
           </div>
 
           <div class="card-action" style="text-align:center">
-            
-            <ul class="collapsible expandable">
-              <li>
+            <ul class="collapsible">
+              <li :class="{ active: is_signing }">
                 <div class="collapsible-header">
-                  <h6>Zapisz się!</h6>
+                  <span><span style="font-weight:500">Zapisz się! </span>
+                  <span v-if="is_coming===0" style="color: darkblue; font-style:italic; float:right">&nbsp;(Zapisano) Potwierdź przybycie!</span>
+                  <span
+                    v-if="is_coming===1"
+                    style="color: darkgreen; font-style:italic; "
+                  > (Potwierdzono przybycie)</span>
+                  </span>
                 </div>
                 <div class="collapsible-body">
                   <form autocomplete="off" @submit.prevent="signParticipant" v-if="!success">
@@ -204,6 +209,7 @@ export default {
       modified_at: null,
       is_sure: 0,
       is_visible: 1,
+      is_signing: 0,
     };
   },
   computed: {
@@ -277,7 +283,8 @@ export default {
               }, 2000);
             }
           }.bind(this)
-        );},
+        );
+    },
     signParticipant: function () {
       if (this.is_coming === null) {
         this.axios
@@ -356,6 +363,7 @@ export default {
     },
   },
   created: function () {
+    if (this.$route.params.is_signing === 1) this.is_signing = true;
     this.getDivisions();
     this.getEventInfo();
     this.checkParticipant();

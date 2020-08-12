@@ -4144,6 +4144,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4173,7 +4178,8 @@ __webpack_require__.r(__webpack_exports__);
       created_at: "",
       modified_at: null,
       is_sure: 0,
-      is_visible: 1
+      is_visible: 1,
+      is_signing: 0
     };
   },
   computed: {
@@ -4323,6 +4329,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    if (this.$route.params.is_signing === 1) this.is_signing = true;
     this.getDivisions();
     this.getEventInfo();
     this.checkParticipant();
@@ -4343,6 +4350,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -4545,6 +4553,15 @@ __webpack_require__.r(__webpack_exports__);
         name: "showevent",
         params: {
           id: id
+        }
+      });
+    },
+    signEvent: function signEvent(id) {
+      this.$router.push({
+        name: "showevent",
+        params: {
+          id: id,
+          is_signing: 1
         }
       });
     }
@@ -64540,9 +64557,42 @@ var render = function() {
               staticStyle: { "text-align": "center" }
             },
             [
-              _c("ul", { staticClass: "collapsible expandable" }, [
-                _c("li", [
-                  _vm._m(0),
+              _c("ul", { staticClass: "collapsible" }, [
+                _c("li", { class: { active: _vm.is_signing } }, [
+                  _c("div", { staticClass: "collapsible-header" }, [
+                    _c("span", [
+                      _c("span", { staticStyle: { "font-weight": "500" } }, [
+                        _vm._v("Zapisz się! ")
+                      ]),
+                      _vm._v(" "),
+                      _vm.is_coming === 0
+                        ? _c(
+                            "span",
+                            {
+                              staticStyle: {
+                                color: "darkblue",
+                                "font-style": "italic",
+                                float: "right"
+                              }
+                            },
+                            [_vm._v(" (Zapisano) Potwierdź przybycie!")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.is_coming === 1
+                        ? _c(
+                            "span",
+                            {
+                              staticStyle: {
+                                color: "darkgreen",
+                                "font-style": "italic"
+                              }
+                            },
+                            [_vm._v(" (Potwierdzono przybycie)")]
+                          )
+                        : _vm._e()
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "collapsible-body" }, [
                     !_vm.success
@@ -64734,16 +64784,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "collapsible-header" }, [
-      _c("h6", [_vm._v("Zapisz się!")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -64934,7 +64975,12 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-light editbtn",
-                          attrs: { type: "button", name: "action" }
+                          attrs: { type: "button", name: "action" },
+                          on: {
+                            click: function($event) {
+                              return _vm.signEvent(event.id)
+                            }
+                          }
                         },
                         [_vm._v("Potwierdź")]
                       )
@@ -64958,7 +65004,12 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-light editbtn",
-                          attrs: { type: "button", name: "action" }
+                          attrs: { type: "button", name: "action" },
+                          on: {
+                            click: function($event) {
+                              return _vm.signEvent(event.id)
+                            }
+                          }
                         },
                         [_vm._v("Zapisz się")]
                       )

@@ -65,7 +65,7 @@
         </div>
         <div class="card-action">
           <span v-if="event.is_sure===0" style="color: darkblue; font-style:italic">zapisano</span>
-          <button v-if="event.is_sure===0" class="btn btn-light editbtn" type="button" name="action">Potwierdź</button>
+          <button v-if="event.is_sure===0" class="btn btn-light editbtn" type="button" name="action"  @click="signEvent(event.id)">Potwierdź</button>
 
           <span v-if="event.is_sure===1" style="color: darkgreen; font-style:italic">potwierdzono</span>
           <button
@@ -73,6 +73,7 @@
             class="btn btn-light editbtn"
             type="button"
             name="action"
+             @click="signEvent(event.id)"
           >Zapisz się</button>
           <button
             class="btn btn-light editbtn"
@@ -203,6 +204,9 @@ export default {
     },
     showEvent: function (id) {
       this.$router.push({ name: "showevent", params: { id: id } });
+    },
+    signEvent: function (id) {
+      this.$router.push({ name: "showevent", params: { id: id, is_signing:1 } });
     },
   },
 
