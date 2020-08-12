@@ -47,12 +47,12 @@ class EventsController extends Controller
     {
         if ($request->get('id') == 0) {
             $data = Event::whereNull('division')
-                ->orderby('start', 'desc')
+                ->where('end', '>=', date('Y-m-d'))
                 ->select('id', 'division', 'title', 'about', 'start', 'end', 'location');
             // ->get();
         } else {
             $data = Event::where('division', '=', $request->get('id'))
-                ->orderby('start', 'desc')
+                ->where('end', '>=', date('Y-m-d'))
                 ->select('id', 'division', 'title', 'about', 'start', 'end', 'location');
             // ->get();
         }
@@ -64,6 +64,7 @@ class EventsController extends Controller
                 $join->on('events.id', '=', 'participants.event_id');
             })
             ->selectRaw('events.id, events.division, events.title, events.about, events.start, events.end, events.location, participants.is_sure')
+            ->orderby('start', 'asc')
             ->get();
 
         return response()->json($select);
@@ -82,7 +83,7 @@ class EventsController extends Controller
                 $join->on('events.id', '=', 'sel.event_id');
             })->selectRaw('events.id, events.division, events.title, events.about, events.start, events.end, events.location, sel.is_sure')
             ->where('end', '>=', date('Y-m-d'))
-            ->orderByRaw('events.start')
+            ->orderBy('start', 'asc')
             ->get();
 
         return response()->json($data);
@@ -100,7 +101,7 @@ class EventsController extends Controller
                 $join->on('events.id', '=', 'sel.event_id');
             })->selectRaw('events.id, events.division, events.title, events.about, events.start, events.end, events.location')
             ->where('end', '<', date('Y-m-d'))
-            ->orderByRaw('events.start')
+            ->orderBy('start', 'desc')
             ->get();
 
         return response()->json($data);
@@ -138,12 +139,12 @@ class EventsController extends Controller
         return response()->json($data);
     }
 
-    
+
 
     public function newEvent(EventRequest $request)
     {
         $event = new Event();
-        if ($request->get('division') !== 0)
+        if ($request->get('division') != 0)
             $event->division = $request->get('division');
         $event->title = $request->get('title');
         $event->about = $request->get('about');
