@@ -6,22 +6,22 @@
           <h4>{{title}}</h4>
         </div>
         <div class="progress" v-if="isProgress">
-          <div class="indeterminate"></div>
+          <div class="indeterminate blue darken-4"></div>
         </div>
 
         <div class="card-body">
-        <a
-          :href="`https://calendar.google.com/calendar/r/eventedit?trp=false&sf=true&text=${title}&location=${location}&details=${about}&dates=${start_date.replace(/-/g,'')}T${start_time.replace(/:/g,'')}/${end_date.replace(/-/g,'')}T${end_time.replace(/:/g,'')}`"
-          target="_blank"
-        >
-          <button
-            class="btn btn-primary"
-            type="button"
-            name="action"
-            style="float: right"
-          >Dodaj do kalendarza Google</button>
-        </a>
-        <br>
+          <a
+            :href="`https://calendar.google.com/calendar/r/eventedit?trp=false&sf=true&text=${title}&location=${location}&details=${about}&dates=${start_date.replace(/-/g,'')}T${start_time.replace(/:/g,'')}/${end_date.replace(/-/g,'')}T${end_time.replace(/:/g,'')}`"
+            target="_blank"
+          >
+            <button
+              class="btn btn-primary"
+              type="button"
+              name="action"
+              style="float: right"
+            >Dodaj do kalendarza Google</button>
+          </a>
+          <br />
           <div>
             <h6>Opis</h6>
             <p style="white-space: pre-line">{{about}}</p>
@@ -117,6 +117,57 @@
               @click="editEvent"
               v-if="is_admin"
             >Edytuj</button>
+            <ul class="collapsible expandable">
+              <li>
+                <div class="collapsible-header">
+                  <h6>Zapisz się!</h6>
+                </div>
+                <div class="collapsible-body">
+                  <form
+                    autocomplete="off"
+                    @submit.prevent="signParticipant"
+                    v-if="!success"
+                  >
+                    <div class="form-group">
+                      <label
+                        class="black-text"
+                      >Czy będziesz być może, czy na pewno i organizatorzy mogą liczyć Twoje zgłoszenie?</label>
+                      <div class="switch">
+                        <label class="black-text">
+                          Być może
+                          <input type="checkbox" v-model="is_sure" />
+                          <span class="lever"></span>
+                          Na pewno!
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label
+                        class="black-text"
+                      >Czy chcesz, aby inni KSMowicze mogli zobaczyć, że bierzesz udział? Jeżeli wybierzesz nie, Twoje nazwisko na liście będzie widoczne tylko dla organizatorów.</label>
+                      <div class="switch">
+                        <label class="black-text">
+                          Nie
+                          <input type="checkbox" v-model="is_visible" />
+                          <span class="lever"></span>
+                          Tak
+                        </label>
+                      </div>
+                    </div>
+
+                    <br />
+                    <div class="card-action" style="text-align:center">
+                      <button
+                        class="btn btn-light"
+                        v-if="is_coming!==null"
+                        @click="deleteParticipant"
+                      >Wypisz mnie</button>
+                      <button class="btn btn-primary" type="submit" name="action">Zapisz mnie</button>
+                    </div>
+                  </form>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -125,6 +176,7 @@
 </template>
 
 <script>
+import M from "materialize-css";
 export default {
   data() {
     return {
@@ -152,6 +204,8 @@ export default {
       author: "",
       created_at: "",
       modified_at: null,
+      is_sure: 0,
+      is_visible: 1,
     };
   },
   computed: {
@@ -194,7 +248,8 @@ export default {
             this.price = response.data[0].price;
             this.timetable = response.data[0].timetable;
             this.details = response.data[0].details;
-            this.is_coming = response.data[0].is_coming;
+            this.is_coming = response.data[0].is_sure;
+            if (this.is_coming !== null) this.is_sure = this.is_coming;
             this.participants_cnt = response.data[0].participants;
             this.author =
               response.data[0].name + " " + response.data[0].surname;
@@ -206,6 +261,10 @@ export default {
     },
     editEvent: function () {
       this.$router.push({ name: "editevent", params: { id: this.id } });
+    },
+    deleteParticipant: function () {},
+    signParticipant: function(){
+
     },
     getParticipantsList: function () {
       this.isProgress = true;
@@ -227,6 +286,9 @@ export default {
   created: function () {
     this.getDivisions();
     this.getEventInfo();
+  },
+  mounted: function () {
+    M.AutoInit();
   },
 };
 </script>
@@ -261,7 +323,8 @@ input:focus {
 label.active {
   color: royalblue !important;
 }
-div.card-header {
+div.card-header,
+.collapsible-header {
   background-color: rgba(254, 209, 9, 0.712);
 }
 
@@ -278,5 +341,12 @@ th {
 }
 select {
   color: black !important;
+}
+
+.switch label input[type="checkbox"]:checked + .lever:after {
+  background-color: #fdd835 !important;
+}
+.switch label input[type="checkbox"]:checked + .lever {
+  background-color: #fdd835 !important;
 }
 </style>

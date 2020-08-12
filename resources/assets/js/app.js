@@ -6,7 +6,10 @@ import App from './App.vue';
 import store from './store';
 import InfiniteScroll from 'v-infinite-scroll'
 import 'v-infinite-scroll/dist/v-infinite-scroll.css';
+import "materialize-css/dist/css/materialize.min.css";
+import "materialize-css/dist/js/materialize.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
+// 
 
 import VueAuthenticate from 'vue-authenticate'
 import router from './router'
