@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmailRequest;
 use App\Http\Requests\EventRequest;
-use App\Http\Requests\ParticipantsRequest;
 use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use App\Event;
@@ -79,7 +78,7 @@ class EventsController extends Controller
 
 
         $data = DB::table('events')
-            ->joinSub($select, 'sel', function ($join) {
+            ->rightJoinSub($select, 'sel', function ($join) {
                 $join->on('events.id', '=', 'sel.event_id');
             })->selectRaw('events.id, events.division, events.title, events.about, events.start, events.end, events.location, sel.is_sure')
             ->where('end', '>=', date('Y-m-d'))
@@ -118,9 +117,9 @@ class EventsController extends Controller
             ->where('id', '=', $request->get('id'))
             ->leftJoinSub($select, 'sel', function ($join) {
                 $join->on('events.id', '=', 'sel.event_id');
-            })->selectRaw('events.id eventsid,  events.division aim_division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, count(sel.user_id) participants, sel.is_sure, sel.visible')
+            })->selectRaw('events.id eventsid,  events.division aim_division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, count(sel.user_id) participants')
             ->orderByRaw('events.start')
-            ->groupByRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at, sel.is_sure, sel.visible');
+            ->groupByRaw('events.id,  events.division, events.title, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.author, events.created_at, events.modified_at');
 
         $author = DB::table('users')
             ->JoinSub($data1, 'sel', function ($join) {
@@ -133,32 +132,13 @@ class EventsController extends Controller
             ->JoinSub($author, 'author', function ($join) {
                 $join->on('author.event_id2', '=', 'events.eventsid');
             })
-            ->selectRaw('events.eventsid id,  events.aim_division division, events.title, author.name,author.surname, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.created_at, events.modified_at, events.participants, divisions.email, events.is_sure, events.visible')
+            ->selectRaw('events.eventsid id,  events.aim_division division, events.title, author.name,author.surname, events.about, events.start, events.end, events.location, events.price, events.timetable, events.details, events.created_at, events.modified_at, events.participants, divisions.email')
             ->get();
 
         return response()->json($data);
     }
 
-    public function getParticipants(ParticipantsRequest $request)
-    {
-        if ($request->get('is_admin') == 1) {
-            $select = DB::table('participants')
-                ->where('event_id', '=', $request->get('id'));
-        } else {
-            $select = DB::table('participants')
-                ->where('event_id', '=', $request->get('id'))
-                ->where('visible', '=', 1);
-        }
-
-        $data = DB::table('users')
-            ->joinSub($select, 'sel', function ($join) {
-                $join->on('users.id', '=', 'sel.user_id');
-            })->join('divisions', 'users.division', '=', 'divisions.id')
-            ->select('sel.is_sure', 'users.id', 'users.name', 'users.surname', 'divisions.town', 'divisions.parish')
-            ->get();
-
-        return response()->json($data);
-    }
+    
 
     public function newEvent(EventRequest $request)
     {

@@ -3284,20 +3284,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      name: '',
-      surname: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      birthdate: '',
+      name: "",
+      surname: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      birthdate: "",
       error: false,
       errors: {},
       success: false,
       isProgress: true,
-      division: '',
+      division: "",
       divisions: [],
       currentUser: null,
       is_leadership: this.$store.state.is_leadership,
@@ -3309,7 +3348,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.password === this.confirmPassword && (this.password === "" || this.password.length > 5)) {
-        this.axios.post('api/auth/updateUser?token=' + this.$store.state.token, {
+        this.axios.post("api/auth/updateUser", {
+          token: this.$store.state.token,
           id: this.currentUser.id,
           name: this.name,
           surname: this.surname,
@@ -3327,13 +3367,13 @@ __webpack_require__.r(__webpack_exports__);
             setTimeout(function () {
               _this.isProgress = false;
 
-              _this.$store.commit('LoginEmail', _this.email);
+              _this.$store.commit("LoginEmail", _this.email);
 
               _this.$router.push({
-                name: 'dashboard'
+                name: "dashboard"
               });
 
-              _this.$toaster.success('Dane pomyślnie zapisane');
+              _this.$toaster.success("Dane pomyślnie zapisane");
             }, 2000);
           }
         })["catch"](function (error) {
@@ -3343,17 +3383,17 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         this.error = true;
-        this.errors.confirmPassword = ['Wpisz 2 razy to samo hasło, minimum 6 znaków'];
+        this.errors.confirmPassword = ["Wpisz 2 razy to samo hasło, minimum 6 znaków"];
       }
     },
     getDivisions: function getDivisions() {
-      this.axios.get('/api/getDivisions').then(function (response) {
+      this.axios.get("/api/getDivisions").then(function (response) {
         this.divisions = response.data;
       }.bind(this));
     },
     getUser: function getUser() {
       var myThis = this;
-      this.axios.post('/api/auth/getUser?token=' + this.$store.state.token + '&email=' + this.$store.state.email).then(function (response) {
+      this.axios.post("/api/auth/getUser?token=" + this.$store.state.token + "&email=" + this.$store.state.email).then(function (response) {
         this.currentUser = response.data[0];
         this.name = myThis.currentUser.name;
         this.surname = myThis.currentUser.surname;
@@ -4104,8 +4144,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4169,8 +4207,6 @@ __webpack_require__.r(__webpack_exports__);
         this.price = response.data[0].price;
         this.timetable = response.data[0].timetable;
         this.details = response.data[0].details;
-        this.is_coming = response.data[0].is_sure;
-        if (this.is_coming !== null) this.is_sure = this.is_coming;
         this.participants_cnt = response.data[0].participants;
         this.author = response.data[0].name + " " + response.data[0].surname;
         this.created_at = response.data[0].created_at;
@@ -4186,8 +4222,77 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    deleteParticipant: function deleteParticipant() {},
-    signParticipant: function signParticipant() {},
+    deleteParticipant: function deleteParticipant() {
+      this.isProgress = true;
+      this.axios.post("/api/auth/deleteParticipant", {
+        token: this.$store.state.token,
+        event_id: this.id,
+        user_id: this.$store.state.user_id
+      }).then(function (response) {
+        var _this = this;
+
+        if (response.data.success == true) {
+          setTimeout(function () {
+            _this.isProgress = false;
+
+            _this.$router.push({
+              name: "events"
+            });
+
+            _this.$toaster.success("Zostałeś wypisany");
+          }, 2000);
+        }
+      }.bind(this));
+    },
+    signParticipant: function signParticipant() {
+      var _this2 = this;
+
+      if (this.is_coming === null) {
+        this.axios.post("/api/auth/newParticipant", {
+          token: this.$store.state.token,
+          event_id: this.id,
+          user_id: this.$store.state.user_id,
+          visible: this.is_visible,
+          is_sure: this.is_sure
+        }).then(function (response) {
+          _this2.isProgress = true;
+
+          if (response.data.success == true) {
+            setTimeout(function () {
+              _this2.isProgress = false;
+
+              _this2.$router.push({
+                name: "events"
+              });
+
+              _this2.$toaster.success("Zostałeś zapisany");
+            }, 2000);
+          }
+        });
+      } else {
+        this.axios.post("/api/auth/editParticipant", {
+          token: this.$store.state.token,
+          event_id: this.id,
+          user_id: this.$store.state.user_id,
+          visible: this.is_visible,
+          is_sure: this.is_sure
+        }).then(function (response) {
+          _this2.isProgress = true;
+
+          if (response.data.success == true) {
+            setTimeout(function () {
+              _this2.isProgress = false;
+
+              _this2.$router.push({
+                name: "events"
+              });
+
+              _this2.$toaster.success("Zostałeś zapisany");
+            }, 2000);
+          }
+        });
+      }
+    },
     getParticipantsList: function getParticipantsList() {
       this.isProgress = true;
       this.axios.post("/api/auth/getParticipants", {
@@ -4199,11 +4304,28 @@ __webpack_require__.r(__webpack_exports__);
         this.isProgress = false;
         this.showParticipants = true;
       }.bind(this));
+    },
+    checkParticipant: function checkParticipant() {
+      this.isProgress = true;
+      this.axios.post("/api/auth/checkParticipant", {
+        token: this.$store.state.token,
+        event_id: this.id,
+        user_id: this.$store.state.user_id
+      }).then(function (response) {
+        if (response.data.length > 0) {
+          this.is_coming = response.data[0].is_sure;
+          this.is_sure = this.is_coming;
+          this.is_visible = response.data[0].visible;
+        }
+
+        this.isProgress = false;
+      }.bind(this));
     }
   },
   created: function created() {
     this.getDivisions();
     this.getEventInfo();
+    this.checkParticipant();
   },
   mounted: function mounted() {
     materialize_css__WEBPACK_IMPORTED_MODULE_0___default.a.AutoInit();
@@ -23689,7 +23811,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-group[data-v-28e0a7ea]{\r\n    align-content: left;\n}\n.submit[data-v-28e0a7ea]:hover{\r\n        color:white;\n}\n.btn[data-v-28e0a7ea]{\r\n        display: inline-flex;\n}\n.btn[data-v-28e0a7ea]:focus{\r\n        color:white;\n}\n.heading[data-v-28e0a7ea]{\r\n        padding: 30px;\r\n        border: none;\n}\n.login-form[data-v-28e0a7ea]{\r\n        background: white;\r\n        padding: 30px;\n}\n.progress[data-v-28e0a7ea]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\ninput[data-v-28e0a7ea]:focus{\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-28e0a7ea] {\r\n  color: royalblue !important;\n}\n.indeterminate[data-v-28e0a7ea]{\r\n        background-color: #FEBD09;\n}\r\n", ""]);
+exports.push([module.i, "\n.form-group[data-v-28e0a7ea] {\r\n  align-content: left;\n}\n.submit[data-v-28e0a7ea]:hover {\r\n  color: white;\n}\n.btn[data-v-28e0a7ea] {\r\n  display: inline-flex;\n}\n.btn[data-v-28e0a7ea]:focus {\r\n  color: white;\n}\n.heading[data-v-28e0a7ea] {\r\n  padding: 30px;\r\n  border: none;\n}\n.login-form[data-v-28e0a7ea] {\r\n  background: white;\r\n  padding: 30px;\n}\n.progress[data-v-28e0a7ea] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\ninput[data-v-28e0a7ea]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-28e0a7ea] {\r\n  color: royalblue !important;\n}\n.indeterminate[data-v-28e0a7ea] {\r\n  background-color: #febd09;\n}\r\n", ""]);
 
 // exports
 
@@ -62889,6 +63011,7 @@ var render = function() {
                     _c("label", { attrs: { for: "division" } }, [
                       _vm._v("Oddział")
                     ]),
+                    _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
                     _c(
@@ -62930,7 +63053,7 @@ var render = function() {
                           [
                             _c("span", [
                               _vm._v(
-                                _vm._s("   " + divi.town + " " + divi.parish)
+                                _vm._s(" " + divi.town + " " + divi.parish)
                               )
                             ])
                           ]
@@ -62950,6 +63073,7 @@ var render = function() {
                   this.$store.state.is_management
                     ? _c("div", { staticClass: "form-group" }, [
                         _c("label", [_vm._v("Uprawnienia")]),
+                        _vm._v(" "),
                         _c("br"),
                         _vm._v(" "),
                         _c(
@@ -62957,10 +63081,11 @@ var render = function() {
                           { staticStyle: { color: "rgb(211, 7, 41)" } },
                           [
                             _vm._v(
-                              " Uwaga! Jeżeli zrezygnujesz z nadanych uprawnień, otrzymasz je dopiero, jeżeli inny uprawiony Ci je nada "
+                              "Uwaga! Jeżeli zrezygnujesz z nadanych uprawnień, otrzymasz je dopiero, jeżeli inny uprawiony Ci je nada"
                             )
                           ]
                         ),
+                        _vm._v(" "),
                         _c("br"),
                         _vm._v(" "),
                         this.$store.state.is_leadership
@@ -63008,7 +63133,7 @@ var render = function() {
                               }),
                               _vm._v(" "),
                               _c("span", { staticStyle: { color: "black" } }, [
-                                _vm._v(" Członek Kierownictwa ")
+                                _vm._v("Członek Kierownictwa")
                               ])
                             ])
                           : _vm._e(),
@@ -63060,7 +63185,7 @@ var render = function() {
                               }),
                               _vm._v(" "),
                               _c("span", { staticStyle: { color: "black" } }, [
-                                _vm._v(" Członek Zarządu ")
+                                _vm._v("Członek Zarządu")
                               ])
                             ])
                           : _vm._e()
@@ -64415,18 +64540,6 @@ var render = function() {
               staticStyle: { "text-align": "center" }
             },
             [
-              _vm.is_admin
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary editbtn",
-                      attrs: { type: "button", name: "action" },
-                      on: { click: _vm.editEvent }
-                    },
-                    [_vm._v("Edytuj")]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
               _c("ul", { staticClass: "collapsible expandable" }, [
                 _c("li", [
                   _vm._m(0),
@@ -64579,6 +64692,7 @@ var render = function() {
                                       "button",
                                       {
                                         staticClass: "btn btn-light",
+                                        attrs: { type: "button" },
                                         on: { click: _vm.deleteParticipant }
                                       },
                                       [_vm._v("Wypisz mnie")]
@@ -64600,7 +64714,19 @@ var render = function() {
                       : _vm._e()
                   ])
                 ])
-              ])
+              ]),
+              _vm._v(" "),
+              _vm.is_admin
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary editbtn",
+                      attrs: { type: "button", name: "action" },
+                      on: { click: _vm.editEvent }
+                    },
+                    [_vm._v("Edytuj wydarzenie")]
+                  )
+                : _vm._e()
             ]
           )
         ])

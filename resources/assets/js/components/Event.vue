@@ -110,24 +110,14 @@
           </div>
 
           <div class="card-action" style="text-align:center">
-            <button
-              class="btn btn-primary editbtn"
-              type="button"
-              name="action"
-              @click="editEvent"
-              v-if="is_admin"
-            >Edytuj</button>
+            
             <ul class="collapsible expandable">
               <li>
                 <div class="collapsible-header">
                   <h6>Zapisz się!</h6>
                 </div>
                 <div class="collapsible-body">
-                  <form
-                    autocomplete="off"
-                    @submit.prevent="signParticipant"
-                    v-if="!success"
-                  >
+                  <form autocomplete="off" @submit.prevent="signParticipant" v-if="!success">
                     <div class="form-group">
                       <label
                         class="black-text"
@@ -160,6 +150,7 @@
                       <button
                         class="btn btn-light"
                         v-if="is_coming!==null"
+                        type="button"
                         @click="deleteParticipant"
                       >Wypisz mnie</button>
                       <button class="btn btn-primary" type="submit" name="action">Zapisz mnie</button>
@@ -168,6 +159,13 @@
                 </div>
               </li>
             </ul>
+            <button
+              class="btn btn-primary editbtn"
+              type="button"
+              name="action"
+              @click="editEvent"
+              v-if="is_admin"
+            >Edytuj wydarzenie</button>
           </div>
         </div>
       </div>
@@ -248,8 +246,7 @@ export default {
             this.price = response.data[0].price;
             this.timetable = response.data[0].timetable;
             this.details = response.data[0].details;
-            this.is_coming = response.data[0].is_sure;
-            if (this.is_coming !== null) this.is_sure = this.is_coming;
+
             this.participants_cnt = response.data[0].participants;
             this.author =
               response.data[0].name + " " + response.data[0].surname;
@@ -262,9 +259,65 @@ export default {
     editEvent: function () {
       this.$router.push({ name: "editevent", params: { id: this.id } });
     },
-    deleteParticipant: function () {},
-    signParticipant: function(){
-
+    deleteParticipant: function () {
+      this.isProgress = true;
+      this.axios
+        .post("/api/auth/deleteParticipant", {
+          token: this.$store.state.token,
+          event_id: this.id,
+          user_id: this.$store.state.user_id,
+        })
+        .then(
+          function (response) {
+            if (response.data.success == true) {
+              setTimeout(() => {
+                this.isProgress = false;
+                this.$router.push({ name: "events" });
+                this.$toaster.success("Zostałeś wypisany");
+              }, 2000);
+            }
+          }.bind(this)
+        );},
+    signParticipant: function () {
+      if (this.is_coming === null) {
+        this.axios
+          .post("/api/auth/newParticipant", {
+            token: this.$store.state.token,
+            event_id: this.id,
+            user_id: this.$store.state.user_id,
+            visible: this.is_visible,
+            is_sure: this.is_sure,
+          })
+          .then((response) => {
+            this.isProgress = true;
+            if (response.data.success == true) {
+              setTimeout(() => {
+                this.isProgress = false;
+                this.$router.push({ name: "events" });
+                this.$toaster.success("Zostałeś zapisany");
+              }, 2000);
+            }
+          });
+      } else {
+        this.axios
+          .post("/api/auth/editParticipant", {
+            token: this.$store.state.token,
+            event_id: this.id,
+            user_id: this.$store.state.user_id,
+            visible: this.is_visible,
+            is_sure: this.is_sure,
+          })
+          .then((response) => {
+            this.isProgress = true;
+            if (response.data.success == true) {
+              setTimeout(() => {
+                this.isProgress = false;
+                this.$router.push({ name: "events" });
+                this.$toaster.success("Zostałeś zapisany");
+              }, 2000);
+            }
+          });
+      }
     },
     getParticipantsList: function () {
       this.isProgress = true;
@@ -282,10 +335,30 @@ export default {
           }.bind(this)
         );
     },
+    checkParticipant: function () {
+      this.isProgress = true;
+      this.axios
+        .post("/api/auth/checkParticipant", {
+          token: this.$store.state.token,
+          event_id: this.id,
+          user_id: this.$store.state.user_id,
+        })
+        .then(
+          function (response) {
+            if (response.data.length > 0) {
+              this.is_coming = response.data[0].is_sure;
+              this.is_sure = this.is_coming;
+              this.is_visible = response.data[0].visible;
+            }
+            this.isProgress = false;
+          }.bind(this)
+        );
+    },
   },
   created: function () {
     this.getDivisions();
     this.getEventInfo();
+    this.checkParticipant();
   },
   mounted: function () {
     M.AutoInit();

@@ -58,8 +58,12 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/auth/getUserUpcomingEvents', 'EventsController@getUserUpcomingEvents');
     Route::post('/auth/getUserOldEvents', 'EventsController@getUserOldEvents');
     Route::post('/auth/getEventInfo', 'EventsController@getEventInfo');
-    Route::post('/auth/getParticipants', 'EventsController@getParticipants');
+    Route::post('/auth/getParticipants', 'ParticipantsController@getParticipants');
     Route::post('/auth/newEvent', 'EventsController@newEvent');
     Route::post('/auth/editEvent', 'EventsController@editEvent');
     Route::post('/auth/deleteEvent', 'EventsController@deleteEvent');
+    Route::post('/auth/newParticipant', 'ParticipantsController@newParticipant');
+    Route::post('/auth/editParticipant', 'ParticipantsController@editParticipant');
+    Route::post('/auth/checkParticipant', 'ParticipantsController@checkParticipant');
+    Route::post('/auth/deleteParticipant', 'ParticipantsController@deleteParticipant');
 });
