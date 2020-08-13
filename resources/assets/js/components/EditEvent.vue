@@ -15,7 +15,7 @@
           </h4>
         </div>
         <div class="progress" v-if="isProgress">
-          <div class="indeterminate"></div>
+          <div class="indeterminate blue darken-4"></div>
         </div>
         <div class="card-body">
           <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
