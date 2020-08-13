@@ -10,7 +10,7 @@
           <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
             <div class="form-group">
               <label for="title">Tytuł wydarzenia</label>
-              <input id="title" type="text" class="validate" v-model="title" required autofocus/>
+              <input id="title" type="text" class="validate" v-model="title" required autofocus />
               <span class="text text-danger" v-if="error && errors.title">{{ errors.title[0] }}</span>
             </div>
             <div class="form-group">
@@ -39,9 +39,13 @@
             <div class="form-group">
               <label for="division">Grupa docelowa:</label>
               <br />
-              <select class="browser-default" v-model="division" :disabled="!this.$store.state.is_management">
+              <select
+                class="browser-default"
+                v-model="division"
+               
+              >
                 <option value="0" key="0">Wydarzenie diecezjalne</option>
-                <option v-for="divi in divisions" :value="divi.id" :key="divi.id">
+                <option v-for="divi in divisions" :value="divi.id" :key="divi.id"  :disabled="!is_management && divi.id!==user_division">
                   <span>{{ 'Oddział '+divi.town+' parafia '+divi.parish }}</span>
                 </option>
               </select>
@@ -85,12 +89,26 @@
               <div class="indeterminate"></div>
             </div>
             <div class="card-action" style="text-align:center">
-              <button
+              <!-- <button
                 class="btn btn-primary"
                 type="button"
                 name="action"
                 @click.prevent="register()"
-              >Dodaj wydarzenie</button>
+              >Dodaj wydarzenie</button> -->
+                 <!-- Modal Trigger -->
+   <button data-target="modal1" class="btn btn-primary modal-trigger waves-effect waves-yellow" @click="register">Dodaj wydarzenie</button>
+
+  <!-- v-show="colliders.length>0"  -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Wykryto kolidujące zdarzenia w tym terminie!</h4>
+      <p>{{colliders}}</p>
+    </div>
+    <div class="modal-footer">
+      <button href="#!" class="modal-close  btn-light">Wróć</button>
+      <button class="btn btn-primary modal-close" @click="addEvent" href="#!">Dodaj</button>
+    </div>
+  </div>
             </div>
           </form>
         </div>
@@ -100,6 +118,8 @@
 </template>
 
 <script>
+
+import M from "materialize-css";
 export default {
   data() {
     return {
@@ -119,11 +139,43 @@ export default {
       errors: {},
       success: false,
       isProgress: false,
-      author: null
+      author: null,
+      colliders: []
     };
+  },
+  computed: {
+    user_division() {
+      return this.$store.state.division;
+    },
+    is_management() {
+      return this.$store.state.is_management;
+    },
   },
   methods: {
     register() {
+      this.isProgress = true;
+      this.axios
+        .post("api/auth/getCollidingEvents", {
+          token: this.$store.state.token,
+          start: this.start_date + " " + this.start_time,
+          end: this.end_date + " " + this.end_time,
+        })
+        .then((response) => {
+          this.colliders=response.data;
+           this.isProgress = false;
+          if (response.data.length > 0) {
+            // this.isProgress = false;
+            // var text = "Wykryto kolidujące zdarzenia w tym terminie!:\n";
+            // if (confirm(text)) {
+            //   this.addEvent();
+            // } else this.$toaster.info("Edytuj datę");
+          } else {
+            this.addEvent();
+          }
+        });
+    },
+    addEvent() {
+       this.isProgress = true;
       this.axios
         .post("api/auth/newEvent", {
           token: this.$store.state.token,
@@ -139,11 +191,10 @@ export default {
           author: this.author,
         })
         .then((response) => {
-          this.isProgress = true;
           if (response.data.success == true) {
             setTimeout(() => {
               this.isProgress = false;
-                this.$router.push({ name: "events" });
+              this.$router.push({ name: "events" });
               this.$toaster.success("Dodano wydarzenie");
             }, 2000);
           }
@@ -157,15 +208,18 @@ export default {
     getDivisions: function () {
       this.axios.get("/api/getDivisions").then(
         function (response) {
-          this.divisions = response.data;          
+          this.divisions = response.data;
           this.author = this.$store.state.user_id;
-          this.division= this.$store.state.division;
+          this.division = this.$store.state.division;
         }.bind(this)
       );
     },
   },
   created: function () {
     this.getDivisions();
+  },
+  mounted: function () {
+    M.AutoInit();
   },
 };
 </script>

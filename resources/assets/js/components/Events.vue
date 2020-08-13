@@ -89,7 +89,7 @@
             name="action"
             @click="editEvent(event.id)"
             style="float: right"
-            v-if="event.division===division&&is_leadership ||event.division===null && is_management"
+            v-if="event.division===division&&is_leadership ||event.division===null && is_management || event.author===user_id"
           >Edytuj</button>
         </div>
       </div>

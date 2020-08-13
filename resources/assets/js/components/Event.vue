@@ -21,6 +21,7 @@
               style="float: right"
             >Dodaj do kalendarza Google</button>
           </a>
+
           <br />
           <div>
             <h6>Opis</h6>
@@ -113,12 +114,16 @@
             <ul class="collapsible">
               <li :class="{ active: is_signing }">
                 <div class="collapsible-header">
-                  <span><span style="font-weight:500">Zapisz się! </span>
-                  <span v-if="is_coming===0" style="color: darkblue; font-style:italic; float:right">&nbsp;(Zapisano) Potwierdź przybycie!</span>
-                  <span
-                    v-if="is_coming===1"
-                    style="color: darkgreen; font-style:italic; "
-                  > (Potwierdzono przybycie)</span>
+                  <span>
+                    <span style="font-weight:500">Zapisz się!</span>
+                    <span
+                      v-if="is_coming===0"
+                      style="color: darkblue; font-style:italic; float:right"
+                    >&nbsp;(Zapisano) Potwierdź przybycie!</span>
+                    <span
+                      v-if="is_coming===1"
+                      style="color: darkgreen; font-style:italic; "
+                    >(Potwierdzono przybycie)</span>
                   </span>
                 </div>
                 <div class="collapsible-body">
@@ -205,6 +210,7 @@ export default {
       participants: [],
       email: "",
       author: "",
+      author_id: null,
       created_at: "",
       modified_at: null,
       is_sure: 0,
@@ -217,7 +223,8 @@ export default {
       return (
         (this.division === 0 && this.$store.state.is_management) ||
         (this.division === this.$store.state.division &&
-          this.$store.state.is_leadership)
+          this.$store.state.is_leadership) ||
+        this.author_id === this.$store.state.user_id
       );
     },
   },
@@ -256,6 +263,7 @@ export default {
             this.participants_cnt = response.data[0].participants;
             this.author =
               response.data[0].name + " " + response.data[0].surname;
+            this.author_id = response.data[0].author_id;
             this.created_at = response.data[0].created_at;
             this.modified_at = response.data[0].modified_at;
             this.isProgress = false;

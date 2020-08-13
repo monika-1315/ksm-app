@@ -4149,6 +4149,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4175,6 +4180,7 @@ __webpack_require__.r(__webpack_exports__);
       participants: [],
       email: "",
       author: "",
+      author_id: null,
       created_at: "",
       modified_at: null,
       is_sure: 0,
@@ -4184,7 +4190,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     is_admin: function is_admin() {
-      return this.division === 0 && this.$store.state.is_management || this.division === this.$store.state.division && this.$store.state.is_leadership;
+      return this.division === 0 && this.$store.state.is_management || this.division === this.$store.state.division && this.$store.state.is_leadership || this.author_id === this.$store.state.user_id;
     }
   },
   methods: {
@@ -4215,6 +4221,7 @@ __webpack_require__.r(__webpack_exports__);
         this.details = response.data[0].details;
         this.participants_cnt = response.data[0].participants;
         this.author = response.data[0].name + " " + response.data[0].surname;
+        this.author_id = response.data[0].author_id;
         this.created_at = response.data[0].created_at;
         this.modified_at = response.data[0].modified_at;
         this.isProgress = false;
@@ -4913,6 +4920,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var materialize_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! materialize-css */ "./node_modules/materialize-css/dist/js/materialize.js");
+/* harmony import */ var materialize_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(materialize_css__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -5014,6 +5023,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5033,13 +5061,45 @@ __webpack_require__.r(__webpack_exports__);
       errors: {},
       success: false,
       isProgress: false,
-      author: null
+      author: null,
+      colliders: []
     };
+  },
+  computed: {
+    user_division: function user_division() {
+      return this.$store.state.division;
+    },
+    is_management: function is_management() {
+      return this.$store.state.is_management;
+    }
   },
   methods: {
     register: function register() {
       var _this = this;
 
+      this.isProgress = true;
+      this.axios.post("api/auth/getCollidingEvents", {
+        token: this.$store.state.token,
+        start: this.start_date + " " + this.start_time,
+        end: this.end_date + " " + this.end_time
+      }).then(function (response) {
+        _this.colliders = response.data;
+        _this.isProgress = false;
+
+        if (response.data.length > 0) {// this.isProgress = false;
+          // var text = "Wykryto kolidujące zdarzenia w tym terminie!:\n";
+          // if (confirm(text)) {
+          //   this.addEvent();
+          // } else this.$toaster.info("Edytuj datę");
+        } else {
+          _this.addEvent();
+        }
+      });
+    },
+    addEvent: function addEvent() {
+      var _this2 = this;
+
+      this.isProgress = true;
       this.axios.post("api/auth/newEvent", {
         token: this.$store.state.token,
         title: this.title,
@@ -5053,23 +5113,21 @@ __webpack_require__.r(__webpack_exports__);
         details: this.details,
         author: this.author
       }).then(function (response) {
-        _this.isProgress = true;
-
         if (response.data.success == true) {
           setTimeout(function () {
-            _this.isProgress = false;
+            _this2.isProgress = false;
 
-            _this.$router.push({
+            _this2.$router.push({
               name: "events"
             });
 
-            _this.$toaster.success("Dodano wydarzenie");
+            _this2.$toaster.success("Dodano wydarzenie");
           }, 2000);
         }
       })["catch"](function (error) {
-        _this.isProgress = false;
-        _this.error = true;
-        _this.errors = error.response.data.errors;
+        _this2.isProgress = false;
+        _this2.error = true;
+        _this2.errors = error.response.data.errors;
       });
     },
     getDivisions: function getDivisions() {
@@ -5082,6 +5140,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getDivisions();
+  },
+  mounted: function mounted() {
+    materialize_css__WEBPACK_IMPORTED_MODULE_0___default.a.AutoInit();
   }
 });
 
@@ -64562,7 +64623,7 @@ var render = function() {
                   _c("div", { staticClass: "collapsible-header" }, [
                     _c("span", [
                       _c("span", { staticStyle: { "font-weight": "500" } }, [
-                        _vm._v("Zapisz się! ")
+                        _vm._v("Zapisz się!")
                       ]),
                       _vm._v(" "),
                       _vm.is_coming === 0
@@ -64588,7 +64649,7 @@ var render = function() {
                                 "font-style": "italic"
                               }
                             },
-                            [_vm._v(" (Potwierdzono przybycie)")]
+                            [_vm._v("(Potwierdzono przybycie)")]
                           )
                         : _vm._e()
                     ])
@@ -65033,7 +65094,8 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   (event.division === _vm.division && _vm.is_leadership) ||
-                  (event.division === null && _vm.is_management)
+                  (event.division === null && _vm.is_management) ||
+                  event.author === _vm.user_id
                     ? _c(
                         "button",
                         {
@@ -65855,7 +65917,6 @@ var render = function() {
                           }
                         ],
                         staticClass: "browser-default",
-                        attrs: { disabled: !this.$store.state.is_management },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -65880,7 +65941,15 @@ var render = function() {
                         _vm._l(_vm.divisions, function(divi) {
                           return _c(
                             "option",
-                            { key: divi.id, domProps: { value: divi.id } },
+                            {
+                              key: divi.id,
+                              attrs: {
+                                disabled:
+                                  !_vm.is_management &&
+                                  divi.id !== _vm.user_division
+                              },
+                              domProps: { value: divi.id }
+                            },
                             [
                               _c("span", [
                                 _vm._v(
@@ -66061,16 +66130,49 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "button", name: "action" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.register()
-                            }
-                          }
+                          staticClass:
+                            "btn btn-primary modal-trigger waves-effect waves-yellow",
+                          attrs: { "data-target": "modal1" },
+                          on: { click: _vm.register }
                         },
                         [_vm._v("Dodaj wydarzenie")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "modal", attrs: { id: "modal1" } },
+                        [
+                          _c("div", { staticClass: "modal-content" }, [
+                            _c("h4", [
+                              _vm._v(
+                                "Wykryto kolidujące zdarzenia w tym terminie!"
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [_vm._v(_vm._s(_vm.colliders))])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-footer" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "modal-close  btn-light",
+                                attrs: { href: "#!" }
+                              },
+                              [_vm._v("Wróć")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary modal-close",
+                                attrs: { href: "#!" },
+                                on: { click: _vm.addEvent }
+                              },
+                              [_vm._v("Dodaj")]
+                            )
+                          ])
+                        ]
                       )
                     ]
                   )
