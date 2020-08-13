@@ -5396,6 +5396,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5409,7 +5410,7 @@ __webpack_require__.r(__webpack_exports__);
       errors: {},
       success: false,
       isProgress: false,
-      division: 0,
+      division: null,
       divisions: []
     };
   },
@@ -66828,20 +66829,30 @@ var render = function() {
                           }
                         }
                       },
-                      _vm._l(_vm.divisions, function(divi) {
-                        return _c(
+                      [
+                        _c(
                           "option",
-                          { key: divi.id, domProps: { value: divi.id } },
-                          [
-                            _c("span", [
-                              _vm._v(
-                                _vm._s("   " + divi.town + " " + divi.parish)
-                              )
-                            ])
-                          ]
-                        )
-                      }),
-                      0
+                          {
+                            attrs: { selected: "", value: "null", disabled: "" }
+                          },
+                          [_vm._v("Wybierz")]
+                        ),
+                        _vm._v(" "),
+                        _vm._l(_vm.divisions, function(divi) {
+                          return _c(
+                            "option",
+                            { key: divi.id, domProps: { value: divi.id } },
+                            [
+                              _c("span", [
+                                _vm._v(
+                                  _vm._s("   " + divi.town + " " + divi.parish)
+                                )
+                              ])
+                            ]
+                          )
+                        })
+                      ],
+                      2
                     )
                   ]),
                   _vm._v(" "),

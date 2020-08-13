@@ -40,6 +40,7 @@
                 <div class="form-group" >
                     <label for="division">Oddział</label><br>
                       <select class="browser-default" v-model="division">
+                          <option selected value="null" disabled>Wybierz</option>
                         <option v-for='divi in divisions' :value='divi.id' :key='divi.id'> 
                         <span>{{ '   '+divi.town+' '+divi.parish }}</span></option>
                     </select>
@@ -76,7 +77,7 @@
                 errors: {},
                 success: false,
                 isProgress: false,
-                division: 0,
+                division: null,
                 divisions: []
             };
         },
