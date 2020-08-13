@@ -39,13 +39,14 @@
             <div class="form-group">
               <label for="division">Grupa docelowa:</label>
               <br />
-              <select
-                class="browser-default"
-                v-model="division"
-               
-              >
+              <select class="browser-default" v-model="division">
                 <option value="0" key="0">Wydarzenie diecezjalne</option>
-                <option v-for="divi in divisions" :value="divi.id" :key="divi.id"  :disabled="!is_management && divi.id!==user_division">
+                <option
+                  v-for="divi in divisions"
+                  :value="divi.id"
+                  :key="divi.id"
+                  :disabled="!is_management && divi.id!==user_division"
+                >
                   <span>{{ 'Oddział '+divi.town+' parafia '+divi.parish }}</span>
                 </option>
               </select>
@@ -85,8 +86,8 @@
               <span class="text text-danger" v-if="error && errors.details">{{ errors.details[0] }}</span>
             </div>
 
-            <div class="progress" v-if="isProgress">
-              <div class="indeterminate"></div>
+            <div class="progress " v-if="isProgress">
+              <div class="indeterminate yellow darken-1"></div>
             </div>
             <div class="card-action" style="text-align:center">
               <!-- <button
@@ -94,21 +95,46 @@
                 type="button"
                 name="action"
                 @click.prevent="register()"
-              >Dodaj wydarzenie</button> -->
-                 <!-- Modal Trigger -->
-   <button data-target="modal1" class="btn btn-primary modal-trigger waves-effect waves-yellow" @click="register">Dodaj wydarzenie</button>
+              >Dodaj wydarzenie</button>-->
+              <!-- Modal Trigger -->
+              <button
+                data-target="modal1"
+                class="btn btn-primary modal-trigger waves-effect"
+                @click.prevent="register"
+                :disabled="title===null|| end_date===null||end_time===null||start_date===null||start_time===null "
+              >Dodaj wydarzenie</button>
 
-  <!-- v-show="colliders.length>0"  -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Wykryto kolidujące zdarzenia w tym terminie!</h4>
-      <p>{{colliders}}</p>
-    </div>
-    <div class="modal-footer">
-      <button href="#!" class="modal-close  btn-light">Wróć</button>
-      <button class="btn btn-primary modal-close" @click="addEvent" href="#!">Dodaj</button>
-    </div>
-  </div>
+              <!-- v-show="colliders.length>0"  -->
+              <div id="modal1" class="modal">
+                <div class="modal-content">
+                  <h4>Wydarzenia odbywające się w tym terminie:</h4>
+                  <div class="progress" v-if="isProgress">
+                    <div class="indeterminate  yellow darken-1"></div>
+                  </div>
+                  <h6 v-if="!isProgress && colliders.length===0" class="green-text">Brak kolidujących wydarzeń! :)</h6>
+                  <table v-if="!isProgress && colliders.length>0">
+                    <th>Wydarzenie</th>
+                    <th>Miasto</th>
+                    <th>Początek</th>
+                    <th>Koniec</th>
+                    <tr v-for="event in colliders" :key="event.id">
+                      <td>{{event.title}}</td>
+                      <td>
+                        <span v-if="event.town===null">diecezja</span>
+                        <span v-else>{{event.town}}</span>
+                      </td>
+                      <td>{{event.start}}</td>
+                      <td>{{event.end}}</td>
+                    </tr>
+                  </table>
+                  <br />
+                  <h5>Czy na pewno chcesz utworzyć wydarzenie {{title}}?</h5>
+                </div>
+                <div class="modal-footer">
+                  <button href="#!" class="modal-close btn btn-light">Wróć</button> &nbsp;
+                  <button class="btn btn-primary modal-close" @click.prevent="addEvent" href="#!">Dodaj</button>
+                </div>
+              </div>
             </div>
           </form>
         </div>
@@ -118,19 +144,18 @@
 </template>
 
 <script>
-
 import M from "materialize-css";
 export default {
   data() {
     return {
-      title: "",
-      about: "",
-      start_date: "",
-      end_date: "",
-      start_time: "",
-      end_time: "",
+      title: null,
+      about: null,
+      start_date: null,
+      end_date: null,
+      start_time: null,
+      end_time: null,
       division: 0,
-      location: "",
+      location: null,
       price: "",
       timetable: " ",
       details: "",
@@ -140,7 +165,7 @@ export default {
       success: false,
       isProgress: false,
       author: null,
-      colliders: []
+      colliders: [],
     };
   },
   computed: {
@@ -161,21 +186,18 @@ export default {
           end: this.end_date + " " + this.end_time,
         })
         .then((response) => {
-          this.colliders=response.data;
-           this.isProgress = false;
-          if (response.data.length > 0) {
-            // this.isProgress = false;
-            // var text = "Wykryto kolidujące zdarzenia w tym terminie!:\n";
-            // if (confirm(text)) {
-            //   this.addEvent();
-            // } else this.$toaster.info("Edytuj datę");
-          } else {
-            this.addEvent();
-          }
+          this.colliders = response.data;
+          this.isProgress = false;
+          
+        }).catch((error) => {
+          this.isProgress = false;
+          this.$toaster.error("Edytuj datę");
+          this.error = true;
+          this.errors = error.response.data.errors;
         });
     },
     addEvent() {
-       this.isProgress = true;
+      this.isProgress = true;
       this.axios
         .post("api/auth/newEvent", {
           token: this.$store.state.token,
@@ -259,5 +281,12 @@ label.active {
 }
 div.card-header {
   background-color: rgba(254, 209, 9, 0.712);
+}
+table {
+  text-align: center !important;
+}
+.modal-footer{
+  /* text-align: center !important; */
+  justify-content: center !important;
 }
 </style>

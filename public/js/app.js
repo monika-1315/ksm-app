@@ -5041,18 +5041,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      title: "",
-      about: "",
-      start_date: "",
-      end_date: "",
-      start_time: "",
-      end_time: "",
+      title: null,
+      about: null,
+      start_date: null,
+      end_date: null,
+      start_time: null,
+      end_time: null,
       division: 0,
-      location: "",
+      location: null,
       price: "",
       timetable: " ",
       details: "",
@@ -5085,15 +5111,13 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this.colliders = response.data;
         _this.isProgress = false;
+      })["catch"](function (error) {
+        _this.isProgress = false;
 
-        if (response.data.length > 0) {// this.isProgress = false;
-          // var text = "Wykryto kolidujące zdarzenia w tym terminie!:\n";
-          // if (confirm(text)) {
-          //   this.addEvent();
-          // } else this.$toaster.info("Edytuj datę");
-        } else {
-          _this.addEvent();
-        }
+        _this.$toaster.error("Edytuj datę");
+
+        _this.error = true;
+        _this.errors = error.response.data.errors;
       });
     },
     addEvent: function addEvent() {
@@ -24060,7 +24084,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-group[data-v-04ed4dde] {\r\n  align-content: left;\n}\n.submit[data-v-04ed4dde]:hover {\r\n  color: white;\n}\n.btn[data-v-04ed4dde] {\r\n  display: inline-flex;\n}\n.btn[data-v-04ed4dde]:focus {\r\n  color: white;\n}\n.heading[data-v-04ed4dde] {\r\n  padding: 30px;\r\n  border: none;\n}\n.login-form[data-v-04ed4dde] {\r\n  background: white;\r\n  padding: 30px;\n}\n.progress[data-v-04ed4dde] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\ninput[data-v-04ed4dde]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-04ed4dde] {\r\n  color: royalblue !important;\n}\ndiv.card-header[data-v-04ed4dde] {\r\n  background-color: rgba(254, 209, 9, 0.712);\n}\r\n", ""]);
+exports.push([module.i, "\n.form-group[data-v-04ed4dde] {\r\n  align-content: left;\n}\n.submit[data-v-04ed4dde]:hover {\r\n  color: white;\n}\n.btn[data-v-04ed4dde] {\r\n  display: inline-flex;\n}\n.btn[data-v-04ed4dde]:focus {\r\n  color: white;\n}\n.heading[data-v-04ed4dde] {\r\n  padding: 30px;\r\n  border: none;\n}\n.login-form[data-v-04ed4dde] {\r\n  background: white;\r\n  padding: 30px;\n}\n.progress[data-v-04ed4dde] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\ninput[data-v-04ed4dde]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-04ed4dde] {\r\n  color: royalblue !important;\n}\ndiv.card-header[data-v-04ed4dde] {\r\n  background-color: rgba(254, 209, 9, 0.712);\n}\ntable[data-v-04ed4dde] {\r\n  text-align: center !important;\n}\n.modal-footer[data-v-04ed4dde]{\r\n  /* text-align: center !important; */\r\n  justify-content: center !important;\n}\r\n", ""]);
 
 // exports
 
@@ -63581,7 +63605,7 @@ var render = function() {
         _vm._v(" "),
         _vm.isProgress
           ? _c("div", { staticClass: "progress" }, [
-              _c("div", { staticClass: "indeterminate" })
+              _c("div", { staticClass: "indeterminate blue darken-4" })
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -66115,8 +66139,10 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _vm.isProgress
-                    ? _c("div", { staticClass: "progress" }, [
-                        _c("div", { staticClass: "indeterminate" })
+                    ? _c("div", { staticClass: "progress " }, [
+                        _c("div", {
+                          staticClass: "indeterminate yellow darken-1"
+                        })
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -66131,9 +66157,22 @@ var render = function() {
                         "button",
                         {
                           staticClass:
-                            "btn btn-primary modal-trigger waves-effect waves-yellow",
-                          attrs: { "data-target": "modal1" },
-                          on: { click: _vm.register }
+                            "btn btn-primary modal-trigger waves-effect",
+                          attrs: {
+                            "data-target": "modal1",
+                            disabled:
+                              _vm.title === null ||
+                              _vm.end_date === null ||
+                              _vm.end_time === null ||
+                              _vm.start_date === null ||
+                              _vm.start_time === null
+                          },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.register($event)
+                            }
+                          }
                         },
                         [_vm._v("Dodaj wydarzenie")]
                       ),
@@ -66145,29 +66184,91 @@ var render = function() {
                           _c("div", { staticClass: "modal-content" }, [
                             _c("h4", [
                               _vm._v(
-                                "Wykryto kolidujące zdarzenia w tym terminie!"
+                                "Wydarzenia odbywające się w tym terminie:"
                               )
                             ]),
                             _vm._v(" "),
-                            _c("p", [_vm._v(_vm._s(_vm.colliders))])
+                            _vm.isProgress
+                              ? _c("div", { staticClass: "progress" }, [
+                                  _c("div", {
+                                    staticClass:
+                                      "indeterminate  yellow darken-1"
+                                  })
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            !_vm.isProgress && _vm.colliders.length === 0
+                              ? _c("h6", { staticClass: "green-text" }, [
+                                  _vm._v("Brak kolidujących wydarzeń! :)")
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            !_vm.isProgress && _vm.colliders.length > 0
+                              ? _c(
+                                  "table",
+                                  [
+                                    _c("th", [_vm._v("Wydarzenie")]),
+                                    _vm._v(" "),
+                                    _c("th", [_vm._v("Miasto")]),
+                                    _vm._v(" "),
+                                    _c("th", [_vm._v("Początek")]),
+                                    _vm._v(" "),
+                                    _c("th", [_vm._v("Koniec")]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.colliders, function(event) {
+                                      return _c("tr", { key: event.id }, [
+                                        _c("td", [_vm._v(_vm._s(event.title))]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          event.town === null
+                                            ? _c("span", [_vm._v("diecezja")])
+                                            : _c("span", [
+                                                _vm._v(_vm._s(event.town))
+                                              ])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v(_vm._s(event.start))]),
+                                        _vm._v(" "),
+                                        _c("td", [_vm._v(_vm._s(event.end))])
+                                      ])
+                                    })
+                                  ],
+                                  2
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("h5", [
+                              _vm._v(
+                                "Czy na pewno chcesz utworzyć wydarzenie " +
+                                  _vm._s(_vm.title) +
+                                  "?"
+                              )
+                            ])
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "modal-footer" }, [
                             _c(
                               "button",
                               {
-                                staticClass: "modal-close  btn-light",
+                                staticClass: "modal-close btn btn-light",
                                 attrs: { href: "#!" }
                               },
                               [_vm._v("Wróć")]
                             ),
-                            _vm._v(" "),
+                            _vm._v("  \n                "),
                             _c(
                               "button",
                               {
                                 staticClass: "btn btn-primary modal-close",
                                 attrs: { href: "#!" },
-                                on: { click: _vm.addEvent }
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.addEvent($event)
+                                  }
+                                }
                               },
                               [_vm._v("Dodaj")]
                             )
