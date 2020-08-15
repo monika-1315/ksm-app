@@ -4461,6 +4461,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4496,6 +4499,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     division: function division() {
       return this.$store.state.division;
+    },
+    is_authorized: function is_authorized() {
+      return this.$store.state.is_authorized;
     }
   },
   watch: {
@@ -64955,6 +64961,22 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
+      !_vm.is_authorized
+        ? _c(
+            "p",
+            {
+              staticClass: "red-text text-darken-2",
+              staticStyle: { "font-weight": "500" }
+            },
+            [
+              _c("br"),
+              _vm._v(
+                "Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału"
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _vm._l(_vm.events, function(event) {
         return _c("div", { key: event.id }, [
           _vm.selectedTab === "C" ||
@@ -65042,101 +65064,103 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-action" }, [
-                  event.is_sure === 0
-                    ? _c(
-                        "span",
-                        {
-                          staticStyle: {
-                            color: "darkblue",
-                            "font-style": "italic"
-                          }
-                        },
-                        [_vm._v("zapisano")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  event.is_sure === 0
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-light editbtn",
-                          attrs: { type: "button", name: "action" },
-                          on: {
-                            click: function($event) {
-                              return _vm.signEvent(event.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Potwierdź")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  event.is_sure === 1
-                    ? _c(
-                        "span",
-                        {
-                          staticStyle: {
-                            color: "darkgreen",
-                            "font-style": "italic"
-                          }
-                        },
-                        [_vm._v("potwierdzono")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  event.is_sure === null && _vm.user_id != 0
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-light editbtn",
-                          attrs: { type: "button", name: "action" },
-                          on: {
-                            click: function($event) {
-                              return _vm.signEvent(event.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Zapisz się")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.user_id != 0
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-light editbtn",
-                          staticStyle: { float: "right" },
-                          attrs: { type: "button", name: "action" },
-                          on: {
-                            click: function($event) {
-                              return _vm.showEvent(event.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Szczegóły")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  (event.division === _vm.division && _vm.is_leadership) ||
-                  (event.division === null && _vm.is_management) ||
-                  event.author === _vm.user_id
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary editbtn",
-                          staticStyle: { float: "right" },
-                          attrs: { type: "button", name: "action" },
-                          on: {
-                            click: function($event) {
-                              return _vm.editEvent(event.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Edytuj")]
-                      )
-                    : _vm._e()
-                ])
+                _vm.is_authorized
+                  ? _c("div", { staticClass: "card-action" }, [
+                      event.is_sure === 0
+                        ? _c(
+                            "span",
+                            {
+                              staticStyle: {
+                                color: "darkblue",
+                                "font-style": "italic"
+                              }
+                            },
+                            [_vm._v("zapisano")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      event.is_sure === 0
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-light editbtn",
+                              attrs: { type: "button", name: "action" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.signEvent(event.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Potwierdź")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      event.is_sure === 1
+                        ? _c(
+                            "span",
+                            {
+                              staticStyle: {
+                                color: "darkgreen",
+                                "font-style": "italic"
+                              }
+                            },
+                            [_vm._v("potwierdzono")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      event.is_sure === null && _vm.user_id != 0
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-light editbtn",
+                              attrs: { type: "button", name: "action" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.signEvent(event.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Zapisz się")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.user_id != 0
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-light editbtn",
+                              staticStyle: { float: "right" },
+                              attrs: { type: "button", name: "action" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showEvent(event.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Szczegóły")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      (event.division === _vm.division && _vm.is_leadership) ||
+                      (event.division === null && _vm.is_management) ||
+                      event.author === _vm.user_id
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary editbtn",
+                              staticStyle: { float: "right" },
+                              attrs: { type: "button", name: "action" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.editEvent(event.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Edytuj")]
+                          )
+                        : _vm._e()
+                    ])
+                  : _vm._e()
               ])
             : _vm._e()
         ])

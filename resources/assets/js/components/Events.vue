@@ -29,6 +29,9 @@
         <a :class="{activeTab: selectedTab===tab.id}">{{ tab.text }}</a>
       </button>
     </span>
+    <p
+      v-if="!is_authorized" style="font-weight: 500" class="red-text text-darken-2"
+    ><br>Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału</p>
 
     <div v-for="event in events" :key="event.id">
       <div
@@ -63,7 +66,7 @@
             {{event.about}}
           </p>
         </div>
-        <div class="card-action">
+        <div class="card-action"  v-if="is_authorized">
           <span v-if="event.is_sure===0" style="color: darkblue; font-style:italic">zapisano</span>
           <button v-if="event.is_sure===0" class="btn btn-light editbtn" type="button" name="action"  @click="signEvent(event.id)">Potwierdź</button>
 
@@ -133,6 +136,9 @@ export default {
     division() {
       return this.$store.state.division;
     },
+    is_authorized(){
+      return this.$store.state.is_authorized;
+    }
   },
   watch: {
     user_id: function () {
