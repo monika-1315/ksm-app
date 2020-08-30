@@ -2137,7 +2137,7 @@ __webpack_require__.r(__webpack_exports__);
         birthdate: this.birthdate,
         division: this.division,
         is_leadership: this.is_leadership,
-        is_authorized: this.is_leadership
+        is_authorized: this.is_leadership || this.$store.state.is_leadership
       }).then(function (response) {
         _this.isProgress = true;
 
