@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+
 Route::get('/api/getDivisions', 'DivisionsController@getDivisions');
 Route::get('/api/getDivisionById', 'DivisionsController@getDivisionById');
 Route::get('/api/getManagement', 'APIController@getManagement');
@@ -30,7 +31,10 @@ Route::post('/auth/register', 'AuthController@postRegister');
 Route::post('/auth/login', 'AuthController@postLogin');
 Route::post('/auth/social', 'AuthController@postSocialLogin');
 
+
+
 Route::group(['middleware' => ['jwt.auth']], function () {
+
 
     Route::get('/auth/logout', 'AuthController@logout');
     Route::post('/auth/getUser', 'UsersController@getUser');

@@ -163,6 +163,19 @@ export default {
         this.isProgress = false;
       } else this.getMessages();
     }
+      this.axios
+        .post("/mail", {
+          recipient: this.$store.state.email,
+          subject: 'Nowe logowanie',
+          body: 'Nowa wiadomość testowa!'
+        }) 
+        .then((response) => {
+          if (response.data.success == true) {
+            this.$toaster.success("Wysłano email");
+          } else {
+            this.$toaster.error("Nie udało się wysłać wiadomości email");
+          }
+        })
   }
 };
 </script>

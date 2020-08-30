@@ -21,8 +21,8 @@ Route::get('/api/getDivisionsStats', 'DivisionsController@getDivisionsStats');
 Route::get('/api/getEvents', 'EventsController@getUpcomingEvents');
 Route::get('/api/getOldEvents', 'EventsController@getOldEvents');
 Route::get('/api/getDivisionEvents', 'EventsController@getDivisionEvents');
-Route::get('/mail', 'Mail@sendMail');
 
+Route::post('/mail', 'Mail@sendMail');
 
 
 

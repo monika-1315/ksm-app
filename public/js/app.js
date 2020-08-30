@@ -2881,12 +2881,26 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    var _this = this;
+
     if (this.$store.state.division !== -1) {
       if (this.$store.state.messages !== null) {
         this.messages = this.$store.state.messages;
         this.isProgress = false;
       } else this.getMessages();
     }
+
+    this.axios.post("/mail", {
+      recipient: this.$store.state.email,
+      subject: 'Nowe logowanie',
+      body: 'Nowa wiadomość testowa!'
+    }).then(function (response) {
+      if (response.data.success == true) {
+        _this.$toaster.success("Wysłano email");
+      } else {
+        _this.$toaster.error("Nie udało się wysłać wiadomości email");
+      }
+    });
   }
 });
 
