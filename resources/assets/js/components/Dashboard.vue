@@ -123,6 +123,7 @@ export default {
         })
         .then(
           function(response) {
+             this.isProgress = true;
             this.messages = response.data;
             this.isProgress = false;
             if ((this.selectedTab === "A"))
@@ -157,25 +158,25 @@ export default {
     }
   },
   created: function() {
-    if (this.$store.state.division !== -1) {
+    if (this.$store.state.division !== 0) {
       if (this.$store.state.messages !== null) {
         this.messages = this.$store.state.messages;
         this.isProgress = false;
       } else this.getMessages();
     }
-      this.axios
-        .post("/mail", {
-          recipient: this.$store.state.email,
-          subject: 'Nowe logowanie',
-          body: 'Nowa wiadomość testowa!'
-        }) 
-        .then((response) => {
-          if (response.data.success == true) {
-            this.$toaster.success("Wysłano email");
-          } else {
-            this.$toaster.error("Nie udało się wysłać wiadomości email");
-          }
-        })
+      // this.axios
+      //   .post("/mail", {
+      //     recipient: this.$store.state.email,
+      //     subject: 'Nowe logowanie',
+      //     body: 'Nowa wiadomość testowa!'
+      //   }) 
+      //   .then((response) => {
+      //     if (response.data.success == true) {
+      //       this.$toaster.success("Wysłano email");
+      //     } else {
+      //       this.$toaster.error("Nie udało się wysłać wiadomości email");
+      //     }
+      //   })
   }
 };
 </script>

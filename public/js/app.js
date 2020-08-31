@@ -2850,6 +2850,7 @@ __webpack_require__.r(__webpack_exports__);
         division: this.$store.state.division,
         card: this.selectedTab
       }).then(function (response) {
+        this.isProgress = true;
         this.messages = response.data;
         this.isProgress = false;
         if (this.selectedTab === "A") _store_js__WEBPACK_IMPORTED_MODULE_0__["default"].commit("SaveMessages", response.data);
@@ -2881,26 +2882,25 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this = this;
-
-    if (this.$store.state.division !== -1) {
+    if (this.$store.state.division !== 0) {
       if (this.$store.state.messages !== null) {
         this.messages = this.$store.state.messages;
         this.isProgress = false;
       } else this.getMessages();
-    }
+    } // this.axios
+    //   .post("/mail", {
+    //     recipient: this.$store.state.email,
+    //     subject: 'Nowe logowanie',
+    //     body: 'Nowa wiadomość testowa!'
+    //   }) 
+    //   .then((response) => {
+    //     if (response.data.success == true) {
+    //       this.$toaster.success("Wysłano email");
+    //     } else {
+    //       this.$toaster.error("Nie udało się wysłać wiadomości email");
+    //     }
+    //   })
 
-    this.axios.post("/mail", {
-      recipient: this.$store.state.email,
-      subject: 'Nowe logowanie',
-      body: 'Nowa wiadomość testowa!'
-    }).then(function (response) {
-      if (response.data.success == true) {
-        _this.$toaster.success("Wysłano email");
-      } else {
-        _this.$toaster.error("Nie udało się wysłać wiadomości email");
-      }
-    });
   }
 });
 
@@ -3337,6 +3337,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3354,7 +3361,8 @@ __webpack_require__.r(__webpack_exports__);
       divisions: [],
       currentUser: null,
       is_leadership: this.$store.state.is_leadership,
-      is_management: this.$store.state.is_management
+      is_management: this.$store.state.is_management,
+      wantMessages: 1
     };
   },
   methods: {
@@ -3373,7 +3381,8 @@ __webpack_require__.r(__webpack_exports__);
           birthdate: this.birthdate,
           division: this.division,
           is_leadership: this.is_leadership,
-          is_management: this.is_management
+          is_management: this.is_management,
+          wantMessages: this.wantMessages
         }).then(function (response) {
           _this.isProgress = true;
 
@@ -3416,6 +3425,7 @@ __webpack_require__.r(__webpack_exports__);
         this.division = myThis.currentUser.division;
         this.is_leadership = myThis.currentUser.is_leadership;
         this.is_management = myThis.currentUser.is_management;
+        this.wantMessages = myThis.currentUser.wantMessages;
         this.isProgress = false;
       }.bind(this));
     }
@@ -5417,28 +5427,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      name: '',
-      surname: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      birthdate: '',
+      name: "",
+      surname: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      birthdate: "",
       error: false,
       errors: {},
       success: false,
       isProgress: false,
       division: null,
-      divisions: []
+      divisions: [],
+      wantMessages: 1
     };
   },
   methods: {
     register: function register() {
       var _this = this;
 
-      this.axios.post('api/auth/register', {
+      this.axios.post("api/auth/register", {
         name: this.name,
         surname: this.surname,
         email: this.email,
@@ -5446,6 +5483,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmPassword: this.confirmPassword,
         birthdate: this.birthdate,
         division: this.division,
+        wantMessages: this.wantMessages,
         is_leadership: 0
       }).then(function (response) {
         _this.isProgress = true;
@@ -5455,10 +5493,10 @@ __webpack_require__.r(__webpack_exports__);
             _this.isProgress = false;
 
             _this.$router.push({
-              name: 'login'
+              name: "login"
             });
 
-            _this.$toaster.success('Rejestracja powiodła się!');
+            _this.$toaster.success("Rejestracja powiodła się!");
           }, 2000);
         }
       })["catch"](function (error) {
@@ -5468,7 +5506,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getDivisions: function getDivisions() {
-      this.axios.get('/api/getDivisions').then(function (response) {
+      this.axios.get("/api/getDivisions").then(function (response) {
         this.divisions = response.data;
       }.bind(this));
     }
@@ -24143,7 +24181,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.form-group[data-v-f88ac34c]{\r\n    align-content: left;\n}\n.submit[data-v-f88ac34c]:hover{\r\n        color:white;\n}\n.btn[data-v-f88ac34c]{\r\n        display: inline-flex;\n}\n.btn[data-v-f88ac34c]:focus{\r\n        color:white;\n}\n.heading[data-v-f88ac34c]{\r\n        padding: 30px;\r\n        border: none;\n}\n.login-form[data-v-f88ac34c]{\r\n        background: white;\r\n        padding: 30px;\n}\n.progress[data-v-f88ac34c]{\r\n        margin:0px;\r\n        background-color: transparent;\n}\ninput[data-v-f88ac34c]:focus{\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-f88ac34c] {\r\n  color: royalblue !important;\n}\ndiv.card-header[data-v-f88ac34c]{\r\n    background-color:  rgba(254, 209, 9, 0.712);\n}\r\n", ""]);
+exports.push([module.i, "\n.form-group[data-v-f88ac34c] {\r\n  align-content: left;\n}\n.submit[data-v-f88ac34c]:hover {\r\n  color: white;\n}\n.btn[data-v-f88ac34c] {\r\n  display: inline-flex;\n}\n.btn[data-v-f88ac34c]:focus {\r\n  color: white;\n}\n.heading[data-v-f88ac34c] {\r\n  padding: 30px;\r\n  border: none;\n}\n.login-form[data-v-f88ac34c] {\r\n  background: white;\r\n  padding: 30px;\n}\n.progress[data-v-f88ac34c] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\ninput[data-v-f88ac34c]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-f88ac34c] {\r\n  color: royalblue !important;\n}\ndiv.card-header[data-v-f88ac34c] {\r\n  background-color: rgba(254, 209, 9, 0.712);\n}\r\n", ""]);
 
 // exports
 
@@ -63192,6 +63230,62 @@ var render = function() {
                       : _vm._e()
                   ]),
                   _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "wantMessages" } }, [
+                      _vm._v("Powiadomienia")
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("label", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.wantMessages,
+                            expression: "wantMessages"
+                          }
+                        ],
+                        staticClass: "filled-in",
+                        attrs: { type: "checkbox", id: "wantMessages" },
+                        domProps: {
+                          checked: Array.isArray(_vm.wantMessages)
+                            ? _vm._i(_vm.wantMessages, null) > -1
+                            : _vm.wantMessages
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.wantMessages,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.wantMessages = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.wantMessages = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.wantMessages = $$c
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticStyle: { color: "black" } }, [
+                        _vm._v(
+                          "Chcę otrzymywać wiadomości email o nowych komunikatach i wydarzeniach dla mnie."
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
                   this.$store.state.is_leadership ||
                   this.$store.state.is_management
                     ? _c("div", { staticClass: "form-group" }, [
@@ -66837,6 +66931,7 @@ var render = function() {
                     _c("label", { attrs: { for: "division" } }, [
                       _vm._v("Oddział")
                     ]),
+                    _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
                     _c(
@@ -66883,7 +66978,7 @@ var render = function() {
                             [
                               _c("span", [
                                 _vm._v(
-                                  _vm._s("   " + divi.town + " " + divi.parish)
+                                  _vm._s(" " + divi.town + " " + divi.parish)
                                 )
                               ])
                             ]
@@ -66899,6 +66994,56 @@ var render = function() {
                         _vm._v(_vm._s(_vm.errors.division[0]))
                       ])
                     : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.wantMessages,
+                            expression: "wantMessages"
+                          }
+                        ],
+                        staticClass: "filled-in",
+                        attrs: { type: "checkbox", id: "wantMessages" },
+                        domProps: {
+                          checked: Array.isArray(_vm.wantMessages)
+                            ? _vm._i(_vm.wantMessages, null) > -1
+                            : _vm.wantMessages
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.wantMessages,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.wantMessages = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.wantMessages = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.wantMessages = $$c
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticStyle: { color: "black" } }, [
+                        _vm._v(
+                          "Chcę otrzymywać wiadomości email o nowych wiadomościach i wydarzeniach adresowanych do mnie."
+                        )
+                      ])
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -66942,7 +67087,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h4", [_vm._v("Zarejestruj się")]),
-      _vm._v("\n      Cieszymy się, że chcesz działać razem z nami!")
+      _vm._v("Cieszymy się, że chcesz działać razem z nami!\n      ")
     ])
   },
   function() {
@@ -66951,7 +67096,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("h6", { attrs: { align: "center" } }, [
       _c("br"),
-      _vm._v("Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej "),
+      _vm._v(
+        "Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej\n    "
+      ),
       _c("a", { attrs: { href: "http://ksm.legnica.pl" } }, [
         _vm._v("stronie! ->")
       ])

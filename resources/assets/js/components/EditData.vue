@@ -76,6 +76,13 @@
                 v-if="error && errors.division"
               >{{ errors.division[0] }}</span>
             </div>
+            <div class="form-group">
+              <label for="wantMessages">Powiadomienia</label> <br>
+              <label>
+                <input type="checkbox" class="filled-in" id="wantMessages" v-model="wantMessages" />
+                <span style="color: black">Chcę otrzymywać wiadomości email o nowych komunikatach i wydarzeniach dla mnie.</span>
+              </label>
+            </div>
             <div
               class="form-group"
               v-if="this.$store.state.is_leadership || this.$store.state.is_management"
@@ -130,7 +137,8 @@ export default {
       divisions: [],
       currentUser: null,
       is_leadership: this.$store.state.is_leadership,
-      is_management: this.$store.state.is_management,
+      is_management: this.$store.state.is_management,     
+      wantMessages: 1,
     };
   },
   methods: {
@@ -152,6 +160,7 @@ export default {
             division: this.division,
             is_leadership: this.is_leadership,
             is_management: this.is_management,
+            wantMessages: this.wantMessages,
           })
           .then((response) => {
             this.isProgress = true;
@@ -202,6 +211,7 @@ export default {
             this.division = myThis.currentUser.division;
             this.is_leadership = myThis.currentUser.is_leadership;
             this.is_management = myThis.currentUser.is_management;
+            this.wantMessages = myThis.currentUser.wantMessages;
             this.isProgress = false;
           }.bind(this)
         );

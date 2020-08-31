@@ -20,6 +20,7 @@ class AuthController extends Controller
         $user->password = bcrypt($request->get('password'));
         $user->birthdate = $request->get('birthdate');
         $user->division = $request->get('division');
+        $user->want_messages = $request->get('wantMessages');
         $leader = $request->get('is_leadership');
         $user->is_leadership = $leader;
         $user->is_authorized = $leader;
