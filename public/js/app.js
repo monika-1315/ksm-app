@@ -5453,12 +5453,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       name: "",
       surname: "",
       email: "",
+      email_code: "",
+      code: "0",
       password: "",
       confirmPassword: "",
       birthdate: "",
@@ -5475,40 +5506,58 @@ __webpack_require__.r(__webpack_exports__);
     register: function register() {
       var _this = this;
 
-      this.axios.post("api/auth/register", {
-        name: this.name,
-        surname: this.surname,
-        email: this.email,
-        password: this.password,
-        confirmPassword: this.confirmPassword,
-        birthdate: this.birthdate,
-        division: this.division,
-        wantMessages: this.wantMessages,
-        is_leadership: 0
-      }).then(function (response) {
-        _this.isProgress = true;
+      if (this.email_code == this.code) {
+        this.axios.post("api/auth/register", {
+          name: this.name,
+          surname: this.surname,
+          email: this.email,
+          password: this.password,
+          confirmPassword: this.confirmPassword,
+          birthdate: this.birthdate,
+          division: this.division,
+          wantMessages: this.wantMessages,
+          is_leadership: 0
+        }).then(function (response) {
+          _this.isProgress = true;
 
-        if (response.data.success == true) {
-          setTimeout(function () {
-            _this.isProgress = false;
+          if (response.data.success == true) {
+            setTimeout(function () {
+              _this.isProgress = false;
 
-            _this.$router.push({
-              name: "login"
-            });
+              _this.$router.push({
+                name: "login"
+              });
 
-            _this.$toaster.success("Rejestracja powiodła się!");
-          }, 2000);
-        }
-      })["catch"](function (error) {
-        _this.isProgress = false;
-        _this.error = true;
-        _this.errors = error.response.data.errors;
-      });
+              _this.$toaster.success("Rejestracja powiodła się!");
+            }, 2000);
+          }
+        })["catch"](function (error) {
+          _this.isProgress = false;
+          _this.error = true;
+          _this.errors = error.response.data.errors;
+        });
+      } else this.$toaster.error("Błędny kod aktywacyjny");
     },
     getDivisions: function getDivisions() {
       this.axios.get("/api/getDivisions").then(function (response) {
         this.divisions = response.data;
       }.bind(this));
+    },
+    sendCode: function sendCode() {
+      var _this2 = this;
+
+      this.code = Math.round(Math.random() * 10000);
+      this.axios.post("/mail", {
+        recipient: this.email,
+        subject: "Potwierdź adres email - aplikacja KSM DL",
+        body: "Witaj " + this.name + "!<br> Próbujesz się właśnie zarejestrować do aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej. " + "Twój unikalny kod aktywacyjny to: <br><b>" + this.code
+      }).then(function (response) {
+        if (response.data.success == true) {
+          _this2.$toaster.success("Wysłano email");
+        } else {
+          _this2.$toaster.error("Nie udało się wysłać wiadomości email");
+        }
+      });
     }
   },
   created: function created() {
@@ -66807,7 +66856,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "validate",
-                      attrs: { id: "email", type: "text" },
+                      attrs: { id: "email", type: "text", required: "" },
                       domProps: { value: _vm.email },
                       on: {
                         input: function($event) {
@@ -66996,6 +67045,12 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "wantMessages" } }, [
+                      _vm._v("Powiadomienia")
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
                     _c("label", [
                       _c("input", {
                         directives: [
@@ -67039,11 +67094,80 @@ var render = function() {
                       _vm._v(" "),
                       _c("span", { staticStyle: { color: "black" } }, [
                         _vm._v(
-                          "Chcę otrzymywać wiadomości email o nowych wiadomościach i wydarzeniach adresowanych do mnie."
+                          "Chcę otrzymywać wiadomości email o nowych komunikatach i wydarzeniach dla mnie."
                         )
                       ])
                     ])
                   ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group",
+                      staticStyle: { "text-align": "center" }
+                    },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "black-text",
+                          attrs: { for: "email_code" }
+                        },
+                        [_vm._v("Wpisz kod potwierdzający Twój adres email")]
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.email_code,
+                            expression: "email_code"
+                          }
+                        ],
+                        staticClass: "validate",
+                        staticStyle: { width: "10em" },
+                        attrs: {
+                          id: "email_code",
+                          type: "number",
+                          min: "0",
+                          max: "9999"
+                        },
+                        domProps: { value: _vm.email_code },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.email_code = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-light btn-tiny",
+                          attrs: { type: "button", name: "action" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.sendCode()
+                            }
+                          }
+                        },
+                        [_vm._v("Wyślij kod")]
+                      ),
+                      _vm._v(" "),
+                      _vm.error && _vm.errors.email_code
+                        ? _c("span", { staticClass: "text text-danger" }, [
+                            _vm._v(_vm._s(_vm.errors.email[0]))
+                          ])
+                        : _vm._e()
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "div",

@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="text" class="validate" v-model="email" />
+              <input id="email" type="text" class="validate" v-model="email" required />
               <span class="text text-danger" v-if="error && errors.email">{{ errors.email[0] }}</span>
             </div>
             <div class="form-group">
@@ -63,11 +63,38 @@
             </div>
             <span class="text text-danger" v-if="error && errors.division">{{ errors.division[0] }}</span>
             <div class="form-group">
+              <label for="wantMessages">Powiadomienia</label>
+              <br />
               <label>
                 <input type="checkbox" class="filled-in" id="wantMessages" v-model="wantMessages" />
-                <span style="color: black">Chcę otrzymywać wiadomości email o nowych wiadomościach i wydarzeniach adresowanych do mnie.</span>
+                <span
+                  style="color: black"
+                >Chcę otrzymywać wiadomości email o nowych komunikatach i wydarzeniach dla mnie.</span>
               </label>
             </div>
+
+            <div class="form-group" style="text-align:center">
+              <label class="black-text" for="email_code">Wpisz kod potwierdzający Twój adres email</label>
+              <br />
+              <input
+                id="email_code"
+                type="number"
+                min="0"
+                max="9999"
+                class="validate"
+                v-model="email_code"
+                style="width:10em"
+               
+              />
+              <button
+                class="btn btn-light btn-tiny"
+                type="button"
+                name="action"
+                @click.prevent="sendCode()"
+              >Wyślij kod</button>
+              <span class="text text-danger" v-if="error && errors.email_code">{{ errors.email[0] }}</span>
+            </div>
+
             <div class="card-action" style="text-align:center">
               <button
                 class="btn btn-primary"
@@ -83,7 +110,9 @@
 
     <h6 align="center">
       <br />Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej
-      <a href="http://ksm.legnica.pl">stronie! -></a>
+      <a
+        href="http://ksm.legnica.pl"
+      >stronie! -></a>
     </h6>
     <br />
   </div>
@@ -96,6 +125,8 @@ export default {
       name: "",
       surname: "",
       email: "",
+      email_code: "",
+      code: "0",
       password: "",
       confirmPassword: "",
       birthdate: "",
@@ -110,6 +141,7 @@ export default {
   },
   methods: {
     register() {
+        if(this.email_code==this.code){
       this.axios
         .post("api/auth/register", {
           name: this.name,
@@ -137,6 +169,8 @@ export default {
           this.error = true;
           this.errors = error.response.data.errors;
         });
+        } else
+         this.$toaster.error("Błędny kod aktywacyjny");
     },
     getDivisions: function () {
       this.axios.get("/api/getDivisions").then(
@@ -144,6 +178,24 @@ export default {
           this.divisions = response.data;
         }.bind(this)
       );
+    },
+    sendCode: function () {
+      this.code = Math.round(Math.random() * 10000);
+      this.axios
+        .post("/mail", {
+          recipient: this.email,
+          subject: "Potwierdź adres email - aplikacja KSM DL",
+          body:
+            "Witaj "+this.name+"!<br> Próbujesz się właśnie zarejestrować do aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej. "
+            +"Twój unikalny kod aktywacyjny to: <br><b>"+this.code,
+        })
+        .then((response) => {
+          if (response.data.success == true) {
+            this.$toaster.success("Wysłano email");
+          } else {
+            this.$toaster.error("Nie udało się wysłać wiadomości email");
+          }
+        });
     },
   },
   created: function () {
