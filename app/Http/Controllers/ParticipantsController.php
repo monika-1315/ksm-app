@@ -42,7 +42,7 @@ class ParticipantsController extends Controller
     public function checkParticipant(ParticipantRequest $request){
         $data = Participant::where('event_id', '=',$request->get('event_id') )
         ->where('user_id', '=',$request->get('user_id') )
-        ->select('visible', 'is_sure')
+        ->select('visible', 'is_sure', 'want_messages')
         ->get();
 
         return response()->json($data);
@@ -55,6 +55,7 @@ class ParticipantsController extends Controller
         $participant->user_id = $request->get('user_id');
         $participant->visible = $request->get('visible');
         $participant->is_sure = $request->get('is_sure');
+        $participant->want_messages = $request->get('want_messages');
         $participant->save();
 
         return response()->json([
@@ -69,7 +70,8 @@ class ParticipantsController extends Controller
             'event_id' => $request->get('event_id'),
             'user_id' => $request->get('user_id'),
             'visible' => $request->get('visible'),
-            'is_sure' => $request->get('is_sure')
+            'is_sure' => $request->get('is_sure'),
+            'want_messages' => $request->get('want_messages')
         ];
 
         Participant::where([

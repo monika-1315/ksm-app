@@ -110,7 +110,7 @@
             </p>
           </div>
 
-          <div class="card-action" style="text-align:center">
+          <div id="enrollments" class="card-action" style="text-align:center">
             <ul class="collapsible">
               <li :class="{ active: is_signing }">
                 <div class="collapsible-header">
@@ -149,6 +149,19 @@
                         <label class="black-text">
                           Nie
                           <input type="checkbox" v-model="is_visible" />
+                          <span class="lever"></span>
+                          Tak
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label
+                        class="black-text"
+                      >Czy chcesz dostawać powiadomienia email o ewentualnych zmianach w wydarzeniu?</label>
+                      <div class="switch">
+                        <label class="black-text">
+                          Nie
+                          <input type="checkbox" v-model="want_messages" />
                           <span class="lever"></span>
                           Tak
                         </label>
@@ -215,6 +228,7 @@ export default {
       modified_at: null,
       is_sure: 0,
       is_visible: 1,
+      want_messages :1,
       is_signing: 0,
     };
   },
@@ -302,6 +316,7 @@ export default {
             user_id: this.$store.state.user_id,
             visible: this.is_visible,
             is_sure: this.is_sure,
+            want_messages: this.want_messages,
           })
           .then((response) => {
             this.isProgress = true;
@@ -321,6 +336,7 @@ export default {
             user_id: this.$store.state.user_id,
             visible: this.is_visible,
             is_sure: this.is_sure,
+            want_messages: this.want_messages,
           })
           .then((response) => {
             this.isProgress = true;
@@ -364,6 +380,7 @@ export default {
               this.is_coming = response.data[0].is_sure;
               this.is_sure = this.is_coming;
               this.is_visible = response.data[0].visible;
+              this.want_messages = response.data[0].want_messages;
             }
             this.isProgress = false;
           }.bind(this)

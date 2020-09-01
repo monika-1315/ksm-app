@@ -4178,6 +4178,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4209,6 +4222,7 @@ __webpack_require__.r(__webpack_exports__);
       modified_at: null,
       is_sure: 0,
       is_visible: 1,
+      want_messages: 1,
       is_signing: 0
     };
   },
@@ -4290,7 +4304,8 @@ __webpack_require__.r(__webpack_exports__);
           event_id: this.id,
           user_id: this.$store.state.user_id,
           visible: this.is_visible,
-          is_sure: this.is_sure
+          is_sure: this.is_sure,
+          want_messages: this.want_messages
         }).then(function (response) {
           _this2.isProgress = true;
 
@@ -4312,7 +4327,8 @@ __webpack_require__.r(__webpack_exports__);
           event_id: this.id,
           user_id: this.$store.state.user_id,
           visible: this.is_visible,
-          is_sure: this.is_sure
+          is_sure: this.is_sure,
+          want_messages: this.want_messages
         }).then(function (response) {
           _this2.isProgress = true;
 
@@ -4353,6 +4369,7 @@ __webpack_require__.r(__webpack_exports__);
           this.is_coming = response.data[0].is_sure;
           this.is_sure = this.is_coming;
           this.is_visible = response.data[0].visible;
+          this.want_messages = response.data[0].want_messages;
         }
 
         this.isProgress = false;
@@ -64803,7 +64820,8 @@ var render = function() {
             "div",
             {
               staticClass: "card-action",
-              staticStyle: { "text-align": "center" }
+              staticStyle: { "text-align": "center" },
+              attrs: { id: "enrollments" }
             },
             [
               _c("ul", { staticClass: "collapsible" }, [
@@ -64964,6 +64982,67 @@ var render = function() {
                                           }
                                         } else {
                                           _vm.is_visible = $$c
+                                        }
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "lever" }),
+                                  _vm._v(
+                                    "\n                        Tak\n                      "
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", { staticClass: "black-text" }, [
+                                _vm._v(
+                                  "Czy chcesz dostawać powiadomienia email o ewentualnych zmianach w wydarzeniu?"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "switch" }, [
+                                _c("label", { staticClass: "black-text" }, [
+                                  _vm._v(
+                                    "\n                        Nie\n                        "
+                                  ),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.want_messages,
+                                        expression: "want_messages"
+                                      }
+                                    ],
+                                    attrs: { type: "checkbox" },
+                                    domProps: {
+                                      checked: Array.isArray(_vm.want_messages)
+                                        ? _vm._i(_vm.want_messages, null) > -1
+                                        : _vm.want_messages
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$a = _vm.want_messages,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (_vm.want_messages = $$a.concat([
+                                                $$v
+                                              ]))
+                                          } else {
+                                            $$i > -1 &&
+                                              (_vm.want_messages = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          _vm.want_messages = $$c
                                         }
                                       }
                                     }
