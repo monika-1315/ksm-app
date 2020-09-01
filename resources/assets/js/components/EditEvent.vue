@@ -133,6 +133,7 @@ export default {
   },
   methods: {
     register() {
+      var email = confirm("Czy chcesz wysłać uczestnikom informacje o modyfikacji?")
       this.axios
         .post("/api/auth/editEvent", {
           token: this.$store.state.token,
@@ -146,6 +147,7 @@ export default {
           price: this.price,
           timetable: this.timetable,
           details: this.details,
+          emails: email,
           // author: this.author,
         })
         .then((response) => {

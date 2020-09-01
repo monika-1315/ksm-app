@@ -7,6 +7,7 @@ use App\Http\Requests\EventRequest;
 use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use App\Event;
+use App\Participant;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -182,10 +183,30 @@ class EventsController extends Controller
         $event->modified_at = date("Y-m-d H:i:s");
         $event->save();
 
+        if ($request->emails == true) {
+            $participants = self::getParticipantsForMails($request->get('id'));
+            foreach ($participants as $p) {
+                Mail::sendById(
+                    $p->user_id,
+                    'Wydarzenie zostało zmodyfikowane',
+                    'Witaj!<br>Organizator wydarzenia <b>' . $request->get('title') . '</b> wprowadził w nim zmiany, które uznał za istotne. Zaloguj się do aplikacji, aby to sprawdzić!'
+                );
+            }
+        }
+
         return response()->json([
 
             'success' => true
         ]);
+    }
+
+    public static function getParticipantsForMails($event_id)
+    {
+        $participants = Participant::where('event_id', '=', $event_id)
+            ->where('want_messages', '=', 1)
+            ->select('user_id')
+            ->get();
+        return $participants;
     }
 
     public function deleteEvent(IdRequest $request)
@@ -209,9 +230,9 @@ class EventsController extends Controller
             ->orWhere('end', '>', $request->get('end'))
             ->where('start', '<', $request->get('end'))
             ->orderBy('start', 'asc')
-            ->select('id','division', 'title', 'start', 'end');
+            ->select('id', 'division', 'title', 'start', 'end');
 
-            $data = DB::table('divisions')
+        $data = DB::table('divisions')
             ->rightJoinSub($events, 'events', function ($join) {
                 $join->on('events.division', '=', 'divisions.id');
             })->selectRaw('events.id, divisions.town, divisions.parish, title, start, end')

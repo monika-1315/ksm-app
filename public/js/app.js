@@ -3706,6 +3706,7 @@ __webpack_require__.r(__webpack_exports__);
     register: function register() {
       var _this = this;
 
+      var email = confirm("Czy chcesz wysłać uczestnikom informacje o modyfikacji?");
       this.axios.post("/api/auth/editEvent", {
         token: this.$store.state.token,
         id: this.id,
@@ -3717,7 +3718,8 @@ __webpack_require__.r(__webpack_exports__);
         location: this.location,
         price: this.price,
         timetable: this.timetable,
-        details: this.details // author: this.author,
+        details: this.details,
+        emails: email // author: this.author,
 
       }).then(function (response) {
         _this.isProgress = true;
