@@ -6,6 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Http\Request;
+use App\User;
 
 
 class Mail
@@ -38,7 +39,7 @@ class Mail
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = $subject;
-            $mail->Body    = $body;
+            $mail->Body    = $body.'<br><br> <i>To tylko wiadomość testowa, aplikacja jest w fazie budowy. Pozdrawiam, Monika</i>';
 
             $mail->send();
             return response()->json([
@@ -56,5 +57,14 @@ class Mail
     {
         return Mail::send($request->get('recipient'), $request->get('subject'), $request->get('body'));
     }
+
+    public static function sendById($id, $subject, $body){
+        $user = User::find($id);
+        return Mail::send($user->email, $subject, $body);
+    }
+    // public static function sendById(Request $request){
+    //     $user = User::find($request->get('id'));
+    //     return Mail::send($user->email, $request->get('subject'), $request->get('body'));
+    // }
 }
 ?>
