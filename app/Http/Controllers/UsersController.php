@@ -32,6 +32,11 @@ class UsersController extends Controller
         $user = User::find($request->get('id'));
         $user->is_authorized = 1;
         $user->save();
+        Mail::sendById(
+            $request->get('id'),
+            'Twoje konto zostało zatwierdzone.',
+            'Witaj!<br>Kierownictwo Oddziału właśnie zatwierdziło Twoje konto w aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej. Teraz masz już pełen dostęp do funkcjonalności platformy, komunikatów, wydarzeń ;)<br><br>Pozdrawiamy,<br>Zespół KSM DL'
+        );
         return response()->json([
             'success' => true
         ]);
@@ -85,10 +90,21 @@ class UsersController extends Controller
     {
         $user = User::find($request->get('id'));
 
-        if ($user->is_leadership === 1)
+        if ($user->is_leadership === 1) {
             $user->is_leadership = 0;
-        else
+            Mail::sendById(
+                $request->get('id'),
+                'Zmiana uprawnień Twojego konta.',
+                'Witaj!<br>Twojemu kontu w aplikacji KSM DL zostały właśnie odebrane uprawnienia członka Kierownictwa.<br><br>Pozdrawiamy,<br>Zespół KSM DL'
+            );
+        } else{
             $user->is_leadership = 1;
+            Mail::sendById(
+                $request->get('id'),
+                'Zmiana uprawnień Twojego konta.',
+                'Witaj!<br>Twojemu kontu w aplikacji KSM DL zostały właśnie nadane uprawnienia członka Kierownictwa.<br><br>Pozdrawiamy,<br>Zespół KSM DL'
+            );
+        }
         $user->save();
         return response()->json([
             'success' => true
@@ -99,10 +115,22 @@ class UsersController extends Controller
     {
         $user = User::find($request->get('id'));
 
-        if ($user->is_management === 1)
+        if ($user->is_management === 1){
             $user->is_management = 0;
-        else
+            Mail::sendById(
+                $request->get('id'),
+                'Zmiana uprawnień Twojego konta.',
+                'Witaj!<br>Twojemu kontu w aplikacji KSM DL zostały właśnie odebrane uprawnienia członka Zarządu Diecezjalnego.<br><br>Pozdrawiamy,<br>Zespół KSM DL'
+            );
+        }
+        else{
             $user->is_management = 1;
+            Mail::sendById(
+                $request->get('id'),
+                'Zmiana uprawnień Twojego konta.',
+                'Witaj!<br>Twojemu kontu w aplikacji KSM DL zostały właśnie nadane uprawnienia członka Zarządu Diecezjalnego.<br><br>Pozdrawiamy,<br>Zespół KSM DL'
+            );
+        }
         $user->save();
         return response()->json([
             'success' => true
