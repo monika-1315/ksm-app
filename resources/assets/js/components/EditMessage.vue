@@ -77,6 +77,7 @@
         },
         methods: {
             editMessage(){
+                var emails = confirm("Czy chcesz wysłać wszystkim wiadomość o modyfikacji?")
                 this.axios.post('/api/auth/editMessage', {
                     id: this.id,
                     token: this.$store.state.token,
@@ -85,6 +86,7 @@
                     email: this.email,
                     receiver_group: this.receiver_group,
                     division: this.division,
+                    email: emails
                 }).then(response => {
                     this.isProgress = true;
                     if(response.data.success == true)

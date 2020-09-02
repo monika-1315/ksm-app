@@ -161,8 +161,8 @@ class EventsController extends Controller
 
         $recipients = UsersController::getRecipients($request->get('division'), null);
             foreach ($recipients as $p) {
-                Mail::send('moniusiar@gmail.com',
-                    $p->email.
+                Mail::send(
+                    $p->email,
                     'Nowe wydarzenie w kalendarium KSM DL',
                     'Witaj!<br>W aplikacji KSM DL właśnie pojawiło się nowe wydarzenie, które może Cię zainteresować: <b>' 
                     . $request->get('title') 

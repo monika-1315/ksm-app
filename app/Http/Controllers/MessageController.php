@@ -130,6 +130,18 @@ class MessageController extends Controller
         $message->modified = 1;
         $message->save();
 
+        if ($request->get('email')==1){
+            $recipients = UsersController::getRecipients($request->get('division'), $request->get('receiver_group'));
+            foreach ($recipients as $p) {
+                Mail::send(
+                    $p->email,
+                    'Edytowano komunikat w aplikacji KSM DL',
+                    'Witaj!<br>W aplikacji KSM DL właśnie zostało zmodyfikowane ogłoszenie:<br><br><b>' 
+                    . $request->get('title') 
+                    . '</b><br><i>'.$request->get('body').'</i><br><br>Autor ogłoszenia uznał modyfikację za istotną.'
+                );
+            }
+        }
         return response()->json([
 
             'success' => true

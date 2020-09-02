@@ -3815,6 +3815,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3904,7 +3906,8 @@ __webpack_require__.r(__webpack_exports__);
     editMessage: function editMessage() {
       var _this = this;
 
-      this.axios.post('/api/auth/editMessage', {
+      var emails = confirm("Czy chcesz wysłać wszystkim wiadomość o modyfikacji?");
+      this.axios.post('/api/auth/editMessage', _defineProperty({
         id: this.id,
         token: this.$store.state.token,
         title: this.title,
@@ -3912,7 +3915,7 @@ __webpack_require__.r(__webpack_exports__);
         email: this.email,
         receiver_group: this.receiver_group,
         division: this.division
-      }).then(function (response) {
+      }, "email", emails)).then(function (response) {
         _this.isProgress = true;
 
         if (response.data.success == true) {
