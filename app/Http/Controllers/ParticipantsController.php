@@ -39,6 +39,16 @@ class ParticipantsController extends Controller
         return response()->json($data);
     }
 
+    public static function getParticipantsForMails($event_id)
+    {
+        $participants = Participant::where('event_id', '=', $event_id)
+            ->where('want_messages', '=', 1)
+            ->select('user_id')
+            ->get();
+        return $participants;
+    }
+
+
     public function checkParticipant(ParticipantRequest $request){
         $data = Participant::where('event_id', '=',$request->get('event_id') )
         ->where('user_id', '=',$request->get('user_id') )

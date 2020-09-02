@@ -159,6 +159,19 @@ class EventsController extends Controller
         $event->author = $request->get('author');
         $event->save();
 
+        $recipients = UsersController::getRecipients($request->get('division'), null);
+            foreach ($recipients as $p) {
+                Mail::send('moniusiar@gmail.com',
+                    $p->email.
+                    'Nowe wydarzenie w kalendarium KSM DL',
+                    'Witaj!<br>W aplikacji KSM DL właśnie pojawiło się nowe wydarzenie, które może Cię zainteresować: <b>' 
+                    . $request->get('title') 
+                    .'</b>.<br>'.$request->get('details').'<br>'
+                    .$request->get('start').' - '.$request->get('end')
+                    .' Zaloguj się do aplikacji, aby sprawdzić szczegóły i dołączyć do wydarzenia już dziś!'
+                );
+            }
+
         return response()->json([
 
             'success' => true
@@ -184,7 +197,7 @@ class EventsController extends Controller
         $event->save();
 
         if ($request->emails == true) {
-            $participants = self::getParticipantsForMails($request->get('id'));
+            $participants = ParticipantsController::getParticipantsForMails($request->get('id'));
             foreach ($participants as $p) {
                 Mail::sendById(
                     $p->user_id,
@@ -195,20 +208,11 @@ class EventsController extends Controller
         }
 
         return response()->json([
-
             'success' => true
         ]);
     }
 
-    public static function getParticipantsForMails($event_id)
-    {
-        $participants = Participant::where('event_id', '=', $event_id)
-            ->where('want_messages', '=', 1)
-            ->select('user_id')
-            ->get();
-        return $participants;
-    }
-
+   
     public function deleteEvent(IdRequest $request)
     {
         $data = Event::find($request->get('id'));

@@ -66,6 +66,31 @@ class UsersController extends Controller
         return response()->json($data);
     }
 
+    public static function getRecipients( $division, $group){
+        $recipients=[];
+        if($division == 0 || $division == null || $division ==-1){
+            if($group==0 || $group==null){ //everyone
+                $recipients =User::where('is_authorized', '=', 1)
+                ->where('want_messages', '=', 1)
+                ->select('email')
+                ->get();
+            } else if($group ==2){//leaderships only
+                $recipients =User::where('is_authorized', '=', 1)
+                ->where('is_leadership', '=', 1)
+                ->where('want_messages', '=', 1)
+                ->select('email')
+                ->get();
+            }
+        } else {
+            $recipients =User::where('is_authorized', '=', 1)
+            ->where('division', '=', $division)
+            ->where('want_messages', '=', 1)
+            ->select('email')
+            ->get();
+        }
+        return $recipients;
+    }
+
     public function updateUser(UserRequest $request)
     {
 
