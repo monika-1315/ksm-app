@@ -1971,6 +1971,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     name: function name() {
@@ -2025,6 +2074,12 @@ __webpack_require__.r(__webpack_exports__);
     this.checkToken(); // if (this.$store.state.division === 0 && this.$store.state.isLoggedIn){
     //     this.getUser();
     // }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".sidenav");
+      var options = {};
+      var instances = M.Sidenav.init(elems, options);
+    });
   }
 });
 
@@ -61324,13 +61379,14 @@ var render = function() {
     [
       _c(
         "nav",
-        { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
+        { staticClass: "navbar navbar-expand-sm navbar-light bg-light" },
         [
           _c("div", { attrs: { id: "nav" } }, [
-            _c("ul", { staticClass: "left navbar-nav hide-on-med-and-down" }, [
+            _c("ul", { staticClass: "left navbar-nav" }, [
               !this.$store.state.isLoggedIn
                 ? _c(
                     "li",
+                    { staticClass: "hide-on-med-and-down" },
                     [
                       _c(
                         "router-link",
@@ -61340,6 +61396,7 @@ var render = function() {
                         },
                         [
                           _c("img", {
+                            staticClass: "navbar-brand",
                             attrs: {
                               alt: "KSM logo",
                               src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
@@ -61356,6 +61413,7 @@ var render = function() {
               this.$store.state.isLoggedIn
                 ? _c(
                     "li",
+                    { staticClass: "hide-on-med-and-down" },
                     [
                       _c(
                         "router-link",
@@ -61377,6 +61435,8 @@ var render = function() {
                     1
                   )
                 : _vm._e(),
+              _vm._v(" "),
+              _vm._m(0),
               _vm._v(" "),
               this.$store.state.isLoggedIn
                 ? _c("li", [
@@ -61523,6 +61583,140 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "sidenav sidenav-close", attrs: { id: "slide-out" } },
+        [
+          _c("li", [
+            _c("div", { staticClass: "user-view yellow darken-1" }, [
+              _c("a", [
+                _c("span", { staticClass: "white-text name" }, [
+                  _vm._v("Witaj " + _vm._s(_vm.name))
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            [
+              _c(
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: { name: "events" } } },
+                [_vm._v("Kalendarium")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          this.$store.state.isLoggedIn &&
+          this.$store.state.is_authorized &&
+          (this.$store.state.is_leadership || this.$store.state.is_management)
+            ? _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { id: "panel", to: { name: "panel" } }
+                    },
+                    [_vm._v("Panel sterowania")]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "li",
+            [
+              _c(
+                "router-link",
+                { staticClass: "nav-link", attrs: { to: { name: "contact" } } },
+                [_vm._v("Kontakt")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          this.$store.state.isLoggedIn
+            ? _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "edit" } }
+                    },
+                    [_vm._v("Edytuj swoje dane")]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("li"),
+          _vm._v(" "),
+          !this.$store.state.isLoggedIn
+            ? _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "login" } }
+                    },
+                    [_vm._v("Zaloguj się")]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          !this.$store.state.isLoggedIn
+            ? _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "register" } }
+                    },
+                    [_vm._v("Zarejestruj się")]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          this.$store.state.isLoggedIn
+            ? _c("li", { attrs: { id: "log-out" } }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.logout()
+                      }
+                    }
+                  },
+                  [_vm._v("Wyloguj się")]
+                )
+              ])
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
       _c("br"),
       _vm._v(" "),
       _c(
@@ -61535,7 +61729,45 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "show-on-medium-and-down" }, [
+      _c(
+        "a",
+        {
+          staticClass: "sidenav-trigger",
+          attrs: { "data-target": "slide-out" }
+        },
+        [
+          _c("img", {
+            attrs: {
+              alt: "KSM logo",
+              src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
+              width: "40"
+            }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("div", { staticClass: "divider" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { staticClass: "subheader" }, [_vm._v("Twoje konto")])
+    ])
+  }
+]
 render._withStripped = true
 
 

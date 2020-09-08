@@ -1,19 +1,28 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <div id="nav">
-        <ul class="left navbar-nav hide-on-med-and-down">
-          <li v-if="!this.$store.state.isLoggedIn">
+        <ul class="left navbar-nav">
+          <li v-if="!this.$store.state.isLoggedIn" class="hide-on-med-and-down">
             <router-link :to="{ name: 'home' }" class="nav-link">
-              <img alt="KSM logo" src="./components/assets/logo.png" width="40" />
+              <img
+                alt="KSM logo"
+                src="./components/assets/logo.png"
+                width="40"
+                class="navbar-brand"
+              />
             </router-link>
           </li>
-          <li v-if="this.$store.state.isLoggedIn">
+          <li v-if="this.$store.state.isLoggedIn" class="hide-on-med-and-down">
             <router-link :to="{ name: 'dashboard' }" class="nav-link">
               <img alt="KSM logo" src="./components/assets/logo.png" width="40" />
             </router-link>
           </li>
-
+          <li class="show-on-medium-and-down">
+            <a data-target="slide-out" class="sidenav-trigger">
+              <img alt="KSM logo" src="./components/assets/logo.png" width="40" />
+            </a>
+          </li>
           <li v-if="this.$store.state.isLoggedIn">
             <div class="header nav">Witaj {{ name}}!</div>
           </li>
@@ -54,6 +63,46 @@
         </ul>
       </div>
     </nav>
+
+    <ul id="slide-out" class="sidenav sidenav-close">
+      <li>
+        <div class="user-view yellow darken-1">
+          <a >
+            <span class="white-text name">Witaj {{name}}</span>
+          </a>
+        </div>
+      </li>
+      <li>
+        <router-link :to="{ name: 'events' }" class="nav-link">Kalendarium</router-link>
+      </li>
+      <li
+        v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
+      >
+        <router-link id="panel" :to="{ name: 'panel' }" class="nav-link">Panel sterowania</router-link>
+      </li>
+      <li>
+        <router-link :to="{ name: 'contact' }" class="nav-link">Kontakt</router-link>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a class="subheader">Twoje konto</a>
+      </li>
+      <li v-if="this.$store.state.isLoggedIn">
+        <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
+      </li>
+      <li />
+      <li v-if="!this.$store.state.isLoggedIn">
+        <router-link :to="{ name: 'login' }" class="nav-link">Zaloguj się</router-link>
+      </li>
+      <li v-if="!this.$store.state.isLoggedIn">
+        <router-link :to="{ name: 'register' }" class="nav-link">Zarejestruj się</router-link>
+      </li>
+      <li id="log-out" v-if="this.$store.state.isLoggedIn">
+        <a href="#" @click="logout()" class="nav-link">Wyloguj się</a>
+      </li>
+    </ul>
     <br />
     <transition name="fade" mode="out-in">
       <router-view></router-view>
@@ -66,20 +115,20 @@ export default {
   computed: {
     name() {
       return this.$store.state.name;
-    }
+    },
   },
   methods: {
     logout() {
       this.axios
         .get("/api/auth/logout?token=" + this.$store.state.token)
-        .then(response => {
+        .then((response) => {
           if (response.data.success == true) {
             // login user, store the token and redirect to dashboard
             this.$store.commit("LogoutUser");
             this.$router.push({ name: "login" });
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$store.commit("LogoutUser");
           this.$router.push({ name: "login" });
         });
@@ -95,11 +144,11 @@ export default {
               this.$store.state.email
           )
           .then(
-            function(response) {
+            function (response) {
               this.$store.commit("refreshUser", response.data[0]);
             }.bind(this)
           )
-          .catch(error => {
+          .catch((error) => {
             if (error.response && error.response.status === 401) {
               myThis.$store.commit("LogoutUser");
               myThis.$router.push({ name: "login" });
@@ -108,7 +157,7 @@ export default {
           });
       }
     },
-    getUser: function() {
+    getUser: function () {
       this.axios
         .post(
           "/api/auth/getUser?token=" +
@@ -117,18 +166,23 @@ export default {
             this.$store.state.email
         )
         .then(
-          function(response) {
+          function (response) {
             this.$store.commit("refreshUser", response.data[0]);
           }.bind(this)
         );
-    }
+    },
   },
-  created: function() {
+  created: function () {
     this.checkToken();
     // if (this.$store.state.division === 0 && this.$store.state.isLoggedIn){
     //     this.getUser();
     // }
-  }
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".sidenav");
+      var options = {};
+      var instances = M.Sidenav.init(elems, options);
+    });
+  },
 };
 </script>
 
