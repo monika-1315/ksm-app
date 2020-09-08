@@ -23912,7 +23912,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.header[data-v-66ab2f82] {\r\n  color: black;\r\n  font-size: x-large;\r\n  font-weight: 550;\r\n  align-content: center;\r\n  align-items: center;\r\n  padding: 7.5px;\n}\n.fade-enter-active[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  transition-duration: 0.2s;\r\n  transition-property: opacity;\r\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  opacity: 0;\n}\n#nav[data-v-66ab2f82] {\r\n  width: 100%;\n}\n.container[data-v-66ab2f82] {\r\n  padding-left: 9%;\r\n  padding-right: 9%;\n}\n.navbar[data-v-66ab2f82] {\r\n  text-align: center;\r\n  padding-left: 10%;\r\n  padding-right: 10%;\n}\n@media (max-device-width: 900px) {\n.container[data-v-66ab2f82] {\r\n    padding-left: 5% !important;\r\n    padding-right: 5% !important;\n}\n.navbar[data-v-66ab2f82] {\r\n    text-align: center;\r\n    padding-left: 3%;\r\n    padding-right: 3%;\r\n    width: 100%;\n}\n}\n.nav-link[data-v-66ab2f82] {\r\n  font-weight: 400 !important;\r\n  color: black !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.header[data-v-66ab2f82] {\r\n  color: black;\r\n  font-size: x-large;\r\n  font-weight: 550;\r\n  align-content: center;\r\n  align-items: center;\r\n  padding: 7.5px;\n}\n.fade-enter-active[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  transition-duration: 0.2s;\r\n  transition-property: opacity;\r\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  opacity: 0;\n}\n#nav[data-v-66ab2f82] {\r\n  width: 100%;\n}\n.container[data-v-66ab2f82] {\r\n  padding-left: 9%;\r\n  padding-right: 9%;\n}\n.navbar[data-v-66ab2f82] {\r\n  text-align: center;\r\n  padding-left: 10%;\r\n  padding-right: 10%;\n}\n@media (max-device-width: 900px) {\n.navbar[data-v-66ab2f82] {\r\n    text-align: center;\r\n    padding-left: 0%;\r\n    padding-right: 0%;\r\n    width: 100%;\n}\n}\n.nav-link[data-v-66ab2f82] {\r\n  font-weight: 400 !important;\r\n  color: black !important;\n}\r\n", ""]);
 
 // exports
 
@@ -62864,7 +62864,6 @@ var render = function() {
           "div",
           [
             _c("h3", [
-              _vm._v("\n      Najnowsze ogłoszenia:\n      "),
               this.$store.state.is_leadership || this.$store.state.is_management
                 ? _c(
                     "button",
@@ -62887,7 +62886,9 @@ var render = function() {
                   on: { click: _vm.getMessages }
                 },
                 [_vm._v("Odśwież")]
-              )
+              ),
+              _vm._v("\n     Najnowsze ogłoszenia:"),
+              _c("br")
             ]),
             _vm._v(" "),
             _c("br"),

@@ -5,7 +5,7 @@
     >Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału</p>
     <div v-if="this.$store.state.is_authorized">
       <h3>
-        Najnowsze ogłoszenia:
+        
         <button
           class="btn btn-primary yellow"
           type="button"
@@ -22,7 +22,7 @@
           @click="getMessages"
           style="float: right"
         >Odśwież</button>
-       
+       Najnowsze ogłoszenia:<br>
       </h3>
       <br />
 

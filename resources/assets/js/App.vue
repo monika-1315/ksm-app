@@ -245,14 +245,11 @@ export default {
 }
 
 @media (max-device-width: 900px) {
-  .container {
-    padding-left: 5% !important;
-    padding-right: 5% !important;
-  }
+  
   .navbar {
     text-align: center;
-    padding-left: 3%;
-    padding-right: 3%;
+    padding-left: 0%;
+    padding-right: 0%;
     width: 100%;
   }
 }
