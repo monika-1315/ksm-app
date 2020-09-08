@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <nav class="navbar navbar-expand navbar-light bg-light">
       <div id="nav">
         <ul class="left navbar-nav">
           <li v-if="!this.$store.state.isLoggedIn" class="hide-on-med-and-down">
@@ -18,13 +18,30 @@
               <img alt="KSM logo" src="./components/assets/logo.png" width="40" />
             </router-link>
           </li>
-          <li class="show-on-medium-and-down">
-            <a data-target="slide-out" class="sidenav-trigger">
-              <img alt="KSM logo" src="./components/assets/logo.png" width="40" />
+          <li v-if="this.$store.state.isLoggedIn" class="show-on-medium-and-down">
+            <a data-target="slide-out" class="sidenav-trigger  nav-link">
+              <img
+                alt="KSM logo"
+                src="./components/assets/logo.png"
+                width="40"
+                class="navbar-brand "
+              />
             </a>
           </li>
-          <li v-if="this.$store.state.isLoggedIn">
-            <div class="header nav">Witaj {{ name}}!</div>
+           <li v-else class="show-on-medium-and-down">
+            <a data-target="slide-out" class="sidenav-trigger ">
+              <img
+                alt="KSM logo"
+                src="./components/assets/logo.png"
+                width="40"
+                class="navbar-brand "
+              />
+            </a>
+          </li>
+          <li>
+            <div class="header nav">
+              <span v-if="this.$store.state.isLoggedIn">Witaj {{ name}}!</span>
+            </div>
           </li>
         </ul>
 
@@ -67,10 +84,16 @@
     <ul id="slide-out" class="sidenav sidenav-close">
       <li>
         <div class="user-view yellow darken-1">
-          <a >
+          <a>
             <span class="white-text name">Witaj {{name}}</span>
           </a>
         </div>
+      </li>
+      <li v-if="!this.$store.state.isLoggedIn">
+        <router-link :to="{ name: 'home' }" class="nav-link">Strona główna</router-link>
+      </li>
+      <li v-if="this.$store.state.isLoggedIn">
+        <router-link :to="{ name: 'dashboard' }" class="nav-link">Moja tablica</router-link>
       </li>
       <li>
         <router-link :to="{ name: 'events' }" class="nav-link">Kalendarium</router-link>
@@ -99,8 +122,8 @@
       <li v-if="!this.$store.state.isLoggedIn">
         <router-link :to="{ name: 'register' }" class="nav-link">Zarejestruj się</router-link>
       </li>
-      <li id="log-out" v-if="this.$store.state.isLoggedIn">
-        <a href="#" @click="logout()" class="nav-link">Wyloguj się</a>
+      <li id="log-out" v-if="this.$store.state.isLoggedIn" class="left">
+        <a @click="logout()" class="nav-link left">Wyloguj się</a>
       </li>
     </ul>
     <br />
@@ -190,7 +213,7 @@ export default {
 .header {
   color: black;
   font-size: x-large;
-  font-weight: 600;
+  font-weight: 550;
   align-content: center;
   align-items: center;
   padding: 7.5px;
@@ -220,28 +243,20 @@ export default {
   padding-left: 10%;
   padding-right: 10%;
 }
-#nav-mobile a:hover {
-  text-decoration: none !important;
-  color: white;
-}
-#nav-mobile a:focus {
-  text-decoration: none !important;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.1);
+
+@media (max-device-width: 900px) {
+  .container {
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+  .navbar {
+    text-align: center;
+    padding-left: 3%;
+    padding-right: 3%;
+    width: 100%;
+  }
 }
 
-#nav-mobile2 a:hover {
-  text-decoration: none !important;
-  color: white;
-}
-#nav-mobile2 a:focus {
-  text-decoration: none !important;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-#log-out {
-  float: right;
-}
 .nav-link {
   font-weight: 400 !important;
   color: black !important;

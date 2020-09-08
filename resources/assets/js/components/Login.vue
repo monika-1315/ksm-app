@@ -185,7 +185,7 @@ label.active {
   display: inline-block;
   background: white;
   padding: 30px;
-  width: 30em;
+  width: 25em;
 }
 .submit:hover {
   color: white;

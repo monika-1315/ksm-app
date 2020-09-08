@@ -2020,6 +2020,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     name: function name() {
@@ -23889,7 +23912,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.header[data-v-66ab2f82] {\r\n  color: black;\r\n  font-size: x-large;\r\n  font-weight: 600;\r\n  align-content: center;\r\n  align-items: center;\r\n  padding: 7.5px;\n}\n.fade-enter-active[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  transition-duration: 0.2s;\r\n  transition-property: opacity;\r\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  opacity: 0;\n}\n#nav[data-v-66ab2f82] {\r\n  width: 100%;\n}\n.container[data-v-66ab2f82] {\r\n  padding-left: 9%;\r\n  padding-right: 9%;\n}\n.navbar[data-v-66ab2f82] {\r\n  text-align: center;\r\n  padding-left: 10%;\r\n  padding-right: 10%;\n}\n#nav-mobile a[data-v-66ab2f82]:hover {\r\n  text-decoration: none !important;\r\n  color: white;\n}\n#nav-mobile a[data-v-66ab2f82]:focus {\r\n  text-decoration: none !important;\r\n  color: white;\r\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#nav-mobile2 a[data-v-66ab2f82]:hover {\r\n  text-decoration: none !important;\r\n  color: white;\n}\n#nav-mobile2 a[data-v-66ab2f82]:focus {\r\n  text-decoration: none !important;\r\n  color: white;\r\n  background-color: rgba(0, 0, 0, 0.1);\n}\n#log-out[data-v-66ab2f82] {\r\n  float: right;\n}\n.nav-link[data-v-66ab2f82] {\r\n  font-weight: 400 !important;\r\n  color: black !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.header[data-v-66ab2f82] {\r\n  color: black;\r\n  font-size: x-large;\r\n  font-weight: 550;\r\n  align-content: center;\r\n  align-items: center;\r\n  padding: 7.5px;\n}\n.fade-enter-active[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  transition-duration: 0.2s;\r\n  transition-property: opacity;\r\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-66ab2f82],\r\n.fade-leave-active[data-v-66ab2f82] {\r\n  opacity: 0;\n}\n#nav[data-v-66ab2f82] {\r\n  width: 100%;\n}\n.container[data-v-66ab2f82] {\r\n  padding-left: 9%;\r\n  padding-right: 9%;\n}\n.navbar[data-v-66ab2f82] {\r\n  text-align: center;\r\n  padding-left: 10%;\r\n  padding-right: 10%;\n}\n@media (max-device-width: 900px) {\n.container[data-v-66ab2f82] {\r\n    padding-left: 5% !important;\r\n    padding-right: 5% !important;\n}\n.navbar[data-v-66ab2f82] {\r\n    text-align: center;\r\n    padding-left: 3%;\r\n    padding-right: 3%;\r\n    width: 100%;\n}\n}\n.nav-link[data-v-66ab2f82] {\r\n  font-weight: 400 !important;\r\n  color: black !important;\n}\r\n", ""]);
 
 // exports
 
@@ -24231,7 +24254,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#app[data-v-3e2ac97c] {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  align-content: center;\r\n  color: #2c3e50;\r\n  margin-top: 20px;\r\n  padding-left: 5%;\r\n  padding-right: 5%;\n}\ninput[data-v-3e2ac97c]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-3e2ac97c] {\r\n  color: royalblue !important;\n}\n.labels[data-v-3e2ac97c] {\r\n  text-align: left;\r\n  width: auto;\r\n  display: inline-block;\n}\n.btn[data-v-3e2ac97c] {\r\n  background-color: #007bff;\n}\n.form-wrapper[data-v-3e2ac97c] {\r\n  min-height: 100%;\r\n  min-height: 100vh;\r\n  display: flex;\r\n  align-items: center;\n}\n.form-signin[data-v-3e2ac97c] {\r\n  width: 100%;\r\n  max-width: 330px;\r\n  padding: 15px;\r\n  margin: 0 auto;\n}\n.form-signin .form-control[data-v-3e2ac97c] {\r\n  position: relative;\r\n  box-sizing: border-box;\r\n  height: auto;\r\n  padding: 10px;\r\n  font-size: 16px;\n}\n.form-signin .form-control[data-v-3e2ac97c]:focus {\r\n  z-index: 2;\n}\n.form-signin input[type=\"email\"][data-v-3e2ac97c] {\r\n  margin-bottom: -1px;\r\n  border-bottom-right-radius: 0;\r\n  border-bottom-left-radius: 0;\n}\n.form-signin input[type=\"password\"][data-v-3e2ac97c] {\r\n  margin-bottom: 10px;\r\n  border-top-left-radius: 0;\r\n  border-top-right-radius: 0;\n}\n.login-form[data-v-3e2ac97c] {\r\n  display: inline-block;\r\n  background: white;\r\n  padding: 30px;\r\n  width: 30em;\n}\n.submit[data-v-3e2ac97c]:hover {\r\n  color: white;\n}\n.btn[data-v-3e2ac97c]:focus {\r\n  color: white;\n}\n.progress[data-v-3e2ac97c] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\n.indeterminate[data-v-3e2ac97c] {\r\n  background-color: #febd09;\n}\n.alert[data-v-3e2ac97c] {\r\n  margin-bottom: 0px;\n}\n.g-signin-btn[data-v-3e2ac97c] {\r\n  display: inline-block;\r\n  padding: 4px 8px;\r\n  border-radius: 3px;\r\n  background-color: #3c82f7;\r\n  color: #fff;\r\n  box-shadow: 0 3px 0 #0f69ff;\n}\r\n", ""]);
+exports.push([module.i, "\n#app[data-v-3e2ac97c] {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  align-content: center;\r\n  color: #2c3e50;\r\n  margin-top: 20px;\r\n  padding-left: 5%;\r\n  padding-right: 5%;\n}\ninput[data-v-3e2ac97c]:focus {\r\n  border-bottom: 1px solid royalblue !important;\r\n  box-shadow: 0 1px 0 0 royalblue !important;\n}\nlabel.active[data-v-3e2ac97c] {\r\n  color: royalblue !important;\n}\n.labels[data-v-3e2ac97c] {\r\n  text-align: left;\r\n  width: auto;\r\n  display: inline-block;\n}\n.btn[data-v-3e2ac97c] {\r\n  background-color: #007bff;\n}\n.form-wrapper[data-v-3e2ac97c] {\r\n  min-height: 100%;\r\n  min-height: 100vh;\r\n  display: flex;\r\n  align-items: center;\n}\n.form-signin[data-v-3e2ac97c] {\r\n  width: 100%;\r\n  max-width: 330px;\r\n  padding: 15px;\r\n  margin: 0 auto;\n}\n.form-signin .form-control[data-v-3e2ac97c] {\r\n  position: relative;\r\n  box-sizing: border-box;\r\n  height: auto;\r\n  padding: 10px;\r\n  font-size: 16px;\n}\n.form-signin .form-control[data-v-3e2ac97c]:focus {\r\n  z-index: 2;\n}\n.form-signin input[type=\"email\"][data-v-3e2ac97c] {\r\n  margin-bottom: -1px;\r\n  border-bottom-right-radius: 0;\r\n  border-bottom-left-radius: 0;\n}\n.form-signin input[type=\"password\"][data-v-3e2ac97c] {\r\n  margin-bottom: 10px;\r\n  border-top-left-radius: 0;\r\n  border-top-right-radius: 0;\n}\n.login-form[data-v-3e2ac97c] {\r\n  display: inline-block;\r\n  background: white;\r\n  padding: 30px;\r\n  width: 25em;\n}\n.submit[data-v-3e2ac97c]:hover {\r\n  color: white;\n}\n.btn[data-v-3e2ac97c]:focus {\r\n  color: white;\n}\n.progress[data-v-3e2ac97c] {\r\n  margin: 0px;\r\n  background-color: transparent;\n}\n.indeterminate[data-v-3e2ac97c] {\r\n  background-color: #febd09;\n}\n.alert[data-v-3e2ac97c] {\r\n  margin-bottom: 0px;\n}\n.g-signin-btn[data-v-3e2ac97c] {\r\n  display: inline-block;\r\n  padding: 4px 8px;\r\n  border-radius: 3px;\r\n  background-color: #3c82f7;\r\n  color: #fff;\r\n  box-shadow: 0 3px 0 #0f69ff;\n}\r\n", ""]);
 
 // exports
 
@@ -61377,211 +61400,211 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "nav",
-        { staticClass: "navbar navbar-expand-sm navbar-light bg-light" },
-        [
-          _c("div", { attrs: { id: "nav" } }, [
-            _c("ul", { staticClass: "left navbar-nav" }, [
-              !this.$store.state.isLoggedIn
-                ? _c(
-                    "li",
-                    { staticClass: "hide-on-med-and-down" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "home" } }
-                        },
-                        [
-                          _c("img", {
-                            staticClass: "navbar-brand",
-                            attrs: {
-                              alt: "KSM logo",
-                              src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
-                              width: "40"
-                            }
-                          })
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              this.$store.state.isLoggedIn
-                ? _c(
-                    "li",
-                    { staticClass: "hide-on-med-and-down" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "dashboard" } }
-                        },
-                        [
-                          _c("img", {
-                            attrs: {
-                              alt: "KSM logo",
-                              src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
-                              width: "40"
-                            }
-                          })
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              this.$store.state.isLoggedIn
-                ? _c("li", [
-                    _c("div", { staticClass: "header nav" }, [
-                      _vm._v("Witaj " + _vm._s(_vm.name) + "!")
-                    ])
-                  ])
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "right navbar-nav hide-on-med-and-down" }, [
-              _c(
-                "li",
-                { staticClass: "right" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { to: { name: "events" } }
-                    },
-                    [_vm._v("Kalendarium")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              this.$store.state.isLoggedIn &&
-              this.$store.state.is_authorized &&
-              (this.$store.state.is_leadership ||
-                this.$store.state.is_management)
-                ? _c(
-                    "li",
-                    { staticClass: "right" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { id: "panel", to: { name: "panel" } }
-                        },
-                        [_vm._v("Panel sterowania")]
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              this.$store.state.isLoggedIn &&
-              (!(
-                this.$store.state.is_leadership ||
-                this.$store.state.is_management
-              ) ||
-                !this.$store.state.is_authorized)
-                ? _c(
-                    "li",
-                    { staticClass: "right" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "edit" } }
-                        },
-                        [_vm._v("Edytuj swoje dane")]
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _c("li"),
-              _vm._v(" "),
-              !this.$store.state.isLoggedIn
-                ? _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "contact" } }
-                        },
-                        [_vm._v("Kontakt")]
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              !this.$store.state.isLoggedIn
-                ? _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "login" } }
-                        },
-                        [_vm._v("Zaloguj się")]
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              !this.$store.state.isLoggedIn
-                ? _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "register" } }
-                        },
-                        [_vm._v("Zarejestruj się")]
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              this.$store.state.isLoggedIn
-                ? _c("li", { attrs: { id: "log-out" } }, [
+      _c("nav", { staticClass: "navbar navbar-expand navbar-light bg-light" }, [
+        _c("div", { attrs: { id: "nav" } }, [
+          _c("ul", { staticClass: "left navbar-nav" }, [
+            !this.$store.state.isLoggedIn
+              ? _c(
+                  "li",
+                  { staticClass: "hide-on-med-and-down" },
+                  [
                     _c(
-                      "a",
+                      "router-link",
                       {
                         staticClass: "nav-link",
-                        attrs: { href: "#" },
-                        on: {
-                          click: function($event) {
-                            return _vm.logout()
-                          }
-                        }
+                        attrs: { to: { name: "home" } }
                       },
-                      [_vm._v("Wyloguj się")]
+                      [
+                        _c("img", {
+                          staticClass: "navbar-brand",
+                          attrs: {
+                            alt: "KSM logo",
+                            src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
+                            width: "40"
+                          }
+                        })
+                      ]
                     )
-                  ])
-                : _vm._e()
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            this.$store.state.isLoggedIn
+              ? _c(
+                  "li",
+                  { staticClass: "hide-on-med-and-down" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { to: { name: "dashboard" } }
+                      },
+                      [
+                        _c("img", {
+                          attrs: {
+                            alt: "KSM logo",
+                            src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
+                            width: "40"
+                          }
+                        })
+                      ]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            this.$store.state.isLoggedIn
+              ? _c("li", { staticClass: "show-on-medium-and-down" }, [
+                  _vm._m(0)
+                ])
+              : _c("li", { staticClass: "show-on-medium-and-down" }, [
+                  _vm._m(1)
+                ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("div", { staticClass: "header nav" }, [
+                this.$store.state.isLoggedIn
+                  ? _c("span", [_vm._v("Witaj " + _vm._s(_vm.name) + "!")])
+                  : _vm._e()
+              ])
             ])
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "right navbar-nav hide-on-med-and-down" }, [
+            _c(
+              "li",
+              { staticClass: "right" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { to: { name: "events" } }
+                  },
+                  [_vm._v("Kalendarium")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            this.$store.state.isLoggedIn &&
+            this.$store.state.is_authorized &&
+            (this.$store.state.is_leadership || this.$store.state.is_management)
+              ? _c(
+                  "li",
+                  { staticClass: "right" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { id: "panel", to: { name: "panel" } }
+                      },
+                      [_vm._v("Panel sterowania")]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            this.$store.state.isLoggedIn &&
+            (!(
+              this.$store.state.is_leadership || this.$store.state.is_management
+            ) ||
+              !this.$store.state.is_authorized)
+              ? _c(
+                  "li",
+                  { staticClass: "right" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { to: { name: "edit" } }
+                      },
+                      [_vm._v("Edytuj swoje dane")]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("li"),
+            _vm._v(" "),
+            !this.$store.state.isLoggedIn
+              ? _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { to: { name: "contact" } }
+                      },
+                      [_vm._v("Kontakt")]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            !this.$store.state.isLoggedIn
+              ? _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { to: { name: "login" } }
+                      },
+                      [_vm._v("Zaloguj się")]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            !this.$store.state.isLoggedIn
+              ? _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { to: { name: "register" } }
+                      },
+                      [_vm._v("Zarejestruj się")]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            this.$store.state.isLoggedIn
+              ? _c("li", { attrs: { id: "log-out" } }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          return _vm.logout()
+                        }
+                      }
+                    },
+                    [_vm._v("Wyloguj się")]
+                  )
+                ])
+              : _vm._e()
           ])
-        ]
-      ),
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "ul",
@@ -61596,6 +61619,40 @@ var render = function() {
               ])
             ])
           ]),
+          _vm._v(" "),
+          !this.$store.state.isLoggedIn
+            ? _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "home" } }
+                    },
+                    [_vm._v("Strona główna")]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          this.$store.state.isLoggedIn
+            ? _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "dashboard" } }
+                    },
+                    [_vm._v("Moja tablica")]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "li",
@@ -61640,9 +61697,9 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
           _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3),
           _vm._v(" "),
           this.$store.state.isLoggedIn
             ? _c(
@@ -61698,12 +61755,11 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           this.$store.state.isLoggedIn
-            ? _c("li", { attrs: { id: "log-out" } }, [
+            ? _c("li", { staticClass: "left", attrs: { id: "log-out" } }, [
                 _c(
                   "a",
                   {
-                    staticClass: "nav-link",
-                    attrs: { href: "#" },
+                    staticClass: "nav-link left",
                     on: {
                       click: function($event) {
                         return _vm.logout()
@@ -61734,24 +61790,45 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "show-on-medium-and-down" }, [
-      _c(
-        "a",
-        {
-          staticClass: "sidenav-trigger",
-          attrs: { "data-target": "slide-out" }
-        },
-        [
-          _c("img", {
-            attrs: {
-              alt: "KSM logo",
-              src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
-              width: "40"
-            }
-          })
-        ]
-      )
-    ])
+    return _c(
+      "a",
+      {
+        staticClass: "sidenav-trigger  nav-link",
+        attrs: { "data-target": "slide-out" }
+      },
+      [
+        _c("img", {
+          staticClass: "navbar-brand ",
+          attrs: {
+            alt: "KSM logo",
+            src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
+            width: "40"
+          }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "sidenav-trigger ",
+        attrs: { "data-target": "slide-out" }
+      },
+      [
+        _c("img", {
+          staticClass: "navbar-brand ",
+          attrs: {
+            alt: "KSM logo",
+            src: __webpack_require__(/*! ./components/assets/logo.png */ "./resources/assets/js/components/assets/logo.png"),
+            width: "40"
+          }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this
