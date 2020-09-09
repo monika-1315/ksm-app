@@ -1,0 +1,20 @@
+{
+    "name": "Aplikacja Katolickiego Stowarzyszenia Młodzieży",
+    "short_name": "KSM DL",
+    "icons": [
+      {
+        "src":"/images/logo.png",
+        "sizes": "16x16 32x32 48x48 72x72 76x76 96x96 120x120 144x144 152x152 180x180 192x192 512x512",
+        "type": "image/png"
+      },
+      {
+        "src":"/favicon.ico",
+        "sizes": "112x112",
+        "type": "image/ico"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#eeeeee",
+    "theme_color": "#fdd035",
+    "display": "fullscreen"
+  }
