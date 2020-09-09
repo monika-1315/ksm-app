@@ -14,7 +14,7 @@
             </router-link>
           </li>
           <li v-if="this.$store.state.isLoggedIn" data-target="slide-out" class="sidenav-trigger hide-on-med-and-down ">
-            <a class=" nav-link" >->
+            <a class=" nav-link" >
               <img
                 alt="KSM logo"
                 src="./components/assets/icon.png"
@@ -86,12 +86,14 @@
       </div>
     </nav>
 
-    <ul id="slide-out" class="sidenav sidenav-close">
+    <ul id="slide-out" class="sidenav sidenav-close ">
       <li>
-        <div class="user-view yellow darken-1">
-          <a>
+        <div class="user-view ">
+          <div class="background yellow darken-1">
+        <img src="./components/assets/DSC02533369_.jpg" height="200">
+      </div><br><br>
             <span class="white-text name">Witaj {{name}}</span>
-          </a>
+          
         </div>
       </li>
       <li v-if="!this.$store.state.isLoggedIn">

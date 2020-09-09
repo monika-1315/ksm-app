@@ -2136,6 +2136,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     name: function name() {
@@ -61694,14 +61696,16 @@ var render = function() {
       _vm._v(" "),
       _c(
         "ul",
-        { staticClass: "sidenav sidenav-close", attrs: { id: "slide-out" } },
+        { staticClass: "sidenav sidenav-close ", attrs: { id: "slide-out" } },
         [
           _c("li", [
-            _c("div", { staticClass: "user-view yellow darken-1" }, [
-              _c("a", [
-                _c("span", { staticClass: "white-text name" }, [
-                  _vm._v("Witaj " + _vm._s(_vm.name))
-                ])
+            _c("div", { staticClass: "user-view " }, [
+              _vm._m(3),
+              _c("br"),
+              _c("br"),
+              _vm._v(" "),
+              _c("span", { staticClass: "white-text name" }, [
+                _vm._v("Witaj " + _vm._s(_vm.name))
               ])
             ])
           ]),
@@ -61771,7 +61775,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm._m(3),
+          _vm._m(4),
           _vm._v(" "),
           !this.$store.state.isLoggedIn
             ? _c(
@@ -61911,7 +61915,7 @@ var render = function() {
           _vm._v(" "),
           this.$store.state.is_leadership || this.$store.state.is_management
             ? _c("div", [
-                _vm._m(4),
+                _vm._m(5),
                 _vm._v(" "),
                 _c(
                   "li",
@@ -61956,7 +61960,7 @@ var render = function() {
           _vm._v(" "),
           this.$store.state.is_management
             ? _c("div", [
-                _vm._m(5),
+                _vm._m(6),
                 _vm._v(" "),
                 _c(
                   "li",
@@ -62017,7 +62021,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm._m(6),
+          _vm._m(7),
           _vm._v(" "),
           _c(
             "li",
@@ -62051,7 +62055,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: " nav-link" }, [
-      _vm._v("->\n            "),
       _c("img", {
         staticClass: " navbar-brand",
         attrs: {
@@ -62105,6 +62108,19 @@ var staticRenderFns = [
         })
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "background yellow darken-1" }, [
+      _c("img", {
+        attrs: {
+          src: __webpack_require__(/*! ./components/assets/DSC02533369_.jpg */ "./resources/assets/js/components/assets/DSC02533369_.jpg"),
+          height: "200"
+        }
+      })
+    ])
   },
   function() {
     var _vm = this
@@ -86309,6 +86325,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Register_vue_vue_type_template_id_f88ac34c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/assets/DSC02533369_.jpg":
+/*!****************************************************************!*\
+  !*** ./resources/assets/js/components/assets/DSC02533369_.jpg ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/DSC02533369_.jpg?444e533c885a5060d41c2fed5f6ddab9";
 
 /***/ }),
 
