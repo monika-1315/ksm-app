@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container">
-    <img alt="KSM logo" src="./assets/logo.png" />
+    <img alt="KSM logo" src="./assets/logo.png" width="250" />
     <br />
     <br />
     <div style="padding 20px">

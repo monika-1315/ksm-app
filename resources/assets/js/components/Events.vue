@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h3>
-      Wydarzenia:
+     
       <button
         class="btn btn-primary"
         type="button"
@@ -18,6 +18,7 @@
           style="float: right"
         >Utwórz</button>
       </router-link>
+       Wydarzenia:
     </h3>
     <br />
     <span v-for="tab in tabs" :key="tab.id">

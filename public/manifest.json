@@ -2,20 +2,30 @@
     "name": "Aplikacja Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej",
     "short_name": "KSM DL",
     "icons": [
+       
       {
-        "src":"/favicon.ico",
-        "sizes": "112x112 16x16 32x32 48x48 72x72 76x76 96x96 120x120 144x144 152x152 180x180 192x192 512x512",
-        "type": "image/ico"
+        "src":"/images/icon.png",
+        "sizes": "180x180 192x192 512x512",
+        "type": "image/png"
       },
       {
-        "src":"/images/logo.png",
+        "src":"/images/icon_small.png",
+        "sizes": "16x16 32x32 48x48 72x72 76x76 96x96 120x120 144x144 152x152",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }, {
+        "src":"/favicon.ico",
+        "sizes": "112x112 16x16 32x32 48x48 72x72 76x76 96x96 120x120",
+        "type": "image/ico"
+      },    
+      {
+        "src":"/images/maskable_icon.png",
         "sizes": "16x16 32x32 48x48 72x72 76x76 96x96 120x120 144x144 152x152 180x180 192x192 512x512",
         "type": "image/png"
       }
-      
     ],
     "start_url": "/",
-    "background_color": "#ffffff",
+    "background_color": "#eeeeee",
     "theme_color": "#fdd835",
     "display": "standalone"
   }

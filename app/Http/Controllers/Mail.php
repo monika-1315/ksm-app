@@ -33,7 +33,7 @@ class Mail
             $mail->Username   = env("MAIL_USERNAME"); // SMTP account username example
             $mail->Password   = env("MAIL_PASSWORD");        // SMTP account password example
 
-            $mail->setFrom('app@ksm.legnica.pl', 'Aplikacja KSM DL');
+            $mail->setFrom('updates@app-ksm.legnica.pl', 'Aplikacja KSM DL');
 
             $mail->addAddress($recipient);
             // Content

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="KSM logo" src="./assets/logo.png" />
+    <img alt="KSM logo" src="./assets/logo.png" width="200" />
     <br />
     <br />
     <div style="padding 20px">
@@ -185,7 +185,15 @@ label.active {
   display: inline-block;
   background: white;
   padding: 30px;
-  width: 25em;
+  width: 28em;
+}
+@media (max-device-width: 900px){
+  .login-form {
+  display: inline-block;
+  background: white;
+  padding: 20px;
+  width: 20em;
+}
 }
 .submit:hover {
   color: white;

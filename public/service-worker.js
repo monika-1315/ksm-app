@@ -2,7 +2,8 @@ const MY_CACHE = 'my-cache-name';
 // w tej tablicy lądują wszystkie pliki, które chcemy dodać do cache
 const MY_FILES = [
         '/css/app.css',
-        '/images/logo.png',
+        '/images/logo.png',        
+        '/images/icon.png',
         '/js/app.js',
         '/images/logo.png?9a5e800bbc300cb2cb86ef1a5b0af43d',
         '/manifest.json'

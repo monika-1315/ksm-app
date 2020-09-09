@@ -8,12 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fdd835">
     <meta name="description" content="Aplikacja Katolickiego Stowarzyszenia Młodzieży Legnickiej">
+    <link rel="apple-touch-icon" href="/images/maskable_icon.png">
     <title>KSM DL</title>
 
    
 </head>
 <body >
-    <div id="app"></div>
+<noscript>
+    Witamy w aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej. Do działania aplikacji potrzebna jest obsługa JavaScript. Prosimy, włącz ją w swojej przeglądarce. </noscript>
+    <div id="app"></div><br>
 <script src="/js/app.js"></script>
 <script>
 // sprawdzamy czy przeglądarka posiada wsparcie dla service workera

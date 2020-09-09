@@ -109,7 +109,7 @@ button .hover {
 }
 button {
   display: inline-block;
-  margin: 1em;
+  margin: 0.5em;
   font-weight: 500;
 }
 h4 {
@@ -122,5 +122,11 @@ hr {
   /* width: 50em;
     margin-left: 0%; */
   /* border-color:  rgba(0, 0, 139, 0.719); */
+}
+@media (max-device-width: 900px){
+  .container{
+     padding-left: 1%;
+  padding-right: 1%;
+  }
 }
 </style>

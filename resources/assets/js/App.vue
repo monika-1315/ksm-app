@@ -1,43 +1,48 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand navbar-light bg-light">
+    <nav class="navbar navbar-expand navbar-light bg-light sticky-top">
       <div id="nav">
         <ul class="left navbar-nav">
           <li v-if="!this.$store.state.isLoggedIn" class="hide-on-med-and-down">
             <router-link :to="{ name: 'home' }" class="nav-link">
               <img
                 alt="KSM logo"
-                src="./components/assets/logo.png"
+                src="./components/assets/icon.png"
                 width="40"
                 class="navbar-brand"
               />
             </router-link>
           </li>
-          <li v-if="this.$store.state.isLoggedIn" class="hide-on-med-and-down">
-            <router-link :to="{ name: 'dashboard' }" class="nav-link">
-              <img alt="KSM logo" src="./components/assets/logo.png" width="40" />
-            </router-link>
-          </li>
-          <li v-if="this.$store.state.isLoggedIn" class="show-on-medium-and-down">
+          <li v-if="this.$store.state.isLoggedIn" data-target="slide-out" class="sidenav-trigger hide-on-med-and-down ">
+            <a class=" nav-link" >->
+              <img
+                alt="KSM logo"
+                src="./components/assets/icon.png"
+                width="40"
+                class=" navbar-brand"
+              />
+            </a>
+           <li v-if="this.$store.state.isLoggedIn" class="show-on-medium-and-down">
             <a data-target="slide-out" class="sidenav-trigger  nav-link">
               <img
                 alt="KSM logo"
-                src="./components/assets/logo.png"
+                src="./components/assets/icon.png"
                 width="40"
-                class="navbar-brand "
+                class="navbar-brand"
               />
             </a>
           </li>
-           <li v-else class="show-on-medium-and-down">
-            <a data-target="slide-out" class="sidenav-trigger ">
+          <li v-else class="show-on-medium-and-down">
+           <a data-target="slide-out" class="sidenav-trigger ">
               <img
                 alt="KSM logo"
-                src="./components/assets/logo.png"
+                src="./components/assets/icon.png"
                 width="40"
-                class="navbar-brand "
+                class="navbar-brand"
               />
             </a>
           </li>
+         
           <li>
             <div class="header nav">
               <span v-if="this.$store.state.isLoggedIn">Witaj {{ name}}!</span>
@@ -93,7 +98,7 @@
         <router-link :to="{ name: 'home' }" class="nav-link">Strona główna</router-link>
       </li>
       <li v-if="this.$store.state.isLoggedIn">
-        <router-link :to="{ name: 'dashboard' }" class="nav-link">Moja tablica</router-link>
+        <router-link :to="{ name: 'dashboard' }" class="nav-link">Moja tablica ogłoszeń</router-link>
       </li>
       <li>
         <router-link :to="{ name: 'events' }" class="nav-link">Kalendarium</router-link>
@@ -104,26 +109,114 @@
         <router-link id="panel" :to="{ name: 'panel' }" class="nav-link">Panel sterowania</router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'contact' }" class="nav-link">Kontakt</router-link>
-      </li>
-      <li>
         <div class="divider"></div>
       </li>
-      <li>
-        <a class="subheader">Twoje konto</a>
-      </li>
-      <li v-if="this.$store.state.isLoggedIn">
-        <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
-      </li>
-      <li />
+      <!-- <li>
+        <a v-if="this.$store.state.isLoggedIn" class="subheader">Twoje konto</a>
+      </li> -->
       <li v-if="!this.$store.state.isLoggedIn">
         <router-link :to="{ name: 'login' }" class="nav-link">Zaloguj się</router-link>
       </li>
       <li v-if="!this.$store.state.isLoggedIn">
         <router-link :to="{ name: 'register' }" class="nav-link">Zarejestruj się</router-link>
       </li>
-      <li id="log-out" v-if="this.$store.state.isLoggedIn" class="left">
-        <a @click="logout()" class="nav-link left">Wyloguj się</a>
+      <li v-if="this.$store.state.isLoggedIn">
+        <router-link :to="{ name: 'edit' }" class="nav-link">Edytuj swoje dane</router-link>
+      </li>
+      <li />
+      <li
+        v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
+      >
+        <router-link :to="{ name: 'delegate' }" class="nav-link">Deleguj uprawnienia</router-link>
+      </li>
+      <li id="log-out" v-if="this.$store.state.isLoggedIn" class="">
+        <a @click="logout()" >
+          Wyloguj się
+        </a>
+      </li>
+      <li>
+        <div
+          v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && (this.$store.state.is_leadership || this.$store.state.is_management)"
+          class="divider"
+        ></div>
+      </li>
+      <!-- <li>
+        <a
+          v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && (this.$store.state.is_leadership || this.$store.state.is_management)"
+          class="subheader"
+        >Ogłoszenia</a>
+      </li> -->
+      <li>
+        <router-link
+          :to="{ name: 'editmessages' }"
+          class="nav-link"
+          v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
+        >Edytuj swoje ogłoszenia</router-link>
+      </li>
+      <li>
+        <router-link
+          :to="{ name: 'message' }"
+          class="nav-link"
+          v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && (this.$store.state.is_leadership || this.$store.state.is_management)"
+        >Nowa wiadomość</router-link>
+      </li>
+      <div v-if="this.$store.state.is_leadership || this.$store.state.is_management">
+        <li>
+          <div class="divider"></div>
+        </li>
+        <!-- <li>
+          <a v-if="this.$store.state.isLoggedIn" class="subheader">Zarządzaj członkami</a>
+        </li> -->
+        <li>
+          <router-link
+            :to="{ name: 'adduser' }"
+            class="nav-link"
+            v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
+          >Dodaj członka</router-link>
+        </li>
+        <li>
+          <router-link
+            :to="{ name: 'authorize' }"
+            class="nav-link"
+            v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized && this.$store.state.is_leadership"
+          >Zatwierdzaj członków oddziału</router-link>
+        </li>
+      </div>
+      <div v-if="this.$store.state.is_management">
+        <li>
+          <div class="divider"></div>
+        </li>
+        <!-- <li>
+          <a class="subheader">Oddziałami</a>
+        </li> -->
+        <li>
+          <router-link
+            :to="{ name: 'divisions' }"
+            class="nav-link"
+            v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
+          >Zarządzaj oddziałami</router-link>
+        </li>
+        <li>
+          <router-link
+            :to="{ name: 'newdivision' }"
+            class="nav-link"
+            v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
+          >Nowy oddział</router-link>
+        </li>
+        <li>
+          <router-link
+            :to="{ name: 'chart' }"
+            class="nav-link"
+            v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
+          >Statystyki</router-link>
+        </li>
+      </div>
+
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <router-link :to="{ name: 'contact' }" class="nav-link">Kontakt</router-link>
       </li>
     </ul>
     <br />
@@ -245,7 +338,6 @@ export default {
 }
 
 @media (max-device-width: 900px) {
-  
   .navbar {
     text-align: center;
     padding-left: 0%;
