@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     
-    <link rel="manifest" crossorigin="use-credentials" href="./manifest.json">
+    <link rel="manifest" crossorigin="use-credentials" href="./manifest_v.1.0.0.json">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#fdd835">
+    <meta name="theme-color" content="#fecb00">
     <meta name="description" content="Aplikacja Katolickiego Stowarzyszenia Młodzieży Legnickiej">
-    <link rel="apple-touch-icon" href="/images/maskable_icon.png">
+    <link rel="apple-touch-icon" href="/images/icon_small.png">
     <title>KSM DL</title>
 
    

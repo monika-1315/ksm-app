@@ -69,6 +69,12 @@ export default {
   text-align: center;
 }
 
+@media (max-device-width: 900px){
+  .container{
+     padding-left: 1%;
+  padding-right: 1%;
+  }
+}
 .indeterminate {
   background-color: rgb(254, 209, 9);
 }

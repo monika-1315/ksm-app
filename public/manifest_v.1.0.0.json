@@ -6,7 +6,8 @@
       {
         "src":"/images/icon.png",
         "sizes": "180x180 192x192 512x512",
-        "type": "image/png"
+        "type": "image/png",
+        "purpose": "any maskable"
       },
       {
         "src":"/images/icon_small.png",
@@ -17,12 +18,8 @@
         "src":"/favicon.ico",
         "sizes": "112x112 16x16 32x32 48x48 72x72 76x76 96x96 120x120",
         "type": "image/ico"
-      },    
-      {
-        "src":"/images/maskable_icon.png",
-        "sizes": "16x16 32x32 48x48 72x72 76x76 96x96 120x120 144x144 152x152 180x180 192x192 512x512",
-        "type": "image/png"
       }
+     
     ],
     "start_url": "/",
     "background_color": "#eeeeee",
