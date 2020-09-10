@@ -15,7 +15,7 @@
           </h4>
         </div>
         <div class="progress" v-if="isProgress">
-          <div class="indeterminate blue darken-4"></div>
+          <div class="indeterminate light-blue darken-4"></div>
         </div>
         <div class="card-body">
           <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
@@ -266,6 +266,6 @@ label.active {
   color: royalblue !important;
 }
 div.card-header {
-  background-color: rgba(254, 209, 9, 0.712);
+  background-color: rgba(254, 203, 0, 0.712);
 }
 </style>

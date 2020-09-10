@@ -118,7 +118,7 @@ h4 {
     text-align: left; */
 }
 hr {
-  border-color: rgba(248, 203, 0, 0.788);
+  border-color: #fecb00;
   /* width: 50em;
     margin-left: 0%; */
   /* border-color:  rgba(0, 0, 139, 0.719); */

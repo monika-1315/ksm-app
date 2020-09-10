@@ -89,7 +89,7 @@
     <ul id="slide-out" class="sidenav sidenav-close ">
       <li>
         <div class="user-view ">
-          <div class="background yellow darken-1">
+          <div class="background">
         <img src="./components/assets/DSC02533369_.jpg" height="200">
       </div><br><br>
             <span class="white-text name">Witaj {{name}}</span>
@@ -339,6 +339,9 @@ export default {
   padding-right: 10%;
 }
 
+.background{
+  background-color: #FECB00;
+}
 @media (max-device-width: 900px) {
   .navbar {
     text-align: center;

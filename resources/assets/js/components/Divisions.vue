@@ -60,12 +60,12 @@
         color: darkgrey;
     }
     .yellow{
-        background-color:  rgb(254, 209, 9) !important;
-        border-color:  rgb(254, 209, 9);
+        background-color:  rgb(254, 203, 0) !important;
+        border-color:  rgb(254, 203, 0);
         color: black;
     }
     .indeterminate {
-  background-color: rgb(254, 209, 9);
+  background-color: rgb(254, 203, 0);
 }
    
 </style>

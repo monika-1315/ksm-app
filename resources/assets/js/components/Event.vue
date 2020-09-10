@@ -6,7 +6,7 @@
           <h4>{{title}}</h4>
         </div>
         <div class="progress" v-if="isProgress">
-          <div class="indeterminate blue darken-4"></div>
+          <div class="indeterminate light-blue darken-4"></div>
         </div>
 
         <div class="card-body">
@@ -431,7 +431,7 @@ label.active {
 }
 div.card-header,
 .collapsible-header {
-  background-color: rgba(254, 209, 9, 0.712);
+  background-color: rgba(254, 203, 0, 0.712);
 }
 
 div.card {

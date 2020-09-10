@@ -6,7 +6,7 @@
     <div class="container" style="text-align:center" v-if=" this.$store.state.is_leadership">
       
       <h2>Zmień uprawnienia Kierownictwa</h2>
-      <hr style="border-color:  rgba(248, 203, 0, 0.788);" />
+      <hr style="border-color: #fecb00;" />
       <br />
 
       <h3>Obecne Kierownictwo:</h3>
@@ -43,7 +43,7 @@
     <br />
     <div class="container" style="text-align:center" v-if=" this.$store.state.is_management">
       <h2>Zmień uprawnienia Zarządu</h2>
-      <hr style="border-color:  rgba(248, 203, 0, 0.788);" />
+      <hr style="border-color:  #fecb00;" />
       <br />
       <h3>Obecny Zarząd:</h3>
       <div align="left" v-for="user in usersAll1" :key="user.id">
@@ -214,7 +214,7 @@ export default {
   background-color: transparent;
 }
 .indeterminate {
-  background-color: rgb(254, 209, 9);
+  background-color:#fecb00;
 }
 .floating {
   float: right;
@@ -227,8 +227,8 @@ export default {
   padding-right: 9%;
 }
 .yellow {
-  background-color: rgb(254, 209, 9) !important;
-  border-color: rgb(254, 209, 9);
+  background-color: #fecb00 !important;
+  border-color: #fecb00;
   color: rgb(201, 0, 0);
 }
 </style>

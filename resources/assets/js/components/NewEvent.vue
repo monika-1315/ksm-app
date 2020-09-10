@@ -87,7 +87,7 @@
             </div>
 
             <div class="progress " v-if="isProgress">
-              <div class="indeterminate yellow darken-1"></div>
+              <div class="indeterminate amber lighten-1"></div>
             </div>
             <div class="card-action" style="text-align:center">
               <!-- <button
@@ -109,7 +109,7 @@
                 <div class="modal-content">
                   <h4>Wydarzenia odbywające się w tym terminie:</h4>
                   <div class="progress" v-if="isProgress">
-                    <div class="indeterminate  yellow darken-1"></div>
+                    <div class="indeterminate  amber lighten-1"></div>
                   </div>
                   <h6 v-if="!isProgress && colliders.length===0" class="green-text">Brak kolidujących wydarzeń! :)</h6>
                   <table v-if="!isProgress && colliders.length>0">
@@ -273,14 +273,14 @@ export default {
   background-color: transparent;
 }
 input:focus {
-  border-bottom: 1px solid royalblue !important;
-  box-shadow: 0 1px 0 0 royalblue !important;
+  border-bottom: 1px solid #00549e !important;
+  box-shadow: 0 1px 0 0 #00549e !important;
 }
 label.active {
-  color: royalblue !important;
+  color: #00549e !important;
 }
 div.card-header {
-  background-color: rgba(254, 209, 9, 0.712);
+  background-color: rgba(254, 203, 0, 0.76);
 }
 table {
   text-align: center !important;

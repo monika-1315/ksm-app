@@ -25,7 +25,9 @@
        Najnowsze ogłoszenia:<br>
       </h3>
       <br />
-
+<div class="progress" v-if="isProgress">
+      <div class="indeterminate"></div>
+    </div>
       <span v-for="tab in tabs" :key="tab.id">
         <button
           class="tab btn btn-light"
@@ -74,9 +76,7 @@
         v-if="messages.next_page_url!==null"
       >Następna strona</button>
     </div>
-    <div class="progress" v-if="isProgress">
-      <div class="indeterminate"></div>
-    </div>
+    
   </div>
 </template>
 <script>
@@ -198,15 +198,15 @@ export default {
 }
 
 .yellow {
-  background-color: rgb(254, 209, 9) !important;
-  border-color: rgb(254, 209, 9);
+  background-color: rgb(254, 203, 0) !important;
+  border-color: rgb(254, 203, 0);
   color: black;
 }
 
 .indeterminate {
-  background-color: rgba(3, 35, 138, 0.774);
+  background-color: #00549e;
 }
 div.card-header {
-  background-color: rgba(254, 209, 9, 0.61);
+  background-color: rgba(254, 203, 0, 0.61);
 }
 </style>

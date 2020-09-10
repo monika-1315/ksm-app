@@ -67,8 +67,8 @@ export default {
             maxBarThickness: 40,
             minBarLength: 3,
             data: this.all_members,
-            backgroundColor: "rgba(255, 201, 24, 0.5)",
-            borderColor: "rgb(255, 201, 24)",
+            backgroundColor: "rgba(254, 203, 0, 0.5)",
+            borderColor: "rgb(254, 203, 0)",
             borderWidth: 2
           }
         ]
@@ -80,8 +80,8 @@ export default {
             {
               label: "Liczba członków w oddziale",
               data: [this.aut_members[i], this.all_members[i]-this.aut_members[i]],
-              backgroundColor: ["rgba(255, 201, 24, 0.679)", "rgba(3, 35, 138, 0.674)"],
-              borderColor: ["rgba(255, 201, 24,1)", "rgba(3, 35, 138, 1)"],
+              backgroundColor: ["rgba(254, 203, 0, 0.679)", "rgba(3, 35, 138, 0.674)"],
+              borderColor: ["rgba(254, 203, 0,1)", "rgba(3, 35, 138, 1)"],
             borderWidth: 2
             }
           ]
@@ -100,7 +100,6 @@ export default {
 .big {
   max-width: 800px;
   margin: 40px auto;
-  backgroundcolor: rgba(3, 35, 138, 0.774);
 }
 
 .small {

@@ -238,7 +238,7 @@ export default {
   font-style: italic;
 }
 .indeterminate {
-  background-color: rgba(3, 35, 138, 0.774);
+  background-color: #00549e;
 }
 .activeTab {
   font-weight: bold;
@@ -252,12 +252,12 @@ em {
 }
 
 .yellow {
-  background-color: rgb(254, 209, 9) !important;
-  border-color: rgb(254, 209, 9);
+  background-color: #fecb00 !important;
+  border-color: #fecb00;
   color: black;
 }
 div.card-header {
-  background-color: rgba(254, 209, 9, 0.61);
+  background-color: rgba(254, 203, 0, 0.61);
 }
 
 .card-reveal {

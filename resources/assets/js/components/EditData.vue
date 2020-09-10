@@ -211,7 +211,7 @@ export default {
             this.division = myThis.currentUser.division;
             this.is_leadership = myThis.currentUser.is_leadership;
             this.is_management = myThis.currentUser.is_management;
-            this.wantMessages = myThis.currentUser.wantMessages;
+            this.wantMessages = myThis.currentUser.want_messages;
             this.isProgress = false;
           }.bind(this)
         );

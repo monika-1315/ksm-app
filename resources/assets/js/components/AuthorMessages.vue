@@ -124,7 +124,7 @@ export default {
   font-style: italic;
 }
 .indeterminate {
-  background-color: rgba(3, 35, 138, 0.774);
+  background-color:#00549e
 }
 .activeTab {
   font-weight: bold;
