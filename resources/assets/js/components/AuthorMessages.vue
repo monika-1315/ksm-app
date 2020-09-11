@@ -126,6 +126,9 @@ export default {
 .indeterminate {
   background-color:#00549e
 }
+a{
+   color: black !important;
+}
 .activeTab {
   font-weight: bold;
 }

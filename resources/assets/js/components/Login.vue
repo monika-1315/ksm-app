@@ -134,11 +134,11 @@ export default {
   padding-right: 5%;
 }
 input:focus {
-  border-bottom: 1px solid royalblue !important;
-  box-shadow: 0 1px 0 0 royalblue !important;
+  border-bottom: 1px solid #00549e !important;
+  box-shadow: 0 1px 0 0 #00549e !important;
 }
 label.active {
-  color: royalblue !important;
+  color:#00549e !important;
 }
 .labels {
   text-align: left;
@@ -212,12 +212,5 @@ label.active {
 .alert {
   margin-bottom: 0px;
 }
-.g-signin-btn {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 3px;
-  background-color: #3c82f7;
-  color: #fff;
-  box-shadow: 0 3px 0 #0f69ff;
-}
+
 </style>

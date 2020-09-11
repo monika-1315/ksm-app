@@ -250,7 +250,9 @@ em {
   font-weight: 500;
   font-style: normal;
 }
-
+a{
+   color: black !important;
+}
 .yellow {
   background-color: #fecb00 !important;
   border-color: #fecb00;

@@ -94,7 +94,7 @@
               >Wyślij kod</button>
               <span class="text text-danger" v-if="error && errors.email_code">{{ errors.email[0] }}</span>
             </div>
-
+            <label style="text-align: justify">Rejestrując się wyrażasz zgodę na przetwarzanie Twoich danych osobowych przez Katolickie Stowarzyszenie Młodzieży Diecezji Legnickiej na potrzeby działania aplikacji.<br>Aplikacja wykorzystuje pliki cookie. </label>
             <div class="card-action" style="text-align:center">
               <button
                 class="btn btn-primary"

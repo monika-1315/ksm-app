@@ -40,7 +40,6 @@
         "v-infinite-scroll": "^1.0.4",
         "v-toaster": "^1.0.3",
         "vue": "^2.6.12",
-        "vue-authenticate": "^1.4.1",
         "vue-axios": "^2.1.5",
         "vue-chartjs": "^3.5.1",
         "vue-router": "^3.4.3",

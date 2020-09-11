@@ -95,7 +95,8 @@
                     birthdate: this.birthdate,
                     division: this.division,
                     is_leadership: this.is_leadership,
-                    is_authorized: this.is_leadership || this.$store.state.is_leadership
+                    is_authorized: this.is_leadership || this.$store.state.is_leadership,
+                    wantMessages: 0
                 }).then(response => {
                     this.isProgress = true;
                     if(response.data.success == true)

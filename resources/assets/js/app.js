@@ -11,23 +11,12 @@ import "materialize-css/dist/js/materialize.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 // 
 
-import VueAuthenticate from 'vue-authenticate'
 import router from './router'
 
 Vue.use(InfiniteScroll);
 Vue.use(VueRouter);
-// Vue.use(axios);
 Vue.use(VueAxios, axios);
-Vue.use(VueAuthenticate, {
-    baseUrl: 'http://lara-vue-auth.test', // Your API domain
 
-    providers: {
-        google: {
-            clientId: '519675463204-7bc7lvaqti1teo41im6e5he5lbjjvthk.apps.googleusercontent.com',
-            redirectUri: 'http://localhost:8000/' // Your client app URL
-        }
-    }
-});
 
 //vue-toaster
 import Toaster from 'v-toaster';

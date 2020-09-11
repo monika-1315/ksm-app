@@ -202,7 +202,9 @@ export default {
   border-color: rgb(254, 203, 0);
   color: black;
 }
-
+a{
+   color: black !important;
+}
 .indeterminate {
   background-color: #00549e;
 }
