@@ -166,9 +166,9 @@ class EventsController extends Controller
                     'Nowe wydarzenie w kalendarium KSM DL',
                     'Witaj!<br>W aplikacji KSM DL właśnie pojawiło się nowe wydarzenie, które może Cię zainteresować: <b>' 
                     . $request->get('title') 
-                    .'</b>.<br>'.$request->get('details').'<br>'
+                    .'</b>.<br>'.$request->get('about').'<br>'
                     .$request->get('start').' - '.$request->get('end')
-                    .' Zaloguj się do aplikacji, aby sprawdzić szczegóły i dołączyć do wydarzenia już dziś!'
+                    .'<br> Zaloguj się do aplikacji, aby sprawdzić szczegóły i dołączyć do wydarzenia już dziś!'
                 );
             }
 

@@ -39,7 +39,7 @@ class Mail
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = $subject;
-            $mail->Body    = $body.'<br><br>Pozdrawiamy,<br>Zespół KSM DL<br><br> <i>To tylko wiadomość testowa, aplikacja jest w fazie budowy. Pozdrawiam, Monika</i>';
+            $mail->Body    = $body.'<br><br>Pozdrawiamy,<br>Zespół KSM DL<br><a href="app-ksm.legnica.pl">app-ksm.legnica.pl</a>';
 
             $mail->send();
             return response()->json([
