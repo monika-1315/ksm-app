@@ -90,7 +90,7 @@
       <li>
         <div class="user-view ">
           <div class="background">
-        <img src="./components/assets/DSC02533369_.jpg" height="200">
+        <img alt="grupowe KSM" src="./components/assets/DSC02533369_.jpg" height="200">
       </div><br><br>
             <span class="white-text name">Witaj {{name}}</span>
           

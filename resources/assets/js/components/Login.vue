@@ -51,10 +51,10 @@
     </div>
 
     <br />
-    <h6>
+    <h5>
       Nie masz konta?
       <br />
-    </h6>
+    </h5>
     <div>
       <router-link id="reg" :to="{ name: 'register' }" class="nav-link">
         <button class="btn btn-primary">Zarejestruj się</button>
