@@ -8,6 +8,7 @@
     <div v-for="user in users" :key="user.id">
       <p>
       <h4>{{user.name+' '+user.surname}}</h4>
+      <button class="btn btn-light red-text text-darken-4" type="button" @click="discard(user.id)">Odrzuć i usuń</button>
       <button class="btn btn-primary" type="button" @click="authorize(user.id)">Zatwierdź konto</button>
       </p>
     </div>
@@ -37,6 +38,29 @@ export default {
             setTimeout(() => {
               this.isProgress = false;
               this.$toaster.success("Zatwierdzono członka oddziału");
+              this.getUsers();
+            }, 2000);
+          }
+        })
+        .catch(error => {
+          this.isProgress = false;
+          this.$toaster.error("Coś poszło nie tak!");
+        });
+    },
+    discard(id) {
+      this.axios
+        .post(
+          "/api/auth/discardUser?token=" +
+            this.$store.state.token +
+            "&id=" +
+            id
+        )
+        .then(response => {
+          this.isProgress = true;
+          if (response.data.success == true) {
+            setTimeout(() => {
+              this.isProgress = false;
+              this.$toaster.success("Usunięto użytkownika");
               this.getUsers();
             }, 2000);
           }
