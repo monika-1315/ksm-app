@@ -86,7 +86,7 @@
               <span class="text text-danger" v-if="error && errors.details">{{ errors.details[0] }}</span>
             </div>
 
-            <div class="progress " v-if="isProgress">
+            <div class="progress" v-if="isProgress">
               <div class="indeterminate amber lighten-1"></div>
             </div>
             <div class="card-action" style="text-align:center">
@@ -105,34 +105,45 @@
               >Dodaj wydarzenie</button>
 
               <!-- v-show="colliders.length>0"  -->
-              <div id="modal1" class="modal">
+              <div id="modal1" class="modal fade" role="dialog" tabindex="-1">
                 <div class="modal-content">
-                  <h4>Wydarzenia odbywające się w tym terminie:</h4>
-                  <div class="progress" v-if="isProgress">
-                    <div class="indeterminate  amber lighten-1"></div>
+                    <h4 class="modal-title">Wydarzenia odbywające się w tym terminie:</h4>
+                    
+                 
+                  <div class="modal-body">
+                    <div class="progress" v-if="isProgress">
+                      <div class="indeterminate amber lighten-1"></div>
+                    </div>
+                    <h6
+                      v-if="!isProgress && colliders.length===0"
+                      class="green-text"
+                    >Brak kolidujących wydarzeń! :)</h6>
+                    <table v-if="!isProgress && colliders.length>0">
+                      <th>Wydarzenie</th>
+                      <th>Miasto</th>
+                      <th>Początek</th>
+                      <th>Koniec</th>
+                      <tr v-for="event in colliders" :key="event.id">
+                        <td>{{event.title}}</td>
+                        <td>
+                          <span v-if="event.town===null">diecezja</span>
+                          <span v-else>{{event.town}}</span>
+                        </td>
+                        <td>{{event.start}}</td>
+                        <td>{{event.end}}</td>
+                      </tr>
+                    </table>
+                    <br />
+                    <h5>Czy na pewno chcesz utworzyć wydarzenie {{title}}?</h5>
                   </div>
-                  <h6 v-if="!isProgress && colliders.length===0" class="green-text">Brak kolidujących wydarzeń! :)</h6>
-                  <table v-if="!isProgress && colliders.length>0">
-                    <th>Wydarzenie</th>
-                    <th>Miasto</th>
-                    <th>Początek</th>
-                    <th>Koniec</th>
-                    <tr v-for="event in colliders" :key="event.id">
-                      <td>{{event.title}}</td>
-                      <td>
-                        <span v-if="event.town===null">diecezja</span>
-                        <span v-else>{{event.town}}</span>
-                      </td>
-                      <td>{{event.start}}</td>
-                      <td>{{event.end}}</td>
-                    </tr>
-                  </table>
-                  <br />
-                  <h5>Czy na pewno chcesz utworzyć wydarzenie {{title}}?</h5>
                 </div>
                 <div class="modal-footer">
                   <button href="#!" class="modal-close btn btn-light">Wróć</button> &nbsp;
-                  <button class="btn btn-primary modal-close" @click.prevent="addEvent" href="#!">Dodaj</button>
+                  <button
+                    class="btn btn-primary modal-close"
+                    @click.prevent="addEvent"
+                    href="#!"
+                  >Dodaj</button>
                 </div>
               </div>
             </div>
@@ -188,8 +199,8 @@ export default {
         .then((response) => {
           this.colliders = response.data;
           this.isProgress = false;
-          
-        }).catch((error) => {
+        })
+        .catch((error) => {
           this.isProgress = false;
           this.$toaster.error("Edytuj datę");
           this.error = true;
@@ -268,6 +279,10 @@ export default {
   background: white;
   padding: 30px;
 }
+.modal{
+  max-height: 85% !important ;
+  overflow-y: scroll !important;
+}
 .progress {
   margin: 0px;
   background-color: transparent;
@@ -285,7 +300,7 @@ div.card-header {
 table {
   text-align: center !important;
 }
-.modal-footer{
+.modal-footer {
   /* text-align: center !important; */
   justify-content: center !important;
 }
