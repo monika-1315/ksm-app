@@ -2,7 +2,17 @@
   <div class="container" style="text-align: center">
     <h2>Panel sterowania</h2>
     <hr />
-    <br />
+     <h4>Wydarzenia:</h4>
+    <router-link :to="{ name: 'events' }" class v-if="this.$store.state.isLoggedIn">
+      <button class="btn-light btn-large" id="events">Kalendarium</button>
+    </router-link>
+    <router-link
+      :to="{ name: 'newevent' }"
+      v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
+    >
+      <button class="btn-light btn-large left-btn">Nowe wydarzenie</button>
+    </router-link>
+    <br>
     <h4>Twoje konto:</h4>
     <router-link :to="{ name: 'edit' }" class v-if="this.$store.state.isLoggedIn">
       <button class="btn-light btn-large" id="edit_data">Edytuj swoje dane</button>

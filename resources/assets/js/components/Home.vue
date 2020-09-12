@@ -44,6 +44,9 @@
       <router-link id="dash" :to="{ name: 'dashboard' }" class="nav-link">
           <button class="btn btn-large btn-primary">Wiadomości</button>
         </router-link>
+        <router-link id="cal" :to="{ name: 'events' }" class="nav-link">
+          <button class="btn btn-large btn-primary">Kalendarium</button>
+        </router-link>
     </div>
   </div>
 </template>

@@ -105,6 +105,13 @@
       <li>
         <router-link :to="{ name: 'events' }" class="nav-link">Kalendarium</router-link>
       </li>
+      <li>
+        <router-link
+          :to="{ name: 'newevent' }"
+          class="nav-link"
+          v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && (this.$store.state.is_leadership || this.$store.state.is_management)"
+        >Dodaj wydarzenie</router-link>
+      </li>
       <li
         v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
       >

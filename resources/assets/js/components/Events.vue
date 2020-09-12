@@ -65,6 +65,7 @@
           <p style="white-space: pre-line">
             <em>Opis:</em>
             {{event.about}}
+            <br><br>
           </p>
         </div>
         <div class="card-action"  v-if="is_authorized">
