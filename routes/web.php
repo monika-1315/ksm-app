@@ -24,7 +24,7 @@ Route::get('/api/getDivisionEvents', 'EventsController@getDivisionEvents');
 
 Route::post('/mail', 'Mail@sendMail');
 
-
+Route::get('/{any}', function() { return view('welcome'); })->where('any', '(.*)');
 
 
 

@@ -202,6 +202,10 @@ const router = new VueRouter({
             // requiresAuth: true
         }
     },
+    {
+        path: '/*',
+        redirect: { name: 'events' }
+    }
     ]
 });
 

@@ -193,7 +193,7 @@ export default {
           if (response.data.success == true) {
             this.$toaster.success("Wysłano email");
           } else {
-            this.$toaster.error("Nie udało się wysłać wiadomości email");
+            this.$toaster.error("Nie udało się wysłać wiadomości email. Sprawdź, czy Twój adres email jest poprawny lub skontaktuj się z administratorem.");
           }
         });
     },
