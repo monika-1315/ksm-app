@@ -30,7 +30,8 @@
                 type="password"
                 class="validate"
                 v-model="password"
-                placeholder="Wpisz i potwierdź hasło, jeżeli chcesz je zmienić"
+                placeholder="Wpisz i potwierdź hasło, jeżeli chcesz je zmienić (od 6 do 20 znaków)"
+                maxlength = "20"
               />
               <span
                 class="text text-danger"
@@ -44,6 +45,7 @@
                 type="password"
                 class="validate"
                 v-model="confirmPassword"
+                maxlength = "20"
               />
               <span
                 class="text text-danger"
