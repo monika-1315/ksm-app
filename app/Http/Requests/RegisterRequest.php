@@ -29,7 +29,7 @@ class RegisterRequest extends FormRequest
             'email' => 'required|email|unique:users', 
             'password' => 'required|string|min:6|max:20',
             'confirmPassword' => 'required|string|min:6|same:password|max:20',
-            'birthdate' => 'required|date',
+            'birthdate' => 'required|date|before:'. date('Y-m-d'),
             'division' => 'required|int',
         ];
     }
