@@ -15,7 +15,7 @@
             <div class="form-group">
               <label for="surname">Nazwisko</label>
               <input id="surname" type="text" class="validate" v-model="surname" />
-              <span class="text text-danger" v-if="error && errors.surname">{{ errors.name[0] }}</span>
+              <span class="text text-danger" v-if="error && errors.surname">{{ errors.surname[0] }}</span>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
@@ -87,19 +87,29 @@
                
               />
               <button
+                v-if="code!= undefined"
+                class="btn btn-light btn-tiny"
+                type="button"
+                name="action"
+                @click.prevent="sendCode()"
+              >Wyślij ponownie</button>
+              <span class="text text-danger" v-if="error && errors.email_code">{{ errors.email[0] }}</span>
+            </div>
+            <label style="text-align: justify">Rejestrując się wyrażasz zgodę na przetwarzanie Twoich danych osobowych przez Katolickie Stowarzyszenie Młodzieży Diecezji Legnickiej na potrzeby działania aplikacji.<br>Aplikacja wykorzystuje pliki cookie. </label>
+           
+            <div class="card-action" style="text-align:center">
+               <button
+                v-if="code=== undefined"
                 class="btn btn-light btn-tiny"
                 type="button"
                 name="action"
                 @click.prevent="sendCode()"
               >Wyślij kod</button>
-              <span class="text text-danger" v-if="error && errors.email_code">{{ errors.email[0] }}</span>
-            </div>
-            <label style="text-align: justify">Rejestrując się wyrażasz zgodę na przetwarzanie Twoich danych osobowych przez Katolickie Stowarzyszenie Młodzieży Diecezji Legnickiej na potrzeby działania aplikacji.<br>Aplikacja wykorzystuje pliki cookie. </label>
-            <div class="card-action" style="text-align:center">
               <button
                 class="btn btn-primary"
                 type="button"
                 name="action"
+                :disabled="code=== undefined"
                 @click.prevent="register()"
               >Zarejestruj się</button>
             </div>
@@ -126,7 +136,7 @@ export default {
       surname: "",
       email: "",
       email_code: "",
-      code: "0",
+      code: undefined,
       password: "",
       confirmPassword: "",
       birthdate: "",
@@ -168,6 +178,7 @@ export default {
           this.isProgress = false;
           this.error = true;
           this.errors = error.response.data.errors;
+          this.$toaster.error("Rejestracja nie powiodła się! Uzupełnij poprawnie formularz");
         });
         } else
          this.$toaster.error("Błędny kod aktywacyjny");
@@ -180,7 +191,8 @@ export default {
       );
     },
     sendCode: function () {
-      this.code = Math.round(Math.random() * 10000);
+      if (this.code===undefined)
+        this.code = Math.round(Math.random() * 10000);
       this.axios
         .post("/mail", {
           recipient: this.email,
