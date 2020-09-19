@@ -88,9 +88,6 @@ export default {
         });
       }
       this.isProgress=false;
-    },
-    getRandomInt() {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
     }
   }
 };
@@ -106,6 +103,13 @@ export default {
   max-width: 400px;
   margin: 30px auto;
   display: inline-block;
+}
+@media (max-device-width: 900px){
+ .small {
+  max-width: 300px;
+  margin: 20px auto;
+  display: inline-block;
+}
 }
 .progress {
   margin: 0px;
