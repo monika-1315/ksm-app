@@ -262,11 +262,11 @@ export default {
       if (this.$store.state.isLoggedIn) {
         var myThis = this;
         this.axios
-          .post(
-            "/api/auth/getUser?token=" +
-              this.$store.state.token +
-              "&email=" +
-              this.$store.state.email
+         .post(
+          "/api/auth/getUser",{
+            token: this.$store.state.token,
+            email: this.$store.state.email
+          }
           )
           .then(
             function (response) {
@@ -285,10 +285,10 @@ export default {
     getUser: function () {
       this.axios
         .post(
-          "/api/auth/getUser?token=" +
-            this.$store.state.token +
-            "&email=" +
-            this.$store.state.email
+          "/api/auth/getUser",{
+            token: this.$store.state.token,
+            email: this.$store.state.email
+          }
         )
         .then(
           function (response) {

@@ -197,11 +197,11 @@ export default {
     getUser: function () {
       var myThis = this;
       this.axios
-        .post(
-          "/api/auth/getUser?token=" +
-            this.$store.state.token +
-            "&email=" +
-            this.$store.state.email
+       .post(
+          "/api/auth/getUser",{
+            token: this.$store.state.token,
+            email: this.$store.state.email
+          }
         )
         .then(
           function (response) {

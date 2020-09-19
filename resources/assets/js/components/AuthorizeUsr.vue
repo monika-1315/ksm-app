@@ -24,13 +24,12 @@ export default {
     };
   },
   methods: {
-    authorize(id) {
+    authorize(id_) {
       this.axios
         .post(
-          "/api/auth/authorizeUser?token=" +
-            this.$store.state.token +
-            "&id=" +
-            id
+          "/api/auth/authorizeUser",{
+            token: this.$store.state.token,
+            id: id_}
         )
         .then(response => {
           this.isProgress = true;
@@ -47,13 +46,12 @@ export default {
           this.$toaster.error("Coś poszło nie tak!");
         });
     },
-    discard(id) {
+    discard(id_) {
       this.axios
         .post(
-          "/api/auth/discardUser?token=" +
-            this.$store.state.token +
-            "&id=" +
-            id
+          "/api/auth/discardUser", {
+            token:   this.$store.state.token,
+            id: id_}
         )
         .then(response => {
           this.isProgress = true;
@@ -71,7 +69,7 @@ export default {
         });
     },
     getUsers: function(){
-        this.axios.post('/api/auth/getUnauthorizedUsers?token=' + this.$store.state.token+'&division='+this.$store.state.division)
+        this.axios.post('/api/auth/getUnauthorizedUsers', {token: this.$store.state.token, division:this.$store.state.division})
             .then(function (response) {
                 this.isProgress = false;
                 this.users = response.data;
