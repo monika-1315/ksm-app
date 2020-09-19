@@ -10,7 +10,7 @@
           <form autocomplete="off" @submit.prevent="update" v-if="currentUser" method="post">
             <div class="form-group">
               <label for="name">Imię</label>
-              <input id="name" type="text" class="validate" v-model="name" required />
+              <input :disabled="currentUser.is_authorized===1" id="name" type="text" class="validate" v-model="name" required />
               <span class="text text-danger" v-if="error && errors.name">{{ errors.name[0] }}</span>
             </div>
             <div class="form-group">
