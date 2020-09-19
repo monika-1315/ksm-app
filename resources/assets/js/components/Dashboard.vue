@@ -5,23 +5,41 @@
     >Twoje konto nie zostało jeszcze zatwierdzone. Skontaktuj się z Kierownictwem oddziału</p>
     <div v-if="this.$store.state.is_authorized">
       <h3>
-        
+        <div class="hide-on-med-and-down">
+      <button
+        class="btn btn-primary"
+        type="button"
+        name="action"
+         @click="getMessages"
+        style="float: right"
+      >Odśwież</button>
+      
         <button
+           v-if="this.$store.state.is_leadership || this.$store.state.is_management"
           class="btn btn-primary yellow"
           type="button"
           name="action"
-          @click="newMessage"
           style="float: right"
-          v-if="this.$store.state.is_leadership || this.$store.state.is_management"
-        >Nowa wiadomość</button>
+           @click="newMessage"
+        >Utwórz</button></div>
+        <div class="hide-on-large-only">
         <button
-          class="btn btn-primary"
+        class="btn btn-primary"
+        type="button"
+        name="action"
+         @click="getMessages"
+        style="float: right"
+      ><i class="material-icons">refresh</i></button>
+      
+        <button
+          v-if="this.$store.state.is_leadership || this.$store.state.is_management"
+          class="btn btn-primary yellow"
           type="button"
           name="action"
-          id="getMessages"
-          @click="getMessages"
           style="float: right"
-        >Odśwież</button>
+           @click="newMessage"
+        ><i class="material-icons">add</i></button></div>
+        
        Najnowsze ogłoszenia:<br>
       </h3>
       <br />

@@ -87,7 +87,7 @@
     </nav>
 
     <p id="notification" class="amber accent-1" v-if="show && is_leadership && unauthorized>0"><B>{{unauthorized}}</B> użytkowników oczekuje na zatwierdzenie! 
-    <router-link :to="{ name: 'authorize' }"><a @click="close()">Zatwierdź teraz</a></router-link>  <a @click="close()"> <i class="small material-icons right">close</i> </a></p>
+    <router-link :to="{ name: 'authorize' }"><a @click="close()">Zatwierdź teraz</a></router-link>  <a @click="close()"> <i class="material-icons right">close</i> </a></p>
 
     <ul id="slide-out" class="sidenav sidenav-close ">
       <li>
@@ -248,7 +248,7 @@ export default {
   },
   watch:{
     name(){
-      this.getUnauthorizedtUsers();
+      if(name!="") this.getUnauthorizedtUsers();
     }
   },
   computed: {

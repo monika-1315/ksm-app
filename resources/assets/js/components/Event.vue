@@ -19,7 +19,7 @@
               type="button"
               name="action"
               style="float: right"
-            >Dodaj do kalendarza Google</button>
+            ><i class="material-icons left">event</i>Dodaj do kalendarza Google</button>
           </a>
 
           <br />
@@ -47,13 +47,13 @@
 
           <div>
             <h6>Kontakt</h6>
-            <p v-if="email!==null">{{email}}</p>
-            <p v-else>ksmdl.zarzad@gmail.com</p>
+            <p v-if="email!==null"><i class="material-icons left">mail_outline</i>{{email}}</p>
+            <p v-else><i class="material-icons left">mail_outline</i>ksmdl.zarzad@gmail.com</p>
           </div>
 
           <div>
             <h6>Lokalizacja</h6>
-            <p>{{location}}</p>
+            <p><i class="material-icons left">location_on</i>{{location}}</p>
           </div>
 
           <div>
@@ -73,7 +73,7 @@
           </div>
           <div>
             <h5>
-              Liczba zadeklarowanych uczestników: {{participants_cnt}}
+              Liczba zadeklarowanych uczestników: {{participants_cnt}}<i class="material-icons">people</i>
               <button
                 class="btn btn-light"
                 type="button"
@@ -103,7 +103,6 @@
             <p style="font-style:italic; font-size:small">
               Utworzono {{this.created_at}} przez {{author}}
               <span v-if="modified_at!==null">
-                ,
                 <br />
                 ostatnia modyfikacja: {{modified_at}}
               </span>
@@ -125,6 +124,7 @@
                       style="color: darkgreen; font-style:italic; "
                     >(Potwierdzono przybycie)</span>
                   </span>
+                  <i class="material-icons">event_available</i>
                 </div>
                 <div class="collapsible-body">
                   <form autocomplete="off" @submit.prevent="signParticipant" v-if="!success">
@@ -188,7 +188,7 @@
               name="action"
               @click="editEvent"
               v-if="is_admin"
-            >Edytuj wydarzenie</button>
+            ><i class="material-icons left">edit</i>Edytuj wydarzenie</button>
           </div>
         </div>
       </div>
