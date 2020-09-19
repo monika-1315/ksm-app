@@ -61,6 +61,7 @@ class UsersController extends Controller
         $data = User::where('division', $request->only('division'))
             ->where('is_authorized', 0)
             ->orderby('id', 'desc')
+            ->select('id', 'name', 'surname')
             ->get();
         return response()->json($data);
     }

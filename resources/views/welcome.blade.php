@@ -9,6 +9,7 @@
     <meta name="theme-color" content="#fecb00">
     <meta name="description" content="Aplikacja Katolickiego Stowarzyszenia Młodzieży Legnickiej">
     <link rel="apple-touch-icon" href="/images/icon_small.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>KSM DL</title>
 
    

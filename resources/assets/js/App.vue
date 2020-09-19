@@ -86,6 +86,9 @@
       </div>
     </nav>
 
+    <p id="notification" class="amber accent-1" v-if="show && is_leadership && unauthorized>0"><B>{{unauthorized}}</B> użytkowników oczekuje na zatwierdzenie! 
+    <router-link :to="{ name: 'authorize' }"><a @click="close()">Zatwierdź teraz</a></router-link>  <a @click="close()"> <i class="small material-icons right">close</i> </a></p>
+
     <ul id="slide-out" class="sidenav sidenav-close ">
       <li>
         <div class="user-view ">
@@ -188,7 +191,7 @@
             :to="{ name: 'authorize' }"
             class="nav-link"
             v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized && this.$store.state.is_leadership"
-          >Zatwierdzaj członków oddziału</router-link>
+          >Zatwierdzaj członków <span class="new badge amber lighten-1" data-badge-caption="">{{unauthorized}}</span></router-link>
         </li>
       </div>
       <div v-if="this.$store.state.is_management">
@@ -237,9 +240,23 @@
 
 <script>
 export default {
+   data() {
+    return {
+     unauthorized: 0,
+     show: true
+    };
+  },
+  watch:{
+    name(){
+      this.getUnauthorizedtUsers();
+    }
+  },
   computed: {
     name() {
       return this.$store.state.name;
+    },
+    is_leadership() {
+      return this.$store.state.is_leadership;
     },
   },
   methods: {
@@ -271,6 +288,7 @@ export default {
           .then(
             function (response) {
               this.$store.commit("refreshUser", response.data[0]);
+               this.getUnauthorizedtUsers();
             }.bind(this)
           )
           .catch((error) => {
@@ -296,12 +314,24 @@ export default {
           }.bind(this)
         );
     },
+    getUnauthorizedtUsers: function(){
+      this.isProgress = true;
+        this.axios.post('/api/auth/getUnauthorizedUsers', {token: this.$store.state.token, division:this.$store.state.division})
+            .then(function (response) {
+                this.isProgress = false;
+                this.unauthorized = response.data.length;
+            }.bind(this)); 
+            },  
+            close(){
+              this.show=false;
+            }
   },
   created: function () {
     this.checkToken();
     // if (this.$store.state.division === 0 && this.$store.state.isLoggedIn){
     //     this.getUser();
     // }
+   
     document.addEventListener("DOMContentLoaded", function () {
       var elems = document.querySelectorAll(".sidenav");
       var options = {};
@@ -361,5 +391,10 @@ export default {
 .nav-link {
   font-weight: 400 !important;
   color: black !important;
+}
+#notification{
+  text-align: center;
+  padding-left: 9%;
+  padding-right: 9%;
 }
 </style>

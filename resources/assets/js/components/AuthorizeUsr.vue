@@ -1,6 +1,7 @@
 <template>
   <div class="container" style="text-align:center" v-if=" this.$store.state.is_leadership">
     <h2>Na autoryzację oczekuje: {{users.length}} członków</h2>
+    <button class="btn btn-primary" @click="getUsers">Odśwież</button>
     <br />
     <div class="progress" v-if="isProgress">
       <div class="indeterminate"></div>
@@ -69,6 +70,7 @@ export default {
         });
     },
     getUsers: function(){
+      this.isProgress = true;
         this.axios.post('/api/auth/getUnauthorizedUsers', {token: this.$store.state.token, division:this.$store.state.division})
             .then(function (response) {
                 this.isProgress = false;
