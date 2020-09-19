@@ -29,11 +29,11 @@
           </div>
           <div>
             <h6>Data rozpoczęcia</h6>
-            <p>{{new Date(start_date).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })+" godz. "+start_time.substring(0,5)}}</p>
+            <p>{{formatDate(start_date)+" godz. "+start_time.substring(0,5)}}</p>
           </div>
           <div>
             <h6>Data zakończenia</h6>
-            <p>{{new Date(end_date).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })+" godz. "+end_time.substring(0,5)}}</p>
+            <p>{{formatDate(end_date)+" godz. "+end_time.substring(0,5)}}</p>
           </div>
           <div>
             <h6>Grupa docelowa</h6>
@@ -243,6 +243,9 @@ export default {
     },
   },
   methods: {
+     formatDate(date){
+      return new Date(date.replace(' ', 'T')).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    },
     getDivisions: function () {
       this.axios.get("/api/getDivisions").then(
         function (response) {

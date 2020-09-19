@@ -41,24 +41,22 @@
       >
         <div class="card-header card-title activator">
           {{event.title}}
-          <i style="float: right; font-size:small">więcej</i>
+          <i class="material-icons right">expand_more</i>
         </div>
 
         <div class="card-content">
-          <h5>{{new Date(event.start).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })+" - "
-            +new Date(event.end).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}}</h5>
+          <h5>{{formatDate(event.start)+" - "
+            +formatDate(event.end)}}</h5>
           <h6>{{event.location}}</h6>
         </div>
         <div class="card-reveal">
           <div class="card-title activator">
             {{event.title}}
-            <i style="float: right; font-size:small">mniej</i>
+            <i class="material-icons right">expand_less</i>
           </div>
           <h5>
-            {{new Date(event.start).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-            +" "+event.start.split(" ")[1].substring(0,5)+" - "
-            +new Date(event.end).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })+" "
-            +event.end.split(" ")[1].substring(0,5)}}
+            {{formatDate(event.start) +" "+event.start.split(" ")[1].substring(0,5)+" - "
+            +formatDate(event.end)+" "+event.end.split(" ")[1].substring(0,5)}}
           </h5>
           <h6>{{event.location}}</h6>
 
@@ -151,6 +149,9 @@ export default {
     },
   },
   methods: {
+    formatDate(date){
+      return new Date(date.replace(' ', 'T')).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    },
     getEvents: function () {
       this.isProgress = true;
       switch (this.selectedTab) {
