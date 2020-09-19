@@ -422,13 +422,7 @@ export default {
   margin: 0px;
   background-color: transparent;
 }
-input:focus {
-  border-bottom: 1px solid royalblue !important;
-  box-shadow: 0 1px 0 0 royalblue !important;
-}
-label.active {
-  color: royalblue !important;
-}
+
 div.card-header,
 .collapsible-header {
   background-color: rgba(254, 203, 0, 0.712);
@@ -447,6 +441,10 @@ th {
 }
 select {
   color: black !important;
+}
+
+.card-action button {
+  margin: 0.25em
 }
 
 .switch label input[type="checkbox"]:checked + .lever:after {
