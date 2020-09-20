@@ -248,7 +248,7 @@ export default {
   },
   watch:{
     name(){
-      if(name!="") this.getUnauthorizedtUsers();
+      if(this.is_leadership) this.getUnauthorizedUsers();
     }
   },
   computed: {
@@ -261,6 +261,7 @@ export default {
   },
   methods: {
     logout() {
+      this.unauthorized=0;
       this.axios
         .get("/api/auth/logout?token=" + this.$store.state.token)
         .then((response) => {
@@ -274,6 +275,7 @@ export default {
           this.$store.commit("LogoutUser");
           this.$router.push({ name: "login" });
         });
+        
     },
     checkToken() {
       if (this.$store.state.isLoggedIn) {
@@ -288,7 +290,7 @@ export default {
           .then(
             function (response) {
               this.$store.commit("refreshUser", response.data[0]);
-               this.getUnauthorizedtUsers();
+               this.getUnauthorizedUsers();
             }.bind(this)
           )
           .catch((error) => {
@@ -314,7 +316,7 @@ export default {
           }.bind(this)
         );
     },
-    getUnauthorizedtUsers: function(){
+    getUnauthorizedUsers: function(){
       this.isProgress = true;
         this.axios.post('/api/auth/getUnauthorizedUsers', {token: this.$store.state.token, division:this.$store.state.division})
             .then(function (response) {
