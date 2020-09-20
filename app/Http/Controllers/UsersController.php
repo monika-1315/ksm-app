@@ -205,7 +205,7 @@ class UsersController extends Controller
                 $user[0]->id,
                 'Zmiana hasła do Twojego konta.',
                 'Witaj!<br>Na żądanie zostało zresetowane hasło do Twojego konta. Twoje nowe hasło to:<br><b>'.$password
-                .'</b><br> Po zalogowaniu ustaw nowe hasło w zakładce "Edytuj sane osobowe".'
+                .'</b><br> Po zalogowaniu zmień hasło w zakładce "Edytuj sane osobowe".'
             );
             return response()->json([
                 'success' => true ,

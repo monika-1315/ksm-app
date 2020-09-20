@@ -41,9 +41,9 @@ class Mail
             $mail->Subject = $subject;
             $mail->Body    = $body.'<br><br>Pozdrawiamy,<br>Zespół KSM DL<br><a href="app-ksm.legnica.pl">app-ksm.legnica.pl</a>';
 
-            $mail->send();
+            $success=$mail->send();
             return response()->json([
-                'success' => true
+                'success' => $success
             ]);
         } catch (Exception $e) {
             return response()->json([

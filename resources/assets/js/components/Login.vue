@@ -48,9 +48,9 @@
         name="action"
         @click="login()"
       >Zaloguj się</button>
-    </div><br>
+    </div>
     <a href="#" @click=newPassword()>Zapomniałem hasła</a>
-    <br />
+    <br /><br>
     <h5>
       Nie masz konta?
       <br />
@@ -79,10 +79,7 @@ export default {
       loginError: false,
       errors: {},
       isProgress: false,
-      googleSignInParams: {
-        client_id:
-          "519675463204-7bc7lvaqti1teo41im6e5he5lbjjvthk.apps.googleusercontent.com",
-      },
+      
     };
   },
   methods: {
@@ -118,7 +115,7 @@ export default {
         });
     },
     newPassword(){
-      var email = prompt('Podaj adres email, dla którego chcesz przywrócić hasło');
+      var email = prompt('Podaj adres email, dla którego chcesz zresetować hasło');
       this.isProgress = true;
       this.axios
         .post("api/forgotPassword", {
@@ -128,7 +125,10 @@ export default {
           if (response.data.success == true) {
             
               this.isProgress = false;
+              if(response.data.sent)
               this.$toaster.success("Email z nowym hasłem został wysłany");
+              else
+              this.$toaster.error("Coś poszło nie tak!");
           } else {
               this.isProgress = false;
               this.$toaster.error("Nie ma konta na podany adres email!");

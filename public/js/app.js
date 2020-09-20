@@ -5203,10 +5203,7 @@ __webpack_require__.r(__webpack_exports__);
       password: "",
       loginError: false,
       errors: {},
-      isProgress: false,
-      googleSignInParams: {
-        client_id: "519675463204-7bc7lvaqti1teo41im6e5he5lbjjvthk.apps.googleusercontent.com"
-      }
+      isProgress: false
     };
   },
   methods: {
@@ -5246,15 +5243,14 @@ __webpack_require__.r(__webpack_exports__);
     newPassword: function newPassword() {
       var _this2 = this;
 
-      var email = prompt('Podaj adres email, dla którego chcesz przywrócić hasło');
+      var email = prompt('Podaj adres email, dla którego chcesz zresetować hasło');
       this.isProgress = true;
       this.axios.post("api/forgotPassword", {
         email: email
       }).then(function (response) {
         if (response.data.success == true) {
           _this2.isProgress = false;
-
-          _this2.$toaster.success("Email z nowym hasłem został wysłany");
+          if (response.data.sent) _this2.$toaster.success("Email z nowym hasłem został wysłany");else _this2.$toaster.error("Coś poszło nie tak!");
         } else {
           _this2.isProgress = false;
 
@@ -63316,7 +63312,6 @@ var render = function() {
         [_vm._v("Zaloguj się")]
       )
     ]),
-    _c("br"),
     _vm._v(" "),
     _c(
       "a",
@@ -63331,6 +63326,7 @@ var render = function() {
       [_vm._v("Zapomniałem hasła")]
     ),
     _vm._v(" "),
+    _c("br"),
     _c("br"),
     _vm._v(" "),
     _vm._m(0),
