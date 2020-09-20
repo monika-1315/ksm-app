@@ -14,14 +14,16 @@ use Illuminate\Http\Request;
 */
 
 
-Route::get('/api/getDivisions', 'DivisionsController@getDivisions');
-Route::get('/api/getDivisionById', 'DivisionsController@getDivisionById');
-Route::get('/api/getManagement', 'APIController@getManagement');
-Route::get('/api/getDivisionsStats', 'DivisionsController@getDivisionsStats');
+Route::get('/getDivisions', 'DivisionsController@getDivisions');
+Route::get('/getDivisionById', 'DivisionsController@getDivisionById');
+Route::get('/getManagement', 'APIController@getManagement');
+Route::get('/getDivisionsStats', 'DivisionsController@getDivisionsStats');
 
-Route::get('/api/getEvents', 'EventsController@getUpcomingEvents');
-Route::get('/api/getOldEvents', 'EventsController@getOldEvents');
-Route::get('/api/getDivisionEvents', 'EventsController@getDivisionEvents');
+Route::get('/getEvents', 'EventsController@getUpcomingEvents');
+Route::get('/getOldEvents', 'EventsController@getOldEvents');
+Route::get('/getDivisionEvents', 'EventsController@getDivisionEvents');
+
+Route::post('/forgotPassword', 'UsersController@newPassword');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

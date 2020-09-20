@@ -81,27 +81,28 @@ class UsersController extends Controller
         return response()->json($data);
     }
 
-    public static function getRecipients( $division, $group){
-        $recipients=[];
-        if($division == 0 || $division == null || $division ==-1){
-            if($group==0 || $group==null){ //everyone
-                $recipients =User::where('is_authorized', '=', 1)
-                ->where('want_messages', '=', 1)
-                ->select('email')
-                ->get();
-            } else if($group ==2){//leaderships only
-                $recipients =User::where('is_authorized', '=', 1)
-                ->where('is_leadership', '=', 1)
-                ->where('want_messages', '=', 1)
-                ->select('email')
-                ->get();
+    public static function getRecipients($division, $group)
+    {
+        $recipients = [];
+        if ($division == 0 || $division == null || $division == -1) {
+            if ($group == 0 || $group == null) { //everyone
+                $recipients = User::where('is_authorized', '=', 1)
+                    ->where('want_messages', '=', 1)
+                    ->select('email')
+                    ->get();
+            } else if ($group == 2) { //leaderships only
+                $recipients = User::where('is_authorized', '=', 1)
+                    ->where('is_leadership', '=', 1)
+                    ->where('want_messages', '=', 1)
+                    ->select('email')
+                    ->get();
             }
         } else {
-            $recipients =User::where('is_authorized', '=', 1)
-            ->where('division', '=', $division)
-            ->where('want_messages', '=', 1)
-            ->select('email')
-            ->get();
+            $recipients = User::where('is_authorized', '=', 1)
+                ->where('division', '=', $division)
+                ->where('want_messages', '=', 1)
+                ->select('email')
+                ->get();
         }
         return $recipients;
     }
@@ -137,7 +138,7 @@ class UsersController extends Controller
                 'Zmiana uprawnień Twojego konta.',
                 'Witaj!<br>Twojemu kontu w aplikacji KSM DL zostały właśnie odebrane uprawnienia członka Kierownictwa.'
             );
-        } else{
+        } else {
             $user->is_leadership = 1;
             Mail::sendById(
                 $request->get('id'),
@@ -155,15 +156,14 @@ class UsersController extends Controller
     {
         $user = User::find($request->get('id'));
 
-        if ($user->is_management === 1){
+        if ($user->is_management === 1) {
             $user->is_management = 0;
             Mail::sendById(
                 $request->get('id'),
                 'Zmiana uprawnień Twojego konta.',
                 'Witaj!<br>Twojemu kontu w aplikacji KSM DL zostały właśnie odebrane uprawnienia członka Zarządu Diecezjalnego.'
             );
-        }
-        else{
+        } else {
             $user->is_management = 1;
             Mail::sendById(
                 $request->get('id'),
@@ -175,5 +175,45 @@ class UsersController extends Controller
         return response()->json([
             'success' => true
         ]);
+    }
+
+    static function randomString(
+        int $length = 12,
+        string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    ): string {
+        if ($length < 1) {
+            throw new \RangeException("Length must be a positive integer");
+        }
+        $pieces = [];
+        $max = mb_strlen($keyspace, '8bit') - 1;
+        for ($i = 0; $i < $length; ++$i) {
+            $pieces[] = $keyspace[random_int(0, $max)];
+        }
+        return implode('', $pieces);
+    }
+
+    public function newPassword(EmailRequest $request)
+    {
+        $user = User::where('email', '=', $request->only('email'))
+            ->get();
+        if (sizeof($user)> 0) {
+            $password = UsersController::randomString();
+            $user_=User::find($user[0]->id);
+            $user_->password = bcrypt($password);
+            $user_->save();
+            $sent = Mail::sendById(
+                $user[0]->id,
+                'Zmiana hasła do Twojego konta.',
+                'Witaj!<br>Na żądanie zostało zresetowane hasło do Twojego konta. Twoje nowe hasło to:<br><b>'.$password
+                .'</b><br> Po zalogowaniu ustaw nowe hasło w zakładce "Edytuj sane osobowe".'
+            );
+            return response()->json([
+                'success' => true ,
+                'sent'=> $sent
+            ]);
+        } else
+            return response()->json([
+                'success' => false 
+            ]);
     }
 }

@@ -48,8 +48,8 @@
         name="action"
         @click="login()"
       >Zaloguj się</button>
-    </div>
-
+    </div><br>
+    <a href="#" @click=newPassword()>Zapomniałem hasła</a>
     <br />
     <h5>
       Nie masz konta?
@@ -117,6 +117,29 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
+    newPassword(){
+      var email = prompt('Podaj adres email, dla którego chcesz przywrócić hasło');
+      this.isProgress = true;
+      this.axios
+        .post("api/forgotPassword", {
+          email: email
+        })
+        .then((response) => {
+          if (response.data.success == true) {
+            
+              this.isProgress = false;
+              this.$toaster.success("Email z nowym hasłem został wysłany");
+          } else {
+              this.isProgress = false;
+              this.$toaster.error("Nie ma konta na podany adres email!");
+          }
+        })
+        .catch((error) => {
+          this.isProgress = false;
+          this.loginError = true;
+          this.$toaster.error(error.response.data.errors.email[0]);
+        });
+    }
   },
 };
 </script>
