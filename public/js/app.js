@@ -3650,6 +3650,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -60482,6 +60484,7 @@ var render = function() {
                         disabled: _vm.currentUser.is_authorized === 1,
                         id: "name",
                         type: "text",
+                        pattern: "([A-Za-z- ])+",
                         required: ""
                       },
                       domProps: { value: _vm.name },
@@ -60517,7 +60520,12 @@ var render = function() {
                         }
                       ],
                       staticClass: "validate",
-                      attrs: { id: "surname", type: "text", required: "" },
+                      attrs: {
+                        id: "surname",
+                        type: "text",
+                        pattern: "([A-Za-z- ])+",
+                        required: ""
+                      },
                       domProps: { value: _vm.surname },
                       on: {
                         input: function($event) {
@@ -60549,7 +60557,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "validate",
-                      attrs: { id: "email", type: "text", required: "" },
+                      attrs: { id: "email", type: "email", required: "" },
                       domProps: { value: _vm.email },
                       on: {
                         input: function($event) {
@@ -60588,6 +60596,7 @@ var render = function() {
                         type: "password",
                         placeholder:
                           "Wpisz i potwierdź hasło, jeżeli chcesz je zmienić (od 6 do 20 znaków)",
+                        minlength: "6",
                         maxlength: "20"
                       },
                       domProps: { value: _vm.password },
@@ -60626,6 +60635,7 @@ var render = function() {
                       attrs: {
                         id: "confirm_password",
                         type: "password",
+                        minlength: "6",
                         maxlength: "20"
                       },
                       domProps: { value: _vm.confirmPassword },
@@ -61082,7 +61092,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "validate",
-                          attrs: { id: "email", type: "text" },
+                          attrs: { id: "email", type: "email" },
                           domProps: { value: _vm.email },
                           on: {
                             input: function($event) {
@@ -63150,7 +63160,10 @@ var staticRenderFns = [
         "Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej\n      "
       ),
       _c("a", { attrs: { href: "http://ksm.legnica.pl" } }, [
-        _vm._v("stronie! ->")
+        _vm._v("stronie!  "),
+        _c("i", { staticClass: "tiny material-icons" }, [
+          _vm._v("arrow_forward")
+        ])
       ])
     ])
   }
@@ -63223,7 +63236,7 @@ var render = function() {
               }
             ],
             staticClass: "validate",
-            attrs: { id: "email", type: "text" },
+            attrs: { id: "email", type: "text", autofocus: "" },
             domProps: { value: _vm.email },
             on: {
               input: function($event) {
@@ -63312,6 +63325,7 @@ var render = function() {
         [_vm._v("Zaloguj się")]
       )
     ]),
+    _c("br"),
     _vm._v(" "),
     _c(
       "a",
@@ -63370,7 +63384,10 @@ var staticRenderFns = [
         "Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej\n    "
       ),
       _c("a", { attrs: { href: "http://ksm.legnica.pl" } }, [
-        _vm._v("stronie! ->")
+        _vm._v("stronie! "),
+        _c("i", { staticClass: "tiny material-icons" }, [
+          _vm._v("arrow_forward")
+        ])
       ])
     ])
   }
@@ -64487,7 +64504,12 @@ var render = function() {
                         }
                       ],
                       staticClass: "validate",
-                      attrs: { id: "name", type: "text", required: "" },
+                      attrs: {
+                        id: "name",
+                        type: "text",
+                        pattern: "([A-Za-z- ])+",
+                        required: ""
+                      },
                       domProps: { value: _vm.name },
                       on: {
                         input: function($event) {
@@ -64521,7 +64543,11 @@ var render = function() {
                         }
                       ],
                       staticClass: "validate",
-                      attrs: { id: "surname", type: "text" },
+                      attrs: {
+                        id: "surname",
+                        type: "text",
+                        pattern: "([A-Za-z- ])+"
+                      },
                       domProps: { value: _vm.surname },
                       on: {
                         input: function($event) {
@@ -64553,7 +64579,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "validate",
-                      attrs: { id: "email", type: "text", required: "" },
+                      attrs: { id: "email", type: "email", required: "" },
                       domProps: { value: _vm.email },
                       on: {
                         input: function($event) {

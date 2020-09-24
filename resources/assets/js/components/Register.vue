@@ -9,17 +9,17 @@
           <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
             <div class="form-group">
               <label for="name">Imię</label>
-              <input id="name" type="text" class="validate" v-model="name" required />
+              <input id="name" type="text" class="validate" v-model="name" pattern="([A-Za-z- ])+" required />
               <span class="text text-danger" v-if="error && errors.name">{{ errors.name[0] }}</span>
             </div>
             <div class="form-group">
               <label for="surname">Nazwisko</label>
-              <input id="surname" type="text" class="validate" v-model="surname" />
+              <input id="surname" type="text" class="validate" v-model="surname" pattern="([A-Za-z- ])+"  />
               <span class="text text-danger" v-if="error && errors.surname">{{ errors.surname[0] }}</span>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="text" class="validate" v-model="email" required />
+              <input id="email" type="email" class="validate" v-model="email" required />
               <span class="text text-danger" v-if="error && errors.email">{{ errors.email[0] }}</span>
             </div>
             <div class="form-group">

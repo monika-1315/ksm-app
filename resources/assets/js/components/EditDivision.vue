@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="text" class="validate" v-model="email"/>
+              <input id="email" type="email" class="validate" v-model="email"/>
               <span class="text text-danger" v-if="error && errors.email">{{ errors.email[0] }}</span>
             </div>
             <div class="switch">

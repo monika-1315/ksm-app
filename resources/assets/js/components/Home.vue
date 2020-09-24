@@ -37,7 +37,7 @@
         <br />Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej
         <a
           href="http://ksm.legnica.pl"
-        >stronie! -></a>
+        >stronie!  <i class="tiny material-icons">arrow_forward</i></a>
       </h6>
     </div>
     <div v-else>

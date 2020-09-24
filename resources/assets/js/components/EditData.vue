@@ -10,17 +10,17 @@
           <form autocomplete="off" @submit.prevent="update" v-if="currentUser" method="post">
             <div class="form-group">
               <label for="name">Imię</label>
-              <input :disabled="currentUser.is_authorized===1" id="name" type="text" class="validate" v-model="name" required />
+              <input :disabled="currentUser.is_authorized===1" id="name" type="text" class="validate" pattern="([A-Za-z- ])+" v-model="name" required />
               <span class="text text-danger" v-if="error && errors.name">{{ errors.name[0] }}</span>
             </div>
             <div class="form-group">
               <label for="surname">Nazwisko</label>
-              <input id="surname" type="text" class="validate" v-model="surname" required />
+              <input id="surname" type="text" class="validate" v-model="surname" pattern="([A-Za-z- ])+" required />
               <span class="text text-danger" v-if="error && errors.surname">{{ errors.name[0] }}</span>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="text" class="validate" v-model="email" required />
+              <input id="email" type="email" class="validate" v-model="email" required />
               <span class="text text-danger" v-if="error && errors.email">{{ errors.email[0] }}</span>
             </div>
             <div class="form-group">
@@ -31,6 +31,7 @@
                 class="validate"
                 v-model="password"
                 placeholder="Wpisz i potwierdź hasło, jeżeli chcesz je zmienić (od 6 do 20 znaków)"
+                minlength="6"
                 maxlength = "20"
               />
               <span
@@ -45,6 +46,7 @@
                 type="password"
                 class="validate"
                 v-model="confirmPassword"
+                minlength="6"
                 maxlength = "20"
               />
               <span

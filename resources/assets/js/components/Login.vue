@@ -15,7 +15,7 @@
     <div class="login-form">
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="text" class="validate" v-model="email" />
+          <input id="email" type="text" class="validate" autofocus v-model="email" />
           <label for="email">Email</label>
           <span class="text text-danger" v-if="loginError && errors.email">{{ errors.email[0] }}</span>
         </div>
@@ -48,7 +48,7 @@
         name="action"
         @click="login()"
       >Zaloguj się</button>
-    </div>
+    </div><br>
     <a href="#" @click=newPassword()>Zapomniałem hasła</a>
     <br /><br>
     <h5>
@@ -62,7 +62,7 @@
     </div>
     <h6>
       <br />Czym jest Katolickie Stowarzysznie Młodzieży? Zobacz na naszej
-      <a href="http://ksm.legnica.pl">stronie! -></a>
+      <a href="http://ksm.legnica.pl">stronie! <i class="tiny material-icons">arrow_forward</i></a>
     </h6>
   </div>
 </template>
