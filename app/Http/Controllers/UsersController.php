@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EmailRequest;
+use App\Http\Requests\NewUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\DivisionIdRequest;
 use App\Http\Requests\IdRequest;
@@ -173,6 +174,36 @@ class UsersController extends Controller
         }
         $user->save();
         return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function addUser(NewUserRequest $request)
+    {
+        $user = new User();
+
+        $user->name = $request->get('name');
+        $user->surname = $request->get('surname');
+        $user->email = $request->get('email');        
+        $user->birthdate = $request->get('birthdate');
+        $user->division = $request->get('division');
+        $user->want_messages = 0;
+        $leader = $request->get('is_leadership');
+        $user->is_leadership = $leader;
+        $user->is_authorized = $request->get('is_authorized');
+
+        $password = UsersController::randomString();
+        $user->password = bcrypt($password);
+        $user->save();
+
+        Mail::send($request->get('email'), 'Utworzono konto w aplikacji KSM DL', 'Witaj '.$request->get('name').'!<br>'
+                    .'Zostało właśnie utworzone dla Ciebie konto w Aplikacji KSM DL. <br>Możesz zalogować się na stronie <a href="app-ksm.legnica.pl">app-ksm.legnica.pl</a> '
+                    .'używając maila '.$request->get('email').'. Twoje hasło to <b>'.$password.'</b>. Po zalogowaniu zmień hasło w zakładce "Edytuj sane osobowe". '
+                    .'Zalogowanie się oznacza wyrażenie zgody na przetwarzanie Twoich danych przez Katolickie Stowarzyszenie Młodzieży Diecezji Legnickiej.'
+                    .'<br>Jeżeli nie chcesz/nie wyrażasz zgody na posiadanie konta w aplikacji, odpisz na tego maila, a usuniemy Twoje dane.' );
+
+        return response()->json([
+
             'success' => true
         ]);
     }

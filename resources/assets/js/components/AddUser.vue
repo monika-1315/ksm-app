@@ -20,27 +20,7 @@
               <input id="email" type="text" class="validate" v-model="email" />
               <span class="text text-danger" v-if="error && errors.email">{{ errors.email[0] }}</span>
             </div>
-            <div class="form-group">
-              <label for="password">Hasło</label>
-              <input id="password" type="password" class="validate" v-model="password" />
-              <span
-                class="text text-danger"
-                v-if="error && errors.password"
-              >{{ errors.password[0] }}</span>
-            </div>
-            <div class="form-group">
-              <label for="confirm_password">Powtórz hasło</label>
-              <input
-                id="confirm_password"
-                type="password"
-                class="validate"
-                v-model="confirmPassword"
-              />
-              <span
-                class="text text-danger"
-                v-if="error && errors.confirmPassword"
-              >{{ errors.confirmPassword[0] }}</span>
-            </div>
+            
             <div class="form-group">
               <label for="birthdate">Data urodzenia</label>
               <input type="date" id="birthdate" v-model="birthdate" />
@@ -69,8 +49,8 @@
             <div class="form-group">
               <label>
                 <input type="checkbox" class="filled-in" id="leader" v-model="is_leadership" />
-                <span style="color: black">Członek Kierownictwa</span>
-                Członek zostanie automatycznie zautoryzowany.
+                <span style="color: black">Członek Kierownictwa</span><br>
+                <span v-if=" this.$store.state.is_leadership || is_leadership">Członek zostanie automatycznie zautoryzowany.</span>
               </label>
             </div>
 
@@ -96,8 +76,6 @@ export default {
       name: "",
       surname: "",
       email: "",
-      password: "",
-      confirmPassword: "",
       birthdate: "",
       is_leadership: 0,
       error: false,
@@ -111,17 +89,15 @@ export default {
   methods: {
     register() {
       this.axios
-        .post("api/auth/register", {
+        .post("api/auth/addUser", {
+          token: this.$store.state.token,
           name: this.name,
           surname: this.surname,
           email: this.email,
-          password: this.password,
-          confirmPassword: this.confirmPassword,
           birthdate: this.birthdate,
           division: this.division,
           is_leadership: this.is_leadership,
-          is_authorized: this.is_leadership || this.$store.state.is_leadership,
-          wantMessages: 0,
+          is_authorized: this.is_leadership || this.$store.state.is_leadership
         })
         .then((response) => {
           this.isProgress = true;
