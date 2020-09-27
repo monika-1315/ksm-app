@@ -45,13 +45,13 @@ class UsersController extends Controller
     public function discardUser(IdRequest $request)
     {
         $user = User::find($request->get('id'));
-        $user->is_authorized = 1;
-        $user->save();
+        
         Mail::sendById(
             $request->get('id'),
             'Twoje konto zostało odrzucone.',
             'Witaj!<br>Niestety, Kierownictwo wybranego przez Ciebie oddziału nie rozpoznało Cię i usunęło Twoje konto z aplikacji. Spróbuj skontaktować się ze swoim oddziałem. Dziękujemy, że chciałeś korzystać z naszej aplikacji!'
         );
+        $user->delete();
         return response()->json([
             'success' => true
         ]);

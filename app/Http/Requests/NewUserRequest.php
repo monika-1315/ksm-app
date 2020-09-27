@@ -26,7 +26,7 @@ class NewUserRequest extends FormRequest
         return [
             'surname' => 'required|string',
             'name' => 'required|string',
-            'email' => 'required|email', 
+            'email' => 'required|email|unique:users', 
             'birthdate' => 'required|date|before:'. date('Y-m-d'),
             'division' => 'required|int',
             'is_leadership' =>'required|boolean',

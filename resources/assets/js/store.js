@@ -52,6 +52,7 @@ export default new Vuex.Store({
             state.is_management = false
             state.is_authorized = true
             state.name = '';
+            state.messages= null
         },
         tokenStored(state) {
             state.token = localStorage.getItem('token')

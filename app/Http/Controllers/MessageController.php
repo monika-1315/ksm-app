@@ -87,8 +87,8 @@ class MessageController extends Controller
 
         $recipients = UsersController::getRecipients($request->get('division'), $request->get('receiver_group'));
             foreach ($recipients as $p) {
-                Mail::send('moniusiar@gmail.com',
-                    $p->email.
+                Mail::send(
+                    $p->email,
                     'Nowy komunikat w aplikacji KSM DL',
                     'Witaj!<br>W aplikacji KSM DL właśnie pojawiło się dla Ciebie nowe ogłoszenie:<br><br><b>' 
                     . $request->get('title') 
