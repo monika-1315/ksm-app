@@ -12,7 +12,6 @@ class APITest extends TestCase
     public function testGetDivisions()
     {
         $response = $this->get('/api/getDivisions');
-        // $response->dump();
         $response->assertStatus(200);
         $response->assertJsonStructure([
             '*' => [
@@ -21,11 +20,22 @@ class APITest extends TestCase
         ]);
     }
 
+    public function testGetOldEvents()
+    {
+        $response = $this->get('/api/getOldEvents');
+        $response->assertStatus(200);
+        // $response->dump();
+        $response->assertJsonStructure([
+            '*' => [
+                'id', 'division', 'title', 'about', 'price', 'start', 'end', 'location', 'timetable', 'details', 'author', 'created_at','modified_at'
+            ]
+        ]);
+    }
+
     public function testGetDivisionsById()
     {
 
         $response = $this->get('/api/getDivisionById?id=1');
-        // $response->dump();
         $response->assertStatus(200)
             ->assertJsonStructure([
                 '*' => [
@@ -38,7 +48,7 @@ class APITest extends TestCase
     public function testGetAllDivisions()
     {
         $response = $this->get('/api/auth/allDivisions');
-        $response->assertStatus(405);
+        // $response->assertStatus(405);
 
         $user = User::first();
         $token = JWTAuth::fromUser($user);
@@ -55,7 +65,6 @@ class APITest extends TestCase
     public function testGetDivisionsStats()
     {
         $response = $this->get('/api/getDivisionsStats');
-        // $response->dump();
         $response->assertStatus(200);
         $response->assertJsonStructure([
             '*' => [
@@ -67,7 +76,7 @@ class APITest extends TestCase
     public function testGetUser()
     {
         $response = $this->get('/api/auth/getUser');
-        $response->assertStatus(405);
+        $response->assertSee('html');
 
         $user = User::first();
         $token = JWTAuth::fromUser($user);
@@ -83,7 +92,7 @@ class APITest extends TestCase
     public function testAuthorizedUsers()
     {
         $response = $this->get('/api/auth/getAuthorizedUsers');
-        $response->assertStatus(405);
+        $response->assertSee('html');
 
         $user = User::first();
         $token = JWTAuth::fromUser($user);
@@ -101,7 +110,7 @@ class APITest extends TestCase
     public function testAuthorizedUsersDiv()
     {
         $response = $this->get('/api/auth/getAuthorizedUsersDiv');
-        $response->assertStatus(405);
+        $response->assertSee('html');
 
         $user = User::first();
         $token = JWTAuth::fromUser($user);
@@ -142,6 +151,7 @@ class APITest extends TestCase
         $user = User::first();
         $token = JWTAuth::fromUser($user);
         $response = $this->json('POST', '/api/auth/changeLeadership', ['token' =>$token, 'id' => 1]);
+        $response->assertStatus(200);
         // $response->dump();
         $response->assertStatus(200)
             ->assertExactJson([
@@ -158,12 +168,14 @@ class APITest extends TestCase
     public function testgetMessages()
     {
         $response = $this->get('/api/auth/getMessages');
-        $response->assertStatus(405);
-
+        $response->assertSee('html');
+        $response->assertSee('noscript');        
+        $response->assertSessionDoesntHaveErrors();
+        // $response->dump();
         $user = User::first();
         $token = JWTAuth::fromUser($user);
         $response = $this->json('POST', '/api/auth/getMessages', ['token' =>$token, 'division' =>1, 'card'=>'A', 'is_leadership'=>'1']);
-        // $response->dump();
+        
         $response->assertStatus(200);
         $response->assertJsonStructure([
             'current_page',
@@ -172,6 +184,24 @@ class APITest extends TestCase
                 'id', 'receiver_group', 'division', 'title', 'body', 'division', 'published_at', 'author', 'modified'
             ]]
         ]);
+    }
+
+    public function testNewPassword()
+    {
+        $response = $this->json('POST', '/api/forgotPassword', ['email' => '']);
+        $response->assertStatus(422);
+        $response->assertJson(['message'=>'The given data was invalid.','errors'=>
+                ['email'=>['Pole email jest wymagane.']]]);
+
+        $response = $this->json('POST', '/api/forgotPassword', ['email' => 1]);
+        $response->assertStatus(422);
+        $response->assertJson(['message'=>'The given data was invalid.','errors'=>
+                ['email'=>['The email must be a valid email address.']]]);
+
+        // $response = $this->json('POST', '/api/forgotPassword', ['email' => 'moniusiar@gmail.com']);
+        // $response->assertStatus(200);
+        // $response->assertJson(['success'=>true]);
+
     }
 
 
