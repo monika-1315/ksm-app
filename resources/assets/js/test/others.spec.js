@@ -4,7 +4,7 @@ import moxios from 'moxios'
 
 import Contact from "../components/Contact.vue";
 import Home from "../components/Home.vue";
-import Chart from "../components/Chart.vue";
+import Divisions from "../components/Divisions.vue";
 
 import axios from 'axios';
 import VueAxios from 'vue-axios'
@@ -71,7 +71,7 @@ describe('Home', () => {
     });
 
     it('shows title', () => {
-        const text=wrapper.find('h4').text();
+        const text = wrapper.find('h4').text();
         expect(text).toContain("Witamy w aplikacji");
         expect(text).toContain("Katolickiego Stowarzyszenia Młodzieży");
         expect(text).toContain("Diecezji Legnickiej");
@@ -83,38 +83,49 @@ describe('Home', () => {
 })
 
 
-describe('Chart', () => {
-    let wrapper = mount(Chart, {
+describe('Divisions', () => {
+    let wrapper = mount(Divisions, {
         localVue,
         axios,
         store
     });
+    store.state.is_management = 1;
 
-    it('shows headers', () => {
-        const text=wrapper.find('h4').text();
-        expect(text).toContain("Statystyki autoryzacji użytkowników dla poszczególnych oddziałów");
-        expect(wrapper.find('h2').text()).toContain("Statystyki dotyczące liczby członków w oddziałach");
+    it('shows header', () => {
+        const text = wrapper.find('h2').text();
+        expect(text).toContain("Zarządzaj oddziałami");
     })
-    it('shows loader while reading data', () => {
-        expect(wrapper.find('.progress').html()).toContain('indeterminate');
-        // expect(wrapper.html()).toContain('Zarejestruj się</button>');
+    it('allows adding new one', () => {
+        expect(wrapper.find('button').text()).toBe('Dodaj nowy');
     })
-    // it('renders charts', (done) => {
-    //     wrapper.vm.getStats();
-    //     moxios.wait(function () {
-    //         let request = moxios.requests.mostRecent()
-    //         request.respondWith({
-    //             status: 200,
-    //             response:
-    //             // []
-    //                 [{ "town": "Bolesławiec", "parish": "p.w. św. Cyryla i Metodego", "cnt_all": 6, "cnt_aut": 6 }, { "town": "Gościszów", "parish": "p.w. Matki Boskiej Cz\u0119stochowskiej", "cnt_all": 1, "cnt_aut": 1 }, { "town": "Legnica", "parish": "p.w. Matki Bo\u017cej Królowej Polski", "cnt_all": 2, "cnt_aut": 1 }, { "town": "Lubin", "parish": "Narodzenia NNMP", "cnt_all": 1, "cnt_aut": 1 }, { "town": "Polkowice", "parish": "św. Michała Archanioła", "cnt_all": 2, "cnt_aut": 2 }]
-    //         }).then(function () {
-    //             // expect(wrapper.html()).toContain('bar-chart');
-    //             //   expect(wrapper.html()).toContain('Najważniejsze zebranie członków Kierownictw');
-    //             //   expect(wrapper.html()).toContain('2020');
-    //             done()
-    //         })
-    //     })
-    // })
+    it('shows all divisions', (done) => {
+        wrapper.vm.getDivisions();
+        moxios.wait(function () {
+            let request = moxios.requests.mostRecent()
+            request.respondWith({
+                status: 200,
+                response:
+                    [
+                        { "id": 1, "town": "Bolesławiec", "parish": "p.w. św. Cyryla i Metodego", "email": "ksm.boleslawiec@gmail.com", "is_active": 1 },
+                        { "id": 2, "town": "Lubin", "parish": "Narodzenia NNMP", "email": "ksm.lubin.nnmp@gmail.com", "is_active": 1 },
+                        { "id": 3, "town": "Gościszów", "parish": "p.w. Matki Boskiej Częstochowskiej", "email": "ksmgosciszow@gmail.com", "is_active": 0 },
+                        { "id": 4, "town": "Legnica", "parish": "p.w. Matki Bożej Królowej Polski", "email": "oddziallegnica.ksmdl@gmail.com", "is_active": 1 },
+                        { "id": 5, "town": "Polkowice", "parish": "św. Michała Archanioła", "email": "polkowiceksm@gmail.com", "is_active": 1 }
+                    ]
+
+            }).then(function () {
+                expect(wrapper.html()).toContain('Bolesławiec');
+                expect(wrapper.html()).toContain('Narodzenia NNMP');
+                expect(wrapper.html()).toContain('p.w. Matki Boskiej Częstochowskiej');
+                expect(wrapper.html()).toContain('Legnica');
+                expect(wrapper.html()).toContain('św. Michała Archanioła');
+                expect(wrapper.html()).toContain('NIEAKTYWNY');
+                const buttons = wrapper.findAll('button');
+                expect(buttons).toHaveLength(6)
+                done()
+            })
+        })
+    })
+
 })
 
