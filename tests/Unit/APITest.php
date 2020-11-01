@@ -171,7 +171,7 @@ class APITest extends TestCase
         $response->assertSee('html');
         $response->assertSee('noscript');        
         $response->assertSessionDoesntHaveErrors();
-        // $response->dump();
+
         $user = User::first();
         $token = JWTAuth::fromUser($user);
         $response = $this->json('POST', '/api/auth/getMessages', ['token' =>$token, 'division' =>1, 'card'=>'A', 'is_leadership'=>'1']);
@@ -183,6 +183,17 @@ class APITest extends TestCase
             '*' => [
                 'id', 'receiver_group', 'division', 'title', 'body', 'division', 'published_at', 'author', 'modified'
             ]]
+        ]);
+    }
+
+    public function testGetParticipants() 
+    {
+        $response = $this->json('POST', '/api/auth/getParticipants', ['is_admin' => 1, 'id' => 17]);
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            '*' => [
+                'is_sure', 'id', 'name', 'surname', 'birthdate', 'town','parish',
+            ]
         ]);
     }
 
@@ -198,11 +209,46 @@ class APITest extends TestCase
         $response->assertJson(['message'=>'The given data was invalid.','errors'=>
                 ['email'=>['The email must be a valid email address.']]]);
 
-        // $response = $this->json('POST', '/api/forgotPassword', ['email' => 'moniusiar@gmail.com']);
-        // $response->assertStatus(200);
-        // $response->assertJson(['success'=>true]);
+        $response = $this->json('POST', '/api/forgotPassword', ['email' => 'moniusiar@gmail.com']);
+        $response->assertStatus(200);
+        $response->assertJson(['success'=>true]);
 
+        $response = $this->json('POST', '/api/auth/login', [
+            'email' => 'moniusiar@gmail.com',
+            'password' => 'password'
+        ]);
+        $response ->assertJsonFragment([
+                'success'=> false
+            ]);
     }
 
+    public function testUpdateUser()
+    {
+        $token = JWTAuth::fromUser(User::first());
+        $response = $this->json('POST', '/api/auth/updateUser', ['token'=>$token, 'email' => 'moniusiar', 
+            'name'=>'Monika', 'surname'=>'K', 'password'=>'password', 'confirmPassword'=>'password', 
+            'birthdate'=> "1998-03-15",'division'=> 1, 'id'=> 1,'is_leadership'=> 1, 'is_management'=> 0, 'wantMessages'=>1]);
+        $response->assertStatus(422);
+        $response->assertJson(['message'=>'The given data was invalid.','errors'=>
+                ['email'=>['The email must be a valid email address.']]]);
 
+        $response = $this->json('POST', '/api/auth/updateUser', ['token'=>$token, 'email' => 'moniusiar@gmail.com', 
+            'name'=>'Monika', 'surname'=>'K', 'password'=>'password', 'confirmPassword'=>'password', 
+            'birthdate'=> "199803-15",'division'=> 1, 'id'=> 1,'is_leadership'=> 1, 'is_management'=> 0, 'wantMessages'=>1]);
+        $response->assertStatus(422);
+        $response->assertJson(['message'=>'The given data was invalid.','errors'=>
+                ['birthdate'=>['The birthdate is not a valid date.']]]);
+
+         $response = $this->json('POST', '/api/auth/updateUser', ['token'=>$token, 'email' => 'moniusiar@gmail.com', 
+            'name'=>'Monika', 'surname'=>'K', 'password'=>'password', 'confirmPassword'=>'password', 
+            'birthdate'=> "1998-03-15",'division'=> 1, 'id'=> 1,'is_leadership'=> 's', 'is_management'=> 0, 'wantMessages'=>1]);
+        $response->assertStatus(422);
+        $response->assertJson(['message'=>'The given data was invalid.','errors'=>
+                ['is_leadership'=>['The is leadership field must be true or false.']]]);
+
+        $response = $this->json('POST', '/api/auth/updateUser', ['token'=>$token, 'email' => 'moniusiar@gmail.com', 
+            'name'=>'Monika', 'surname'=>'K', 'password'=>'password', 'confirmPassword'=>'password', 
+            'birthdate'=> "1998-03-15",'division'=> 1, 'id'=> 1,'is_leadership'=> 1, 'is_management'=> 0, 'wantMessages'=>1]);
+        $response->assertStatus(200);
+    }
 }

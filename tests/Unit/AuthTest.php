@@ -11,12 +11,26 @@ class AuthTest extends TestCase
 {
     public function testLogin()
     {
+        $response = $this->json('POST', '/api/auth/login', [
+            'email' => 'moniusiar',
+            'password' => 'password'
+        ]);
+        $response
+            ->assertStatus(422)
+            ->assertJson(['message'=>'The given data was invalid.','errors'=>
+                ['email'=>['The email must be a valid email address.']]]);
 
+        $response = $this->json('POST', '/api/auth/login', [
+            'email' => 'moniusiar@gmail.com',
+            'password' => 'password2'
+        ]);
+        $response ->assertJsonFragment([
+            'success'=> false
+        ]);
         $response = $this->json('POST', '/api/auth/login', [
             'email' => 'moniusiar@gmail.com',
             'password' => 'password'
         ]);
-
         $response
             ->assertStatus(200)
             ->assertJsonStructure([
@@ -32,7 +46,6 @@ class AuthTest extends TestCase
         $response = $this->json('GET', '/api/auth/logout?token=' . $token, []);
 
         $response
-            // ->dump()
             ->assertStatus(200)
             ->assertExactJson([
                 'success' => true
