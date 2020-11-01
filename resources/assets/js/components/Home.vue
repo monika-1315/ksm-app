@@ -52,6 +52,7 @@
 </template>
 
 <script>
+
 export default {
   computed: {
     is_logged() {
