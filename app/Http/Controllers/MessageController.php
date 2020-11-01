@@ -92,7 +92,7 @@ class MessageController extends Controller
                     'Nowy komunikat w aplikacji KSM DL',
                     'Witaj!<br>W aplikacji KSM DL właśnie pojawiło się dla Ciebie nowe ogłoszenie:<br><br><b>' 
                     . $request->get('title') 
-                    . '</b><br><i>'.$request->get('body').'</i>'
+                    . '</b><br><p style="white-space: pre-line"><i>'.$request->get('body').'</i></p>'
                 );
             }
 
