@@ -81,7 +81,7 @@ class APITest extends TestCase
         $user = User::first();
         $token = JWTAuth::fromUser($user);
         $response = $this->json('POST', '/api/auth/getUser', ['token' =>$token, 'email' => 'moniusiar@gmail.com']);
-        // $response->dump();
+        
         $response->assertStatus(200);
         $response->assertJsonStructure([
             '*' => [
@@ -97,14 +97,14 @@ class APITest extends TestCase
         $user = User::first();
         $token = JWTAuth::fromUser($user);
         $response = $this->json('POST', '/api/auth/getAuthorizedUsers', ['token' =>$token]);
-        // $response->dump();
+        
         $response->assertStatus(200);
         $response->assertJsonStructure([
             '*' => [
                 'id', 'email', 'name', 'surname', 'birthdate', 'division', 'is_authorized', 'is_leadership', 'is_management'
             ]
         ])
-        ->assertJsonPath('0.is_authorized', '1');
+                ->assertJsonPath('0.is_authorized', '1');
     }
 
     public function testAuthorizedUsersDiv()
@@ -122,8 +122,8 @@ class APITest extends TestCase
                 'id', 'email', 'name', 'surname', 'birthdate', 'division', 'is_authorized', 'is_leadership', 'is_management'
             ]
         ])
-        ->assertJsonPath('0.is_authorized', '1')
-        ->assertJsonPath('0.division', '1');
+        ->assertJsonPath('0.division', '1')
+        ->assertJsonMissing(['is_authorized'=> '0']);
     }
 
     public function testChangeManagement()
@@ -250,5 +250,6 @@ class APITest extends TestCase
             'name'=>'Monika', 'surname'=>'K', 'password'=>'password', 'confirmPassword'=>'password', 
             'birthdate'=> "1998-03-15",'division'=> 1, 'id'=> 1,'is_leadership'=> 1, 'is_management'=> 0, 'wantMessages'=>1]);
         $response->assertStatus(200);
+        $response->assertJson(['success'=>true]);
     }
 }

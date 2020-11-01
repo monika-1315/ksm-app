@@ -11,22 +11,25 @@ class AuthTest extends TestCase
 {
     public function testLogin()
     {
+        //invalid email
         $response = $this->json('POST', '/api/auth/login', [
             'email' => 'moniusiar',
             'password' => 'password'
         ]);
         $response
             ->assertStatus(422)
-            ->assertJson(['message'=>'The given data was invalid.','errors'=>
-                ['email'=>['The email must be a valid email address.']]]);
+            ->assertJson(['message' => 'The given data was invalid.', 'errors' =>
+            ['email' => ['The email must be a valid email address.']]]);
 
+        //invalid password
         $response = $this->json('POST', '/api/auth/login', [
             'email' => 'moniusiar@gmail.com',
             'password' => 'password2'
         ]);
-        $response ->assertJsonFragment([
-            'success'=> false
-        ]);
+        $response->assertJson(['success' => false, 'errors' =>
+            ['message' => ['Błędny email lub hasło']]]);
+
+        //correct one
         $response = $this->json('POST', '/api/auth/login', [
             'email' => 'moniusiar@gmail.com',
             'password' => 'password'
@@ -38,7 +41,7 @@ class AuthTest extends TestCase
             ]);
     }
 
-    public function testLogout()
+    public function testLogout() 
     {
         $user = User::first();
         $token = JWTAuth::fromUser($user);

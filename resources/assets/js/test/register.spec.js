@@ -19,7 +19,7 @@ describe('Register', () => {
         expect(wrapper.html()).toContain("rejestruj")
     })
     it('starts with no division selected', () => {
-        expect(wrapper.vm.division).toBe(0);
+        expect(wrapper.vm.division).toBe(null);
     })
     it('starts with no error', () => {
         expect(wrapper.vm.error).toBe(false);

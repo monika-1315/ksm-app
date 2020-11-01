@@ -3,7 +3,7 @@ import expect from 'expect';
 import moxios from 'moxios'
 
 import Contact from "../components/Contact.vue";
-import Calendar from "../components/Calendar.vue";
+import Home from "../components/Home.vue";
 
 import axios from 'axios';
 import VueAxios from 'vue-axios'
@@ -30,7 +30,7 @@ describe('Contact', () => {
         expect(wrapper.html()).toContain("Skontaktuj się z nami!")
     })
 
-    it('shows emails', (done) => {
+    it('shows loaded emails', (done) => {
         wrapper.vm.axios.get("/api/getManagement").then(
             function (response) {
                 wrapper.vm.management = response.data;
@@ -61,14 +61,14 @@ describe('Contact', () => {
     })
 })
 
-describe('Calendar', () => {
-    let wrapper = mount(Calendar, {
+describe('Home', () => {
+    let wrapper = mount(Home, {
         localVue,
         axios
     });
-    it('shows calendar', () => {
-        expect(wrapper.html()).toContain("calendar")
+
+    it('shows title', () => {
+        expect(wrapper.html()).toContain("Katolickie")
     })
-
-
 })
+

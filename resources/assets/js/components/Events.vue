@@ -8,6 +8,7 @@
           name="action"
           @click="getEvents"
           style="float: right"
+          id="refreshBtn"
         >Odśwież</button>
         <router-link :to="{ name: 'newevent' }">
           <button
@@ -164,6 +165,7 @@
   </div>
 </template>
 <script>
+import store from "../store.js";
 export default {
   data() {
     return {

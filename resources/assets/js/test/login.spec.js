@@ -1,10 +1,7 @@
 import { mount, createLocalVue } from 'vue-test-utils';
 import expect from 'expect';
 
-import Register from "../components/Register.vue";
 import Login from "../components/Login.vue";
-import App from "../App.vue";
-import Home from "../components/Home.vue";
 import moxios from 'moxios'
 import axios from 'axios';
 import VueAxios from 'vue-axios'
@@ -34,6 +31,9 @@ describe('Login', () => {
   });
   it('shows welcoming text', () => {
     expect(wrapper.html()).toContain("Witamy w aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej")
+  })
+  it('links the KSM website', () => {
+    expect(wrapper.html()).toContain('href="http://ksm.legnica.pl"')
   })
   
   it('has working data binding', () => {

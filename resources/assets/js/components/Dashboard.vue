@@ -24,6 +24,7 @@
         >Utwórz</button></div>
         <div class="hide-on-large-only">
         <button
+        id="getMessages"
         class="btn btn-primary"
         type="button"
         name="action"
