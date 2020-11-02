@@ -37,38 +37,6 @@ describe('Dashboard', () => {
   })
 
   it('loads messages', (done) => {
-
-    wrapper.find('#getMessages').trigger('click');
-    moxios.wait(function () {
-      let request = moxios.requests.mostRecent()
-      request.respondWith({
-        status: 200,
-        response: {
-          data: {
-            data:{
-              author:12,
-              body:"Spotkanie dzisiaj na Messengerze o 19! ;)",
-              division:1,
-              id:13,
-              modified:0,
-              name:"Karolina",
-              published_at:"2020-04-27 11:48:33",
-              receiver_group:1,
-              surname:"Friedek",
-              title:"Witajcie ludziołki"
-              
-            }
-          }
-        }
-      }).then(function () {
-        expect(wrapper.html()).not.toContain('progress');
-        expect(wrapper.html()).toContain('Witajcie ludziołki');
-        expect(wrapper.html()).toContain('Spotkanie dzisiaj na Messengerze o 19! ;)');
-        expect(wrapper.html()).toContain('Karolina Friedek');
-        // done()
-      })
-
-    })
     wrapper.find( '#Oddział').trigger('click');
     moxios.wait(function () {
       let request = moxios.requests.mostRecent()
@@ -81,25 +49,26 @@ describe('Dashboard', () => {
               body:"Spotkanie dzisiaj na Messengerze o 19! ;)",
               division:1,
               id:13,
-              modified:0,
+              modified:1,
               name:"Karolina",
               published_at:"2020-04-27 11:48:33",
               receiver_group:1,
-              surname:"Friedek",
-              title:"Witajcie ludziołki"
+              surname:"Fk",
+              title:"Witajcie"
               
             }
           }
         }
       }).then(function () {
-        expect(wrapper.html()).not.toContain('progress');
-        expect(wrapper.html()).toContain('Witajcie ludziołki');
-        expect(wrapper.html()).toContain('Spotkanie dzisiaj na Messengerze o 19! ;)');
-        expect(wrapper.html()).toContain('Karolina Friedek');
+        const card =wrapper.find('.card');
+        expect(card.html()).not.toContain('progress');
+        expect(card.html()).toContain('Witajcie');
+        expect(card.html()).toContain('Spotkanie dzisiaj na Messengerze o 19! ;)');
+        expect(card.html()).toContain('Karolina');
+        expect(card.html()).toContain('edytowana');
         done()
       })
     })
-
   })
 
   

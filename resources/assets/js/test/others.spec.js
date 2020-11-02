@@ -33,18 +33,13 @@ describe('Contact', () => {
     })
 
     it('shows loaded emails', (done) => {
-        wrapper.vm.axios.get("/api/getManagement").then(
-            function (response) {
-                wrapper.vm.management = response.data;
-                wrapper.vm.isProgress = false;
-            }.bind(this)
-        );
+        wrapper.vm.getManagement();
         moxios.wait(function () {
             let request = moxios.requests.mostRecent()
             request.respondWith({
                 status: 200,
                 response: {
-                    success: false,
+                    success: true,
                     data: {
                         function_mail: "ksmdl.skarbnik@gmail.com",
                         function_name: "Skarbnik",

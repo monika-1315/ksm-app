@@ -40,7 +40,9 @@ describe('Events', () => {
 
   it('shows progress bar after clicking refresh button', () => {
     wrapper.find('#refreshBtn').trigger('click');
-    expect(wrapper.html()).toContain('progress');    
+    
+    const progress_bar = wrapper.find('.progress')
+    expect(progress_bar.html()).toContain('indeterminate');    
 
   })
 
@@ -64,11 +66,4 @@ describe('Events', () => {
 
     })
   })
-
-  let type = (text, selector) => {
-
-    let node = wrapper.find(selector);
-    node.element.value = text;
-    node.trigger('input');
-  };
 })

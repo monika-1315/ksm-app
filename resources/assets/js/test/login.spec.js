@@ -49,17 +49,14 @@ describe('Login', () => {
   it('shows progress bar after clicking button', (done) => {
 
     wrapper.find('#log-in').trigger('click');
+
     moxios.wait(function () {
       let request = moxios.requests.mostRecent()
       request.respondWith({
         status: 200,
         response: {
           success: false,
-          errors: {
-            message: ['Błędny email lub hasło'],
-            email: ['Pole email jest wymagane.'],
-            password: ['Pole password jest wymagane.']
-          }
+          errors: { message: ['Błędny email lub hasło'], email: ['Pole email jest wymagane.'], password: ['Pole password jest wymagane.'] }
         }
       }).then(function () {
         expect(wrapper.html()).toContain('progress');
