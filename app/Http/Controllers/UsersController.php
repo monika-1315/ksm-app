@@ -82,16 +82,24 @@ class UsersController extends Controller
         return response()->json($data);
     }
 
-    public function getAuthorizedUsers()
+    public function getAuthorizedUsers(Request $request)
     {
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_management === 0 || $logged_user->is_authorized === 0)
+            return response('',401);
+
         $data = User::where('is_authorized', 1)
             ->get();
         return response()->json($data);
     }
 
-    public function getAuthorizedUsersDiv(DivisionIdRequest $request)
+    public function getAuthorizedUsersDiv(Request $request)
     {
-        $data = User::where('division', $request->only('division'))
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_leadership === 0 || $logged_user->is_authorized === 0)
+            return response('',401);
+
+        $data = User::where('division', $logged_user->division)
             ->where('is_authorized', 1)
             ->get();
         return response()->json($data);
@@ -125,8 +133,8 @@ class UsersController extends Controller
 
     public function updateUser(UserRequest $request)
     {
-
-        $user = User::find($request->get('id'));
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        $user = User::find($logged_user->id);
         $user->name = $request->get('name');
         $user->surname = $request->get('surname');
         $user->email = $request->get('email');
@@ -145,6 +153,12 @@ class UsersController extends Controller
 
     public function changeLeadership(IdRequest $request)
     {
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_leadership === 0 || $logged_user->is_authorized === 0)
+            return response()->json([
+                'success' => false
+            ]);
+
         $user = User::find($request->get('id'));
 
         if ($user->is_leadership === 1) {
@@ -170,6 +184,12 @@ class UsersController extends Controller
 
     public function changeManagement(IdRequest $request)
     {
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_management === 0 || $logged_user->is_authorized === 0)
+            return response()->json([
+                'success' => false
+            ]);
+
         $user = User::find($request->get('id'));
 
         if ($user->is_management === 1) {
@@ -195,6 +215,12 @@ class UsersController extends Controller
 
     public function addUser(NewUserRequest $request)
     {
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_authorized === 0 || ($logged_user->is_leadership === 0 &&$logged_user->is_management === 0 ))
+            return response()->json([
+                'success' => false
+            ]);
+
         $user = new User();
 
         $user->name = $request->get('name');

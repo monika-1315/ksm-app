@@ -2366,6 +2366,16 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.$toaster.success("Rejestracja użytkownika powiodła się!");
           }, 2000);
+        } else {
+          setTimeout(function () {
+            _this.isProgress = false;
+
+            _this.$router.push({
+              name: "dashboard"
+            });
+
+            _this.$toaster.error("Coś poszło nie tak! Prawdopodobnie nie masz już uprawnień");
+          }, 2000);
         }
       })["catch"](function (error) {
         _this.isProgress = false;
@@ -3284,6 +3294,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3325,12 +3338,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             _this.isProgress = false;
 
             if (idi === _this.user_id) {
-              _this.$toaster.warning("Zmieniono uprawnienia. Stracisz uprawnienia po odświeżeniu strony lub ponownym zalogowaniu");
+              _this.$toaster.warning("Zrezygnowałeś z uprawnień.");
+
+              _this.getUser();
             } else {
               _this.$toaster.success("Zmieniono uprawnienia");
-            }
 
-            _this.getUsers();
+              _this.getUsers();
+            }
           }, 2000);
         }
       })["catch"](function (error) {
@@ -3353,12 +3368,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             _this2.isProgress = false;
 
             if (idi === _this2.user_id) {
-              _this2.$toaster.warning("Zmieniono uprawnienia. Stracisz uprawnienia po odświeżeniu strony lub ponownym zalogowaniu");
+              _this2.$toaster.warning("Zrezygnowałeś z uprawnień.");
+
+              _this2.getUser();
             } else {
               _this2.$toaster.success("Zmieniono uprawnienia");
-            }
 
-            _this2.getUsers();
+              _this2.getUsers();
+            }
           }, 2000);
         }
       })["catch"](function (error) {
@@ -3367,7 +3384,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         _this2.$toaster.error("Coś poszło nie tak!");
       });
     },
+    getUser: function getUser() {
+      this.axios.post("/api/auth/getUser", {
+        token: this.$store.state.token
+      }).then(function (response) {
+        this.$store.commit("refreshUser", response.data[0]);
+        this.getUsers();
+      }.bind(this));
+      ;
+    },
     getUsers: function getUsers() {
+      var _this3 = this;
+
       if (this.is_management) {
         this.axios.post("/api/auth/getAuthorizedUsers", {
           token: this.$store.state.token
@@ -3390,14 +3418,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
 
           this.isProgress = false;
-        }.bind(this));
+        }.bind(this))["catch"](function (error) {
+          _this3.isProgress = false;
+
+          _this3.$toaster.error("Coś poszło nie tak!");
+        });
       }
 
       if (this.is_leadership) {
         this.isProgress = true;
         this.axios.post("/api/auth/getAuthorizedUsersDiv", {
-          token: this.$store.state.token,
-          division: this.$store.state.division
+          token: this.$store.state.token
         }).then(function (response) {
           this.usersDiv0.length = 0;
           this.usersDiv1.length = 0;
@@ -3417,8 +3448,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
 
           this.isProgress = false;
-        }.bind(this));
+        }.bind(this))["catch"](function (error) {
+          _this3.isProgress = false;
+
+          _this3.$toaster.error("Coś poszło nie tak!");
+        });
+        ;
       }
+
+      this.isProgress = false;
     }
   },
   created: function created() {
@@ -60089,6 +60127,12 @@ var render = function() {
     _vm.isProgress
       ? _c("div", { staticClass: "progress" }, [
           _c("div", { staticClass: "indeterminate" })
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.is_leadership && !_vm.is_management
+      ? _c("p", { staticClass: "center" }, [
+          _vm._v("\n    Brak uprawnień!\n  ")
         ])
       : _vm._e(),
     _vm._v(" "),

@@ -3,6 +3,9 @@
     <div class="progress" v-if="isProgress">
         <div class="indeterminate"></div>
       </div>
+    <p class="center" v-if="!is_leadership&&!is_management">
+      Brak uprawnień!
+    </p>
     <div class="container" style="text-align:center" v-if=" this.$store.state.is_leadership">
       
       <h2>Zmień uprawnienia Kierownictwa</h2>
@@ -118,14 +121,16 @@ export default {
             setTimeout(() => {
               this.isProgress = false;              
               if (idi === this.user_id) {
-                this.$toaster.warning
+                 this.$toaster.warning
                 (
-                  "Zmieniono uprawnienia. Stracisz uprawnienia po odświeżeniu strony lub ponownym zalogowaniu"
+                  "Zrezygnowałeś z uprawnień."
                 );
+                this.getUser();
               } else {
                 this.$toaster.success("Zmieniono uprawnienia");
+                this.getUsers();
               }
-              this.getUsers();
+              
             }, 2000);
           }
         })
@@ -149,12 +154,14 @@ export default {
               if (idi === this.user_id) {
                 this.$toaster.warning
                 (
-                  "Zmieniono uprawnienia. Stracisz uprawnienia po odświeżeniu strony lub ponownym zalogowaniu"
+                  "Zrezygnowałeś z uprawnień."
                 );
+                this.getUser();
               } else {
                 this.$toaster.success("Zmieniono uprawnienia");
+                this.getUsers();
               }
-              this.getUsers();
+              
             }, 2000);
           }
         })
@@ -162,6 +169,21 @@ export default {
           this.isProgress = false;
           this.$toaster.error("Coś poszło nie tak!");
         });
+    },
+    getUser: function () {
+      this.axios
+        .post(
+          "/api/auth/getUser",{
+            token: this.$store.state.token
+          }
+        )
+        .then(
+          function (response) {
+            this.$store.commit("refreshUser", response.data[0]);
+            this.getUsers()
+          }.bind(this)
+        );
+      ;
     },
     getUsers: function() {
       if (this.is_management) {
@@ -179,14 +201,16 @@ export default {
               }
               this.isProgress=false;
             }.bind(this)
-          );
+          ).catch(error => {
+          this.isProgress = false;
+          this.$toaster.error("Coś poszło nie tak!");
+        });
       }
       if (this.is_leadership) {
         this.isProgress=true;
         this.axios
           .post("/api/auth/getAuthorizedUsersDiv", {
-            token: this.$store.state.token,
-            division: this.$store.state.division
+            token: this.$store.state.token
           })
           .then(
             function(response) {
@@ -198,8 +222,12 @@ export default {
               }
               this.isProgress=false;
             }.bind(this)
-          );
+          ).catch(error => {
+          this.isProgress = false;
+          this.$toaster.error("Coś poszło nie tak!");
+        });;
       }
+      this.isProgress=false;
     }
   },
   created: function() {

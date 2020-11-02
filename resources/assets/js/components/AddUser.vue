@@ -108,6 +108,13 @@ export default {
               this.$toaster.success("Rejestracja użytkownika powiodła się!");
             }, 2000);
           }
+         else {
+            setTimeout(() => {
+              this.isProgress = false;
+              this.$router.push({ name: "dashboard" });
+              this.$toaster.error("Coś poszło nie tak! Prawdopodobnie nie masz już uprawnień");
+            }, 2000);
+          }
         })
         .catch((error) => {
           this.isProgress = false;
