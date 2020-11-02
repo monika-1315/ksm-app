@@ -125,8 +125,7 @@ export default {
     getUser: function () {
       this.axios
         .post("/api/auth/getUser", {
-          token: this.$store.state.token,
-          email: this.$store.state.email,
+          token: this.$store.state.token
         })
         .then(
           function (response) {

@@ -25,7 +25,7 @@ export default new Vuex.Store({
         LoginEmail(state, email) {
             localStorage.setItem('email', email);
             state.email = email;
-            axios.post('/api/auth/getUser',{token: state.token, email: state.email})
+            axios.post('/api/auth/getUser',{token: state.token})
                 .then(function (response) {
                     state.division = response.data[0].division;
                     state.user_id = response.data[0].id;

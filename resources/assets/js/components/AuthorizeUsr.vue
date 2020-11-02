@@ -71,12 +71,14 @@ export default {
     },
     getUsers: function(){
       this.isProgress = true;
-        this.axios.post('/api/auth/getUnauthorizedUsers', {token: this.$store.state.token, division:this.$store.state.division})
+        this.axios.post('/api/auth/getUnauthorizedUsers', {token: this.$store.state.token})
             .then(function (response) {
                 this.isProgress = false;
                 this.users = response.data;
-            }.bind(this)); 
-              
+            }.bind(this)) .catch(error => {
+          this.isProgress = false;
+          this.$toaster.error("Coś poszło nie tak!");
+        });
             },
     
   },

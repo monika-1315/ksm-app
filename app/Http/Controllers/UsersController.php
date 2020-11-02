@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Division;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsersController extends Controller
 {
@@ -20,16 +21,20 @@ class UsersController extends Controller
      * @return void
      */
 
-    public function getUser(EmailRequest $request)
+    public function getUser(Request $request)
     {
-        $data = User::where('email', $request->only('email'))
-            ->get();
+        $user = JWTAuth::toUser($request->only('token'));
 
-        return response()->json($data);
+        return response()->json([$user]);
     }
 
     public function authorizeUser(IdRequest $request)
     {
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_leadership === 0 || $logged_user->is_authorized === 0)
+            return response()->json([
+                'success' => false
+            ]);
         $user = User::find($request->get('id'));
         $user->is_authorized = 1;
         $user->save();
@@ -44,8 +49,14 @@ class UsersController extends Controller
     }
     public function discardUser(IdRequest $request)
     {
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_leadership === 0 || $logged_user->is_authorized === 0)
+            return response()->json([
+                'success' => false
+            ]);
+
         $user = User::find($request->get('id'));
-        
+
         Mail::sendById(
             $request->get('id'),
             'Twoje konto zostało odrzucone.',
@@ -57,9 +68,13 @@ class UsersController extends Controller
         ]);
     }
 
-    public function getUnauthorizedUsers(DivisionIdRequest $request)
+    public function getUnauthorizedUsers(Request $request)
     {
-        $data = User::where('division', $request->only('division'))
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_leadership === 0 || $logged_user->is_authorized === 0)
+            return response('',401);
+
+        $data = User::where('division', $logged_user->division)
             ->where('is_authorized', 0)
             ->orderby('id', 'desc')
             ->select('id', 'name', 'surname')
@@ -184,7 +199,7 @@ class UsersController extends Controller
 
         $user->name = $request->get('name');
         $user->surname = $request->get('surname');
-        $user->email = $request->get('email');        
+        $user->email = $request->get('email');
         $user->birthdate = $request->get('birthdate');
         $user->division = $request->get('division');
         $user->want_messages = 0;
@@ -196,11 +211,11 @@ class UsersController extends Controller
         $user->password = bcrypt($password);
         $user->save();
 
-        Mail::send($request->get('email'), 'Utworzono konto w aplikacji KSM DL', 'Witaj '.$request->get('name').'!<br>'
-                    .'Zostało właśnie utworzone dla Ciebie konto w Aplikacji KSM DL. <br>Możesz zalogować się na stronie <a href="app-ksm.legnica.pl">app-ksm.legnica.pl</a> '
-                    .'używając maila '.$request->get('email').'. Twoje hasło to <b>'.$password.'</b>. Po zalogowaniu zmień hasło w zakładce "Edytuj sane osobowe". '
-                    .'Zalogowanie się oznacza wyrażenie zgody na przetwarzanie Twoich danych przez Katolickie Stowarzyszenie Młodzieży Diecezji Legnickiej.'
-                    .'<br>Jeżeli nie chcesz/nie wyrażasz zgody na posiadanie konta w aplikacji, odpisz na tego maila, a usuniemy Twoje dane.' );
+        Mail::send($request->get('email'), 'Utworzono konto w aplikacji KSM DL', 'Witaj ' . $request->get('name') . '!<br>'
+            . 'Zostało właśnie utworzone dla Ciebie konto w Aplikacji KSM DL. <br>Możesz zalogować się na stronie <a href="app-ksm.legnica.pl">app-ksm.legnica.pl</a> '
+            . 'używając maila ' . $request->get('email') . '. Twoje hasło to <b>' . $password . '</b>. Po zalogowaniu zmień hasło w zakładce "Edytuj sane osobowe". '
+            . 'Zalogowanie się oznacza wyrażenie zgody na przetwarzanie Twoich danych przez Katolickie Stowarzyszenie Młodzieży Diecezji Legnickiej.'
+            . '<br>Jeżeli nie chcesz/nie wyrażasz zgody na posiadanie konta w aplikacji, odpisz na tego maila, a usuniemy Twoje dane.');
 
         return response()->json([
 
@@ -227,24 +242,24 @@ class UsersController extends Controller
     {
         $user = User::where('email', '=', $request->only('email'))
             ->get();
-        if (sizeof($user)> 0) {
+        if (sizeof($user) > 0) {
             $password = UsersController::randomString();
-            $user_=User::find($user[0]->id);
+            $user_ = User::find($user[0]->id);
             $user_->password = bcrypt($password);
             $user_->save();
             $sent = Mail::sendById(
                 $user[0]->id,
                 'Zmiana hasła do Twojego konta.',
-                'Witaj!<br>Na żądanie zostało zresetowane hasło do Twojego konta. Twoje nowe hasło to:<br><b>'.$password
-                .'</b><br> Po zalogowaniu zmień hasło w zakładce "Edytuj sane osobowe".'
+                'Witaj!<br>Na żądanie zostało zresetowane hasło do Twojego konta. Twoje nowe hasło to:<br><b>' . $password
+                    . '</b><br> Po zalogowaniu zmień hasło w zakładce "Edytuj sane osobowe".'
             );
             return response()->json([
-                'success' => true ,
-                'sent'=> $sent
+                'success' => true,
+                'sent' => $sent
             ]);
         } else
             return response()->json([
-                'success' => false 
+                'success' => false
             ]);
     }
 }
