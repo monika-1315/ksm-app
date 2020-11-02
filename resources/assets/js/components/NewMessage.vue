@@ -34,7 +34,9 @@
                     <span class="text text-danger" v-if="error && errors.password">{{ errors.password[0] }}</span>
                 </div>
                 
-                
+                <div class="progress" v-if="isProgress">
+      <div class="indeterminate amber lighten-1"></div>
+    </div>
                 <div style="text-align:center">
                 <button class="btn btn-primary" type="submit" name="action">Zapisz wiadomość</button>
                 </div>
@@ -56,7 +58,6 @@
                 body: '',
                 email: '',
                 receiver_group: 1,
-                author: null,
                 // is_leadership: 0,
                 error: false,
                 errors: {},
@@ -76,6 +77,7 @@
         },
         methods: {
             addMessage(){
+                this.isProgress=true;
                 this.axios.post('api/auth/newMessage', {
                     token: this.$store.state.token,
                     title: this. title,
@@ -83,7 +85,6 @@
                     email: this.email,
                     receiver_group: this.receiver_group,
                     division: this.division,
-                    author: this.author,
                 }).then(response => {
                     this.isProgress = true;
                     if(response.data.success == true)
@@ -92,6 +93,14 @@
                             this.isProgress = false;
                             this.$router.push({ name: 'dashboard'})
                             this.$toaster.success('Wiadomość zapisana')
+                        }, 2000)
+                    }
+                    else
+                    {
+                        setTimeout(() => {
+                            this.isProgress = false;
+                            this.$router.push({ name: 'dashboard'})
+                            this.$toaster.error('Coś poszło nie tak. Sprawdź uprawnienia.')
                         }, 2000)
                     }
                 }).catch(error => {
@@ -104,23 +113,11 @@
               this.axios.get('/api/getDivisions')
               .then(function (response) {
                  this.divisions = response.data;
-                 this.author = this.$store.state.user_id;
                 this.division = this.$store.state.division;
               }.bind(this));
          
             },
-            // getUser: function(){
-            //   this.axios.post('/api/auth/getUser', {
-            //       token: this.$store.state.token, 
-            //       email:this.$store.state.email
-            //       })
-            //   .then(function (response) {
-            //      this.author = response.data[0].id;
-            //      this.division = response.data[0].division;
-            //      this.$store.commit('refreshUser', response.data[0])
-            //   }.bind(this)); 
-              
-            // },
+            
         },
         created: function(){
             this.getDivisions();

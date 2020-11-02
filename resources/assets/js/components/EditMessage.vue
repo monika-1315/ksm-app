@@ -97,6 +97,14 @@
                             this.$toaster.success('Wiadomość zapisana')
                         }, 2000)
                     }
+                    else
+                    {
+                        setTimeout(() => {
+                            this.isProgress = false;
+                            this.$router.push({ name: 'editmessages'})
+                            this.$toaster.error('Coś poszło nie tak')
+                        }, 2000)
+                    }
                 }).catch(error => {
                     this.isProgress = false;
                     this.error = true;
@@ -137,6 +145,14 @@
                             this.isProgress = false;
                             this.$router.push({ name: 'editmessages'})
                             this.$toaster.success('Wiadomość usunięta')
+                        }, 2000)
+                    }
+                     else
+                    {
+                        setTimeout(() => {
+                            this.isProgress = false;
+                            this.$router.push({ name: 'editmessages'})
+                            this.$toaster.error('Coś poszło nie tak')
                         }, 2000)
                     }
                 }).catch(error => {

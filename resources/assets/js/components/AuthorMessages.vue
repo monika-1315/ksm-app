@@ -91,8 +91,7 @@ export default {
       this.isProgress = true;
       this.axios
         .post("/api/auth/getMessageByAuthor", {
-          token: this.$store.state.token,
-          id: this.$store.state.user_id
+          token: this.$store.state.token
         })
         .then(
           function(response) {

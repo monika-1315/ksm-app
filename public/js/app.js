@@ -2516,8 +2516,7 @@ __webpack_require__.r(__webpack_exports__);
     getMessages: function getMessages() {
       this.isProgress = true;
       this.axios.post("/api/auth/getMessageByAuthor", {
-        token: this.$store.state.token,
-        id: this.$store.state.user_id
+        token: this.$store.state.token
       }).then(function (response) {
         this.messages = response.data;
         this.isProgress = false;
@@ -3138,9 +3137,7 @@ __webpack_require__.r(__webpack_exports__);
     getMessages: function getMessages() {
       this.isProgress = true;
       this.axios.post("/api/auth/getMessages", {
-        is_leadership: this.is_leadership,
         token: this.$store.state.token,
-        division: this.$store.state.division,
         card: this.selectedTab
       }).then(function (response) {
         this.isProgress = true;
@@ -3180,20 +3177,7 @@ __webpack_require__.r(__webpack_exports__);
         this.messages = this.$store.state.messages;
         this.isProgress = false;
       } else this.getMessages();
-    } // this.axios
-    //   .post("/mail", {
-    //     recipient: this.$store.state.email,
-    //     subject: 'Nowe logowanie',
-    //     body: 'Nowa wiadomość testowa!'
-    //   }) 
-    //   .then((response) => {
-    //     if (response.data.success == true) {
-    //       this.$toaster.success("Wysłano email");
-    //     } else {
-    //       this.$toaster.error("Nie udało się wysłać wiadomości email");
-    //     }
-    //   })
-
+    }
   }
 });
 
@@ -4274,6 +4258,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             _this.$toaster.success('Wiadomość zapisana');
           }, 2000);
+        } else {
+          setTimeout(function () {
+            _this.isProgress = false;
+
+            _this.$router.push({
+              name: 'editmessages'
+            });
+
+            _this.$toaster.error('Coś poszło nie tak');
+          }, 2000);
         }
       })["catch"](function (error) {
         _this.isProgress = false;
@@ -4314,6 +4308,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             });
 
             _this2.$toaster.success('Wiadomość usunięta');
+          }, 2000);
+        } else {
+          setTimeout(function () {
+            _this2.isProgress = false;
+
+            _this2.$router.push({
+              name: 'editmessages'
+            });
+
+            _this2.$toaster.error('Coś poszło nie tak');
           }, 2000);
         }
       })["catch"](function (error) {
@@ -5762,6 +5766,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5769,7 +5775,6 @@ __webpack_require__.r(__webpack_exports__);
       body: '',
       email: '',
       receiver_group: 1,
-      author: null,
       // is_leadership: 0,
       error: false,
       errors: {},
@@ -5800,14 +5805,14 @@ __webpack_require__.r(__webpack_exports__);
     addMessage: function addMessage() {
       var _this = this;
 
+      this.isProgress = true;
       this.axios.post('api/auth/newMessage', {
         token: this.$store.state.token,
         title: this.title,
         body: this.body,
         email: this.email,
         receiver_group: this.receiver_group,
-        division: this.division,
-        author: this.author
+        division: this.division
       }).then(function (response) {
         _this.isProgress = true;
 
@@ -5821,6 +5826,16 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.$toaster.success('Wiadomość zapisana');
           }, 2000);
+        } else {
+          setTimeout(function () {
+            _this.isProgress = false;
+
+            _this.$router.push({
+              name: 'dashboard'
+            });
+
+            _this.$toaster.error('Coś poszło nie tak. Sprawdź uprawnienia.');
+          }, 2000);
         }
       })["catch"](function (error) {
         _this.isProgress = false;
@@ -5831,21 +5846,9 @@ __webpack_require__.r(__webpack_exports__);
     getDivisions: function getDivisions() {
       this.axios.get('/api/getDivisions').then(function (response) {
         this.divisions = response.data;
-        this.author = this.$store.state.user_id;
         this.division = this.$store.state.division;
       }.bind(this));
-    } // getUser: function(){
-    //   this.axios.post('/api/auth/getUser', {
-    //       token: this.$store.state.token, 
-    //       email:this.$store.state.email
-    //       })
-    //   .then(function (response) {
-    //      this.author = response.data[0].id;
-    //      this.division = response.data[0].division;
-    //      this.$store.commit('refreshUser', response.data[0])
-    //   }.bind(this)); 
-    // },
-
+    }
   },
   created: function created() {
     this.getDivisions();
@@ -64456,6 +64459,14 @@ var render = function() {
                             ])
                           : _vm._e()
                       ]),
+                      _vm._v(" "),
+                      _vm.isProgress
+                        ? _c("div", { staticClass: "progress" }, [
+                            _c("div", {
+                              staticClass: "indeterminate amber lighten-1"
+                            })
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
                       _vm._m(0)
                     ]
