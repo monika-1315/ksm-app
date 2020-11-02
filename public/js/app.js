@@ -4542,6 +4542,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4590,6 +4592,11 @@ __webpack_require__.r(__webpack_exports__);
         month: 'long',
         day: 'numeric'
       });
+    },
+    age: function age(birthdate) {
+      var dif = new Date(this.start_date.replace(' ', 'T')) - new Date(birthdate.replace(' ', 'T'));
+      var ageDate = new Date(dif);
+      return Math.abs(ageDate.getUTCFullYear() - 1970);
     },
     getDivisions: function getDivisions() {
       this.axios.get("/api/getDivisions").then(function (response) {
@@ -62218,6 +62225,8 @@ var render = function() {
                     _vm._v(" "),
                     _c("th", [_vm._v("Miasto")]),
                     _vm._v(" "),
+                    _vm.is_admin ? _c("th", [_vm._v("Wiek")]) : _vm._e(),
+                    _vm._v(" "),
                     _c("th", [_vm._v("Potwierdzone")]),
                     _vm._v(" "),
                     _vm._l(_vm.participants, function(person) {
@@ -62230,6 +62239,12 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(person.town))]),
+                          _vm._v(" "),
+                          _vm.is_admin
+                            ? _c("td", [
+                                _vm._v(_vm._s(_vm.age(person.birthdate)))
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _c("td", [
                             person.is_sure === 1

@@ -33,7 +33,7 @@ class ParticipantsController extends Controller
             ->joinSub($select, 'sel', function ($join) {
                 $join->on('users.id', '=', 'sel.user_id');
             })->join('divisions', 'users.division', '=', 'divisions.id')
-            ->select('sel.is_sure', 'users.id', 'users.name', 'users.surname', 'divisions.town', 'divisions.parish')
+            ->select('sel.is_sure', 'users.id', 'users.name', 'users.surname', 'users.birthdate','divisions.town', 'divisions.parish')
             ->get();
 
         return response()->json($data);

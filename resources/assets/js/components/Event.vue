@@ -85,10 +85,12 @@
             <table v-if="this.showParticipants">
               <th>Imię i nazwisko</th>
               <th>Miasto</th>
+              <th  v-if="is_admin">Wiek</th>
               <th>Potwierdzone</th>
               <tr id="person" v-for="person in participants" :key="person.id">
                 <td>{{person.name+' '+person.surname}}</td>
                 <td>{{person.town}}</td>
+                <td  v-if="is_admin">{{age(person.birthdate)}}</td>
                 <td>
                   <span v-if="person.is_sure===1">tak</span>
                   <span v-else>nie</span>
@@ -245,6 +247,11 @@ export default {
   methods: {
      formatDate(date){
       return new Date(date.replace(' ', 'T')).toLocaleDateString("PL", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    },
+    age(birthdate){
+      var dif =new Date(this.start_date.replace(' ', 'T')) - new Date(birthdate.replace(' ', 'T'));
+      var ageDate = new Date(dif)
+      return Math.abs((ageDate).getUTCFullYear() - 1970);
     },
     getDivisions: function () {
       this.axios.get("/api/getDivisions").then(
