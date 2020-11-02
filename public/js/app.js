@@ -3865,6 +3865,16 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.$toaster.success("Zmiany zostały zapisane");
           }, 2000);
+        } else {
+          setTimeout(function () {
+            _this.isProgress = false;
+
+            _this.$router.push({
+              name: "divisions"
+            });
+
+            _this.$toaster.error("Coś poszło nie tak. Sprawdź swoje uprawnienia");
+          }, 2000);
         }
       })["catch"](function (error) {
         _this.isProgress = false;
@@ -5373,6 +5383,16 @@ __webpack_require__.r(__webpack_exports__);
             });
 
             _this.$toaster.success("Oddział został zapisany");
+          }, 2000);
+        } else {
+          setTimeout(function () {
+            _this.isProgress = false;
+
+            _this.$router.push({
+              name: "divisions"
+            });
+
+            _this.$toaster.error("Coś poszło nie tak. Sprawdź swoje uprawnienia");
           }, 2000);
         }
       })["catch"](function (error) {

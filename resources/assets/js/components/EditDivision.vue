@@ -86,6 +86,13 @@ export default {
               this.$toaster.success("Zmiany zostały zapisane");
             }, 2000);
           }
+          else {
+            setTimeout(() => {
+              this.isProgress = false;
+              this.$router.push({ name: "divisions" });
+              this.$toaster.error("Coś poszło nie tak. Sprawdź swoje uprawnienia");
+            }, 2000);
+          }
         })
         .catch(error => {
           this.isProgress = false;

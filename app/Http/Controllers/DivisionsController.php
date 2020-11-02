@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Division;
 use Illuminate\Support\Facades\DB;
 
-use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class DivisionsController extends Controller
 {
@@ -67,6 +67,12 @@ class DivisionsController extends Controller
 
     public function deleteDivision(IdRequest $request)
     {
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_management === 0 || $logged_user->is_authorized === 0)
+            return response()->json([
+                'success' => false
+            ]);
+
         $data = Division::find($request->get('id'));
         $data->delete();
 
@@ -77,6 +83,12 @@ class DivisionsController extends Controller
 
     public function updateDivision(DivisionRequest $request)
     {
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_management === 0 || $logged_user->is_authorized === 0)
+            return response()->json([
+                'success' => false
+            ]);
+
         $division = Division::find($request->get('id'));
         $division->town = $request->get('town');
         $division->parish = $request->get('parish');
@@ -93,6 +105,12 @@ class DivisionsController extends Controller
 
     public function newDivision(DivisionRequest $request)
     {
+        $logged_user = JWTAuth::toUser($request->get('token'));
+        if ($logged_user->is_management === 0 || $logged_user->is_authorized === 0)
+            return response()->json([
+                'success' => false
+            ]);
+            
         $division = new Division();
         $division->town = $request->get('town');
         $division->parish = $request->get('parish');
