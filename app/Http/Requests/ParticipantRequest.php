@@ -25,7 +25,6 @@ class ParticipantRequest extends FormRequest
     {
         return [
             'event_id' => 'required|numeric',
-            'user_id' => 'required|numeric',
             'visible' => 'boolean',
             'is_sure' => 'boolean',
         ];

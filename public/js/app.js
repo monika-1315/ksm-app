@@ -4544,6 +4544,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4643,8 +4647,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isProgress = true;
       this.axios.post("/api/auth/deleteParticipant", {
         token: this.$store.state.token,
-        event_id: this.id,
-        user_id: this.$store.state.user_id
+        event_id: this.id
       }).then(function (response) {
         var _this = this;
 
@@ -4668,7 +4671,6 @@ __webpack_require__.r(__webpack_exports__);
         this.axios.post("/api/auth/newParticipant", {
           token: this.$store.state.token,
           event_id: this.id,
-          user_id: this.$store.state.user_id,
           visible: this.is_visible,
           is_sure: this.is_sure,
           want_messages: this.want_messages
@@ -4691,7 +4693,6 @@ __webpack_require__.r(__webpack_exports__);
         this.axios.post("/api/auth/editParticipant", {
           token: this.$store.state.token,
           event_id: this.id,
-          user_id: this.$store.state.user_id,
           visible: this.is_visible,
           is_sure: this.is_sure,
           want_messages: this.want_messages
@@ -4716,8 +4717,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isProgress = true;
       this.axios.post("/api/auth/getParticipants", {
         token: this.$store.state.token,
-        id: this.id,
-        is_admin: this.is_admin
+        id: this.id
       }).then(function (response) {
         this.participants = response.data;
         this.isProgress = false;
@@ -4728,8 +4728,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isProgress = true;
       this.axios.post("/api/auth/checkParticipant", {
         token: this.$store.state.token,
-        event_id: this.id,
-        user_id: this.$store.state.user_id
+        id: this.id
       }).then(function (response) {
         if (response.data.length > 0) {
           this.is_coming = response.data[0].is_sure;
@@ -62263,6 +62262,14 @@ var render = function() {
               ? _c("p", { staticStyle: { "font-size": "x-small" } }, [
                   _vm._v(
                     "* Niektórzy użytkownicy mogą nie być widoczni dla wszystkich"
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.is_admin && _vm.showParticipants
+              ? _c("p", { staticStyle: { "font-size": "x-small" } }, [
+                  _vm._v(
+                    "* przez wiek rozumie się skończone lata w dniu rozpoczęcia wydarzenia"
                   )
                 ])
               : _vm._e(),

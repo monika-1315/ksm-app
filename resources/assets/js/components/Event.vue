@@ -101,6 +101,10 @@
               v-if="!is_admin&&showParticipants"
               style="font-size: x-small"
             >* Niektórzy użytkownicy mogą nie być widoczni dla wszystkich</p>
+            <p
+              v-if="is_admin&&showParticipants"
+              style="font-size: x-small"
+            >* przez wiek rozumie się skończone lata w dniu rozpoczęcia wydarzenia</p>
 
             <p style="font-style:italic; font-size:small">
               Utworzono {{this.created_at}} przez {{author}}
@@ -302,8 +306,7 @@ export default {
       this.axios
         .post("/api/auth/deleteParticipant", {
           token: this.$store.state.token,
-          event_id: this.id,
-          user_id: this.$store.state.user_id,
+          event_id: this.id
         })
         .then(
           function (response) {
@@ -323,7 +326,6 @@ export default {
           .post("/api/auth/newParticipant", {
             token: this.$store.state.token,
             event_id: this.id,
-            user_id: this.$store.state.user_id,
             visible: this.is_visible,
             is_sure: this.is_sure,
             want_messages: this.want_messages,
@@ -343,7 +345,6 @@ export default {
           .post("/api/auth/editParticipant", {
             token: this.$store.state.token,
             event_id: this.id,
-            user_id: this.$store.state.user_id,
             visible: this.is_visible,
             is_sure: this.is_sure,
             want_messages: this.want_messages,
@@ -365,8 +366,7 @@ export default {
       this.axios
         .post("/api/auth/getParticipants", {
           token: this.$store.state.token,
-          id: this.id,
-          is_admin: this.is_admin,
+          id: this.id
         })
         .then(
           function (response) {
@@ -381,8 +381,7 @@ export default {
       this.axios
         .post("/api/auth/checkParticipant", {
           token: this.$store.state.token,
-          event_id: this.id,
-          user_id: this.$store.state.user_id,
+          id: this.id
         })
         .then(
           function (response) {
