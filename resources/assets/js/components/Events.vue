@@ -223,8 +223,7 @@ export default {
         case "A":
           this.axios
             .post("/api/auth/getUserUpcomingEvents", {
-              token: this.$store.state.token,
-              id: this.user_id,
+              token: this.$store.state.token
             })
             .then(
               function (response) {
@@ -236,8 +235,7 @@ export default {
         case "B":
           this.axios
             .post("/api/auth/getUserOldEvents", {
-              token: this.$store.state.token,
-              id: this.user_id,
+              token: this.$store.state.token
             })
             .then(
               function (response) {

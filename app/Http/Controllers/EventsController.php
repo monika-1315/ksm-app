@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Event;
 use App\Participant;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class EventsController extends Controller
 {
@@ -36,9 +36,10 @@ class EventsController extends Controller
         return response()->json($data);
     }
 
-    public function getUserEvents(IdRequest $request)
+    public function getUserEvents(Request $request)
     {
-        $data = Event::where('author', '=', $request->get('id'))
+        $user = JWTAuth::toUser($request->only('token'));
+        $data = Event::where('author', '=', $user->id)
             ->orderby('start', 'desc')
             ->get();
         return response()->json($data);
@@ -72,11 +73,11 @@ class EventsController extends Controller
     }
 
 
-    public function getUserUpcomingEvents(IdRequest $request)
+    public function getUserUpcomingEvents(Request $request)
     {
-
+        $user = JWTAuth::toUser($request->only('token'));
         $select = DB::table('participants')
-            ->where('user_id', '=', $request->get('id'));
+            ->where('user_id', '=', $user->id);
 
 
         $data = DB::table('events')
@@ -90,11 +91,11 @@ class EventsController extends Controller
         return response()->json($data);
     }
 
-    public function getUserOldEvents(IdRequest $request)
+    public function getUserOldEvents(Request $request)
     {
-
+        $user = JWTAuth::toUser($request->only('token'));
         $select = DB::table('participants')
-            ->where('user_id', '=', $request->get('id'));
+            ->where('user_id', '=', $user->id);
 
 
         $data = DB::table('events')
@@ -144,6 +145,12 @@ class EventsController extends Controller
 
     public function newEvent(EventRequest $request)
     {
+        $logged_user = JWTAuth::toUser($request->only('token'));
+        if ($logged_user->is_authorized === 0 || ($logged_user->is_leadership === 0 && $logged_user->is_management === 0))
+            return response()->json([
+                'success' => false
+            ]);
+
         $event = new Event();
         if ($request->get('division') != 0)
             $event->division = $request->get('division');
@@ -160,17 +167,17 @@ class EventsController extends Controller
         $event->save();
 
         $recipients = UsersController::getRecipients($request->get('division'), null);
-            foreach ($recipients as $p) {
-                Mail::send(
-                    $p->email,
-                    'Nowe wydarzenie w kalendarium KSM DL',
-                    'Witaj!<br>W aplikacji KSM DL właśnie pojawiło się nowe wydarzenie, które może Cię zainteresować: <b>' 
-                    . $request->get('title') 
-                    .'</b>.<br>'.$request->get('about').'<br>'
-                    .$request->get('start').' - '.$request->get('end')
-                    .'<br> Zaloguj się do aplikacji, aby sprawdzić szczegóły i dołączyć do wydarzenia już dziś!'
-                );
-            }
+        foreach ($recipients as $p) {
+            Mail::send(
+                $p->email,
+                'Nowe wydarzenie w kalendarium KSM DL',
+                'Witaj!<br>W aplikacji KSM DL właśnie pojawiło się nowe wydarzenie, które może Cię zainteresować: <b>'
+                    . $request->get('title')
+                    . '</b>.<br>' . $request->get('about') . '<br>'
+                    . $request->get('start') . ' - ' . $request->get('end')
+                    . '<br> Zaloguj się do aplikacji, aby sprawdzić szczegóły i dołączyć do wydarzenia już dziś!'
+            );
+        }
 
         return response()->json([
 
@@ -180,7 +187,19 @@ class EventsController extends Controller
 
     public function editEvent(EventRequest $request)
     {
+        $logged_user = JWTAuth::toUser($request->only('token'));
+        if ($logged_user->is_authorized === 0)
+            return response()->json(['success' => false]);
+
         $event = Event::find($request->get('id'));
+        if ($event->author !== $logged_user->id) {
+            if ($event->division == null) {
+                if ($logged_user->is_management === 0)
+                    return response()->json(['success' => false, 'info' => 1]);
+            } else if ($logged_user->is_leadership === 0 || $logged_user->division !== $event->division)
+                return response()->json(['success' => false, 'info' => 12]);
+        }
+
         if ($request->get('division') != 0)
             $event->division = $request->get('division');
         else
@@ -212,11 +231,23 @@ class EventsController extends Controller
         ]);
     }
 
-   
+
     public function deleteEvent(IdRequest $request)
     {
-        $data = Event::find($request->get('id'));
-        $data->delete();
+        $logged_user = JWTAuth::toUser($request->only('token'));
+        if ($logged_user->is_authorized === 0)
+            return response('', 401);
+
+        $event = Event::find($request->get('id'));
+        if ($event->author !== $logged_user->id) {
+            if ($event->division == null) {
+                if ($logged_user->is_management === 0)
+                return response('', 401);
+            } 
+            else if ($logged_user->is_leadership === 0 || $logged_user->division !== $event->division)
+                return response('', 401);
+        }
+        $event->delete();
 
         return response()->json([
             'success' => true

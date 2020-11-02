@@ -4071,6 +4071,16 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.$toaster.success("Zapisano wydarzenie");
           }, 2000);
+        } else {
+          setTimeout(function () {
+            _this.isProgress = false;
+
+            _this.$router.push({
+              name: "events"
+            });
+
+            _this.$toaster.error("Coś poszło nie tak! Sprawdź uprawnienia.");
+          }, 2000);
         }
       })["catch"](function (error) {
         _this.isProgress = false;
@@ -4129,9 +4139,8 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         _this2.isProgress = false;
         _this2.error = true;
-        _this2.errors = error.response.data.errors;
 
-        _this2.$toaster.error("Coś poszło nie tak");
+        _this2.$toaster.error("Coś poszło nie tak! Sprawdź uprawnienia.");
       });
     }
   },
@@ -4977,8 +4986,7 @@ __webpack_require__.r(__webpack_exports__);
       switch (this.selectedTab) {
         case "A":
           this.axios.post("/api/auth/getUserUpcomingEvents", {
-            token: this.$store.state.token,
-            id: this.user_id
+            token: this.$store.state.token
           }).then(function (response) {
             this.events = response.data;
             this.isProgress = false;
@@ -4987,8 +4995,7 @@ __webpack_require__.r(__webpack_exports__);
 
         case "B":
           this.axios.post("/api/auth/getUserOldEvents", {
-            token: this.$store.state.token,
-            id: this.user_id
+            token: this.$store.state.token
           }).then(function (response) {
             this.events = response.data;
             this.isProgress = false;
@@ -5654,6 +5661,16 @@ __webpack_require__.r(__webpack_exports__);
             });
 
             _this2.$toaster.success("Dodano wydarzenie");
+          }, 2000);
+        } else {
+          setTimeout(function () {
+            _this2.isProgress = false;
+
+            _this2.$router.push({
+              name: "events"
+            });
+
+            _this2.$toaster.error("Niepowodzenie. Sprawdź uprawnienia");
           }, 2000);
         }
       })["catch"](function (error) {

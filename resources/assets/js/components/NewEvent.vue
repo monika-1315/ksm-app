@@ -231,6 +231,13 @@ export default {
               this.$toaster.success("Dodano wydarzenie");
             }, 2000);
           }
+           else {
+            setTimeout(() => {
+              this.isProgress = false;
+              this.$router.push({ name: "events" });
+              this.$toaster.error("Niepowodzenie. Sprawdź uprawnienia");
+            }, 2000);
+          }
         })
         .catch((error) => {
           this.isProgress = false;

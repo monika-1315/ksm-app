@@ -159,6 +159,13 @@ export default {
               this.$toaster.success("Zapisano wydarzenie");
             }, 2000);
           }
+          else {
+            setTimeout(() => {
+              this.isProgress = false;
+              this.$router.push({ name: "events" });
+              this.$toaster.error("Coś poszło nie tak! Sprawdź uprawnienia.");
+            }, 2000);
+          }
         })
         .catch((error) => {
           this.isProgress = false;
@@ -216,12 +223,12 @@ export default {
               this.$toaster.success("Wydarzenie usunięte");
             }, 2000);
           }
+
         })
         .catch((error) => {
           this.isProgress = false;
           this.error = true;
-          this.errors = error.response.data.errors;
-          this.$toaster.error("Coś poszło nie tak");
+          this.$toaster.error("Coś poszło nie tak! Sprawdź uprawnienia.");
         });
     },
   },
