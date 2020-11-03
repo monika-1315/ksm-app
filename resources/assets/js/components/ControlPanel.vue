@@ -14,8 +14,8 @@
     </router-link>
     <br>
     <h4>Twoje konto:</h4>
-    <router-link :to="{ name: 'edit' }" class v-if="this.$store.state.isLoggedIn">
-      <button class="btn-light btn-large" id="edit_data">Edytuj swoje dane</button>
+    <router-link :to="{ name: 'edit' }" id="edit_data" class v-if="this.$store.state.isLoggedIn">
+      <button class="btn-light btn-large" >Edytuj swoje dane</button>
     </router-link>
     <router-link
       :to="{ name: 'delegate' }"
@@ -30,6 +30,7 @@
     <router-link
       :to="{ name: 'editmessages' }"
       class
+      id="editmes-btn"
       v-if="this.$store.state.isLoggedIn && this.$store.state.is_authorized &&(this.$store.state.is_leadership || this.$store.state.is_management)"
     >
       <button class="btn-light btn-large left-btn">Edytuj swoje ogłoszenia</button>
@@ -67,6 +68,7 @@
       <h4 v-if="this.$store.state.is_management">Zarządzaj oddziałami:</h4>
       <router-link
         :to="{ name: 'divisions' }"
+        id="manage-div-btn"
         class
         v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
       >
@@ -83,6 +85,7 @@
 
        <router-link
         :to="{ name: 'chart' }"
+        id="stats-btn"
         class
         v-if="this.$store.state.isLoggedIn &&this.$store.state.is_authorized && this.$store.state.is_management"
       >

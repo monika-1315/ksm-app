@@ -13,7 +13,7 @@
               />
             </router-link>
           </li>
-          <li v-if="this.$store.state.isLoggedIn" data-target="slide-out" class="sidenav-trigger hide-on-med-and-down ">
+          <li id="menu-btn" v-if="this.$store.state.isLoggedIn" data-target="slide-out" class="sidenav-trigger hide-on-med-and-down ">
             <a class=" nav-link" >
               <img
                 alt="KSM logo"
