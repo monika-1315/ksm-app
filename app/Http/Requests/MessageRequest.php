@@ -27,8 +27,8 @@ class MessageRequest extends FormRequest
             'id' => 'numeric',
             'receiver_group' => 'required|int',
             'division' => 'required|int',
-            'title' => 'required|string', 
-            'body' => 'required|string',
+            'title' => 'required|string|max:50', 
+            'body' => 'required|string|max:1000',
         ];
     }
 }

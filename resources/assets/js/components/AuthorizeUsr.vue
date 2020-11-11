@@ -1,6 +1,6 @@
 <template>
   <div class="container" style="text-align:center" v-if=" this.$store.state.is_leadership">
-    <h2>Na autoryzację oczekuje: {{users.length}} członków</h2>
+    <h2>Na zatwierdzenie oczekuje: {{users.length}} członków</h2>
     <button class="btn btn-primary" @click="getUsers">Odśwież</button>
     <br />
     <div class="progress" v-if="isProgress">

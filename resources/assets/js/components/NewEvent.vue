@@ -307,6 +307,10 @@ div.card-header {
 table {
   text-align: center !important;
 }
+
+td {
+  text-align: center !important;
+}
 .modal-footer {
   /* text-align: center !important; */
   justify-content: center !important;

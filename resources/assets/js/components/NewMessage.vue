@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="body">Treść</label>
-                    <textarea id="body" cols="100" rows="100" v-model="body" required/>
+                    <textarea id="body" cols="100" rows="100" v-model="body"   maxlength = "1000" required/>
                     <span class="text text-danger" v-if="error && errors.password">{{ errors.password[0] }}</span>
                 </div>
                 
@@ -106,6 +106,7 @@
                 }).catch(error => {
                     this.isProgress = false;
                     this.error = true;
+                    this.$toaster.error('Coś poszło nie tak!')
                     this.errors = error.response.data.errors
                 });
             },
