@@ -3,7 +3,7 @@
     <h2>Na zatwierdzenie oczekuje: {{users.length}} członków</h2>
     <button class="btn btn-primary" @click="getUsers">Odśwież</button>
     <br />
-    <div class="progress" v-if="isProgress">
+    <div class="progress" v-show="isProgress">
       <div class="indeterminate"></div>
     </div>
     <div v-for="user in users" :key="user.id">

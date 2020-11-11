@@ -36,7 +36,7 @@
           >{{ errors.password[0] }}</span>
         </div>
       </div>
-      <div class="progress" v-if="isProgress">
+      <div class="progress" v-show="isProgress">
         <div class="indeterminate"></div>
         <br />
         <br />

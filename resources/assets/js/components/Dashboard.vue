@@ -44,7 +44,7 @@
        Najnowsze ogłoszenia:<br>
       </h3>
       <br />
-<div class="progress" v-if="isProgress">
+<div class="progress" v-show="isProgress">
       <div class="indeterminate"></div>
     </div>
       <span v-for="tab in tabs" :key="tab.id">

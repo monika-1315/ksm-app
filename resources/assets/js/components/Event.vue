@@ -5,7 +5,7 @@
         <div class="card-header">
           <h4>{{title}}</h4>
         </div>
-        <div class="progress" v-if="isProgress">
+        <div class="progress" v-show="isProgress">
           <div class="indeterminate light-blue darken-4"></div>
         </div>
 

@@ -1,7 +1,7 @@
 <template>
 <div class="container" id="charts">
   <h2>Statystyki dotyczące liczby członków w oddziałach</h2>
-      <div class="progress" v-if="isProgress">
+      <div class="progress" v-show="isProgress">
         <div class="indeterminate"></div>
       </div>
   <div class="big">

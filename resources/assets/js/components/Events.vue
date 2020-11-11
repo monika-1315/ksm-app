@@ -159,7 +159,7 @@
     <p v-if="events.length==0">
       <br />Brak wydarzeń spełniających kryteria
     </p>
-    <div class="progress" v-if="isProgress">
+    <div class="progress" v-show="isProgress">
       <div class="indeterminate"></div>
     </div>
   </div>

@@ -86,7 +86,7 @@
               <span class="text text-danger" v-if="error && errors.details">{{ errors.details[0] }}</span>
             </div>
 
-            <div class="progress" v-if="isProgress">
+            <div class="progress" v-show="isProgress">
               <div class="indeterminate amber lighten-1"></div>
             </div>
             <div class="card-action" style="text-align:center">
@@ -111,7 +111,7 @@
                     
                  
                   <div class="modal-body">
-                    <div class="progress" v-if="isProgress">
+                    <div class="progress" v-show="isProgress">
                       <div class="indeterminate amber lighten-1"></div>
                     </div>
                     <h6

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="progress" v-if="isProgress">
+    <div class="progress" v-show="isProgress">
         <div class="indeterminate"></div>
       </div>
     <p class="center" v-if="!is_leadership&&!is_management">

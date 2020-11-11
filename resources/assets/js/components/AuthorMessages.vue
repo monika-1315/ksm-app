@@ -47,7 +47,7 @@
     <p v-if="messages.length==0">
       <br />Nie publikowałeś żadnych wiadomości
     </p>
-    <div class="progress" v-if="isProgress">
+    <div class="progress" v-show="isProgress">
       <div class="indeterminate"></div>
     </div>
   </div>

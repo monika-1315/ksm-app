@@ -4,32 +4,29 @@
     <br />
     <br />
     <div style="padding 20px">
-      
       <center>
         <h4>Skontaktuj się z nami!</h4>
       </center>
     </div>
     <p align="justify" id="info">
       Jeżeli masz jakieś pytania, sprawy - napisz do nas na
-      <a
-        href="mailto:ksmdl.zarzad@gmail.com"
-      >ksmdl.zarzad@gmail.com</a>, chętnie pomożemy!
-      Jeżeli masz problemy lub uwagi co do działania aplikacji, napisz na
-      <a
-        href="mailto:updates@app-ksm.legnica.pl"
-      >updates@app-ksm.legnica.pl</a>. Zachęcamy
-      także do kontaktu bezpośrednio z
-      <b>członkami zarządu</b>:
+      <a href="mailto:ksmdl.zarzad@gmail.com">ksmdl.zarzad@gmail.com</a>,
+      chętnie pomożemy! Jeżeli masz problemy lub uwagi co do działania
+      aplikacji, napisz na
+      <a href="mailto:updates@app-ksm.legnica.pl">updates@app-ksm.legnica.pl</a
+      >. Zachęcamy także do kontaktu bezpośrednio z <b>członkami zarządu</b>:
     </p>
-    <div class="progress" v-if="isProgress">
-        <div class="indeterminate"></div>
+    <div class="progress" v-show="isProgress">
+      <div class="indeterminate"></div>
     </div>
     <table>
       <tr id="person" v-for="person in management" :key="person.user_id">
-        <td>{{person.function_name}}</td>
-        <td>{{person.name+' '+person.surname}}</td>
+        <td>{{ person.function_name }}</td>
+        <td>{{ person.name + " " + person.surname }}</td>
         <td>
-          <a :href="`mailto:${person.function_mail}`">{{person.function_mail}}</a>
+          <a :href="`mailto:${person.function_mail}`">{{
+            person.function_mail
+          }}</a>
         </td>
       </tr>
     </table>
@@ -41,24 +38,24 @@
 export default {
   data() {
     return {
-      isProgress:true,
-      management: []
+      isProgress: true,
+      management: [],
     };
   },
   methods: {
-    getManagement: function() {
+    getManagement: function () {
       this.axios.get("/api/getManagement").then(
-        function(response) {
+        function (response) {
           this.management = response.data;
-          this.isProgress=false;
+          this.isProgress = false;
         }.bind(this)
       );
-    }
+    },
   },
-  created: function() {
-    this.isProgress=true;
+  created: function () {
+    this.isProgress = true;
     this.getManagement();
-  }
+  },
 };
 </script>
 
@@ -69,10 +66,10 @@ export default {
   text-align: center;
 }
 
-@media (max-device-width: 900px){
-  .container{
-     padding-left: 1%;
-  padding-right: 1%;
+@media (max-device-width: 900px) {
+  .container {
+    padding-left: 1%;
+    padding-right: 1%;
   }
 }
 .indeterminate {

@@ -34,7 +34,7 @@
                     <span class="text text-danger" v-if="error && errors.password">{{ errors.password[0] }}</span>
                 </div>
                 
-                <div class="progress" v-if="isProgress">
+                <div class="progress" v-show="isProgress">
       <div class="indeterminate amber lighten-1"></div>
     </div>
                 <div style="text-align:center">

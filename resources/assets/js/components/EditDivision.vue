@@ -6,7 +6,7 @@
           <h4>Edytuj informacje o oddziale</h4>
         </div>
         <div class="card-body">
-          <div class="progress" v-if="isProgress">
+          <div class="progress" v-show="isProgress">
       <div class="indeterminate"></div>
     </div>
           <form autocomplete="off" @submit.prevent="editDivision" v-if="!success" method="post">

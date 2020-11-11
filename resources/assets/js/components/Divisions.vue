@@ -3,7 +3,7 @@
     <br>
      <button class="btn btn-primary floating yellow" type="button"  @click="newDiv">Dodaj nowy</button>
     <h2>Zarządzaj oddziałami</h2>
-    <div class="progress" v-if="isProgress">
+    <div class="progress" v-show="isProgress">
       <div class="indeterminate"></div>
     </div>
    <br>
