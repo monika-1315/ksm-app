@@ -114,19 +114,13 @@ export default {
       selectedTab: "A"
     };
   },
-  components: {
-    //
-  },
   computed: {
-    division() {
-      return this.$store.state.division;
-    },
     is_leadership() {
       return this.$store.state.is_leadership;
     }
   },
   watch: {
-    division: function() {
+    is_leadership: function() {
       this.getMessages();
     }
   },
@@ -164,7 +158,6 @@ export default {
         .post(url, {
           is_leadership: this.is_leadership,
           token: this.$store.state.token,
-          division: this.$store.state.division,
           card: this.selectedTab
         })
         .then(

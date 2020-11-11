@@ -111,7 +111,7 @@ export default {
         .catch((error) => {
           this.isProgress = false;
           this.loginError = true;
-          this.errors = error.response.data.errors;
+          this.$toaster.error("Coś poszło nie tak!");
         });
     },
     newPassword(){
