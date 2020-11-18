@@ -165,6 +165,7 @@ class MessageController extends Controller
     {
         $data = Message::find($request->get('id'));
         $logged_user = JWTAuth::toUser($request->get('token'));
+        
         if ($data->author !== $logged_user->id)
             return response()->json(['success' => false]);
 

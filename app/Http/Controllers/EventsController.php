@@ -13,14 +13,8 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class EventsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
 
-
-    public function getUpcomingEvents(Request $request)
+    public function getUpcomingEvents()
     {
         $data = Event::where('end', '>=', date('Y-m-d'))
             ->orderby('start', 'desc')

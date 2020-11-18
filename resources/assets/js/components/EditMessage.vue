@@ -151,7 +151,6 @@
                     {
                         setTimeout(() => {
                             this.isProgress = false;
-                            this.$router.push({ name: 'editmessages'})
                             this.$toaster.error('Coś poszło nie tak')
                         }, 2000)
                     }

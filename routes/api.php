@@ -31,8 +31,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/auth/register', 'AuthController@postRegister');
 Route::post('/auth/login', 'AuthController@postLogin');
-Route::post('/auth/social', 'AuthController@postSocialLogin');
-
 
 
 Route::group(['middleware' => ['jwt.auth']], function () {

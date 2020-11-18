@@ -25,10 +25,10 @@ class DivisionRequest extends FormRequest
     {
         return [
             'id' => 'numeric',
-            'town' => 'required|string',
-            'parish' => 'required|string', 
+            'town' => 'required|string|max:30',
+            'parish' => 'required|string|max:255', 
             'is_active' => 'boolean',
-            'email' => 'email',
+            'email' => 'email|max:50',
         ];
     }
 }

@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        email: localStorage.getItem('email'),
+        email: '',
         isLoggedIn: !!localStorage.getItem('token'),
         token: localStorage.getItem('token'),
         name: '',
@@ -23,7 +23,6 @@ export default new Vuex.Store({
             state.messages=messages;
         },
         LoginEmail(state, email) {
-            localStorage.setItem('email', email);
             state.email = email;
             axios.post('/api/auth/getUser',{token: state.token})
                 .then(function (response) {
@@ -45,7 +44,7 @@ export default new Vuex.Store({
             state.isLoggedIn = false;
             state.data = '';
             state.token = localStorage.removeItem('token');
-            state.email = localStorage.removeItem('email');
+            state.email = '';//localStorage.removeItem('email');
             state.division = 0;
             state.user_id = 0;
             state.is_leadership = false
@@ -65,16 +64,6 @@ export default new Vuex.Store({
             state.is_authorized = data.is_authorized;
             state.name = data.name;
             state.user_id = data.id;
-
-            // if (state.isLoggedIn && state.division===0){
-            //     axios.post('/api/auth/getUser?token=' + state.token+'&email='+state.email)
-            //         .then(function (response) {
-            //         state.division = response.data[0].division;
-            //         state.is_leadership = response.data[0].is_leadership;
-            //         state.is_management = response.data[0].is_management;
-            //         state.is_authorized = response.data[0].is_authorized;
-            //         state.name = response.data[0].name;
-            //     }.bind(this));
         }
 
     }

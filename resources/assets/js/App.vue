@@ -266,7 +266,6 @@ export default {
         .get("/api/auth/logout?token=" + this.$store.state.token)
         .then((response) => {
           if (response.data.success == true) {
-            // login user, store the token and redirect to dashboard
             this.$store.commit("LogoutUser");
             this.$router.push({ name: "login" });
           }

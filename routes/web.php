@@ -11,15 +11,14 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/{any}', function () {
     return view('welcome');
-});
+})->where('any', '(.*)');
 
 
-Route::get('/{any}', function() { return view('welcome'); })->where('any', '(.*)');
-
-
-
-Route::get('/{id}', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('/{id}', function () {
+//     return view('welcome');
+// });
