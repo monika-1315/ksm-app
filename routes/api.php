@@ -24,6 +24,7 @@ Route::get('/getOldEvents', 'EventsController@getOldEvents');
 Route::get('/getDivisionEvents', 'EventsController@getDivisionEvents');
 
 Route::post('/forgotPassword', 'UsersController@newPassword');
+Route::post('/mail', 'Mail@sendRegisterMail');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

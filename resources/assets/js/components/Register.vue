@@ -6,7 +6,7 @@
           <h4>Zarejestruj się</h4>Cieszymy się, że chcesz działać razem z nami!
         </div>
         <div class="card-body">
-          <form autocomplete="off" @submit.prevent="register" v-if="!success" method="post">
+          <form autocomplete="off" @submit.prevent="register"  method="post">
             <div class="form-group">
               <label for="name">Imię</label>
               <input id="name" type="text" class="validate" v-model="name" pattern="([A-Za-z- ])+" required />
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="email" class="validate" v-model="email" required />
+              <input id="email" type="email" class="validate" v-model="email" :disabled="success" required />
               <span class="text text-danger" v-if="error && errors.email">{{ errors.email[0] }}</span>
             </div>
             <div class="form-group">
@@ -109,7 +109,7 @@
                 class="btn btn-primary"
                 type="button"
                 name="action"
-                :disabled="code=== undefined"
+                :disabled="!success"
                 @click.prevent="register()"
               >Zarejestruj się</button>
             </div>
@@ -194,15 +194,14 @@ export default {
       if (this.code===undefined)
         this.code = Math.round(Math.random() * 10000);
       this.axios
-        .post("/mail", {
+        .post("/api/mail", {
           recipient: this.email,
-          subject: "Potwierdź adres email - aplikacja KSM DL",
-          body:
-            "Witaj "+this.name+"!<br> Próbujesz się właśnie zarejestrować do aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej. "
-            +"Twój unikalny kod aktywacyjny to: <br><b>"+this.code,
+          name: this.name,
+          code: this.code +9999,
         })
         .then((response) => {
           if (response.data.success == true) {
+            this.success=true;
             this.$toaster.success("Wysłano email");
           } else {
             this.$toaster.error("Nie udało się wysłać wiadomości email. Sprawdź, czy Twój adres email jest poprawny lub skontaktuj się z administratorem.");

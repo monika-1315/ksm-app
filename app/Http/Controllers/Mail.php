@@ -58,6 +58,14 @@ class Mail
         return Mail::send($request->get('recipient'), $request->get('subject'), $request->get('body'));
     }
 
+    public function sendRegisterMail(Request $request)
+    {
+        $code=$request->get('code')-9999;
+        return Mail::send($request->get('recipient'), "Potwierdź adres email - aplikacja KSM DL", 
+        "Witaj ".$request->get('name')."!<br> Próbujesz się właśnie zarejestrować do aplikacji Katolickiego Stowarzyszenia Młodzieży Diecezji Legnickiej. "
+        ."Twój unikalny kod aktywacyjny to: <br><b>".$code."</b>");
+    }
+
     public static function sendById($id, $subject, $body){
         $user = User::find($id);
         return Mail::send($user->email, $subject, $body);
