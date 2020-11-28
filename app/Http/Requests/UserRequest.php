@@ -27,8 +27,6 @@ class UserRequest extends FormRequest
             'surname' => 'required|string|max:50',
             'name' => 'required|string|max:30',
             'email' => 'required|email|max:50', 
-            // 'password' => 'string|min:6',
-            // 'confirmPassword' => 'string|min:6|same:password',
             'birthdate' => 'required|date|before:'. date('Y-m-d'),
             'division' => 'required|int',
             'is_leadership' =>'required|boolean',

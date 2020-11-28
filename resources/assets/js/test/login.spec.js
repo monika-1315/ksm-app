@@ -5,14 +5,9 @@ import Login from "../components/Login.vue";
 import moxios from 'moxios'
 import axios from 'axios';
 import VueAxios from 'vue-axios'
-import flushPromises from 'flush-promises'
-// import VueRouter from 'vue-router';
-// import router from '../router.js'
-// import store from '../store.js'
 
 
 const localVue = createLocalVue()
-// localVue.use(VueRouter)
 localVue.use(VueAxios, axios);
 
 beforeEach(function () {

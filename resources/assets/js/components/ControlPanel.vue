@@ -24,8 +24,7 @@
     >
       <button class="btn-light btn-large left-btn">Deleguj uprawnienia</button>
     </router-link>
-    <!-- <hr> -->
-
+    
     <h4>Ogłoszenia:</h4>
     <router-link
       :to="{ name: 'editmessages' }"
@@ -45,7 +44,7 @@
     </router-link>
 
     <div v-if="this.$store.state.is_leadership || this.$store.state.is_management">
-      <!-- <hr> -->
+      
       <h4>Zarządzaj członkami:</h4>
       <router-link
         :to="{ name: 'adduser' }"
@@ -64,7 +63,7 @@
       </router-link>
     </div>
     <div v-if="this.$store.state.is_management">
-      <!-- <hr> -->
+      
       <h4 v-if="this.$store.state.is_management">Zarządzaj oddziałami:</h4>
       <router-link
         :to="{ name: 'divisions' }"
@@ -127,14 +126,10 @@ button {
 }
 h4 {
   margin-top: 1em;
-  /* text-indent: 1em;
-    text-align: left; */
+  
 }
 hr {
   border-color: #fecb00;
-  /* width: 50em;
-    margin-left: 0%; */
-  /* border-color:  rgba(0, 0, 139, 0.719); */
 }
 @media (max-device-width: 900px){
   .container{

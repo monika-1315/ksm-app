@@ -32,7 +32,6 @@ class DivisionsController extends Controller
             
 
         $data = DB::table('users')
-            // ->where('is_authorized', '=', 0)
             ->selectRaw('sel.town, sel.parish, count(users.id) cnt_all, sel.cnt_aut')
             ->groupByRaw('sel.town, sel.parish, sel.cnt_aut')
             ->rightJoinSub($select2, 'sel', function ($join) {

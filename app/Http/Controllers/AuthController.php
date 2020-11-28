@@ -82,38 +82,5 @@ class AuthController extends Controller
         ]);
     }
 
-    public function postSocialLogin(Request $request)
-    {
-        $existingUser = User::where('email', $request->only('email'))->first();
-        $token = null;
-
-        if($existingUser) {
-
-            return response()->json([
-                'success' => true,
-                'data' => [
-                    'token' => \JWTAuth::fromUser($existingUser),
-                    'user' => $existingUser,
-                    'login' => true,
-                ]
-            ]);
-        }else{
-
-            $user = new User();
-            $user->name = $request->get('name');
-            $user->email = $request->get('email');
-            $user->password = '';
-            $user->save();
-
-            return response()->json([
-                'success' => true,
-                'data' => [
-                    'token' => \JWTAuth::fromUser($user),
-                    'user' => $user,
-                    'login' => true,
-                ]
-            ]);
-
-        }
-    }
+    
 }

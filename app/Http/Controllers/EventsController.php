@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EmailRequest;
 use App\Http\Requests\EventRequest;
 use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use App\Event;
-use App\Participant;
 use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -22,7 +20,7 @@ class EventsController extends Controller
         return response()->json($data);
     }
 
-    public function getOldEvents(Request $request)
+    public function getOldEvents()
     {
         $data = Event::where('end', '<', date('Y-m-d'))
             ->orderby('start', 'asc')
@@ -45,12 +43,10 @@ class EventsController extends Controller
             $data = Event::whereNull('division')
                 ->where('end', '>=', date('Y-m-d'))
                 ->select('id', 'division', 'title', 'about', 'start', 'end', 'location', 'author');
-            // ->get();
         } else {
             $data = Event::where('division', '=', $request->get('id'))
                 ->where('end', '>=', date('Y-m-d'))
                 ->select('id', 'division', 'title', 'about', 'start', 'end', 'location', 'author');
-            // ->get();
         }
 
         $select1 = DB::table('participants')

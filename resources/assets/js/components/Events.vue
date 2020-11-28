@@ -180,9 +180,6 @@ export default {
       selectedTab: "C",
     };
   },
-  components: {
-    //
-  },
   computed: {
     user_id() {
       return this.$store.state.user_id;

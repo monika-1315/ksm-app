@@ -9,29 +9,20 @@ import 'v-infinite-scroll/dist/v-infinite-scroll.css';
 import "materialize-css/dist/css/materialize.min.css";
 import "materialize-css/dist/js/materialize.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-// 
-
+import Toaster from 'v-toaster';
+import 'v-toaster/dist/v-toaster.css';
 import router from './router'
 
 Vue.use(InfiniteScroll);
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
-
-//vue-toaster
-import Toaster from 'v-toaster';
-import 'v-toaster/dist/v-toaster.css';
-
 Vue.use(Toaster, {timeout: 2000});
 
 Vue.router = router
-// Vue.use(require('@websanova/vue-auth'), {
-//     auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
-//     http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
-//     router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
-// });
+
 App.router = Vue.router
-// new Vue(App).$mount('#app');
+//initialize Vue app instance
 new Vue({
     store,
     

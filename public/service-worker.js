@@ -1,5 +1,5 @@
 const MY_CACHE = 'my-cache-name';
-// w tej tablicy lądują wszystkie pliki, które chcemy dodać do cache
+// here are all the files that will be added to cache
 const MY_FILES = [
         '/css/app.css',
         '/images/logo.png',        
@@ -8,7 +8,7 @@ const MY_FILES = [
         '/js/app.js'
 ];
 
-// instalujemy nasz service worker
+// install our service worker
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(MY_CACHE).then(function(cache) {
@@ -16,7 +16,7 @@ self.addEventListener('install', function(event) {
     })
   );
 });
-// po aktywacji chcę skasować wszystkie cache w naszej domenie, które nie są naszym cache (to opcjonalne)
+// after activation delete all caches in our domain that aren't ours
 self.addEventListener('activate', function(event) {
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
@@ -30,7 +30,7 @@ self.addEventListener('activate', function(event) {
     })
   );
 });
-// strategia 'Network falling back to cache'
+// strategy 'Network falling back to cache'
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     fetch(event.request).catch(function() {

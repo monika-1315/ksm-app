@@ -24,9 +24,7 @@ class GetMessagesRequest extends FormRequest
     public function rules()
     {
         return [
-            'card' => 'required|string',
-            // 'division' => 'required|int',
-            // 'is_leadership' => 'required|boolean',
+            'card' => 'required|string|max:2',
         ];
     }
 }

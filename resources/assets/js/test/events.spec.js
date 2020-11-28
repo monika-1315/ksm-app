@@ -5,8 +5,6 @@ import Events from "../components/Events.vue";
 import moxios, { wait } from 'moxios'
 import axios from 'axios';
 import VueAxios from 'vue-axios'
-// import VueRouter from 'vue-router';
-// import router from '../router.js'
 import store from '../store.js'
 
 

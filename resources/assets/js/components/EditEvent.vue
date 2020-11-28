@@ -148,7 +148,6 @@ export default {
           timetable: this.timetable,
           details: this.details,
           emails: email,
-          // author: this.author,
         })
         .then((response) => {
           this.isProgress = true;

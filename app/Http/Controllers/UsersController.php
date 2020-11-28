@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EmailRequest;
 use App\Http\Requests\NewUserRequest;
 use App\Http\Requests\UserRequest;
-use App\Http\Requests\DivisionIdRequest;
 use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
-use App\Division;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsersController extends Controller

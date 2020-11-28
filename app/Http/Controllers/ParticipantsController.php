@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ParticipantsRequest;
 use App\Http\Requests\ParticipantRequest;
 use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
@@ -13,11 +12,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ParticipantsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    
     public function getParticipants(IdRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));

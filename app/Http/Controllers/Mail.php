@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Http\Request;
 use App\User;
@@ -26,12 +25,12 @@ class Mail
             $mail->isSMTP();
             $mail->CharSet = 'UTF-8';
 
-            $mail->Host       =  env("MAIL_HOST"); // SMTP server example
-            $mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
+            $mail->Host       =  env("MAIL_HOST"); // SMTP server
+            $mail->SMTPDebug  = 0;                     
             $mail->SMTPAuth   = true;          // enable SMTP authentication
             $mail->Port       = env("MAIL_PORT");                    // set the SMTP port for the  server
-            $mail->Username   = env("MAIL_USERNAME"); // SMTP account username example
-            $mail->Password   = env("MAIL_PASSWORD");        // SMTP account password example
+            $mail->Username   = env("MAIL_USERNAME"); // SMTP account username 
+            $mail->Password   = env("MAIL_PASSWORD");        // SMTP account password 
 
             $mail->setFrom('updates@app-ksm.legnica.pl', 'Aplikacja KSM DL');
 
@@ -53,11 +52,6 @@ class Mail
         }
     }
 
-    public function sendMail(Request $request)
-    {
-        return Mail::send($request->get('recipient'), $request->get('subject'), $request->get('body'));
-    }
-
     public function sendRegisterMail(Request $request)
     {
         $code=$request->get('code')-9999;
@@ -70,9 +64,6 @@ class Mail
         $user = User::find($id);
         return Mail::send($user->email, $subject, $body);
     }
-    // public static function sendById(Request $request){
-    //     $user = User::find($request->get('id'));
-    //     return Mail::send($user->email, $request->get('subject'), $request->get('body'));
-    // }
+    
 }
 ?>

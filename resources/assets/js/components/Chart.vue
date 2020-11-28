@@ -34,7 +34,6 @@ export default {
       parishes: [],
       all_members: [],
       aut_members: [],
-      // dataa:[],
       isProgress: true,
     };
   },
@@ -45,7 +44,6 @@ export default {
     getStats: function () {
       this.axios.get("/api/getDivisionsStats").then(
         function (response) {
-          // this.dataa = response.data;
           for (var division of response.data) {
             this.divisions.push(division.town);
             this.parishes.push(division.parish);

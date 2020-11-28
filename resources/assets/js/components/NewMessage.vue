@@ -58,7 +58,6 @@
                 body: '',
                 email: '',
                 receiver_group: 1,
-                // is_leadership: 0,
                 error: false,
                 errors: {},
                 success: false,

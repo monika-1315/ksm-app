@@ -7,7 +7,6 @@ use App\Http\Requests\MessageRequest;
 use App\Http\Requests\IdRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Division;
 use App\Message;
 
 use Tymon\JWTAuth\Facades\JWTAuth;

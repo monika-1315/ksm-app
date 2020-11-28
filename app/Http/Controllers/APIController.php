@@ -10,13 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class APIController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-
     public function getManagement()
     {
         $data = DB::table('users')

@@ -31,9 +31,6 @@ class EventRequest extends FormRequest
             'end' => 'required|string|date|after_or_equal:start',
             'division' => 'required|int',
             'location' => 'required|string|max:100',
-            // 'price' => 'string|max:100',
-            // 'timetable' => 'string|max:2000',
-            // 'details' => 'string|max:1000',
             'author' => 'numeric',
         ];
     }

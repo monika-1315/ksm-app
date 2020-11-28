@@ -68,8 +68,7 @@
 </template>
 
 <script>
-// import GSignInButton from 'vue-google-signin-button'
-// Vue.use(GSignInButton)
+
 import store from "../store.js";
 export default {
   data() {
@@ -122,8 +121,7 @@ export default {
           email: email
         })
         .then((response) => {
-          if (response.data.success == true) {
-            
+          if (response.data.success == true) {            
               this.isProgress = false;
               if(response.data.sent)
               this.$toaster.success("Email z nowym hasłem został wysłany");

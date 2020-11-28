@@ -44,7 +44,7 @@ export default new Vuex.Store({
             state.isLoggedIn = false;
             state.data = '';
             state.token = localStorage.removeItem('token');
-            state.email = '';//localStorage.removeItem('email');
+            state.email = '';
             state.division = 0;
             state.user_id = 0;
             state.is_leadership = false

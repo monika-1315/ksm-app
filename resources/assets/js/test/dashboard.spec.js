@@ -6,9 +6,6 @@ import Dashboard from "../components/Dashboard.vue";
 import moxios from 'moxios'
 import axios from 'axios';
 import VueAxios from 'vue-axios'
-import flushPromises from 'flush-promises'
-// import VueRouter from 'vue-router';
-// import router from '../router.js'
 import store from '../store.js'
 
 
