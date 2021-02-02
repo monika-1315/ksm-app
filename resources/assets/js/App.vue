@@ -400,7 +400,7 @@ export default {
             }.bind(this)
           )
           .catch((error) => {
-            if (error.response && error.response.status === 401) {
+            if (error.response && error.response.status == 401) {
               myThis.$store.commit("LogoutUser");
               myThis.$router.push({ name: "login" });
             }

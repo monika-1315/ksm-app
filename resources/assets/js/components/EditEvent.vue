@@ -197,7 +197,7 @@ export default {
             this.end_date = response.data[0].end.split(" ")[0];
             this.end_time = response.data[0].end.split(" ")[1];
             this.division = response.data[0].division;
-            if (this.division === null) this.division = 0;
+            if (this.division == null) this.division = 0;
             this.location = response.data[0].location;
             this.price = response.data[0].price;
             this.timetable = response.data[0].timetable;

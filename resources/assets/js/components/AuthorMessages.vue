@@ -15,16 +15,16 @@
       <button
         class="tab btn btn-light"
         @click="selectedTab=tab.id"
-        v-if="tab.id!=='D'&&tab.id!=='C'||is_management"
+        v-if="tab.id!='D'&&tab.id!='C'||is_management"
       >
-        <a :class="{activeTab: selectedTab===tab.id}">{{ tab.text }}</a>
+        <a :class="{activeTab: selectedTab==tab.id}">{{ tab.text }}</a>
       </button>
     </span>
 
     <div v-for="message in messages" :key="message.id">
       <div
         class="card card-default"
-        v-if="selectedTab==='A'|| selectedTab==='B'&&message.receiver_group===1||selectedTab==='C'&&message.receiver_group===0||selectedTab==='D'&&message.receiver_group===2"
+        v-if="selectedTab=='A'|| selectedTab=='B'&&message.receiver_group==1||selectedTab=='C'&&message.receiver_group==0||selectedTab=='D'&&message.receiver_group==2"
       >
         <div class="card-header">
           <h4>
@@ -106,7 +106,7 @@ export default {
   },
 
   created: function() {
-    if (this.user_id !== 0) this.getMessages();
+    if (this.user_id != 0) this.getMessages();
   }
 };
 </script>

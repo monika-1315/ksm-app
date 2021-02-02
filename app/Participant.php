@@ -12,5 +12,18 @@ class Participant extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'event_id' => 'int',
+        'user_id' => 'int',
+        'visible' => 'int',
+        'is_sure' => 'int',
+        'want_messages' => 'int'
+    ];
     
 }

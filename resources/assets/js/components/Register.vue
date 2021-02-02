@@ -99,7 +99,7 @@
            
             <div class="card-action" style="text-align:center">
                <button
-                v-if="code=== undefined"
+                v-if="code== undefined"
                 class="btn btn-light btn-tiny"
                 type="button"
                 name="action"
@@ -191,7 +191,7 @@ export default {
       );
     },
     sendCode: function () {
-      if (this.code===undefined)
+      if (this.code==undefined)
         this.code = Math.round(Math.random() * 10000);
       this.axios
         .post("/api/mail", {

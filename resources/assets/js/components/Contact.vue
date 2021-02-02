@@ -13,7 +13,7 @@
       <a href="mailto:ksmdl.zarzad@gmail.com">ksmdl.zarzad@gmail.com</a>,
       chętnie pomożemy! Jeżeli masz problemy lub uwagi co do działania
       aplikacji, napisz na
-      <a href="mailto:updates@app-ksm.legnica.pl">updates@app-ksm.legnica.pl</a
+      <a href="mailto:app@ksm.legnica.pl">app@ksm.legnica.pl</a
       >. Zachęcamy także do kontaktu bezpośrednio z <b>członkami zarządu</b>:
     </p>
     <div class="progress" v-show="isProgress">

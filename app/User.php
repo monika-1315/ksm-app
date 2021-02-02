@@ -35,6 +35,19 @@ class User extends Authenticatable implements JWTSubject
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'division' => 'int',
+        'is_authorized' => 'int',
+        'is_leadership' => 'int',
+        'is_management' => 'int',
+        'want_messages' => 'int'
+    ];
     
      /**
      * Get the identifier that will be stored in the subject claim of the JWT.

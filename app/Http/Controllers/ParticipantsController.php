@@ -17,10 +17,10 @@ class ParticipantsController extends Controller
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
         $event = Event::find($request->get('id'));
-        $is_admin = (($event->division === null && $logged_user->is_management) ||
-            ($event->division === $logged_user->division &&
+        $is_admin = (($event->division == null && $logged_user->is_management) ||
+            ($event->division == $logged_user->division &&
                 $logged_user->is_leadership) ||
-            $event->author === $logged_user->id);
+            $event->author == $logged_user->id);
 
         if ($is_admin) {
             $select = DB::table('participants')

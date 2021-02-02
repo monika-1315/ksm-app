@@ -67,7 +67,7 @@ class DivisionsController extends Controller
     public function deleteDivision(IdRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_management === 0 || $logged_user->is_authorized === 0)
+        if ($logged_user->is_management == 0 || $logged_user->is_authorized == 0)
             return response()->json([
                 'success' => false
             ]);
@@ -83,7 +83,7 @@ class DivisionsController extends Controller
     public function updateDivision(DivisionRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_management === 0 || $logged_user->is_authorized === 0)
+        if ($logged_user->is_management == 0 || $logged_user->is_authorized == 0)
             return response()->json([
                 'success' => false
             ]);
@@ -105,7 +105,7 @@ class DivisionsController extends Controller
     public function newDivision(DivisionRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_management === 0 || $logged_user->is_authorized === 0)
+        if ($logged_user->is_management == 0 || $logged_user->is_authorized == 0)
             return response()->json([
                 'success' => false
             ]);

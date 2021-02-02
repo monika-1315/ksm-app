@@ -15,7 +15,7 @@
       <h3>Obecne Kierownictwo:</h3>
       <div align="left" v-for="user in usersDiv1" :key="user.id">
         <button
-          v-if="user.id!==user_id"
+          v-if="user.id!=user_id"
           class="btn btn-primary btn-small floating"
           type="button"
           @click="chLeader(user.id)"
@@ -51,7 +51,7 @@
       <h3>Obecny Zarząd:</h3>
       <div align="left" v-for="user in usersAll1" :key="user.id">
         <button
-          v-if="user.id!==user_id"
+          v-if="user.id!=user_id"
           class="btn btn-primary btn-small floating"
           type="button"
           @click="chMan(user.id)"
@@ -120,7 +120,7 @@ export default {
           if (response.data.success == true) {
             setTimeout(() => {
               this.isProgress = false;              
-              if (idi === this.user_id) {
+              if (idi == this.user_id) {
                  this.$toaster.warning
                 (
                   "Zrezygnowałeś z uprawnień."
@@ -151,7 +151,7 @@ export default {
             setTimeout(() => {
               this.isProgress = false;
 
-              if (idi === this.user_id) {
+              if (idi == this.user_id) {
                 this.$toaster.warning
                 (
                   "Zrezygnowałeś z uprawnień."
@@ -196,7 +196,7 @@ export default {
               this.usersAll0.length = 0;
               this.usersAll1.length = 0;
               for (var user of response.data) {
-                if (user.is_management === '0') this.usersAll0.push(user);
+                if (user.is_management == '0') this.usersAll0.push(user);
                 else this.usersAll1.push(user);
               }
               this.isProgress=false;

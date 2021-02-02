@@ -66,10 +66,10 @@
         <button
           class="tab btn btn-light"
           @click="tabSelected(tab.id)"
-          v-if="tab.id !== 'D' || is_leadership"
+          v-if="tab.id != 'D' || is_leadership"
           :id="tab.text"
         >
-          <a :class="{ activeTab: selectedTab === tab.id }">{{ tab.text }}</a>
+          <a :class="{ activeTab: selectedTab == tab.id }">{{ tab.text }}</a>
         </button>
       </span>
 
@@ -77,11 +77,11 @@
         <div
           class="card card-default"
           v-if="
-            (selectedTab === 'A' &&
-              (message.receiver_group !== 2 || is_leadership)) ||
-            (selectedTab === 'B' && message.receiver_group === 1) ||
-            (selectedTab === 'C' && message.receiver_group === 0) ||
-            (selectedTab === 'D' && message.receiver_group === 2)
+            (selectedTab == 'A' &&
+              (message.receiver_group != 2 || is_leadership)) ||
+            (selectedTab == 'B' && message.receiver_group == 1) ||
+            (selectedTab == 'C' && message.receiver_group == 0) ||
+            (selectedTab == 'D' && message.receiver_group == 2)
           "
         >
           <div class="card-header">
@@ -97,7 +97,7 @@
                 ", " +
                 message.published_at
               }}
-              <span v-if="message.modified === 1">, edytowana</span>
+              <span v-if="message.modified == 1">, edytowana</span>
             </p>
           </div>
         </div>
@@ -109,7 +109,7 @@
         name="action"
         @click="getPage(messages.prev_page_url)"
         style="float: left"
-        v-if="messages.prev_page_url !== null"
+        v-if="messages.prev_page_url != null"
       >
         Poprzednia strona
       </button>
@@ -119,7 +119,7 @@
         name="action"
         @click="getPage(messages.next_page_url)"
         style="float: right"
-        v-if="messages.next_page_url !== null"
+        v-if="messages.next_page_url != null"
       >
         Następna strona
       </button>
@@ -165,14 +165,14 @@ export default {
             this.isProgress = true;
             this.messages = response.data;
             this.isProgress = false;
-            if (this.selectedTab === "A")
+            if (this.selectedTab == "A")
               store.commit("SaveMessages", response.data);
           }.bind(this)
         );
     },
     tabSelected: function (cardId) {
       this.selectedTab = cardId;
-      if (cardId === "A" && this.$store.state.messages !== null) {
+      if (cardId == "A" && this.$store.state.messages != null) {
         this.messages = this.$store.state.messages;
       } else {
         this.getMessages();
@@ -196,8 +196,8 @@ export default {
     },
   },
   created: function () {
-    if (this.$store.state.division !== 0) {
-      if (this.$store.state.messages !== null) {
+    if (this.$store.state.division != 0) {
+      if (this.$store.state.messages != null) {
         this.messages = this.$store.state.messages;
         this.isProgress = false;
       } else this.getMessages();

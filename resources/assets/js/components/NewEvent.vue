@@ -45,7 +45,7 @@
                   v-for="divi in divisions"
                   :value="divi.id"
                   :key="divi.id"
-                  :disabled="!is_management && divi.id!==user_division"
+                  :disabled="!is_management && divi.id!=user_division"
                 >
                   <span>{{ 'Oddział '+divi.town+' parafia '+divi.parish }}</span>
                 </option>
@@ -101,7 +101,7 @@
                 data-target="modal1"
                 class="btn btn-primary modal-trigger waves-effect"
                 @click.prevent="register"
-                :disabled="title===null|| end_date===null||end_time===null||start_date===null||start_time===null "
+                :disabled="title==null|| end_date==null||end_time==null||start_date==null||start_time==null "
               >Dodaj wydarzenie</button>
 
               <!-- v-show="colliders.length>0"  -->
@@ -115,7 +115,7 @@
                       <div class="indeterminate amber lighten-1"></div>
                     </div>
                     <h6
-                      v-if="!isProgress && colliders.length===0"
+                      v-if="!isProgress && colliders.length==0"
                       class="green-text"
                     >Brak kolidujących wydarzeń! :)</h6>
                     <table v-if="!isProgress && colliders.length>0">
@@ -126,7 +126,7 @@
                       <tr v-for="event in colliders" :key="event.id">
                         <td>{{event.title}}</td>
                         <td>
-                          <span v-if="event.town===null">diecezja</span>
+                          <span v-if="event.town==null">diecezja</span>
                           <span v-else>{{event.town}}</span>
                         </td>
                         <td>{{event.start}}</td>

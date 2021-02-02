@@ -61,7 +61,7 @@ export default {
   },
   watch: {
     receiver_group: function() {
-      if (this.receiver_group !== 1) {
+      if (this.receiver_group != 1) {
         this.division = -1;
       }
     }

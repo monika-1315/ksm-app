@@ -12,5 +12,17 @@ class Message extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'receiver_group' => 'int',
+        'division' => 'int',
+        'author' => 'int',
+        'modified' => 'int'
+    ];
     
 }

@@ -32,13 +32,13 @@ class Mail
             $mail->Username   = env("MAIL_USERNAME"); // SMTP account username 
             $mail->Password   = env("MAIL_PASSWORD");        // SMTP account password 
 
-            $mail->setFrom('updates@app-ksm.legnica.pl', 'Aplikacja KSM DL');
+            $mail->setFrom('app@ksm.legnica.pl', 'Aplikacja KSM DL');
 
             $mail->addAddress($recipient);
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = $subject;
-            $mail->Body    = $body.'<br><br>Pozdrawiamy,<br>Zespół KSM DL<br><a href="app-ksm.legnica.pl">app-ksm.legnica.pl</a>';
+            $mail->Body    = $body.'<br><br>Pozdrawiamy,<br>Zespół KSM DL<br><a href="app.ksm.legnica.pl">app.ksm.legnica.pl</a>';
 
             $success=$mail->send();
             return response()->json([

@@ -61,12 +61,12 @@ export default {
   },
   watch: {
     is_logged: function () {
-      if (is_logged === true) this.$router.push("dashboard");
+      if (is_logged == true) this.$router.push("dashboard");
     },
   },
   methods: {
     created: function () {
-      // if (is_logged===true)
+      // if (is_logged==true)
       this.$router.push({ name: "login" });
     },
   },

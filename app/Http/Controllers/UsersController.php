@@ -28,7 +28,7 @@ class UsersController extends Controller
     public function authorizeUser(IdRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_leadership === 0 || $logged_user->is_authorized === 0)
+        if ($logged_user->is_leadership == 0 || $logged_user->is_authorized == 0)
             return response()->json([
                 'success' => false
             ]);
@@ -47,7 +47,7 @@ class UsersController extends Controller
     public function discardUser(IdRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_leadership === 0 || $logged_user->is_authorized === 0)
+        if ($logged_user->is_leadership == 0 || $logged_user->is_authorized == 0)
             return response()->json([
                 'success' => false
             ]);
@@ -68,7 +68,7 @@ class UsersController extends Controller
     public function getUnauthorizedUsers(Request $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_leadership === 0 || $logged_user->is_authorized === 0)
+        if ($logged_user->is_leadership == 0 || $logged_user->is_authorized == 0)
             return response('',401);
 
         $data = User::where('division', $logged_user->division)
@@ -82,7 +82,7 @@ class UsersController extends Controller
     public function getAuthorizedUsers(Request $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_management === 0 || $logged_user->is_authorized === 0)
+        if ($logged_user->is_management == 0 || $logged_user->is_authorized == 0)
             return response('',401);
 
         $data = User::where('is_authorized', 1)
@@ -93,7 +93,7 @@ class UsersController extends Controller
     public function getAuthorizedUsersDiv(Request $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_leadership === 0 || $logged_user->is_authorized === 0)
+        if ($logged_user->is_leadership == 0 || $logged_user->is_authorized == 0)
             return response('',401);
 
         $data = User::where('division', $logged_user->division)
@@ -135,7 +135,7 @@ class UsersController extends Controller
         $user->name = $request->get('name');
         $user->surname = $request->get('surname');
         $user->email = $request->get('email');
-        if ($request->get('password') === $request->get('confirmPassword') && $request->get('password') !== null)
+        if ($request->get('password') == $request->get('confirmPassword') && $request->get('password') !== null)
             $user->password = bcrypt($request->get('password'));
         $user->birthdate = $request->get('birthdate');
         $user->division = $request->get('division');
@@ -151,14 +151,14 @@ class UsersController extends Controller
     public function changeLeadership(IdRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_leadership === 0 || $logged_user->is_authorized === 0)
+        if ($logged_user->is_leadership == 0 || $logged_user->is_authorized == 0)
             return response()->json([
                 'success' => false
             ]);
 
         $user = User::find($request->get('id'));
 
-        if ($user->is_leadership === 1) {
+        if ($user->is_leadership == 1) {
             $user->is_leadership = 0;
             Mail::sendById(
                 $request->get('id'),
@@ -182,14 +182,14 @@ class UsersController extends Controller
     public function changeManagement(IdRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_management === 0 || $logged_user->is_authorized === 0)
+        if ($logged_user->is_management == 0 || $logged_user->is_authorized == 0)
             return response()->json([
                 'success' => false
             ]);
 
         $user = User::find($request->get('id'));
 
-        if ($user->is_management === 1) {
+        if ($user->is_management == 1) {
             $user->is_management = 0;
             Mail::sendById(
                 $request->get('id'),
@@ -213,7 +213,7 @@ class UsersController extends Controller
     public function addUser(NewUserRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_authorized === 0 || ($logged_user->is_leadership === 0 &&$logged_user->is_management === 0 ))
+        if ($logged_user->is_authorized == 0 || ($logged_user->is_leadership == 0 &&$logged_user->is_management == 0 ))
             return response()->json([
                 'success' => false
             ]);
@@ -235,7 +235,7 @@ class UsersController extends Controller
         $user->save();
 
         Mail::send($request->get('email'), 'Utworzono konto w aplikacji KSM DL', 'Witaj ' . $request->get('name') . '!<br>'
-            . 'Zostało właśnie utworzone dla Ciebie konto w Aplikacji KSM DL. <br>Możesz zalogować się na stronie <a href="app-ksm.legnica.pl">app-ksm.legnica.pl</a> '
+            . 'Zostało właśnie utworzone dla Ciebie konto w Aplikacji KSM DL. <br>Możesz zalogować się na stronie <a href="app.ksm.legnica.pl">app.ksm.legnica.pl</a> '
             . 'używając maila ' . $request->get('email') . '. Twoje hasło to <b>' . $password . '</b>. Po zalogowaniu zmień hasło w zakładce "Edytuj sane osobowe". '
             . 'Zalogowanie się oznacza wyrażenie zgody na przetwarzanie Twoich danych przez Katolickie Stowarzyszenie Młodzieży Diecezji Legnickiej.'
             . '<br>Jeżeli nie chcesz/nie wyrażasz zgody na posiadanie konta w aplikacji, odpisz na tego maila, a usuniemy Twoje dane.');

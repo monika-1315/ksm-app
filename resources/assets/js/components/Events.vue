@@ -48,9 +48,9 @@
       <button
         class="tab btn btn-light"
         @click="selectedTab=tab.id"
-        v-if="tab.id==='C'||user_id!==0"
+        v-if="tab.id=='C'||user_id!=0"
       >
-        <a :class="{activeTab: selectedTab===tab.id}">{{ tab.text }}</a>
+        <a :class="{activeTab: selectedTab==tab.id}">{{ tab.text }}</a>
       </button>
     </span>
     <p v-if="!is_authorized" style="font-weight: 500" class="red-text text-darken-2">
@@ -60,7 +60,7 @@
     <div v-for="event in events" :key="event.id">
       <div
         class="card card-default sticky-action"
-        v-if="selectedTab==='C'|| (selectedTab==='A'||selectedTab==='B'||selectedTab==='D')&&user_id!==0"
+        v-if="selectedTab=='C'|| (selectedTab=='A'||selectedTab=='B'||selectedTab=='D')&&user_id!=0"
       >
         <div class="card-header card-title activator">
           {{event.title}}
@@ -91,12 +91,12 @@
           </p>
         </div>
         <div class="card-action" v-if="is_authorized">
-          <span v-if="event.is_sure===0" style="color: darkblue; font-style:italic">zapisano</span>
-          <span v-if="event.is_sure===1" style="color: darkgreen; font-style:italic">potwierdzono</span>
+          <span v-if="event.is_sure==0" style="color: darkblue; font-style:italic">zapisano</span>
+          <span v-if="event.is_sure==1" style="color: darkgreen; font-style:italic">potwierdzono</span>
           <span class="hide-on-small-only">
             
             <button
-              v-if="event.is_sure===0"
+              v-if="event.is_sure==0"
               class="btn btn-light editbtn"
               type="button"
               name="action"
@@ -104,7 +104,7 @@
             >Potwierdź</button>
 
             <button
-              v-if="event.is_sure===null && user_id!=0"
+              v-if="event.is_sure==null && user_id!=0"
               class="btn btn-light editbtn"
               type="button"
               name="action"
@@ -124,13 +124,13 @@
               name="action"
               @click="editEvent(event.id)"
               style="float: right"
-              v-if="event.division===division&&is_leadership ||event.division===null && is_management || event.author===user_id"
+              v-if="event.division==division&&is_leadership ||event.division==null && is_management || event.author==user_id"
             >Edytuj</button>
           </span>
 
           <span class="hide-on-med-and-up">
             <button
-              v-if="event.is_sure===0 || event.is_sure===null && user_id!=0"
+              v-if="event.is_sure==0 || event.is_sure==null && user_id!=0"
               class="btn btn-light editbtn"
               type="button"
               name="action"
@@ -150,7 +150,7 @@
               name="action"
               @click="editEvent(event.id)"
               style="float: right"
-              v-if="event.division===division&&is_leadership ||event.division===null && is_management || event.author===user_id"
+              v-if="event.division==division&&is_leadership ||event.division==null && is_management || event.author==user_id"
             >  <i class="material-icons">edit</i></button>
           </span>
         </div>
@@ -283,7 +283,7 @@ export default {
   },
 
   created: function () {
-    if (this.user_id !== 0) {
+    if (this.user_id != 0) {
       this.selectedTab = "A";
     }
     this.getEvents();

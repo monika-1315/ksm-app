@@ -10,7 +10,7 @@
           <form autocomplete="off" @submit.prevent="update" v-if="currentUser" method="post">
             <div class="form-group">
               <label for="name">Imię</label>
-              <input :disabled="currentUser.is_authorized===1" id="name" type="text" class="validate" pattern="([A-Za-z- ])+" v-model="name" required />
+              <input :disabled="currentUser.is_authorized==1" id="name" type="text" class="validate" pattern="([A-Za-z- ])+" v-model="name" required />
               <span class="text text-danger" v-if="error && errors.name">{{ errors.name[0] }}</span>
             </div>
             <div class="form-group">
@@ -68,7 +68,7 @@
               <select
                 class="browser-default"
                 v-model="division"
-                :disabled="currentUser.is_authorized===1"
+                :disabled="currentUser.is_authorized==1"
                 required
               >
                 <option v-for="divi in divisions" :value="divi.id" :key="divi.id">
@@ -148,8 +148,8 @@ export default {
   methods: {
     update() {
       if (
-        this.password === this.confirmPassword &&
-        (this.password === "" || this.password.length > 5)
+        this.password == this.confirmPassword &&
+        (this.password == "" || this.password.length > 5)
       ) {
         this.axios
           .post("api/auth/updateUser", {

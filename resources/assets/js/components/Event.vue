@@ -47,7 +47,7 @@
 
           <div>
             <h6>Kontakt</h6>
-            <p v-if="email!==null"><i class="material-icons left">mail_outline</i>{{email}}</p>
+            <p v-if="email!=null"><i class="material-icons left">mail_outline</i>{{email}}</p>
             <p v-else><i class="material-icons left">mail_outline</i>ksmdl.zarzad@gmail.com</p>
           </div>
 
@@ -58,16 +58,16 @@
 
           <div>
             <h6>Koszt</h6>
-            <p v-if="price!==null">{{price}}</p>
+            <p v-if="price!=null">{{price}}</p>
             <p v-else style="color: grey">Nie określono</p>
           </div>
 
-          <div v-if="timetable!==null">
+          <div v-if="timetable!=null">
             <h6>Plan wydarzenia:</h6>
             <p style="white-space: pre-line">{{timetable}}</p>
           </div>
 
-          <div v-if="details!==null">
+          <div v-if="details!=null">
             <h6>Dodatkowe informacje</h6>
             <p style="white-space: pre-line">{{details}}</p>
           </div>
@@ -92,7 +92,7 @@
                 <td>{{person.town}}</td>
                 <td  v-if="is_admin">{{age(person.birthdate)}}</td>
                 <td>
-                  <span v-if="person.is_sure===1">tak</span>
+                  <span v-if="person.is_sure==1">tak</span>
                   <span v-else>nie</span>
                 </td>
               </tr>
@@ -108,7 +108,7 @@
 
             <p style="font-style:italic; font-size:small">
               Utworzono {{this.created_at}} przez {{author}}
-              <span v-if="modified_at!==null">
+              <span v-if="modified_at!=null">
                 <br />
                 ostatnia modyfikacja: {{modified_at}}
               </span>
@@ -122,11 +122,11 @@
                   <span>
                     <span style="font-weight:500">Zapisz się!</span>
                     <span
-                      v-if="is_coming===0"
+                      v-if="is_coming==0"
                       style="color: darkblue; font-style:italic; float:right"
                     >&nbsp;(Zapisano) Potwierdź przybycie!</span>
                     <span
-                      v-if="is_coming===1"
+                      v-if="is_coming==1"
                       style="color: darkgreen; font-style:italic; "
                     >(Potwierdzono przybycie)</span>
                   </span>
@@ -178,7 +178,7 @@
                     <div class="card-action" style="text-align:center">
                       <button
                         class="btn btn-light"
-                        v-if="is_coming!==null"
+                        v-if="is_coming!=null"
                         type="button"
                         @click="deleteParticipant"
                       >Wypisz mnie</button>
@@ -241,10 +241,10 @@ export default {
   computed: {
     is_admin() {
       return (
-        (this.division === 0 && this.$store.state.is_management) ||
-        (this.division === this.$store.state.division &&
+        (this.division == 0 && this.$store.state.is_management) ||
+        (this.division == this.$store.state.division &&
           this.$store.state.is_leadership) ||
-        this.author_id === this.$store.state.user_id
+        this.author_id == this.$store.state.user_id
       );
     },
   },
@@ -281,7 +281,7 @@ export default {
             this.end_date = response.data[0].end.split(" ")[0];
             this.end_time = response.data[0].end.split(" ")[1];
             this.division = response.data[0].division;
-            if (this.division === null) this.division = 0;
+            if (this.division == null) this.division = 0;
             this.location = response.data[0].location;
             this.email = response.data[0].email;
             this.price = response.data[0].price;
@@ -321,7 +321,7 @@ export default {
         );
     },
     signParticipant: function () {
-      if (this.is_coming === null) {
+      if (this.is_coming == null) {
         this.axios
           .post("/api/auth/newParticipant", {
             token: this.$store.state.token,
@@ -397,7 +397,7 @@ export default {
     },
   },
   created: function () {
-    if (this.$route.params.is_signing === 1) this.is_signing = true;
+    if (this.$route.params.is_signing == 1) this.is_signing = true;
     this.getDivisions();
     this.getEventInfo();
     this.checkParticipant();

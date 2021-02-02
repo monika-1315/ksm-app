@@ -136,7 +136,7 @@ class EventsController extends Controller
     public function newEvent(EventRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->only('token'));
-        if ($logged_user->is_authorized === 0 || ($logged_user->is_leadership === 0 && $logged_user->is_management === 0))
+        if ($logged_user->is_authorized == 0 || ($logged_user->is_leadership == 0 && $logged_user->is_management == 0))
             return response()->json([
                 'success' => false
             ]);
@@ -178,15 +178,15 @@ class EventsController extends Controller
     public function editEvent(EventRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->only('token'));
-        if ($logged_user->is_authorized === 0)
+        if ($logged_user->is_authorized == 0)
             return response()->json(['success' => false]);
 
         $event = Event::find($request->get('id'));
         if ($event->author !== $logged_user->id) {
             if ($event->division == null) {
-                if ($logged_user->is_management === 0)
+                if ($logged_user->is_management == 0)
                     return response()->json(['success' => false, 'info' => 1]);
-            } else if ($logged_user->is_leadership === 0 || $logged_user->division !== $event->division)
+            } else if ($logged_user->is_leadership == 0 || $logged_user->division !== $event->division)
                 return response()->json(['success' => false, 'info' => 12]);
         }
 
@@ -225,16 +225,16 @@ class EventsController extends Controller
     public function deleteEvent(IdRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->only('token'));
-        if ($logged_user->is_authorized === 0)
+        if ($logged_user->is_authorized == 0)
             return response('', 401);
 
         $event = Event::find($request->get('id'));
         if ($event->author !== $logged_user->id) {
             if ($event->division == null) {
-                if ($logged_user->is_management === 0)
+                if ($logged_user->is_management == 0)
                 return response('', 401);
             } 
-            else if ($logged_user->is_leadership === 0 || $logged_user->division !== $event->division)
+            else if ($logged_user->is_leadership == 0 || $logged_user->division !== $event->division)
                 return response('', 401);
         }
         $event->delete();

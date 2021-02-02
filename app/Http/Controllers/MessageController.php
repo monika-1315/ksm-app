@@ -78,14 +78,14 @@ class MessageController extends Controller
     public function newMessage(MessageRequest $request)
     {
         $logged_user = JWTAuth::toUser($request->get('token'));
-        if ($logged_user->is_authorized === 0 || ($logged_user->is_leadership === 0 && $logged_user->is_management === 0))
+        if ($logged_user->is_authorized == 0 || ($logged_user->is_leadership == 0 && $logged_user->is_management == 0))
             return response()->json([
                 'success' => false
             ]);
 
         $message = new Message();
         $message->receiver_group = $request->get('receiver_group');
-        if ($request->get('receiver_group') === 1)
+        if ($request->get('receiver_group') == 1)
             $message->division = $request->get('division');
         $message->title = $request->get('title');
         $message->body = $request->get('body');
