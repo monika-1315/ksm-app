@@ -196,7 +196,7 @@ export default {
               this.usersAll0.length = 0;
               this.usersAll1.length = 0;
               for (var user of response.data) {
-                if (user.is_management === 0) this.usersAll0.push(user);
+                if (user.is_management === '0') this.usersAll0.push(user);
                 else this.usersAll1.push(user);
               }
               this.isProgress=false;
@@ -217,7 +217,7 @@ export default {
               this.usersDiv0.length = 0;
               this.usersDiv1.length = 0;
               for (var user of response.data) {
-                if (user.is_leadership === 0) this.usersDiv0.push(user);
+                if (user.is_leadership == 0) this.usersDiv0.push(user);
                 else this.usersDiv1.push(user);
               }
               this.isProgress=false;
